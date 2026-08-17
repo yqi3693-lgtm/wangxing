@@ -3,227 +3,2576 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>WANGXING · 星河大衍筮法</title>
+
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#01090c;color:#d8ffff;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
-body{overflow-x:hidden;background:#01090c}
-#stars{position:fixed;inset:0;z-index:0;background:#01090c;pointer-events:none}
-.space{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.container{position:relative;z-index:2}
-.nebula{position:absolute;inset:-20%;background:
-radial-gradient(ellipse at 52% 16%,rgba(53,255,238,.42),transparent 24%),
-radial-gradient(ellipse at 20% 32%,rgba(0,205,232,.30),transparent 27%),
-radial-gradient(ellipse at 82% 45%,rgba(33,245,214,.26),transparent 25%),
-radial-gradient(ellipse at 48% 76%,rgba(0,145,190,.24),transparent 32%),
-radial-gradient(ellipse at 68% 12%,rgba(91,255,244,.16),transparent 18%);
-filter:blur(18px);animation:drift 18s ease-in-out infinite alternate}
-@keyframes drift{to{transform:scale(1.08) translate(2%, -1%)}}
-.container{max-width:1440px;margin:auto;padding:34px 42px 50px}
-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
-.logo{letter-spacing:.18em}.en{font:32px Georgia,serif;color:#b8ffff}.cn{font-size:30px;margin-top:5px}.sub{font-size:13px;color:#6ea2a5;margin-top:9px}
-.nav{display:flex;gap:28px;color:#78a7aa;font-size:12px}.nav div{text-align:center}.nav b{display:block;font-size:21px;font-weight:400;margin-bottom:4px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{background:linear-gradient(145deg,rgba(3,29,35,.82),rgba(1,16,21,.75));border:1px solid rgba(60,218,214,.46);border-radius:18px;box-shadow:0 0 35px rgba(23,203,202,.07),inset 0 0 30px rgba(67,240,233,.025);backdrop-filter:blur(10px)}
-.panel.pad{padding:24px 28px}
-h2{font-size:19px;font-weight:500;color:#a8f3ef;letter-spacing:.08em;margin:0 0 17px}
-textarea{width:100%;height:105px;background:rgba(0,13,18,.7);border:1px solid #287b80;border-radius:11px;color:#d9ffff;padding:15px;font:15px inherit;resize:none;outline:none}
-textarea:focus{border-color:#5be9e3;box-shadow:0 0 18px rgba(61,227,220,.14)}
-.actions{display:flex;gap:12px;margin-top:16px}.btn{border:1px solid #48d6d2;background:linear-gradient(180deg,#41c8c7,#169b9d);color:#efffff;border-radius:9px;padding:12px 20px;cursor:pointer;font:inherit;box-shadow:0 0 18px rgba(54,217,212,.15)}.btn.alt{background:transparent;color:#91babc;border-color:#286d72}.btn:disabled{opacity:.4;cursor:not-allowed}
-.hint{font-size:12px;color:#608c8f}
-.progress{height:5px;background:#08262a;border-radius:10px;overflow:hidden;margin:16px 0}.progress i{display:block;height:100%;width:0;background:#55dfda;box-shadow:0 0 12px #43e3dc;transition:.3s}
-.stage{min-height:450px;margin-top:18px;padding:25px 22px;position:relative}
-.stage-title{text-align:center;color:#a8e9e6;font-size:16px;margin-bottom:6px}.stage-desc{text-align:center;color:#668f92;font-size:12px;min-height:34px}
-.pile-area{height:210px;position:relative;margin:15px 0}.pile{position:absolute;top:25px;min-height:180px;display:block;padding:12px;border:1px dashed #277276;border-radius:14px;background:radial-gradient(ellipse,rgba(14,103,108,.25),rgba(0,25,30,.18) 60%,transparent 75%);transition:.45s;overflow:hidden}.pile.left{left:4%;width:92%}.pile.right{right:4%;width:43%}
-.stalk{position:absolute;width:4px;height:58px;border-radius:4px;background:linear-gradient(90deg,#d2ffff,#38c5c0 55%,#087174);box-shadow:0 0 7px rgba(96,237,230,.38);display:block;transform-origin:bottom center;transition:all .55s cubic-bezier(.2,.8,.2,1)}
-.pile.small .stalk{height:28px;width:3px}.pile.clickable{cursor:pointer;border-color:#51dcd7;box-shadow:0 0 18px rgba(69,222,216,.1)}.pile.clickable:hover{background:rgba(29,119,121,.2);transform:translateY(-2px)}
-.split-line{position:absolute;left:50%;top:40px;bottom:15px;width:1px;background:linear-gradient(transparent,#3ccbc8,transparent)}
-.split-control{margin-top:10px;text-align:center;color:#6f9b9e;font-size:12px}.split-control input{width:80%;accent-color:#48d6d2}.split-number{color:#caffff;font-size:16px;margin:0 5px}.choice{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:8px}.choice .btn{padding:9px 15px;font-size:13px}
-.counts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.countbox{border:1px solid #205a5f;border-radius:11px;padding:12px;text-align:center;color:#79a5a7}.countbox strong{display:block;font-size:24px;color:#c5ffff;margin-top:5px}
-.remainders{display:flex;justify-content:center;gap:12px;margin:18px 0}.r{padding:9px 15px;border-radius:9px;background:#062329;border:1px solid #23686d;color:#8cb8ba}.r b{color:#d4ffff}
-.result{margin-top:16px;padding:16px;border:1px solid #245f64;border-radius:12px;background:rgba(1,22,27,.7);text-align:center}.result .num{font-size:31px;color:#bafffa}.result .name{font-size:15px;color:#7da9ab;margin-top:4px}
-.hexwrap{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:15px;text-align:center}.hexname{color:#7ea9ab;font-size:13px;margin-bottom:11px}.hex{display:flex;flex-direction:column;gap:7px;align-items:center}.line{height:11px;width:150px;position:relative}.solid,.broken1,.broken2{position:absolute;top:3px;height:6px;background:#5bdcd8;border-radius:5px;box-shadow:0 0 8px rgba(74,225,219,.2)}.solid{left:0;right:0}.broken1{left:0;width:64px}.broken2{right:0;width:64px}.movingline .solid,.movingline .broken1,.movingline .broken2{background:#caffff}
-.table{margin-top:18px;border:1px solid #20565b;border-radius:10px;overflow:hidden}.tr{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 4px;border-bottom:1px solid #12383c;color:#789da0;font-size:12px;text-align:center}.tr:last-child{border-bottom:0}.tr.head{color:#94c1c2;background:rgba(30,101,105,.15)}.tr.move{background:rgba(59,205,201,.08);color:#c4eeee}
-.api{margin-top:18px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}.api button{padding:7px 12px}.apiBox{display:none;margin-top:8px}.apiBox input{width:100%;background:#02161b;border:1px solid #28646a;border-radius:8px;color:white;padding:10px}
-.footer{text-align:center;color:#426b6e;font-size:11px;margin-top:22px}
-@media(max-width:900px){.container{padding:22px 15px}.grid{grid-template-columns:1fr}header{gap:20px}.nav{display:none}}
-@media(max-width:560px){.pile-area{height:270px}.pile{top:35px}.pile.left,.pile.right{width:45%}.stalk{height:37px}.hexwrap{grid-template-columns:1fr}.container{padding-bottom:30px}}
+*{
+    box-sizing:border-box
+}
+
+html,body{
+    margin:0;
+    min-height:100%;
+    background:#01090c;
+    color:#d8ffff;
+    font-family:"PingFang SC","Microsoft YaHei",sans-serif
+}
+
+body{
+    overflow-x:hidden
+}
+
+#stars{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    background:#01090c;
+    pointer-events:none
+}
+
+.space{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
+    pointer-events:none
+}
+
+.nebula{
+    position:absolute;
+    inset:-20%;
+    background:
+    radial-gradient(
+        ellipse at 52% 16%,
+        rgba(53,255,238,.42),
+        transparent 24%
+    ),
+    radial-gradient(
+        ellipse at 20% 32%,
+        rgba(0,205,232,.30),
+        transparent 27%
+    ),
+    radial-gradient(
+        ellipse at 82% 45%,
+        rgba(33,245,214,.26),
+        transparent 25%
+    ),
+    radial-gradient(
+        ellipse at 48% 76%,
+        rgba(0,145,190,.24),
+        transparent 32%
+    );
+
+    filter:blur(18px);
+    animation:drift 18s ease-in-out infinite alternate
+}
+
+@keyframes drift{
+    to{
+        transform:scale(1.08) translate(2%,-1%)
+    }
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    max-width:1440px;
+    margin:auto;
+    padding:34px 42px 50px
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:24px
+}
+
+.logo{
+    letter-spacing:.18em
+}
+
+.en{
+    font:32px Georgia,serif;
+    color:#b8ffff
+}
+
+.cn{
+    font-size:30px;
+    margin-top:5px
+}
+
+.sub{
+    font-size:13px;
+    color:#6ea2a5;
+    margin-top:9px
+}
+
+.nav{
+    display:flex;
+    gap:28px;
+    color:#78a7aa;
+    font-size:12px
+}
+
+.nav div{
+    text-align:center
+}
+
+.nav b{
+    display:block;
+    font-size:21px;
+    font-weight:400;
+    margin-bottom:4px
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px
+}
+
+.panel{
+    background:
+    linear-gradient(
+        145deg,
+        rgba(3,29,35,.82),
+        rgba(1,16,21,.75)
+    );
+
+    border:1px solid rgba(60,218,214,.46);
+    border-radius:18px;
+
+    box-shadow:
+        0 0 35px rgba(23,203,202,.07),
+        inset 0 0 30px rgba(67,240,233,.025);
+
+    backdrop-filter:blur(10px)
+}
+
+.panel.pad{
+    padding:24px 28px
+}
+
+h2{
+    font-size:19px;
+    font-weight:500;
+    color:#a8f3ef;
+    letter-spacing:.08em;
+    margin:0 0 17px
+}
+
+textarea{
+    width:100%;
+    height:105px;
+
+    background:rgba(0,13,18,.7);
+
+    border:1px solid #287b80;
+    border-radius:11px;
+
+    color:#d9ffff;
+
+    padding:15px;
+
+    font:15px inherit;
+
+    resize:none;
+    outline:none
+}
+
+textarea:focus{
+    border-color:#5be9e3;
+    box-shadow:0 0 18px rgba(61,227,220,.14)
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+    margin-top:16px
+}
+
+.btn{
+    border:1px solid #48d6d2;
+
+    background:
+        linear-gradient(
+            180deg,
+            #41c8c7,
+            #169b9d
+        );
+
+    color:#efffff;
+
+    border-radius:9px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    box-shadow:
+        0 0 18px rgba(54,217,212,.15)
+}
+
+.btn.alt{
+    background:transparent;
+    color:#91babc;
+    border-color:#286d72
+}
+
+.btn:disabled{
+    opacity:.4;
+    cursor:not-allowed
+}
+
+.hint{
+    font-size:12px;
+    color:#608c8f
+}
+
+.progress{
+    height:5px;
+    background:#08262a;
+    border-radius:10px;
+    overflow:hidden;
+    margin:16px 0
+}
+
+.progress i{
+    display:block;
+    height:100%;
+    width:0;
+
+    background:#55dfda;
+
+    box-shadow:0 0 12px #43e3dc;
+
+    transition:.3s
+}
+
+.stage{
+    min-height:450px;
+    margin-top:18px;
+    padding:25px 22px;
+    position:relative
+}
+
+.stage-title{
+    text-align:center;
+    color:#a8e9e6;
+    font-size:16px;
+    margin-bottom:6px
+}
+
+.stage-desc{
+    text-align:center;
+    color:#668f92;
+    font-size:12px;
+    min-height:34px
+}
+
+.pile-area{
+    height:210px;
+    position:relative;
+    margin:15px 0
+}
+
+.pile{
+    position:absolute;
+    top:25px;
+
+    min-height:180px;
+
+    display:block;
+
+    padding:12px;
+
+    border:1px dashed #277276;
+
+    border-radius:14px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(14,103,108,.25),
+            rgba(0,25,30,.18) 60%,
+            transparent 75%
+        );
+
+    transition:.45s;
+
+    overflow:hidden
+}
+
+.pile.left{
+    left:4%;
+    width:92%
+}
+
+.pile.clickable{
+    cursor:pointer;
+    border-color:#51dcd7;
+    box-shadow:0 0 18px rgba(69,222,216,.1)
+}
+
+.pile.clickable:hover{
+    background:rgba(29,119,121,.2);
+    transform:translateY(-2px)
+}
+
+.stalk{
+    position:absolute;
+
+    width:4px;
+    height:58px;
+
+    border-radius:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d2ffff,
+            #38c5c0 55%,
+            #087174
+        );
+
+    box-shadow:
+        0 0 7px rgba(96,237,230,.38);
+
+    display:block;
+
+    transform-origin:bottom center;
+
+    transition:all .55s cubic-bezier(.2,.8,.2,1)
+}
+
+.counts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:12px
+}
+
+.countbox{
+    border:1px solid #205a5f;
+    border-radius:11px;
+
+    padding:12px;
+
+    text-align:center;
+
+    color:#79a5a7
+}
+
+.countbox strong{
+    display:block;
+    font-size:24px;
+    color:#c5ffff;
+    margin-top:5px
+}
+
+.remainders{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:18px 0
+}
+
+.r{
+    padding:9px 15px;
+
+    border-radius:9px;
+
+    background:#062329;
+
+    border:1px solid #23686d;
+
+    color:#8cb8ba
+}
+
+.r b{
+    color:#d4ffff
+}
+
+.result{
+    margin-top:16px;
+
+    padding:16px;
+
+    border:1px solid #245f64;
+
+    border-radius:12px;
+
+    background:rgba(1,22,27,.7);
+
+    text-align:center
+}
+
+.result .num{
+    font-size:31px;
+    color:#bafffa
+}
+
+.result .name{
+    font-size:15px;
+    color:#7da9ab;
+    margin-top:4px
+}
+
+.hexwrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-top:15px;
+
+    text-align:center
+}
+
+.hexname{
+    color:#7ea9ab;
+    font-size:13px;
+    margin-bottom:11px
+}
+
+.hex{
+    display:flex;
+    flex-direction:column;
+
+    gap:7px;
+
+    align-items:center
+}
+
+.line{
+    height:11px;
+    width:150px;
+    position:relative
+}
+
+.solid,
+.broken1,
+.broken2{
+    position:absolute;
+
+    top:3px;
+
+    height:6px;
+
+    background:#5bdcd8;
+
+    border-radius:5px;
+
+    box-shadow:
+        0 0 8px rgba(74,225,219,.2)
+}
+
+.solid{
+    left:0;
+    right:0
+}
+
+.broken1{
+    left:0;
+    width:64px
+}
+
+.broken2{
+    right:0;
+    width:64px
+}
+
+.movingline .solid,
+.movingline .broken1,
+.movingline .broken2{
+    background:#caffff
+}
+
+.table{
+    margin-top:18px;
+
+    border:1px solid #20565b;
+
+    border-radius:10px;
+
+    overflow:hidden
+}
+
+.tr{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr 1fr;
+
+    padding:9px 4px;
+
+    border-bottom:1px solid #12383c;
+
+    color:#789da0;
+
+    font-size:12px;
+
+    text-align:center
+}
+
+.tr:last-child{
+    border-bottom:0
+}
+
+.tr.head{
+    color:#94c1c2;
+    background:rgba(30,101,105,.15)
+}
+
+.tr.move{
+    background:rgba(59,205,201,.08);
+    color:#c4eeee
+}
+
+.api{
+    margin-top:18px;
+
+    padding:14px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center
+}
+
+.api button{
+    padding:7px 12px
+}
+
+.apiBox{
+    display:none;
+    margin-top:8px
+}
+
+.apiBox input{
+    width:100%;
+
+    background:#02161b;
+
+    border:1px solid #28646a;
+
+    border-radius:8px;
+
+    color:white;
+
+    padding:10px
+}
+
+.apiBox button{
+    margin-top:8px
+}
+
+.footer{
+    text-align:center;
+
+    color:#426b6e;
+
+    font-size:11px;
+
+    margin-top:22px
+}
+
+@media(max-width:900px){
+
+    .container{
+        padding:22px 15px
+    }
+
+    .grid{
+        grid-template-columns:1fr
+    }
+
+    header{
+        gap:20px
+    }
+
+    .nav{
+        display:none
+    }
+}
+
+@media(max-width:560px){
+
+    .pile-area{
+        height:270px
+    }
+
+    .hexwrap{
+        grid-template-columns:1fr
+    }
+
+    .container{
+        padding-bottom:30px
+    }
+}
 </style>
 </head>
+
+
 <body>
-<canvas id="stars"></canvas><div class="space"><div class="nebula"></div></div>
+
+<canvas id="stars"></canvas>
+
+<div class="space">
+    <div class="nebula"></div>
+</div>
+
+
 <div class="container">
+
 <header>
-<div class="logo"><div class="en">WANGXING</div><div class="cn">大衍筮法</div><div class="sub">一问一卦 · 六爻成象 · 星河筮问</div></div>
-<div class="nav"><div><b>✦</b>星河筮问</div><div><b>◷</b>历史记录</div><div><b>⚙</b>设置</div></div>
+
+<div class="logo">
+
+<div class="en">
+WANGXING
+</div>
+
+<div class="cn">
+大衍筮法
+</div>
+
+<div class="sub">
+一问一卦 · 六爻成象 · 星河筮问
+</div>
+
+</div>
+
+
+<div class="nav">
+
+<div>
+<b>✦</b>
+星河筮问
+</div>
+
+<div>
+<b>◷</b>
+历史记录
+</div>
+
+<div>
+<b>⚙</b>
+设置
+</div>
+
+</div>
+
 </header>
 
+
 <div class="grid">
+
+
 <section>
+
+
 <div class="panel pad">
-<h2>你的问题</h2>
-<textarea id="q" maxlength="200" placeholder="请详细描述你想占卜的问题……"></textarea>
-<div class="actions"><button class="btn" id="begin">✦ 开始大衍筮法</button><button class="btn alt" id="restart">重新起卦</button></div>
-<p class="hint">本版本采用互动式分蓍：你可以亲自决定从哪里分二，并选择哪一蓍作为「挂一」。</p>
+
+<h2>
+你的问题
+</h2>
+
+<textarea
+id="q"
+maxlength="200"
+placeholder="请详细描述你想占卜的问题……"
+></textarea>
+
+
+<div class="actions">
+
+<button
+class="btn"
+id="begin"
+>
+✦ 开始大衍筮法
+</button>
+
+
+<button
+class="btn alt"
+id="restart"
+>
+重新起卦
+</button>
+
 </div>
+
+
+<p class="hint">
+本版本采用互动式分蓍：你可以亲自决定从哪里分二，并选择哪一蓍作为「挂一」。
+</p>
+
+</div>
+
+
 
 <div class="panel stage">
-<div class="stage-title" id="stageTitle">准备大衍之数</div>
-<div class="stage-desc" id="stageDesc">五十根蓍草，虚一不用，以四十九根进入本次筮法。</div>
-<div class="progress"><i id="bar"></i></div>
-<div class="pile-area" id="piles"><div class="split-line"></div></div>
-<div class="choice" id="choice"></div>
-<div class="counts" id="counts"></div>
-<div class="remainders" id="remainders"></div>
-<div class="result" id="result" style="display:none"></div>
+
+<div
+class="stage-title"
+id="stageTitle"
+>
+准备大衍之数
 </div>
+
+
+<div
+class="stage-desc"
+id="stageDesc"
+>
+五十根蓍草，虚一不用，以四十九根进入本次筮法。
+</div>
+
+
+<div class="progress">
+
+<i id="bar"></i>
+
+</div>
+
+
+<div
+class="pile-area"
+id="piles"
+>
+</div>
+
+
+<div
+class="choice"
+id="choice"
+>
+</div>
+
+
+<div
+class="counts"
+id="counts"
+>
+</div>
+
+
+<div
+class="remainders"
+id="remainders"
+>
+</div>
+
+
+<div
+class="result"
+id="result"
+style="display:none"
+>
+</div>
+
+</div>
+
 </section>
+
+
 
 <section>
+
+
 <div class="panel pad">
-<h2>六爻结果</h2>
-<div class="hexwrap"><div><div class="hexname" id="bn">本卦</div><div class="hex" id="bh"></div></div><div><div class="hexname" id="cn">变卦</div><div class="hex" id="ch"></div></div></div>
-<div class="table"><div class="tr head"><div>爻位</div><div>爻象</div><div>数值</div><div>状态</div></div><div id="rows"></div></div>
-<div class="actions"><button class="btn" id="ai" disabled>✦ 解读</button></div>
-<div id="answer" class="hint" style="white-space:pre-wrap;line-height:1.8;margin-top:13px">完成六爻后，点击「解读」查看卦象分析。</div>
+
+<h2>
+六爻结果
+</h2>
+
+
+<div class="hexwrap">
+
+
+<div>
+
+<div
+class="hexname"
+id="bn"
+>
+本卦
 </div>
 
-<div class="panel api"><span>⚿ 解读设置　<small id="ks">未设置</small></span><button class="btn alt" id="kt">设置</button></div>
-<div class="apiBox" id="kb"><input id="key" type="password" placeholder="sk-proj-..."><button class="btn alt" id="save">保存设置</button></div>
+<div
+class="hex"
+id="bh"
+>
+</div>
+
+</div>
+
+
+
+<div>
+
+<div
+class="hexname"
+id="cn"
+>
+变卦
+</div>
+
+<div
+class="hex"
+id="ch"
+>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="table">
+
+<div class="tr head">
+
+<div>
+爻位
+</div>
+
+<div>
+爻象
+</div>
+
+<div>
+数值
+</div>
+
+<div>
+状态
+</div>
+
+</div>
+
+
+<div id="rows">
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+id="ai"
+disabled
+>
+✦ 解读
+</button>
+
+</div>
+
+
+<div
+id="answer"
+class="hint"
+style="
+white-space:pre-wrap;
+line-height:1.8;
+margin-top:13px
+"
+>
+完成六爻后，点击「解读」查看卦象分析。
+</div>
+
+</div>
+
+
+
+<div class="panel api">
+
+<span>
+⚿ DeepSeek 解读设置　
+<small id="ks">
+未设置
+</small>
+</span>
+
+
+<button
+class="btn alt"
+id="kt"
+>
+设置
+</button>
+
+</div>
+
+
+<div
+class="apiBox"
+id="kb"
+>
+
+<input
+id="key"
+type="password"
+placeholder="sk-..."
+>
+
+
+<button
+class="btn alt"
+id="save"
+>
+保存设置
+</button>
+
+</div>
+
+
 </section>
+
 </div>
-<div class="footer">WANGXING · 星河大衍筮法　互动演算 · 卦象解读</div>
+
+
+<div class="footer">
+
+WANGXING · 星河大衍筮法　
+互动演算 · 卦象解读
+
 </div>
+
+</div>
+
+
 
 <script>
-/* 星空 */
-const cvs=document.getElementById("stars"),ctx=cvs.getContext("2d");let stars=[];
-function resize(){cvs.width=innerWidth*devicePixelRatio;cvs.height=innerHeight*devicePixelRatio;cvs.style.width=innerWidth+"px";cvs.style.height=innerHeight+"px";ctx.scale(devicePixelRatio,devicePixelRatio);stars=Array.from({length:Math.min(420,Math.floor(innerWidth/3))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.4+.2,a:Math.random()*.8+.2,s:Math.random()*.25+.04}))}
-function sky(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const s of stars){s.y-=s.s;if(s.y<0)s.y=innerHeight;ctx.globalAlpha=s.a*(0.55+0.45*Math.sin(Date.now()/900+s.x));ctx.fillStyle="#9dffff";ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()}requestAnimationFrame(sky)}addEventListener("resize",resize);resize();sky();
 
-/* 六十四卦 */
-const H={"111111":"乾为天","111110":"天泽履","111101":"天火同人","111100":"天雷无妄","111011":"天风姤","111010":"天水讼","111001":"天山遯","111000":"天地否","110111":"泽天夬","110110":"兑为泽","110101":"泽火革","110100":"泽雷随","110011":"泽风大过","110010":"泽水困","110001":"泽山咸","110000":"泽地萃","101111":"火天大有","101110":"火泽睽","101101":"离为火","101100":"火雷噬嗑","101011":"火风鼎","101010":"火水未济","101001":"火山旅","101000":"火地晋","100111":"雷天大壮","100110":"雷泽归妹","100101":"雷火丰","100100":"震为雷","100011":"雷风恒","100010":"雷水解","100001":"雷山小过","100000":"雷地豫","011111":"风天小畜","011110":"风泽中孚","011101":"风火家人","011100":"风雷益","011011":"巽为风","011010":"风水涣","011001":"风山渐","011000":"风地观","010111":"水天需","010110":"水泽节","010101":"水火既济","010100":"水雷屯","010011":"水风井","010010":"坎为水","010001":"水山蹇","010000":"水地比","001111":"山天大畜","001110":"山泽损","001101":"山火贲","001100":"山雷颐","001011":"山风蛊","001010":"山水蒙","001001":"艮为山","001000":"山地剥","000111":"地天泰","000110":"地泽临","000101":"地火明夷","000100":"地雷复","000011":"地风升","000010":"地水师","000001":"地山谦","000000":"坤为地"};
-const names=["初爻","二爻","三爻","四爻","五爻","上爻"];
-let current=[],turn=0,stage=null,question="",history=[];
+/* =========================
+   星空背景
+========================= */
 
-const title=document.getElementById("stageTitle"),desc=document.getElementById("stageDesc"),piles=document.getElementById("piles"),choice=document.getElementById("choice"),counts=document.getElementById("counts"),rem=document.getElementById("remainders"),result=document.getElementById("result"),bar=document.getElementById("bar");
+const canvas =
+document.getElementById("stars");
 
-function stalks(n,small=false){return Array.from({length:Math.min(n,72)},()=>`<i class="stalk"></i>`).join("")}
-function showPiles(a,b,click=false){
-piles.innerHTML=`<div class="split-line"></div><div class="pile left ${click?'clickable':''}" id="L">${stalks(a)}</div><div class="pile right ${click?'clickable':''}" id="R">${stalks(b)}</div>`;
+const ctx =
+canvas.getContext("2d");
+
+let stars=[];
+
+
+function resize(){
+
+canvas.width =
+innerWidth *
+devicePixelRatio;
+
+canvas.height =
+innerHeight *
+devicePixelRatio;
+
+canvas.style.width =
+innerWidth+"px";
+
+canvas.style.height =
+innerHeight+"px";
+
+ctx.setTransform(
+devicePixelRatio,
+0,
+0,
+devicePixelRatio,
+0,
+0
+);
+
+
+stars =
+Array.from(
+{
+length:
+Math.min(
+420,
+Math.floor(innerWidth/3)
+)
+},
+()=>({
+
+x:
+Math.random()*innerWidth,
+
+y:
+Math.random()*innerHeight,
+
+r:
+Math.random()*1.4+.2,
+
+a:
+Math.random()*.8+.2,
+
+s:
+Math.random()*.25+.04
+
+})
+);
+
 }
-function stepBar(n){bar.style.width=Math.min(100,n/6*100)+"%"}
-function resetStage(){choice.innerHTML="";counts.innerHTML="";rem.innerHTML="";result.style.display="none"}
-function begin(){
-question=document.getElementById("q").value.trim();if(!question){document.getElementById("answer").textContent="请先输入一个具体问题。";return}
-current=[];turn=0;nextYao();
+
+
+function sky(){
+
+ctx.clearRect(
+0,
+0,
+innerWidth,
+innerHeight
+);
+
+
+for(
+const s of stars
+){
+
+s.y-=s.s;
+
+
+if(
+s.y<0
+){
+s.y=innerHeight;
 }
-function nextYao(){
-if(turn>=6){finish();return}
-resetStage();stage={n:49,change:0,remainders:[],hang:null};stepBar(turn);
-title.textContent=`第 ${turn+1} 爻 · 分二`;desc.textContent="49根蓍草已经就绪。现在由你决定从哪一处把蓍草分成左右两束。";
-showMixedPile(stage.n);
-choice.innerHTML=`<div class="hint" style="text-align:center;margin-top:8px">49根蓍草混杂摊开。<b style="color:#caffff">点击你想从哪里分开的地方</b>，即从该处开始分二。</div>`;
+
+
+ctx.globalAlpha=s.a;
+
+ctx.fillStyle="#9dffff";
+
+ctx.beginPath();
+
+ctx.arc(
+s.x,
+s.y,
+s.r,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
 }
+
+
+requestAnimationFrame(sky);
+
+}
+
+
+addEventListener(
+"resize",
+resize
+);
+
+resize();
+
+sky();
+
+
+
+/* =========================
+   六十四卦
+========================= */
+
+const H={
+
+"111111":"乾为天",
+"111110":"天泽履",
+"111101":"天火同人",
+"111100":"天雷无妄",
+"111011":"天风姤",
+"111010":"天水讼",
+"111001":"天山遯",
+"111000":"天地否",
+
+"110111":"泽天夬",
+"110110":"兑为泽",
+"110101":"泽火革",
+"110100":"泽雷随",
+"110011":"泽风大过",
+"110010":"泽水困",
+"110001":"泽山咸",
+"110000":"泽地萃",
+
+"101111":"火天大有",
+"101110":"火泽睽",
+"101101":"离为火",
+"101100":"火雷噬嗑",
+"101011":"火风鼎",
+"101010":"火水未济",
+"101001":"火山旅",
+"101000":"火地晋",
+
+"100111":"雷天大壮",
+"100110":"雷泽归妹",
+"100101":"雷火丰",
+"100100":"震为雷",
+"100011":"雷风恒",
+"100010":"雷水解",
+"100001":"雷山小过",
+"100000":"雷地豫",
+
+"011111":"风天小畜",
+"011110":"风泽中孚",
+"011101":"风火家人",
+"011100":"风雷益",
+"011011":"巽为风",
+"011010":"风水涣",
+"011001":"风山渐",
+"011000":"风地观",
+
+"010111":"水天需",
+"010110":"水泽节",
+"010101":"水火既济",
+"010100":"水雷屯",
+"010011":"水风井",
+"010010":"坎为水",
+"010001":"水山蹇",
+"010000":"水地比",
+
+"001111":"山天大畜",
+"001110":"山泽损",
+"001101":"山火贲",
+"001100":"山雷颐",
+"001011":"山风蛊",
+"001010":"山水蒙",
+"001001":"艮为山",
+"001000":"山地剥",
+
+"000111":"地天泰",
+"000110":"地泽临",
+"000101":"地火明夷",
+"000100":"地雷复",
+"000011":"地风升",
+"000010":"地水师",
+"000001":"地山谦",
+"000000":"坤为地"
+
+};
+
+
+const names=[
+"初爻",
+"二爻",
+"三爻",
+"四爻",
+"五爻",
+"上爻"
+];
+
+
+let current=[];
+
+let turn=0;
+
+let question="";
+
+let stage={};
+
+
+
+/* =========================
+   DOM
+========================= */
+
+const title =
+document.getElementById(
+"stageTitle"
+);
+
+const desc =
+document.getElementById(
+"stageDesc"
+);
+
+const choice =
+document.getElementById(
+"choice"
+);
+
+const counts =
+document.getElementById(
+"counts"
+);
+
+const rem =
+document.getElementById(
+"remainders"
+);
+
+const result =
+document.getElementById(
+"result"
+);
+
+const bar =
+document.getElementById(
+"bar"
+);
+
+const piles =
+document.getElementById(
+"piles"
+);
+
+
+
+/* =========================
+   进度条
+========================= */
+
+function stepBar(n){
+
+bar.style.width =
+(n/6*100)+"%";
+
+}
+
+
+
+/* =========================
+   创建蓍草
+========================= */
+
 function showMixedPile(n){
-const area=document.getElementById("piles");
-area.innerHTML=`<div class="split-line" style="display:none"></div><div class="pile left" id="MIXED"></div>`;
-const pile=document.getElementById("MIXED");
-pile.dataset.n=n;
-const w=100,h=150;
-for(let i=0;i<n;i++){
- const s=document.createElement("i"); s.className="stalk";
- const x=4+Math.random()*92, y=7+Math.random()*78, rot=-24+Math.random()*48;
- s.style.left=x+"%"; s.style.top=y+"%"; s.style.transform=`rotate(${rot}deg)`;
- pile.appendChild(s);
+
+piles.innerHTML="";
+
+
+const p =
+document.createElement(
+"div"
+);
+
+p.className=
+"pile left clickable";
+
+p.id="MIXED";
+
+
+for(
+let i=0;
+i<Math.min(n,49);
+i++
+){
+
+const s=
+document.createElement(
+"span"
+);
+
+s.className="stalk";
+
+s.style.left=
+(5+Math.random()*88)+"%";
+
+s.style.top=
+(8+Math.random()*75)+"%";
+
+s.style.transform=
+"rotate("+
+(-12+Math.random()*24)+
+"deg)";
+
+p.appendChild(s);
+
 }
-pile.onclick=(e)=>{
- if(stage.splitting)return;
- const rect=pile.getBoundingClientRect();
- let frac=(e.clientX-rect.left)/rect.width;
- frac=Math.max(1/n,Math.min((n-1)/n,frac));
- const pos=Math.max(1,Math.min(n-1,Math.round(frac*n)));
- split(pos);
+
+
+p.onclick=function(e){
+
+const r=
+p.getBoundingClientRect();
+
+const pos=
+Math.max(
+1,
+Math.min(
+n-1,
+Math.round(
+(
+(e.clientX-r.left)/
+r.width
+)*n
+)
+)
+);
+
+splitAt(pos);
+
 };
+
+
+piles.appendChild(p);
+
 }
-function split(pos){
-if(pos<1||pos>=stage.n)return;
-stage.splitting=true;stage.left=pos;stage.right=stage.n-pos;
-const pile=document.getElementById("MIXED"), stalksArr=[...pile.querySelectorAll(".stalk")];
-stalksArr.forEach((s,i)=>{
- const target=i<pos ? (10+Math.random()*35) : (55+Math.random()*35);
- const y=16+Math.random()*64;
- const rot=-12+Math.random()*24;
- s.style.left=target+"%";s.style.top=y+"%";s.style.transform=`rotate(${rot}deg)`;
-});
-setTimeout(()=>{
- showPiles(stage.left,stage.right,false);
- title.textContent="挂一";desc.textContent="分二完成。请选择从左束还是右束取一蓍，挂于指间。";
- choice.innerHTML=`<button class="btn" onclick="hang('left')">从左束取一蓍</button><button class="btn" onclick="hang('right')">从右束取一蓍</button>`;
- stage.splitting=false;
-},650);
+
+
+
+/* =========================
+   开始起卦
+========================= */
+
+function begin(){
+
+question=
+document
+.getElementById("q")
+.value
+.trim();
+
+
+if(!question){
+
+document
+.getElementById("q")
+.focus();
+
+document
+.getElementById("answer")
+.textContent=
+"请先输入问题。";
+
+return;
+
 }
+
+
+current=[];
+
+turn=0;
+
+stage={
+n:49,
+change:0
+};
+
+
+document
+.getElementById("rows")
+.innerHTML="";
+
+
+document
+.getElementById("bh")
+.innerHTML="";
+
+
+document
+.getElementById("ch")
+.innerHTML="";
+
+
+document
+.getElementById("bn")
+.textContent="本卦";
+
+
+document
+.getElementById("cn")
+.textContent="变卦";
+
+
+document
+.getElementById("ai")
+.disabled=true;
+
+
+document
+.getElementById("answer")
+.textContent=
+"完成六爻后，点击「解读」查看卦象分析。";
+
+
+title.textContent=
+"第 1 爻 · 第一变";
+
+
+desc.textContent=
+"49 根蓍草。点击蓍草堆任意位置分二。";
+
+
+choice.innerHTML="";
+
+counts.innerHTML="";
+
+rem.innerHTML="";
+
+result.style.display="none";
+
+stepBar(0);
+
+showMixedPile(49);
+
+}
+
+
+
+/* =========================
+   分二
+========================= */
+
+function splitAt(pos){
+
+if(stage.splitting)
+return;
+
+
+stage.splitting=true;
+
+stage.left=pos;
+
+stage.right=
+stage.n-pos;
+
+
+const pile=
+document.getElementById(
+"MIXED"
+);
+
+
+[
+...pile.querySelectorAll(
+".stalk"
+)
+].forEach(
+(s,i)=>{
+
+s.style.left=
+(
+i<pos
+?
+10+Math.random()*35
+:
+55+Math.random()*35
+)+"%";
+
+s.style.top=
+(
+16+Math.random()*64
+)+"%";
+
+}
+);
+
+
+setTimeout(
+()=>{
+
+title.textContent=
+"挂一";
+
+desc.textContent=
+"分二完成。请选择从左束还是右束取一蓍。";
+
+
+choice.innerHTML=`
+
+<button
+class="btn"
+onclick="hang('left')"
+>
+从左束取一蓍
+</button>
+
+<button
+class="btn"
+onclick="hang('right')"
+>
+从右束取一蓍
+</button>
+
+`;
+
+
+stage.splitting=false;
+
+},
+400
+);
+
+}
+
+
+
+/* =========================
+   挂一
+========================= */
+
 function hang(side){
-stage.hang=side;stage.left2=stage.left-(side==="left"?1:0);stage.right2=stage.right-(side==="right"?1:0);
-title.textContent="揲四";desc.textContent="挂一完成。现在分别以四根为一组，数出两束的余数。";
-showPiles(stage.left2,stage.right2,false);
-const a=stage.left2%4||4,b=stage.right2%4||4;stage.remainders=[a,b];
-counts.innerHTML=`<div class="countbox">左束余数<strong>${a}</strong><small>根</small></div><div class="countbox">右束余数<strong>${b}</strong><small>根</small></div>`;
-rem.innerHTML=`<div class="r">左束归奇 <b>${a}</b></div><div class="r">右束归奇 <b>${b}</b></div><div class="r">挂一 <b>1</b></div>`;
-choice.innerHTML=`<button class="btn" onclick="changeAgain()">完成本变，进入下一变</button>`;
+
+stage.left2=
+stage.left-
+(
+side==="left"
+?
+1
+:
+0
+);
+
+
+stage.right2=
+stage.right-
+(
+side==="right"
+?
+1
+:
+0
+);
+
+
+const a=
+stage.left2%4||4;
+
+const b=
+stage.right2%4||4;
+
+
+stage.remainders=[
+a,
+b
+];
+
+
+title.textContent=
+"揲四 · 归奇";
+
+
+desc.textContent=
+"分别以四根为一组，记录两束余数。";
+
+
+counts.innerHTML=`
+
+<div class="countbox">
+
+左束余数
+
+<strong>
+${a}
+</strong>
+
+<small>
+根
+</small>
+
+</div>
+
+
+<div class="countbox">
+
+右束余数
+
+<strong>
+${b}
+</strong>
+
+<small>
+根
+</small>
+
+</div>
+
+`;
+
+
+rem.innerHTML=`
+
+<div class="r">
+
+归奇
+
+<b>
+${a+b+1}
+</b>
+
+根
+
+</div>
+
+`;
+
+
+choice.innerHTML=`
+
+<button
+class="btn"
+onclick="changeAgain()"
+>
+完成本变
+</button>
+
+`;
+
 }
+
+
+
+/* =========================
+   三变
+========================= */
+
 function changeAgain(){
-const used=stage.remainders[0]+stage.remainders[1]+1;
-stage.n-=used;stage.change++;
-if(stage.change<3){
-title.textContent=`第 ${stage.change+1} 变`;desc.textContent=`本变归奇 ${used} 根，余下 ${stage.n} 根。继续分二。你再次决定从哪里分。`;
-choice.innerHTML="";counts.innerHTML="";rem.innerHTML="";
-split2();
+
+stage.n-=
+stage.remainders[0]+
+stage.remainders[1]+
+1;
+
+stage.change++;
+
+
+if(
+stage.change<3
+){
+
+title.textContent=
+"第 "+
+(stage.change+1)+
+" 变";
+
+
+desc.textContent=
+"余下 "+
+stage.n+
+" 根，继续分二。";
+
+
+choice.innerHTML="";
+
+counts.innerHTML="";
+
+rem.innerHTML="";
+
+
+showMixedPile(
+stage.n
+);
+
+
 }else{
-/* 三变完成：余下 24/28/32/36，除4得 6/7/8/9 */
-const value=stage.n/4;current.push(value);
-result.style.display="block";result.innerHTML=`<div>三变完成 · 余下 <span class="num">${stage.n}</span> 根</div><div class="name">${value==6?"老阴（动）":value==7?"少阳":value==8?"少阴":"老阳（动）"} · ${value}</div>`;
-choice.innerHTML=`<button class="btn" onclick="nextYao()">继续起第 ${turn+2} 爻</button>`;
+
+
+const value=
+stage.n/4;
+
+
+current.push(value);
+
+
+result.style.display=
+"block";
+
+
+let type="";
+
+
+if(value===6){
+
+type="老阴（动）";
+
+}else if(value===7){
+
+type="少阳";
+
+}else if(value===8){
+
+type="少阴";
+
+}else if(value===9){
+
+type="老阳（动）";
+
+}else{
+
+type=value;
+
+}
+
+
+result.innerHTML=`
+
+<div>
+三变完成 · 余下
+<span class="num">
+${stage.n}
+</span>
+根
+</div>
+
+<div class="name">
+${type} · ${value}
+</div>
+
+`;
+
+
+choice.innerHTML=`
+
+<button
+class="btn"
+onclick="nextYao()"
+>
+继续起第 ${turn+2} 爻
+</button>
+
+`;
+
+
 turn++;
-}
-}
-function split2(){
-showMixedPile(stage.n);
-title.textContent="分二";desc.textContent=`本变剩余 ${stage.n} 根蓍草。点击摊开蓍草中的任意位置，从那里开始分二。`;
-choice.innerHTML=`<div class="hint" style="text-align:center;margin-top:8px">这一变不使用滑块，直接点击蓍草堆的分界位置。</div>`;
-}
-function hang2(side){
-stage.hang=side;stage.left2=stage.left-(side==="left"?1:0);stage.right2=stage.right-(side==="right"?1:0);
-const a=stage.left2%4||4,b=stage.right2%4||4;stage.remainders=[a,b];
-title.textContent="揲四 · 归奇";desc.textContent="四根一组，记录本变左右余数。";
-counts.innerHTML=`<div class="countbox">左束余数<strong>${a}</strong></div><div class="countbox">右束余数<strong>${b}</strong></div>`;
-rem.innerHTML=`<div class="r">归奇 <b>${a+b+1}</b> 根</div>`;
-choice.innerHTML=`<button class="btn" onclick="changeAgain()">完成本变</button>`;
-}
-function lineHtml(v){return v%2?`<div class="line ${v==9||v==6?'movingline':''}"><span class="solid"></span></div>`:`<div class="line ${v==9||v==6?'movingline':''}"><span class="broken1"></span><span class="broken2"></span></div>`}
-function finish(){
-const b=current.map(v=>v%2).reverse().join(""),c=current.map(v=>v==6?1:v==9?0:v%2).reverse().join("");
-document.getElementById("bn").textContent=H[b]||"本卦";document.getElementById("cn").textContent=H[c]||"变卦";
-document.getElementById("bh").innerHTML=current.slice().reverse().map(lineHtml).join("");document.getElementById("ch").innerHTML=current.map(v=>v==6?7:v==9?8:v).reverse().map(lineHtml).join("");
-document.getElementById("rows").innerHTML=current.map((v,i)=>`<div class="tr ${v==6||v==9?'move':''}"><div>${names[i]}</div><div>${v%2?'⚊':'⚋'}</div><div>${v}</div><div>${v==6?'老阴 → 阳':v==9?'老阳 → 阴':'静'}</div></div>`).join("");
-document.getElementById("ai").disabled=false;document.getElementById("answer").textContent="六爻完成。现在可以进行 解读。";
-title.textContent="六爻成卦";desc.textContent="大衍筮法完成，本卦与变卦已经生成。";stepBar(6);
-}
-document.getElementById("begin").onclick=begin;document.getElementById("restart").onclick=()=>location.reload();
 
-/* API */
-const kb=document.getElementById("kb"),key=document.getElementById("key"),ks=document.getElementById("ks");
-document.getElementById("kt").onclick=()=>kb.style.display=kb.style.display==="block"?"none":"block";
-key.value=localStorage.getItem("wangxing_key")||"";if(key.value)ks.textContent="已设置";
-document.getElementById("save").onclick=()=>{if(key.value.trim()){localStorage.setItem("wangxing_key",key.value.trim());ks.textContent="已设置";document.getElementById("answer").textContent="解读设置已保存。"}};
+}
 
-document.getElementById("ai").onclick=async()=>{
-const k=localStorage.getItem("wangxing_key")||key.value.trim();if(!k){kb.style.display="block";document.getElementById("answer").textContent="请先完成解读设置。";return}
-const qn=question,ys=current.map((v,i)=>`${names[i]}：${v==6?"老阴（动）":v==7?"少阳":v==8?"少阴":"老阳（动）"}`).join("\n");
-const b=document.getElementById("bn").textContent,c=document.getElementById("cn").textContent;
-document.getElementById("ai").disabled=true;document.getElementById("answer").textContent="正在解读……";
-const prompt=`你是一名严谨的传统易学大衍筮法解读助手。用户问题：${qn}\n本卦：${b}\n变卦：${c}\n六爻：${ys}\n请严格围绕用户所问的问题直接判断，不要泛泛建议。按“卦象总论—动爻—对问题的直接判断—发展阶段/时间（只有卦象支持时）—最终结论”回答。不要把占卜当成确定事实。`;
-try{const r=await fetch("https://api.openai.com/v1/responses",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+k},body:JSON.stringify({model:"gpt-5.2",input:prompt})});const d=await r.json();if(!r.ok)throw Error(d.error?.message||"API请求失败");document.getElementById("answer").textContent=d.output_text||"没有返回解读。"}catch(e){document.getElementById("answer").textContent="解读失败："+e.message}document.getElementById("ai").disabled=false;
+}
+
+
+
+/* =========================
+   下一爻
+========================= */
+
+function nextYao(){
+
+if(turn>=6){
+
+finish();
+
+return;
+
+}
+
+
+stage={
+n:49,
+change:0
 };
+
+
+result.style.display="none";
+
+
+title.textContent=
+"第 "+
+(turn+1)+
+" 爻 · 第一变";
+
+
+desc.textContent=
+"49 根蓍草。点击蓍草堆任意位置分二。";
+
+
+choice.innerHTML="";
+
+counts.innerHTML="";
+
+rem.innerHTML="";
+
+
+showMixedPile(49);
+
+}
+
+
+
+/* =========================
+   爻线
+========================= */
+
+function lineHtml(v){
+
+return `
+
+<div
+class="line ${
+v===6||v===9
+?
+"movingline"
+:
+""
+}"
+>
+
+${
+v%2
+
+?
+
+'<span class="solid"></span>'
+
+:
+
+'<span class="broken1"></span><span class="broken2"></span>'
+
+}
+
+</div>
+
+`;
+
+}
+
+
+
+/* =========================
+   六爻完成
+========================= */
+
+function finish(){
+
+const b=
+current
+.map(v=>v%2)
+.reverse()
+.join("");
+
+
+const c=
+current
+.map(
+v=>
+v===6
+?
+1
+:
+v===9
+?
+0
+:
+v%2
+)
+.reverse()
+.join("");
+
+
+document
+.getElementById("bn")
+.textContent=
+H[b]||
+"本卦";
+
+
+document
+.getElementById("cn")
+.textContent=
+H[c]||
+"变卦";
+
+
+document
+.getElementById("bh")
+.innerHTML=
+current
+.slice()
+.reverse()
+.map(lineHtml)
+.join("");
+
+
+document
+.getElementById("ch")
+.innerHTML=
+current
+.map(
+v=>
+v===6
+?
+7
+:
+v===9
+?
+8
+:
+v
+)
+.reverse()
+.map(lineHtml)
+.join("");
+
+
+document
+.getElementById("rows")
+.innerHTML=
+current
+.map(
+(v,i)=>`
+
+<div
+class="tr ${
+v===6||v===9
+?
+"move"
+:
+""
+}"
+>
+
+<div>
+${names[i]}
+</div>
+
+<div>
+${v%2?"⚊":"⚋"}
+</div>
+
+<div>
+${v}
+</div>
+
+<div>
+
+${
+v===6
+?
+"老阴 → 阳"
+:
+v===9
+?
+"老阳 → 阴"
+:
+"静"
+}
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+
+document
+.getElementById("ai")
+.disabled=false;
+
+
+document
+.getElementById("answer")
+.textContent=
+"六爻完成。现在可以进行解读。";
+
+
+title.textContent=
+"六爻成卦";
+
+
+desc.textContent=
+"大衍筮法完成，本卦与变卦已经生成。";
+
+
+stepBar(6);
+
+}
+
+
+
+/* =========================
+   按钮
+========================= */
+
+document
+.getElementById("begin")
+.onclick=
+begin;
+
+
+document
+.getElementById("restart")
+.onclick=
+function(){
+
+location.reload();
+
+};
+
+
+
+/* =========================
+   DeepSeek 设置
+========================= */
+
+const keyBox=
+document.getElementById("kb");
+
+const keyInput=
+document.getElementById("key");
+
+const keyStatus=
+document.getElementById("ks");
+
+
+const savedKey=
+localStorage.getItem(
+"wangxing_deepseek_key"
+);
+
+
+if(savedKey){
+
+keyInput.value=
+savedKey;
+
+keyStatus.textContent=
+"已设置";
+
+}
+
+
+document
+.getElementById("kt")
+.onclick=
+function(){
+
+keyBox.style.display=
+keyBox.style.display==="block"
+?
+"none"
+:
+"block";
+
+};
+
+
+document
+.getElementById("save")
+.onclick=
+function(){
+
+const key=
+keyInput.value.trim();
+
+
+if(!key){
+
+alert(
+"请输入 DeepSeek API Key"
+);
+
+return;
+
+}
+
+
+localStorage.setItem(
+"wangxing_deepseek_key",
+key
+);
+
+
+keyStatus.textContent=
+"已设置";
+
+
+document
+.getElementById("answer")
+.textContent=
+"DeepSeek API Key 已保存，可以开始解读。";
+
+
+keyBox.style.display=
+"none";
+
+};
+
+
+
+/* =========================
+   六爻文字
+========================= */
+
+function getYaoText(){
+
+return current
+.map(
+(v,i)=>{
+
+let type="";
+
+
+if(v===6){
+
+type="老阴（动爻）";
+
+}else if(v===7){
+
+type="少阳（静爻）";
+
+}else if(v===8){
+
+type="少阴（静爻）";
+
+}else if(v===9){
+
+type="老阳（动爻）";
+
+}else{
+
+type=String(v);
+
+}
+
+
+return (
+names[i]+
+"："+type
+);
+
+}
+)
+.join("\n");
+
+}
+
+
+
+/* =========================
+   DeepSeek AI 解读
+========================= */
+
+document
+.getElementById("ai")
+.onclick=
+async function(){
+
+const apiKey=
+localStorage.getItem(
+"wangxing_deepseek_key"
+)||
+keyInput.value.trim();
+
+
+if(!apiKey){
+
+keyBox.style.display=
+"block";
+
+
+document
+.getElementById("answer")
+.textContent=
+"请先在「解读设置」中填写 DeepSeek API Key。";
+
+
+return;
+
+}
+
+
+const userQuestion=
+question||
+document
+.getElementById("q")
+.value
+.trim();
+
+
+if(!userQuestion){
+
+document
+.getElementById("answer")
+.textContent=
+"请先输入你要占卜的问题。";
+
+
+return;
+
+}
+
+
+if(
+!current||
+current.length!==6
+){
+
+document
+.getElementById("answer")
+.textContent=
+"请先完成六爻起卦，再进行解读。";
+
+
+return;
+
+}
+
+
+const benGua=
+document
+.getElementById("bn")
+.textContent;
+
+
+const bianGua=
+document
+.getElementById("cn")
+.textContent;
+
+
+const yaoText=
+getYaoText();
+
+
+const movingYao=
+current
+.map(
+(v,i)=>
+(
+v===6||
+v===9
+)
+?
+names[i]
+:
+null
+)
+.filter(Boolean)
+.join("、");
+
+
+const systemPrompt=`
+
+你是一个严谨的传统六爻、大衍筮法卦象解读助手。
+
+你的任务是根据用户提出的问题，对已经生成的卦象进行判断。
+
+最重要的要求：
+
+【必须回答用户真正问的问题】
+
+不要把用户的问题转换成泛泛的生活建议。
+
+不要大篇幅讨论性格。
+
+不要脱离卦象进行心理分析。
+
+不要主动扩展到用户没有询问的问题。
+
+必须优先给出直接结论。
+
+必须使用本卦、动爻、变卦作为判断依据。
+
+如果问题涉及：
+
+工作
+求职
+面试
+offer
+感情
+复合
+人物关系
+金钱
+结果
+时间
+是否成功
+是否会发生
+
+必须直接回答对应的问题。
+
+如果卦象只能判断趋势，就明确说“倾向于”，不要假装绝对确定。
+
+如果涉及时间，只在卦象有明显依据时判断时间阶段。
+
+回答格式：
+
+【直接结论】
+
+直接回答用户的问题。
+
+【本卦】
+
+说明本卦对于这个问题的核心含义。
+
+【动爻】
+
+说明动爻具体改变了什么。
+
+【变卦】
+
+说明后续走势。
+
+【最终判断】
+
+再次给出明确答案。
+
+不要把“建议”作为主体。
+
+不要使用大量与问题无关的内容。
+
+`;
+
+
+const userPrompt=`
+
+用户问题：
+
+${userQuestion}
+
+
+本卦：
+
+${benGua}
+
+
+变卦：
+
+${bianGua}
+
+
+动爻：
+
+${movingYao||"无动爻"}
+
+
+六爻：
+
+${yaoText}
+
+
+请严格围绕用户问题进行解读。
+
+重点回答：
+
+用户问的事情到底是什么结果或趋势？
+
+为什么？
+
+本卦、动爻、变卦分别如何支持这个判断？
+
+不要泛泛而谈。
+
+`;
+
+
+const button=
+document.getElementById("ai");
+
+
+const answer=
+document.getElementById("answer");
+
+
+button.disabled=true;
+
+button.textContent=
+"正在解读……";
+
+
+answer.textContent=
+"正在连接 DeepSeek，请稍候……";
+
+
+try{
+
+
+/*
+================================
+DeepSeek API
+================================
+*/
+
+const response=
+await fetch(
+"https://api.deepseek.com/chat/completions",
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json",
+
+"Authorization":
+"Bearer "+apiKey
+
+},
+
+body:
+JSON.stringify({
+
+model:
+"deepseek-chat",
+
+messages:[
+
+{
+role:"system",
+content:
+systemPrompt
+},
+
+{
+role:"user",
+content:
+userPrompt
+}
+
+],
+
+temperature:
+0.3,
+
+max_tokens:
+3000,
+
+stream:
+false
+
+})
+
+}
+);
+
+
+/* =========================
+   解析返回
+========================= */
+
+let data;
+
+
+try{
+
+data=
+await response.json();
+
+}catch(e){
+
+throw new Error(
+"DeepSeek 返回的数据无法解析"
+);
+
+}
+
+
+/* =========================
+   HTTP 错误
+========================= */
+
+if(!response.ok){
+
+let message=
+"HTTP "+response.status;
+
+
+if(
+data&&
+data.error&&
+data.error.message
+){
+
+message=
+data.error.message;
+
+}
+
+
+throw new Error(message);
+
+}
+
+
+/* =========================
+   获取回答
+========================= */
+
+const content=
+data&&
+data.choices&&
+data.choices[0]&&
+data.choices[0].message&&
+data.choices[0].message.content;
+
+
+if(!content){
+
+throw new Error(
+"DeepSeek 没有返回有效的解读内容"
+);
+
+}
+
+
+/* =========================
+   显示
+========================= */
+
+answer.textContent=
+content;
+
+
+}catch(error){
+
+console.error(
+"DeepSeek API Error:",
+error
+);
+
+
+/*
+================================
+Failed to fetch
+================================
+*/
+
+if(
+error instanceof TypeError&&
+error.message===
+"Failed to fetch"
+){
+
+answer.textContent=
+`解读失败：Failed to fetch
+
+浏览器无法正常连接 DeepSeek API。
+
+这通常不是卦象的问题，而是浏览器请求 DeepSeek 时被网络或 CORS 跨域限制拦截。
+
+如果你打开 F12 → Console 后看到：
+
+Access to fetch at ...
+has been blocked by CORS policy
+
+说明需要使用 API 后端中转。
+
+如果没有 CORS 错误，则可能是网络无法访问 DeepSeek API。`;
+
+}else{
+
+answer.textContent=
+"解读失败："+error.message;
+
+}
+
+}finally{
+
+button.disabled=false;
+
+button.textContent=
+"✦ 解读";
+
+}
+
+};
+
 </script>
+
 </body>
 </html>
