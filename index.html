@@ -1,15 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WANGXING · 星河大衍筮法</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
     margin:0;
@@ -28,7 +25,6 @@ body{
     inset:0;
     z-index:0;
     background:#01090c;
-    pointer-events:none;
 }
 
 .space{
@@ -43,27 +39,10 @@ body{
     position:absolute;
     inset:-20%;
     background:
-        radial-gradient(
-            ellipse at 52% 16%,
-            rgba(53,255,238,.42),
-            transparent 24%
-        ),
-        radial-gradient(
-            ellipse at 20% 32%,
-            rgba(0,205,232,.30),
-            transparent 27%
-        ),
-        radial-gradient(
-            ellipse at 82% 45%,
-            rgba(33,245,214,.26),
-            transparent 25%
-        ),
-        radial-gradient(
-            ellipse at 48% 76%,
-            rgba(0,145,190,.24),
-            transparent 32%
-        );
-
+        radial-gradient(ellipse at 52% 16%,rgba(53,255,238,.42),transparent 24%),
+        radial-gradient(ellipse at 20% 32%,rgba(0,205,232,.30),transparent 27%),
+        radial-gradient(ellipse at 82% 45%,rgba(33,245,214,.26),transparent 25%),
+        radial-gradient(ellipse at 48% 76%,rgba(0,145,190,.24),transparent 32%);
     filter:blur(18px);
     animation:drift 18s ease-in-out infinite alternate;
 }
@@ -118,6 +97,7 @@ header{
 
 .nav div{
     text-align:center;
+    cursor:pointer;
 }
 
 .nav b{
@@ -134,24 +114,20 @@ header{
 }
 
 .panel{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(3,29,35,.82),
-            rgba(1,16,21,.75)
-        );
-
+    background:linear-gradient(
+        145deg,
+        rgba(3,29,35,.82),
+        rgba(1,16,21,.75)
+    );
     border:1px solid rgba(60,218,214,.46);
     border-radius:18px;
-
     box-shadow:
         0 0 35px rgba(23,203,202,.07),
         inset 0 0 30px rgba(67,240,233,.025);
-
     backdrop-filter:blur(10px);
 }
 
-.panel.pad{
+.pad{
     padding:24px 28px;
 }
 
@@ -166,18 +142,12 @@ h2{
 textarea{
     width:100%;
     height:105px;
-
     background:rgba(0,13,18,.7);
-
     border:1px solid #287b80;
     border-radius:11px;
-
     color:#d9ffff;
-
     padding:15px;
-
     font:15px "PingFang SC","Microsoft YaHei",sans-serif;
-
     resize:none;
     outline:none;
 }
@@ -196,26 +166,13 @@ textarea:focus{
 
 .btn{
     border:1px solid #48d6d2;
-
-    background:
-        linear-gradient(
-            180deg,
-            #41c8c7,
-            #169b9d
-        );
-
+    background:linear-gradient(180deg,#41c8c7,#169b9d);
     color:#efffff;
-
     border-radius:9px;
-
     padding:12px 20px;
-
     cursor:pointer;
-
     font:inherit;
-
-    box-shadow:
-        0 0 18px rgba(54,217,212,.15);
+    box-shadow:0 0 18px rgba(54,217,212,.15);
 }
 
 .btn.alt{
@@ -229,7 +186,8 @@ textarea:focus{
     cursor:not-allowed;
 }
 
-.hint{
+.hint,
+.status{
     font-size:12px;
     color:#608c8f;
     line-height:1.7;
@@ -239,7 +197,6 @@ textarea:focus{
     min-height:450px;
     margin-top:18px;
     padding:25px 22px;
-    position:relative;
 }
 
 .stage-title{
@@ -275,27 +232,25 @@ textarea:focus{
 }
 
 .pile-area{
-    min-height:210px;
-    position:relative;
+    min-height:180px;
     margin:15px 0;
 }
 
+.pile-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
 .pile{
-    position:relative;
-
     min-height:145px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
     padding:18px;
-
     border:1px dashed #277276;
-
     border-radius:14px;
-
     background:
         radial-gradient(
             ellipse,
@@ -303,10 +258,7 @@ textarea:focus{
             rgba(0,25,30,.18) 60%,
             transparent 75%
         );
-
-    transition:.35s;
-
-    overflow:hidden;
+    transition:.25s;
 }
 
 .pile.clickable{
@@ -318,12 +270,6 @@ textarea:focus{
 .pile.clickable:hover{
     background:rgba(29,119,121,.2);
     transform:translateY(-2px);
-}
-
-.pile-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
 }
 
 .pile-title{
@@ -400,13 +346,13 @@ textarea:focus{
 .remainders{
     display:flex;
     justify-content:center;
-    gap:12px;
-    margin:18px 0;
+    gap:10px;
+    margin:15px 0;
     flex-wrap:wrap;
 }
 
 .r{
-    padding:9px 15px;
+    padding:8px 12px;
     border-radius:9px;
     background:#062329;
     border:1px solid #23686d;
@@ -505,17 +451,11 @@ textarea:focus{
 
 .tr{
     display:grid;
-    grid-template-columns:
-        1fr 1fr 1fr 1fr;
-
+    grid-template-columns:1fr 1fr 1fr 1fr;
     padding:9px 4px;
-
     border-bottom:1px solid #12383c;
-
     color:#789da0;
-
     font-size:12px;
-
     text-align:center;
 }
 
@@ -542,10 +482,6 @@ textarea:focus{
     gap:15px;
 }
 
-.api button{
-    padding:7px 12px;
-}
-
 .apiBox{
     display:none;
     margin-top:8px;
@@ -569,12 +505,71 @@ textarea:focus{
     line-height:1.9;
     color:#c9eeee;
     min-height:80px;
+    margin-top:15px;
 }
 
-.status{
-    color:#6f9da0;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:20;
+    background:rgba(0,8,12,.78);
+    backdrop-filter:blur(8px);
+    padding:30px;
+}
+
+.modal.show{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-card{
+    width:min(820px,100%);
+    max-height:85vh;
+    overflow:auto;
+    background:#03171c;
+    border:1px solid #3ed4d0;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 0 50px rgba(38,225,219,.12);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.history-item{
+    border:1px solid #205a5f;
+    border-radius:11px;
+    padding:14px;
+    margin:10px 0;
+    cursor:pointer;
+    background:rgba(3,31,37,.65);
+}
+
+.history-item:hover{
+    border-color:#50ddd8;
+}
+
+.history-question{
+    color:#c8ffff;
+    margin-bottom:8px;
+}
+
+.history-meta{
     font-size:12px;
-    margin-top:8px;
+    color:#6f9da0;
+    line-height:1.7;
+}
+
+.empty{
+    color:#668f92;
+    text-align:center;
+    padding:30px;
 }
 
 .footer{
@@ -594,10 +589,6 @@ textarea:focus{
         grid-template-columns:1fr;
     }
 
-    header{
-        gap:20px;
-    }
-
     .nav{
         display:none;
     }
@@ -609,16 +600,16 @@ textarea:focus{
         grid-template-columns:1fr;
     }
 
-    .container{
-        padding-bottom:30px;
-    }
-
     .pile-row{
         grid-template-columns:1fr;
     }
 
     .tr{
         font-size:11px;
+    }
+
+    .modal{
+        padding:15px;
     }
 }
 </style>
@@ -627,7 +618,6 @@ textarea:focus{
 <body>
 
 <canvas id="stars"></canvas>
-
 <div class="space">
     <div class="nebula"></div>
 </div>
@@ -637,302 +627,178 @@ textarea:focus{
 <header>
 
 <div class="logo">
-
-<div class="en">
-WANGXING
-</div>
-
-<div class="cn">
-大衍筮法
-</div>
-
-<div class="sub">
-一问一卦 · 六爻成象 · 星河筮问
-</div>
-
+    <div class="en">WANGXING</div>
+    <div class="cn">大衍筮法</div>
+    <div class="sub">一问一卦 · 六爻成象 · 星河筮问</div>
 </div>
 
 <div class="nav">
+    <div id="historyBtn">
+        <b>◷</b>
+        历史记录
+    </div>
 
-<div>
-<b>✦</b>
-星河筮问
-</div>
-
-<div>
-<b>◷</b>
-历史记录
-</div>
-
-<div>
-<b>⚙</b>
-设置
-</div>
-
+    <div id="settingsBtn">
+        <b>⚙</b>
+        设置
+    </div>
 </div>
 
 </header>
 
-
 <div class="grid">
-
 
 <section>
 
 <div class="panel pad">
 
-<h2>
-你的问题
-</h2>
+<h2>你的问题</h2>
 
 <textarea
 id="q"
 maxlength="500"
-placeholder="请详细描述你想占卜的问题……"
-></textarea>
+placeholder="请详细描述你想占卜的问题……"></textarea>
 
 <div class="actions">
 
-<button
-class="btn"
-id="begin"
->
-✦ 开始大衍筮法
+<button class="btn" id="begin">
+    ✦ 开始大衍筮法
 </button>
 
-<button
-class="btn alt"
-id="restart"
->
-重新起卦
+<button class="btn alt" id="restart">
+    重新起卦
 </button>
 
 </div>
 
 <p class="hint">
-以五十蓍草象大衍之数，虚一不用，以四十九蓍进行筮法。
-每一爻经过三变，三变所得策数合为一爻。
-六爻完成后形成完整本卦与变卦。
+五十根蓍草，虚一不用，以四十九根进行筮法。
+每一爻经过三变；第三变选定左右后自动完成该爻，
+六爻全部完成后自动成卦。
 </p>
 
 </div>
 
-
 <div class="panel stage">
 
-<div
-class="stage-title"
-id="stageTitle"
->
+<div class="stage-title" id="stageTitle">
 准备大衍之数
 </div>
 
-<div
-class="stage-desc"
-id="stageDesc"
->
+<div class="stage-desc" id="stageDesc">
 五十根蓍草，虚一不用，以四十九根进入本次筮法。
 </div>
 
 <div class="progress">
-
-<i id="bar"></i>
-
+    <i id="bar"></i>
 </div>
 
-<div
-class="pile-area"
-id="piles"
->
-</div>
+<div class="pile-area" id="piles"></div>
 
-<div
-class="choice"
-id="choice"
->
-</div>
+<div class="choice" id="choice"></div>
 
-<div
-class="counts"
-id="counts"
->
-</div>
+<div class="counts" id="counts"></div>
 
-<div
-class="remainders"
-id="remainders"
->
-</div>
+<div class="remainders" id="remainders"></div>
 
-<div
-class="result"
-id="result"
-style="display:none"
->
-</div>
+<div class="result" id="result" style="display:none"></div>
 
 </div>
 
 </section>
 
-
 <section>
 
 <div class="panel pad">
 
-<h2>
-六爻结果
-</h2>
+<h2>六爻结果</h2>
 
 <div class="hexwrap">
 
 <div>
 
-<div
-class="hexname"
-id="bn"
->
+<div class="hexname" id="bn">
 本卦
 </div>
 
-<div
-class="hex"
-id="bh"
->
-</div>
+<div class="hex" id="bh"></div>
 
 </div>
-
 
 <div>
 
-<div
-class="hexname"
-id="cn"
->
+<div class="hexname" id="cn">
 变卦
 </div>
 
-<div
-class="hex"
-id="ch"
->
-</div>
+<div class="hex" id="ch"></div>
 
 </div>
 
 </div>
-
 
 <div class="table">
 
 <div class="tr head">
-
-<div>
-爻位
+<div>爻位</div>
+<div>爻象</div>
+<div>数值</div>
+<div>状态</div>
 </div>
 
-<div>
-爻象
-</div>
-
-<div>
-数值
-</div>
-
-<div>
-状态
-</div>
+<div id="rows"></div>
 
 </div>
-
-<div id="rows">
-</div>
-
-</div>
-
 
 <div class="actions">
 
-<button
-class="btn"
-id="ai"
-disabled
->
+<button class="btn" id="ai" disabled>
 ✦ 解读
 </button>
 
 </div>
 
-<div
-class="status"
-id="status"
->
+<div class="status" id="status">
 完成六爻后才能进行 AI 解读。
 </div>
 
-<div
-id="answer"
->
-</div>
+<div id="answer"></div>
 
 </div>
-
 
 <div class="panel api">
 
 <div>
 
-<div>
-DeepSeek API
-</div>
+<div>DeepSeek API</div>
 
-<div
-class="status"
-id="keyStatus"
->
+<div class="status" id="keyStatus">
 未设置
 </div>
 
 </div>
 
-<button
-class="btn alt"
-id="keyButton"
->
+<button class="btn alt" id="keyButton">
 设置
 </button>
 
 </div>
 
+<div class="panel pad apiBox" id="keyBox">
 
-<div
-class="panel pad apiBox"
-id="keyBox"
->
-
-<h2>
-DeepSeek API Key
-</h2>
+<h2>DeepSeek API Key</h2>
 
 <input
 id="key"
 type="password"
 autocomplete="off"
-placeholder="sk-xxxxxxxxxxxxxxxx"
->
+placeholder="sk-xxxxxxxxxxxxxxxx">
 
-<button
-class="btn"
-id="saveKey"
->
+<button class="btn" id="saveKey">
 保存设置
 </button>
 
-<button
-class="btn alt"
-id="clearKey"
->
+<button class="btn alt" id="clearKey">
 清除 Key
 </button>
 
@@ -942,7 +808,6 @@ id="clearKey"
 
 </div>
 
-
 <div class="footer">
 WANGXING · 星河大衍筮法
 </div>
@@ -950,213 +815,76 @@ WANGXING · 星河大衍筮法
 </div>
 
 
+<div class="modal" id="historyModal">
+
+<div class="modal-card">
+
+<div class="modal-head">
+
+<h2 style="margin:0">
+历史记录
+</h2>
+
+<button class="btn alt" id="closeHistory">
+关闭
+</button>
+
+</div>
+
+<div id="historyList"></div>
+
+</div>
+
+</div>
+
+
 <script>
 
-/* =========================
-   星空背景
-========================= */
+const $ = id => document.getElementById(id);
 
-const stars =
-document.getElementById("stars");
+const q = $("q");
+const begin = $("begin");
+const restart = $("restart");
 
-const ctx =
-stars.getContext("2d");
+const piles = $("piles");
+const choice = $("choice");
+const counts = $("counts");
+const remainders = $("remainders");
+const result = $("result");
 
-let starList = [];
+const stageTitle = $("stageTitle");
+const stageDesc = $("stageDesc");
+const bar = $("bar");
 
-function resizeStars(){
+const bn = $("bn");
+const cn = $("cn");
+const bh = $("bh");
+const ch = $("ch");
 
-    stars.width =
-        window.innerWidth *
-        devicePixelRatio;
+const rows = $("rows");
 
-    stars.height =
-        window.innerHeight *
-        devicePixelRatio;
+const ai = $("ai");
+const answer = $("answer");
+const status = $("status");
 
-    ctx.scale(
-        devicePixelRatio,
-        devicePixelRatio
-    );
+const keyBox = $("keyBox");
+const key = $("key");
+const keyStatus = $("keyStatus");
 
-    starList = [];
-
-    const count =
-        Math.floor(
-            window.innerWidth *
-            window.innerHeight /
-            9000
-        );
-
-    for(let i=0;i<count;i++){
-
-        starList.push({
-
-            x:Math.random()*window.innerWidth,
-
-            y:Math.random()*window.innerHeight,
-
-            r:Math.random()*1.2+.2,
-
-            a:Math.random()*.8+.2
-
-        });
-
-    }
-}
-
-function drawStars(){
-
-    ctx.clearRect(
-        0,
-        0,
-        window.innerWidth,
-        window.innerHeight
-    );
-
-    for(const s of starList){
-
-        ctx.beginPath();
-
-        ctx.arc(
-            s.x,
-            s.y,
-            s.r,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fillStyle =
-            `rgba(180,255,255,${s.a})`;
-
-        ctx.fill();
-
-    }
-
-    requestAnimationFrame(drawStars);
-}
-
-window.addEventListener(
-    "resize",
-    resizeStars
-);
-
-resizeStars();
-drawStars();
-
-
-/* =========================
-   基础变量
-========================= */
-
-const q =
-document.getElementById("q");
-
-const begin =
-document.getElementById("begin");
-
-const restart =
-document.getElementById("restart");
-
-const piles =
-document.getElementById("piles");
-
-const choice =
-document.getElementById("choice");
-
-const counts =
-document.getElementById("counts");
-
-const remainders =
-document.getElementById("remainders");
-
-const result =
-document.getElementById("result");
-
-const stageTitle =
-document.getElementById("stageTitle");
-
-const stageDesc =
-document.getElementById("stageDesc");
-
-const bar =
-document.getElementById("bar");
-
-const bn =
-document.getElementById("bn");
-
-const cn =
-document.getElementById("cn");
-
-const bh =
-document.getElementById("bh");
-
-const ch =
-document.getElementById("ch");
-
-const rows =
-document.getElementById("rows");
-
-const ai =
-document.getElementById("ai");
-
-const answer =
-document.getElementById("answer");
-
-const status =
-document.getElementById("status");
-
-const keyBox =
-document.getElementById("keyBox");
-
-const key =
-document.getElementById("key");
-
-const keyStatus =
-document.getElementById("keyStatus");
-
-
-let question = "";
-
-let yaoIndex = 0;
-
-let changeIndex = 0;
-
-let stalks = 49;
-
-let currentYao = [];
-
-let allYao = [];
-
-let pendingSplit = false;
+const historyModal = $("historyModal");
+const historyList = $("historyList");
 
 
 /* =========================
    八卦
-   二进制从下往上
 ========================= */
 
-const trigramBits = {
-
-    "乾":"111",
-    "兑":"110",
-    "离":"101",
-    "震":"100",
-
-    "巽":"011",
-    "坎":"010",
-    "艮":"001",
-    "坤":"000"
-
-};
-
-const trigramName = {
+const tri = {
 
     "111":"乾",
     "110":"兑",
     "101":"离",
     "100":"震",
-
     "011":"巽",
     "010":"坎",
     "001":"艮",
@@ -1169,44 +897,36 @@ const trigramName = {
    六十四卦
 ========================= */
 
-const hexagrams = {
+const hex = {
 
 "乾乾":"乾为天",
 "坤坤":"坤为地",
-
 "坎震":"水雷屯",
 "艮坎":"山水蒙",
-
 "坎乾":"水天需",
 "乾坎":"天水讼",
-
 "坤坎":"地水师",
 "坎坤":"水地比",
 
 "巽乾":"风天小畜",
 "乾兑":"天泽履",
-
 "坤乾":"地天泰",
 "乾坤":"天地否",
-
 "乾离":"天火同人",
 "离乾":"火天大有",
 
 "坤艮":"地山谦",
 "震坤":"雷地豫",
-
 "兑震":"泽雷随",
 "艮巽":"山风蛊",
 
 "坤兑":"地泽临",
 "巽坤":"风地观",
-
 "离震":"火雷噬嗑",
 "艮离":"山火贲",
 
 "艮坤":"山地剥",
 "坤震":"地雷复",
-
 "乾震":"天雷无妄",
 "艮乾":"山天大畜",
 
@@ -1218,13 +938,11 @@ const hexagrams = {
 
 "兑艮":"泽山咸",
 "震巽":"雷风恒",
-
 "乾艮":"天山遁",
 "震乾":"雷天大壮",
 
 "离坤":"火地晋",
 "坤离":"地火明夷",
-
 "巽离":"风火家人",
 "离兑":"火泽睽",
 
@@ -1271,519 +989,29 @@ const hexagrams = {
 
 
 /* =========================
-   通过六爻计算卦名
+   状态
 ========================= */
 
-function getHexName(lines){
+let question = "";
 
-    const lowerBits =
-        lines
-            .slice(0,3)
-            .map(v =>
-                (v===7 || v===9) ? "1" : "0"
-            )
-            .reverse()
-            .join("");
+let yaoIndex = 0;
 
-    const upperBits =
-        lines
-            .slice(3,6)
-            .map(v =>
-                (v===7 || v===9) ? "1" : "0"
-            )
-            .reverse()
-            .join("");
+let changeIndex = 0;
 
-    const lower =
-        trigramName[lowerBits];
+let stalks = 49;
 
-    const upper =
-        trigramName[upperBits];
-
-    return (
-        hexagrams[
-            upper + lower
-        ] ||
-        "未知卦"
-    );
-}
+let allYao = [];
 
 
 /* =========================
-   显示卦象
-========================= */
-
-function renderHex(
-    target,
-    lines
-){
-
-    target.innerHTML = "";
-
-    for(
-        let i=5;
-        i>=0;
-        i--
-    ){
-
-        const value =
-            lines[i];
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "line";
-
-        if(
-            value === 6 ||
-            value === 9
-        ){
-
-            div.classList.add(
-                "movingline"
-            );
-
-        }
-
-        if(
-            value === 7 ||
-            value === 9
-        ){
-
-            div.innerHTML =
-                `<div class="solid"></div>`;
-
-        }else{
-
-            div.innerHTML =
-                `
-                <div class="broken1"></div>
-                <div class="broken2"></div>
-                `;
-
-        }
-
-        target.appendChild(div);
-
-    }
-}
-
-
-/* =========================
-   进度
-========================= */
-
-function updateProgress(){
-
-    const completed =
-        yaoIndex;
-
-    bar.style.width =
-        `${completed / 6 * 100}%`;
-}
-
-
-/* =========================
-   开始
-========================= */
-
-begin.addEventListener(
-    "click",
-    startDivination
-);
-
-restart.addEventListener(
-    "click",
-    resetAll
-);
-
-function startDivination(){
-
-    question =
-        q.value.trim();
-
-    if(!question){
-
-        alert(
-            "请先输入你想占卜的问题。"
-        );
-
-        q.focus();
-
-        return;
-    }
-
-    yaoIndex = 0;
-
-    allYao = [];
-
-    resetYaoUI();
-
-    begin.disabled = true;
-
-    ai.disabled = true;
-
-    status.textContent =
-        "正在进行大衍筮法。";
-
-    startYao();
-
-}
-
-
-/* =========================
-   开始一爻
-========================= */
-
-function startYao(){
-
-    currentYao = [];
-
-    stalks = 49;
-
-    changeIndex = 0;
-
-    stageTitle.textContent =
-        `第 ${yaoIndex + 1} 爻`;
-
-    stageDesc.textContent =
-        "49根蓍草进入第一变。请先分二。";
-
-    piles.innerHTML = "";
-
-    choice.innerHTML = "";
-
-    counts.innerHTML = "";
-
-    remainders.innerHTML = "";
-
-    result.style.display =
-        "none";
-
-    renderSplit();
-
-}
-
-
-/* =========================
-   分二
-========================= */
-
-function renderSplit(){
-
-    const min = 1;
-
-    const max = 48;
-
-    const left =
-        Math.floor(
-            Math.random() *
-            (max-min+1)
-        ) + min;
-
-    const right =
-        stalks - left;
-
-    piles.innerHTML = `
-
-        <div class="pile-row">
-
-            <div
-                class="pile clickable"
-                data-side="left"
-                data-left="${left}"
-                data-right="${right}"
-            >
-
-                <div class="pile-title">
-                    左手
-                </div>
-
-                <div class="pile-number">
-                    ${left}
-                </div>
-
-                <div class="pile-hint">
-                    点击选择左手分二
-                </div>
-
-            </div>
-
-
-            <div
-                class="pile clickable"
-                data-side="right"
-                data-left="${left}"
-                data-right="${right}"
-            >
-
-                <div class="pile-title">
-                    右手
-                </div>
-
-                <div class="pile-number">
-                    ${right}
-                </div>
-
-                <div class="pile-hint">
-                    点击选择右手分二
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document
-        .querySelectorAll(".pile")
-        .forEach(el => {
-
-            el.addEventListener(
-                "click",
-                () => {
-
-                    showHangOne(
-                        left,
-                        right
-                    );
-
-                }
-            );
-
-        });
-
-}
-
-
-/* =========================
-   挂一
-========================= */
-
-function showHangOne(
-    left,
-    right
-){
-
-    stageDesc.textContent =
-        "选择哪一边取一蓍挂一。";
-
-    choice.innerHTML = `
-
-        <div class="choice-title">
-            请选择挂一的一蓍
-        </div>
-
-        <div class="choice-buttons">
-
-            <button
-                class="choice-btn"
-                id="hangLeft"
-            >
-                从左手取一
-            </button>
-
-            <button
-                class="choice-btn"
-                id="hangRight"
-            >
-                从右手取一
-            </button>
-
-        </div>
-
-    `;
-
-    document
-        .getElementById("hangLeft")
-        .onclick = () => {
-
-            performChange(
-                left - 1,
-                right
-            );
-
-        };
-
-    document
-        .getElementById("hangRight")
-        .onclick = () => {
-
-            performChange(
-                left,
-                right - 1
-            );
-
-        };
-
-}
-
-
-/* =========================
-   揲四
+   四数
 ========================= */
 
 function remainder4(n){
 
-    const r =
-        n % 4;
+    let r = n % 4;
 
     return r === 0 ? 4 : r;
-}
-
-
-function performChange(
-    left,
-    right
-){
-
-    const leftRemainder =
-        remainder4(left);
-
-    const rightRemainder =
-        remainder4(right);
-
-    const removed =
-        leftRemainder +
-        rightRemainder +
-        1;
-
-    const remaining =
-        stalks -
-        removed;
-
-    counts.innerHTML = `
-
-        <div class="countbox">
-
-            左手余数
-
-            <strong>
-                ${leftRemainder}
-            </strong>
-
-        </div>
-
-        <div class="countbox">
-
-            右手余数
-
-            <strong>
-                ${rightRemainder}
-            </strong>
-
-        </div>
-
-    `;
-
-    remainders.innerHTML = `
-
-        <div class="r">
-            挂一：<b>1</b>
-        </div>
-
-        <div class="r">
-            左余：<b>${leftRemainder}</b>
-        </div>
-
-        <div class="r">
-            右余：<b>${rightRemainder}</b>
-        </div>
-
-        <div class="r">
-            本变余数：<b>${removed}</b>
-        </div>
-
-    `;
-
-    stalks =
-        remaining;
-
-    changeIndex++;
-
-    stageTitle.textContent =
-        `第 ${yaoIndex + 1} 爻 · 第 ${changeIndex} 变`;
-
-    if(changeIndex < 3){
-
-        stageDesc.textContent =
-            `本变后余 ${stalks} 策。进入下一变。`;
-
-        choice.innerHTML = `
-            <div class="choice-title">
-                下一变重新分二
-            </div>
-
-            <div class="choice-buttons">
-
-                <button
-                    class="choice-btn"
-                    id="nextChange"
-                >
-                    继续下一变
-                </button>
-
-            </div>
-        `;
-
-        document
-            .getElementById("nextChange")
-            .onclick = () => {
-
-                renderSplit();
-
-            };
-
-        return;
-    }
-
-
-    /* =========================
-       三变完成
-    ========================= */
-
-    const yaoNumber =
-        stalks / 4;
-
-    currentYao.push(
-        yaoNumber
-    );
-
-    result.style.display =
-        "block";
-
-    result.innerHTML = `
-
-        <div class="num">
-            ${yaoNumber}
-        </div>
-
-        <div class="name">
-            ${getYaoState(yaoNumber)}
-        </div>
-
-    `;
-
-    stageDesc.textContent =
-        `第 ${yaoIndex + 1} 爻完成。`;
-
-    choice.innerHTML = `
-        <div class="choice-buttons">
-
-            <button
-                class="choice-btn"
-                id="finishYao"
-            >
-                完成这一爻
-            </button>
-
-        </div>
-    `;
-
-    document
-        .getElementById("finishYao")
-        .onclick = finishYao;
 
 }
 
@@ -1792,7 +1020,7 @@ function performChange(
    爻状态
 ========================= */
 
-function getYaoState(v){
+function yaoState(v){
 
     if(v === 6)
         return "老阴 · 动";
@@ -1812,28 +1040,476 @@ function getYaoState(v){
 
 
 /* =========================
-   完成一爻
+   计算卦名
 ========================= */
 
-function finishYao(){
+function hexName(lines){
 
-    allYao =
-        currentYao.slice();
+    const lower = lines
+        .slice(0,3)
+        .map(v => (v === 7 || v === 9) ? "1" : "0")
+        .reverse()
+        .join("");
+
+    const upper = lines
+        .slice(3,6)
+        .map(v => (v === 7 || v === 9) ? "1" : "0")
+        .reverse()
+        .join("");
+
+    const lowerName = tri[lower] || "";
+
+    const upperName = tri[upper] || "";
+
+    return hex[upperName + lowerName] || "未知卦";
+
+}
+
+
+/* =========================
+   画卦
+========================= */
+
+function renderHex(target,lines){
+
+    target.innerHTML = "";
+
+    for(let i = 5; i >= 0; i--){
+
+        const v = lines[i];
+
+        const d = document.createElement("div");
+
+        d.className =
+            "line" +
+            ((v === 6 || v === 9) ? " movingline" : "");
+
+        if(v === 7 || v === 9){
+
+            d.innerHTML =
+                '<div class="solid"></div>';
+
+        }else{
+
+            d.innerHTML =
+                '<div class="broken1"></div>' +
+                '<div class="broken2"></div>';
+
+        }
+
+        target.appendChild(d);
+
+    }
+
+}
+
+
+/* =========================
+   更新六爻表
+========================= */
+
+function updateRows(){
+
+    rows.innerHTML = "";
+
+    allYao.forEach((v,i)=>{
+
+        const d = document.createElement("div");
+
+        d.className =
+            "tr" +
+            ((v === 6 || v === 9) ? " move" : "");
+
+        d.innerHTML = `
+
+            <div>第${i+1}爻</div>
+
+            <div>
+                ${v === 7 || v === 9 ? "━━━" : "━ ━"}
+            </div>
+
+            <div>${v}</div>
+
+            <div>${yaoState(v)}</div>
+
+        `;
+
+        rows.appendChild(d);
+
+    });
+
+}
+
+
+/* =========================
+   重置一爻
+========================= */
+
+function resetYaoUI(){
+
+    changeIndex = 0;
+
+    stalks = 49;
+
+    piles.innerHTML = "";
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+    result.style.display = "none";
+
+}
+
+
+/* =========================
+   开始起卦
+========================= */
+
+function start(){
+
+    question = q.value.trim();
+
+    if(!question){
+
+        alert("请先输入你想占卜的问题。");
+
+        q.focus();
+
+        return;
+
+    }
+
+    yaoIndex = 0;
+
+    allYao = [];
+
+    begin.disabled = true;
+
+    ai.disabled = true;
+
+    answer.textContent = "";
+
+    rows.innerHTML = "";
+
+    bn.textContent = "本卦";
+
+    cn.textContent = "变卦";
+
+    bh.innerHTML = "";
+
+    ch.innerHTML = "";
+
+    bar.style.width = "0%";
+
+    status.textContent =
+        "正在进行大衍筮法。";
+
+    startYao();
+
+}
+
+
+/* =========================
+   开始一爻
+========================= */
+
+function startYao(){
+
+    resetYaoUI();
+
+    stageTitle.textContent =
+        `第 ${yaoIndex + 1} 爻`;
+
+    stageDesc.textContent =
+        "第一变：49根蓍草，请分二。";
+
+    renderSplit();
+
+}
+
+
+/* =========================
+   分二
+========================= */
+
+function renderSplit(){
+
+    const left =
+        Math.floor(Math.random() * 48) + 1;
+
+    const right =
+        stalks - left;
+
+    piles.innerHTML = `
+
+        <div class="pile-row">
+
+            <div
+                class="pile clickable"
+                data-left="${left}"
+                data-right="${right}"
+            >
+
+                <div class="pile-title">
+                    左手
+                </div>
+
+                <div class="pile-number">
+                    ${left}
+                </div>
+
+                <div class="pile-hint">
+                    点击选择这一边
+                </div>
+
+            </div>
+
+
+            <div
+                class="pile clickable"
+                data-left="${left}"
+                data-right="${right}"
+            >
+
+                <div class="pile-title">
+                    右手
+                </div>
+
+                <div class="pile-number">
+                    ${right}
+                </div>
+
+                <div class="pile-hint">
+                    点击选择这一边
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .querySelectorAll(".pile")
+        .forEach(el => {
+
+            el.onclick = () => {
+
+                showHang(
+                    +el.dataset.left,
+                    +el.dataset.right
+                );
+
+            };
+
+        });
+
+}
+
+
+/* =========================
+   挂一
+========================= */
+
+function showHang(left,right){
+
+    stageDesc.textContent =
+        "选择从哪一边取一蓍挂一；选择后立即完成本变，不需要再次确认。";
+
+
+    choice.innerHTML = `
+
+        <div class="choice-title">
+            取哪一边的一蓍？
+        </div>
+
+        <div class="choice-buttons">
+
+            <button
+                class="choice-btn"
+                id="L"
+            >
+                从左边取一
+            </button>
+
+            <button
+                class="choice-btn"
+                id="R"
+            >
+                从右边取一
+            </button>
+
+        </div>
+
+    `;
+
+
+    $("L").onclick = () =>
+        performChange(
+            left - 1,
+            right
+        );
+
+
+    $("R").onclick = () =>
+        performChange(
+            left,
+            right - 1
+        );
+
+}
+
+
+/* =========================
+   完成本变
+========================= */
+
+function performChange(left,right){
+
+    const lr = remainder4(left);
+
+    const rr = remainder4(right);
+
+    const removed =
+        1 + lr + rr;
+
+    stalks -= removed;
+
+    changeIndex++;
+
+
+    counts.innerHTML = `
+
+        <div class="countbox">
+            左余
+            <strong>${lr}</strong>
+        </div>
+
+        <div class="countbox">
+            右余
+            <strong>${rr}</strong>
+        </div>
+
+    `;
+
+
+    remainders.innerHTML = `
+
+        <div class="r">
+            挂一 <b>1</b>
+        </div>
+
+        <div class="r">
+            左余 <b>${lr}</b>
+        </div>
+
+        <div class="r">
+            右余 <b>${rr}</b>
+        </div>
+
+        <div class="r">
+            本变余数 <b>${removed}</b>
+        </div>
+
+    `;
+
+
+    stageTitle.textContent =
+        `第 ${yaoIndex + 1} 爻 · 第 ${changeIndex} 变`;
+
+
+    /*
+     * 关键：
+     * 前两变完成后自动进入下一变
+     */
+
+    if(changeIndex < 3){
+
+        stageDesc.textContent =
+            `本变完成，余 ${stalks} 策。自动进入下一变。`;
+
+        choice.innerHTML = "";
+
+        setTimeout(
+            renderSplit,
+            350
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * 第三变完成
+     *
+     * 这里直接生成爻。
+     * 不再要求用户点击任何
+     * “完成这一爻”按钮。
+     */
+
+    const value = stalks / 4;
+
+    allYao.push(value);
+
+
+    result.style.display = "block";
+
+    result.innerHTML = `
+
+        <div class="num">
+            ${value}
+        </div>
+
+        <div class="name">
+            ${yaoState(value)}
+        </div>
+
+    `;
+
 
     updateRows();
 
+
     yaoIndex++;
 
-    updateProgress();
 
-    if(yaoIndex >= 6){
+    bar.style.width =
+        `${yaoIndex / 6 * 100}%`;
 
-        finishHexagram();
+
+    /*
+     * 如果还没有到第六爻
+     * 自动开始下一爻
+     */
+
+    if(yaoIndex < 6){
+
+        stageDesc.textContent =
+            "这一爻已经自动完成，正在进入下一爻。";
+
+        choice.innerHTML = "";
+
+        setTimeout(
+            startYao,
+            500
+        );
 
         return;
+
     }
 
-    startYao();
+
+    /*
+     * 第六爻完成
+     * 直接成卦
+     */
+
+    finishHexagram();
 
 }
 
@@ -1844,33 +1520,9 @@ function finishYao(){
 
 function finishHexagram(){
 
-    begin.disabled = false;
-
-    ai.disabled = false;
-
-    stageTitle.textContent =
-        "六爻成卦";
-
-    stageDesc.textContent =
-        "六爻已经完成，本卦与变卦已经生成。";
-
-    bar.style.width =
-        "100%";
-
-    choice.innerHTML =
-        "";
-
-    piles.innerHTML =
-        "";
-
-    counts.innerHTML =
-        "";
-
-    remainders.innerHTML =
-        "";
-
     const original =
         allYao.slice();
+
 
     const changed =
         allYao.map(v => {
@@ -1885,17 +1537,30 @@ function finishHexagram(){
 
         });
 
-    const benName =
-        getHexName(original);
 
-    const changeName =
-        getHexName(changed);
+    const ben =
+        hexName(original);
+
+    const chg =
+        hexName(changed);
+
+
+    const moving =
+        allYao
+            .map((v,i) =>
+                (v === 6 || v === 9)
+                    ? `第${i+1}爻`
+                    : null
+            )
+            .filter(Boolean);
+
 
     bn.textContent =
-        `本卦 · ${benName}`;
+        `本卦 · ${ben}`;
 
     cn.textContent =
-        `变卦 · ${changeName}`;
+        `变卦 · ${chg}`;
+
 
     renderHex(
         bh,
@@ -1907,138 +1572,137 @@ function finishHexagram(){
         changed
     );
 
+
+    stageTitle.textContent =
+        "六爻成卦";
+
+
+    stageDesc.textContent =
+        "六爻全部取定，本卦与变卦已经自动生成。";
+
+
+    bar.style.width =
+        "100%";
+
+
+    piles.innerHTML = "";
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+
+    result.style.display =
+        "block";
+
+
+    result.innerHTML = `
+
+        <div class="num">
+            ${ben}
+        </div>
+
+        <div class="name">
+            六爻已成 ·
+            ${
+                moving.length
+                    ? "动爻：" + moving.join("、")
+                    : "六爻皆静"
+            }
+        </div>
+
+    `;
+
+
+    begin.disabled = false;
+
+    ai.disabled = false;
+
+
     status.textContent =
         "六爻完成，可以进行 AI 解读。";
 
-    answer.textContent =
-        "";
+
+    /*
+     * 自动保存历史
+     */
+
+    saveHistory({
+
+        question,
+
+        time:
+            new Date()
+            .toLocaleString("zh-CN"),
+
+        yao:
+            original,
+
+        ben,
+
+        chg,
+
+        moving
+
+    });
 
 }
 
 
 /* =========================
-   六爻表格
+   重新起卦
 ========================= */
 
-function updateRows(){
+function reset(){
 
-    rows.innerHTML = "";
-
-    allYao.forEach(
-        (value,index) => {
-
-            let symbol;
-
-            if(
-                value === 7 ||
-                value === 9
-            ){
-
-                symbol =
-                    "━━━";
-
-            }else{
-
-                symbol =
-                    "━ ━";
-
-            }
-
-            const move =
-                value === 6 ||
-                value === 9;
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "tr" +
-                (move ? " move" : "");
-
-            div.innerHTML = `
-
-                <div>
-                    第${index+1}爻
-                </div>
-
-                <div>
-                    ${symbol}
-                </div>
-
-                <div>
-                    ${value}
-                </div>
-
-                <div>
-                    ${getYaoState(value)}
-                </div>
-
-            `;
-
-            rows.appendChild(div);
-
-        }
-    );
-
-}
-
-
-/* =========================
-   重置
-========================= */
-
-function resetAll(){
-
-    yaoIndex = 0;
-
-    changeIndex = 0;
-
-    stalks = 49;
-
-    currentYao = [];
-
-    allYao = [];
+    q.value = "";
 
     question = "";
 
-    q.value = "";
+    yaoIndex = 0;
+
+    allYao = [];
+
 
     begin.disabled = false;
 
     ai.disabled = true;
 
+
     stageTitle.textContent =
         "准备大衍之数";
+
 
     stageDesc.textContent =
         "五十根蓍草，虚一不用，以四十九根进入本次筮法。";
 
+
     bar.style.width =
         "0%";
 
-    piles.innerHTML =
-        "";
 
-    choice.innerHTML =
-        "";
+    piles.innerHTML = "";
 
-    counts.innerHTML =
-        "";
+    choice.innerHTML = "";
 
-    remainders.innerHTML =
-        "";
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
 
     result.style.display =
         "none";
 
-    rows.innerHTML =
-        "";
 
-    bh.innerHTML =
-        "";
+    rows.innerHTML = "";
 
-    ch.innerHTML =
-        "";
+
+    bh.innerHTML = "";
+
+    ch.innerHTML = "";
+
 
     bn.textContent =
         "本卦";
@@ -2046,8 +1710,9 @@ function resetAll(){
     cn.textContent =
         "变卦";
 
-    answer.textContent =
-        "";
+
+    answer.textContent = "";
+
 
     status.textContent =
         "完成六爻后才能进行 AI 解读。";
@@ -2056,27 +1721,317 @@ function resetAll(){
 
 
 /* =========================
-   API Key
+   保存历史
 ========================= */
 
-document
-    .getElementById("keyButton")
-    .onclick = () => {
+function saveHistory(item){
 
-        keyBox.style.display =
-            keyBox.style.display === "block"
-            ? "none"
-            : "block";
+    let history = [];
+
+    try{
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    "wangxing_history"
+                ) || "[]"
+            );
+
+    }catch(e){
+
+        history = [];
+
+    }
+
+
+    history.unshift(item);
+
+
+    /*
+     * 最多保留30条
+     */
+
+    history =
+        history.slice(0,30);
+
+
+    localStorage.setItem(
+        "wangxing_history",
+        JSON.stringify(history)
+    );
+
+}
+
+
+/* =========================
+   历史记录
+========================= */
+
+function openHistory(){
+
+    let history = [];
+
+    try{
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    "wangxing_history"
+                ) || "[]"
+            );
+
+    }catch(e){
+
+        history = [];
+
+    }
+
+
+    if(!history.length){
+
+        historyList.innerHTML =
+            '<div class="empty">暂无历史起卦记录</div>';
+
+    }else{
+
+        historyList.innerHTML =
+            history
+            .map((x,i)=>`
+
+                <div
+                    class="history-item"
+                    data-i="${i}"
+                >
+
+                    <div class="history-question">
+                        ${escapeHtml(x.question)}
+                    </div>
+
+                    <div class="history-meta">
+
+                        ${x.time}
+
+                        <br>
+
+                        本卦：
+                        ${x.ben}
+
+                       　
+                        变卦：
+                        ${x.chg}
+
+                        <br>
+
+                        六爻：
+                        ${x.yao.join("、")}
+
+                       　
+
+                        ${
+                            x.moving.length
+                                ? "动爻：" +
+                                  x.moving.join("、")
+                                : "六爻皆静"
+                        }
+
+                    </div>
+
+                </div>
+
+            `)
+            .join("");
+
+
+        document
+            .querySelectorAll(".history-item")
+            .forEach(el => {
+
+                el.onclick = () =>
+                    loadHistory(
+                        history[
+                            +el.dataset.i
+                        ]
+                    );
+
+            });
+
+    }
+
+
+    historyModal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   载入历史
+========================= */
+
+function loadHistory(x){
+
+    question =
+        x.question;
+
+
+    q.value =
+        x.question;
+
+
+    allYao =
+        x.yao.slice();
+
+
+    yaoIndex = 6;
+
+
+    updateRows();
+
+
+    bn.textContent =
+        `本卦 · ${x.ben}`;
+
+
+    cn.textContent =
+        `变卦 · ${x.chg}`;
+
+
+    renderHex(
+        bh,
+        allYao
+    );
+
+
+    renderHex(
+        ch,
+        allYao.map(v => {
+
+            if(v === 6)
+                return 7;
+
+            if(v === 9)
+                return 8;
+
+            return v;
+
+        })
+    );
+
+
+    stageTitle.textContent =
+        "历史卦象";
+
+
+    stageDesc.textContent =
+        "已载入历史记录，可以直接进行 AI 解读。";
+
+
+    bar.style.width =
+        "100%";
+
+
+    ai.disabled =
+        false;
+
+
+    status.textContent =
+        "历史卦象已载入。";
+
+
+    historyModal.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   HTML 转义
+========================= */
+
+function escapeHtml(s){
+
+    return String(s)
+        .replace(
+            /[&<>'"]/g,
+            c => ({
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                "'":"&#39;",
+                '"':"&quot;"
+            }[c])
+        );
+
+}
+
+
+/* =========================
+   历史按钮
+========================= */
+
+$("historyBtn").onclick =
+    openHistory;
+
+
+$("closeHistory").onclick =
+    () =>
+        historyModal.classList.remove(
+            "show"
+        );
+
+
+historyModal.onclick =
+    e => {
+
+        if(e.target === historyModal){
+
+            historyModal.classList.remove(
+                "show"
+            );
+
+        }
 
     };
 
 
-document
-    .getElementById("saveKey")
-    .onclick = () => {
+/* =========================
+   设置
+========================= */
+
+$("settingsBtn").onclick =
+    () => {
+
+        keyBox.style.display =
+            keyBox.style.display === "block"
+                ? "none"
+                : "block";
+
+    };
+
+
+$("keyButton").onclick =
+    () => {
+
+        keyBox.style.display =
+            keyBox.style.display === "block"
+                ? "none"
+                : "block";
+
+    };
+
+
+/* =========================
+   保存 DeepSeek Key
+========================= */
+
+$("saveKey").onclick =
+    () => {
 
         const value =
             key.value.trim();
+
 
         if(!value){
 
@@ -2085,32 +2040,22 @@ document
             );
 
             return;
+
         }
+
 
         localStorage.setItem(
             "wangxing_deepseek_key",
             value
         );
 
-        const saved =
-            localStorage.getItem(
-                "wangxing_deepseek_key"
-            );
 
-        if(!saved){
+        key.value = "";
 
-            alert(
-                "API Key 保存失败。"
-            );
-
-            return;
-        }
 
         keyStatus.textContent =
             "已设置";
 
-        key.value =
-            "";
 
         keyBox.style.display =
             "none";
@@ -2118,73 +2063,47 @@ document
     };
 
 
-document
-    .getElementById("clearKey")
-    .onclick = () => {
+/* =========================
+   清除 Key
+========================= */
+
+$("clearKey").onclick =
+    () => {
 
         localStorage.removeItem(
             "wangxing_deepseek_key"
         );
 
+
         keyStatus.textContent =
             "未设置";
-
-        alert(
-            "DeepSeek API Key 已清除。"
-        );
 
     };
 
 
-function checkKey(){
-
-    const saved =
-        localStorage.getItem(
-            "wangxing_deepseek_key"
-        );
-
-    if(saved){
-
-        keyStatus.textContent =
-            "已设置";
-
-    }else{
-
-        keyStatus.textContent =
-            "未设置";
-
-    }
-
-}
-
-checkKey();
+keyStatus.textContent =
+    localStorage.getItem(
+        "wangxing_deepseek_key"
+    )
+        ? "已设置"
+        : "未设置";
 
 
 /* =========================
-   六爻文字
+   起卦
 ========================= */
 
-function getYaoText(){
+begin.onclick =
+    start;
 
-    return allYao
-        .map(
-            (v,i) =>
-                `第${i+1}爻：${v}（${getYaoState(v)}）`
-        )
-        .join("\n");
 
-}
+restart.onclick =
+    reset;
 
 
 /* =========================
-   DeepSeek AI
+   DeepSeek
 ========================= */
-
-ai.addEventListener(
-    "click",
-    requestAI
-);
-
 
 async function requestAI(){
 
@@ -2192,6 +2111,7 @@ async function requestAI(){
         localStorage.getItem(
             "wangxing_deepseek_key"
         );
+
 
     if(!apiKey){
 
@@ -2202,22 +2122,19 @@ async function requestAI(){
             "请先设置 DeepSeek API Key。";
 
         return;
+
     }
 
-    if(
-        !question ||
-        allYao.length !== 6
-    ){
+
+    if(allYao.length !== 6){
 
         answer.textContent =
             "请先完成六爻起卦。";
 
         return;
+
     }
 
-
-    const original =
-        allYao.slice();
 
     const changed =
         allYao.map(v => {
@@ -2233,26 +2150,22 @@ async function requestAI(){
         });
 
 
-    const benName =
-        getHexName(original);
+    const ben =
+        hexName(allYao);
 
-    const changeName =
-        getHexName(changed);
+
+    const chg =
+        hexName(changed);
 
 
     const moving =
         allYao
-            .map(
-                (v,i) =>
-                    (
-                        v === 6 ||
-                        v === 9
-                    )
+            .map((v,i)=>
+                (v === 6 || v === 9)
                     ? `第${i+1}爻`
                     : null
             )
-            .filter(Boolean)
-            .join("、");
+            .filter(Boolean);
 
 
     const prompt = `
@@ -2261,53 +2174,61 @@ async function requestAI(){
 
 ${question}
 
+
 本卦：
 
-${benName}
+${ben}
+
 
 变卦：
 
-${changeName}
+${chg}
+
 
 动爻：
 
-${moving || "无动爻"}
+${
+    moving.length
+        ? moving.join("、")
+        : "无"
+}
 
-六爻数据：
 
-${getYaoText()}
+六爻：
 
-请针对“用户问题”本身进行六爻解读。
+${allYao.join("、")}
+
+
+请严格围绕用户提出的问题进行大衍筮法/六爻解读。
 
 要求：
 
-1. 先直接给出结论。
-2. 必须围绕用户实际问题。
-3. 结合本卦、动爻、变卦分析。
-4. 不要泛泛而谈。
-5. 不要把回答变成人生建议。
-6. 如果卦象只能判断趋势，要明确使用“倾向于”等表述。
-7. 不要虚构不存在的爻辞或卦象信息。
+1. 先直接回答用户的问题。
 
-回答格式：
+2. 再说明本卦对该问题的指向。
 
-【直接结论】
+3. 如果有动爻，重点解释动爻。
 
-【本卦】
+4. 再结合变卦说明事情最终趋势。
 
-【动爻】
+5. 不要泛泛扩展。
 
-【变卦】
+6. 不要主动给人生建议。
 
-【最终判断】
+7. 不要把占卜解释成绝对事实。
+
+8. 不要虚构不存在的信息。
 
 `;
 
 
-    ai.disabled = true;
+    ai.disabled =
+        true;
+
 
     ai.textContent =
         "正在解读……";
+
 
     answer.textContent =
         "正在连接 DeepSeek……";
@@ -2316,7 +2237,8 @@ ${getYaoText()}
     const controller =
         new AbortController();
 
-    const timeout =
+
+    const timer =
         setTimeout(
             () => controller.abort(),
             30000
@@ -2324,11 +2246,6 @@ ${getYaoText()}
 
 
     try{
-
-        console.log(
-            "WANGXING：开始请求 DeepSeek"
-        );
-
 
         const response =
             await fetch(
@@ -2343,46 +2260,50 @@ ${getYaoText()}
                             "application/json",
 
                         "Authorization":
-                            "Bearer " +
-                            apiKey
+                            "Bearer " + apiKey
 
                     },
 
-                    body:JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        model:
-                            "deepseek-chat",
+                            model:
+                                "deepseek-chat",
 
-                        messages:[
+                            messages:[
 
-                            {
-                                role:
-                                    "system",
+                                {
 
-                                content:
-                                    "你是专业的传统六爻与大衍筮法解卦助手。严格围绕用户的问题回答，不泛泛扩展，不主动给人生建议。"
-                            },
+                                    role:
+                                        "system",
 
-                            {
-                                role:
-                                    "user",
+                                    content:
+                                        "你是专业的传统大衍筮法与六爻解卦助手。严格围绕用户问题回答，不泛泛给建议。"
 
-                                content:
-                                    prompt
-                            }
+                                },
 
-                        ],
+                                {
 
-                        temperature:
-                            0.3,
+                                    role:
+                                        "user",
 
-                        max_tokens:
-                            3000,
+                                    content:
+                                        prompt
 
-                        stream:
-                            false
+                                }
 
-                    }),
+                            ],
+
+                            temperature:
+                                0.3,
+
+                            max_tokens:
+                                3000,
+
+                            stream:
+                                false
+
+                        }),
 
                     signal:
                         controller.signal
@@ -2395,19 +2316,8 @@ ${getYaoText()}
             await response.text();
 
 
-        console.log(
-            "DeepSeek HTTP：",
-            response.status
-        );
-
-
-        console.log(
-            "DeepSeek Response：",
-            raw
-        );
-
-
         let data;
+
 
         try{
 
@@ -2417,7 +2327,7 @@ ${getYaoText()}
         }catch(e){
 
             throw new Error(
-                "DeepSeek 返回的不是有效 JSON。"
+                "DeepSeek 返回格式异常"
             );
 
         }
@@ -2433,60 +2343,57 @@ ${getYaoText()}
         }
 
 
-        const content =
-            data
-            ?.choices
-            ?.[0]
-            ?.message
-            ?.content;
+        const text =
+            data?.choices?.[0]
+                ?.message
+                ?.content;
 
 
-        if(!content){
+        if(!text){
 
             throw new Error(
-                "DeepSeek 没有返回解读内容。"
+                "DeepSeek 没有返回解读内容"
             );
 
         }
 
 
         answer.textContent =
-            content;
+            text;
 
 
         status.textContent =
             "AI 解读完成。";
 
 
-    }catch(error){
-
-        console.error(
-            "DeepSeek Error：",
-            error
-        );
-
+    }catch(e){
 
         if(
-            error.name ===
+            e.name ===
             "AbortError"
         ){
 
             answer.textContent =
-                "解读失败：DeepSeek 请求超过 30 秒没有返回。";
+                "解读失败：请求超过 30 秒。";
 
         }else{
 
             answer.textContent =
                 "解读失败：" +
-                error.message;
+                e.message;
 
         }
 
+        status.textContent =
+            "AI 解读失败。";
+
+
     }finally{
 
-        clearTimeout(timeout);
+        clearTimeout(timer);
 
-        ai.disabled = false;
+        ai.disabled =
+            false;
 
         ai.textContent =
             "✦ 解读";
@@ -2494,6 +2401,132 @@ ${getYaoText()}
     }
 
 }
+
+
+ai.onclick =
+    requestAI;
+
+
+/* =========================
+   星空背景
+========================= */
+
+const stars =
+    $("stars");
+
+
+const ctx =
+    stars.getContext("2d");
+
+
+let ss = [];
+
+
+function resize(){
+
+    stars.width =
+        innerWidth *
+        devicePixelRatio;
+
+    stars.height =
+        innerHeight *
+        devicePixelRatio;
+
+
+    ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
+    );
+
+
+    ss =
+        Array.from(
+            {
+                length:
+                    Math.floor(
+                        innerWidth *
+                        innerHeight /
+                        9000
+                    )
+            },
+            () => ({
+
+                x:
+                    Math.random() *
+                    innerWidth,
+
+                y:
+                    Math.random() *
+                    innerHeight,
+
+                r:
+                    .2 +
+                    Math.random() *
+                    1.2,
+
+                a:
+                    .2 +
+                    Math.random() *
+                    .8
+
+            })
+        );
+
+}
+
+
+function draw(){
+
+    ctx.clearRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
+
+
+    ss.forEach(s => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            s.x,
+            s.y,
+            s.r,
+            0,
+            Math.PI * 2
+        );
+
+
+        ctx.fillStyle =
+            `rgba(180,255,255,${s.a})`;
+
+
+        ctx.fill();
+
+    });
+
+
+    requestAnimationFrame(
+        draw
+    );
+
+}
+
+
+addEventListener(
+    "resize",
+    resize
+);
+
+
+resize();
+
+draw();
 
 </script>
 
