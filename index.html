@@ -8,7 +8,7 @@
 
 <style>
 *{
-    box-sizing:border-box
+    box-sizing:border-box;
 }
 
 html,body{
@@ -16,11 +16,11 @@ html,body{
     min-height:100%;
     background:#01090c;
     color:#d8ffff;
-    font-family:"PingFang SC","Microsoft YaHei",sans-serif
+    font-family:"PingFang SC","Microsoft YaHei",sans-serif;
 }
 
 body{
-    overflow-x:hidden
+    overflow-x:hidden;
 }
 
 #stars{
@@ -28,7 +28,7 @@ body{
     inset:0;
     z-index:0;
     background:#01090c;
-    pointer-events:none
+    pointer-events:none;
 }
 
 .space{
@@ -36,41 +36,41 @@ body{
     inset:0;
     z-index:1;
     overflow:hidden;
-    pointer-events:none
+    pointer-events:none;
 }
 
 .nebula{
     position:absolute;
     inset:-20%;
     background:
-    radial-gradient(
-        ellipse at 52% 16%,
-        rgba(53,255,238,.42),
-        transparent 24%
-    ),
-    radial-gradient(
-        ellipse at 20% 32%,
-        rgba(0,205,232,.30),
-        transparent 27%
-    ),
-    radial-gradient(
-        ellipse at 82% 45%,
-        rgba(33,245,214,.26),
-        transparent 25%
-    ),
-    radial-gradient(
-        ellipse at 48% 76%,
-        rgba(0,145,190,.24),
-        transparent 32%
-    );
+        radial-gradient(
+            ellipse at 52% 16%,
+            rgba(53,255,238,.42),
+            transparent 24%
+        ),
+        radial-gradient(
+            ellipse at 20% 32%,
+            rgba(0,205,232,.30),
+            transparent 27%
+        ),
+        radial-gradient(
+            ellipse at 82% 45%,
+            rgba(33,245,214,.26),
+            transparent 25%
+        ),
+        radial-gradient(
+            ellipse at 48% 76%,
+            rgba(0,145,190,.24),
+            transparent 32%
+        );
 
     filter:blur(18px);
-    animation:drift 18s ease-in-out infinite alternate
+    animation:drift 18s ease-in-out infinite alternate;
 }
 
 @keyframes drift{
     to{
-        transform:scale(1.08) translate(2%,-1%)
+        transform:scale(1.08) translate(2%,-1%);
     }
 }
 
@@ -79,67 +79,67 @@ body{
     z-index:2;
     max-width:1440px;
     margin:auto;
-    padding:34px 42px 50px
+    padding:34px 42px 50px;
 }
 
 header{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    margin-bottom:24px
+    margin-bottom:24px;
 }
 
 .logo{
-    letter-spacing:.18em
+    letter-spacing:.18em;
 }
 
 .en{
     font:32px Georgia,serif;
-    color:#b8ffff
+    color:#b8ffff;
 }
 
 .cn{
     font-size:30px;
-    margin-top:5px
+    margin-top:5px;
 }
 
 .sub{
     font-size:13px;
     color:#6ea2a5;
-    margin-top:9px
+    margin-top:9px;
 }
 
 .nav{
     display:flex;
     gap:28px;
     color:#78a7aa;
-    font-size:12px
+    font-size:12px;
 }
 
 .nav div{
-    text-align:center
+    text-align:center;
 }
 
 .nav b{
     display:block;
     font-size:21px;
     font-weight:400;
-    margin-bottom:4px
+    margin-bottom:4px;
 }
 
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:18px
+    gap:18px;
 }
 
 .panel{
     background:
-    linear-gradient(
-        145deg,
-        rgba(3,29,35,.82),
-        rgba(1,16,21,.75)
-    );
+        linear-gradient(
+            145deg,
+            rgba(3,29,35,.82),
+            rgba(1,16,21,.75)
+        );
 
     border:1px solid rgba(60,218,214,.46);
     border-radius:18px;
@@ -148,11 +148,11 @@ header{
         0 0 35px rgba(23,203,202,.07),
         inset 0 0 30px rgba(67,240,233,.025);
 
-    backdrop-filter:blur(10px)
+    backdrop-filter:blur(10px);
 }
 
 .panel.pad{
-    padding:24px 28px
+    padding:24px 28px;
 }
 
 h2{
@@ -160,7 +160,7 @@ h2{
     font-weight:500;
     color:#a8f3ef;
     letter-spacing:.08em;
-    margin:0 0 17px
+    margin:0 0 17px;
 }
 
 textarea{
@@ -176,21 +176,22 @@ textarea{
 
     padding:15px;
 
-    font:15px inherit;
+    font:15px "PingFang SC","Microsoft YaHei",sans-serif;
 
     resize:none;
-    outline:none
+    outline:none;
 }
 
 textarea:focus{
     border-color:#5be9e3;
-    box-shadow:0 0 18px rgba(61,227,220,.14)
+    box-shadow:0 0 18px rgba(61,227,220,.14);
 }
 
 .actions{
     display:flex;
     gap:12px;
-    margin-top:16px
+    margin-top:16px;
+    flex-wrap:wrap;
 }
 
 .btn{
@@ -214,23 +215,46 @@ textarea:focus{
     font:inherit;
 
     box-shadow:
-        0 0 18px rgba(54,217,212,.15)
+        0 0 18px rgba(54,217,212,.15);
 }
 
 .btn.alt{
     background:transparent;
     color:#91babc;
-    border-color:#286d72
+    border-color:#286d72;
 }
 
 .btn:disabled{
     opacity:.4;
-    cursor:not-allowed
+    cursor:not-allowed;
 }
 
 .hint{
     font-size:12px;
-    color:#608c8f
+    color:#608c8f;
+    line-height:1.7;
+}
+
+.stage{
+    min-height:450px;
+    margin-top:18px;
+    padding:25px 22px;
+    position:relative;
+}
+
+.stage-title{
+    text-align:center;
+    color:#a8e9e6;
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+.stage-desc{
+    text-align:center;
+    color:#668f92;
+    font-size:12px;
+    min-height:40px;
+    line-height:1.7;
 }
 
 .progress{
@@ -238,57 +262,35 @@ textarea:focus{
     background:#08262a;
     border-radius:10px;
     overflow:hidden;
-    margin:16px 0
+    margin:16px 0;
 }
 
 .progress i{
     display:block;
     height:100%;
     width:0;
-
     background:#55dfda;
-
     box-shadow:0 0 12px #43e3dc;
-
-    transition:.3s
-}
-
-.stage{
-    min-height:450px;
-    margin-top:18px;
-    padding:25px 22px;
-    position:relative
-}
-
-.stage-title{
-    text-align:center;
-    color:#a8e9e6;
-    font-size:16px;
-    margin-bottom:6px
-}
-
-.stage-desc{
-    text-align:center;
-    color:#668f92;
-    font-size:12px;
-    min-height:34px
+    transition:.3s;
 }
 
 .pile-area{
-    height:210px;
+    min-height:210px;
     position:relative;
-    margin:15px 0
+    margin:15px 0;
 }
 
 .pile{
-    position:absolute;
-    top:25px;
+    position:relative;
 
-    min-height:180px;
+    min-height:145px;
 
-    display:block;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
-    padding:12px;
+    padding:18px;
 
     border:1px dashed #277276;
 
@@ -302,209 +304,207 @@ textarea:focus{
             transparent 75%
         );
 
-    transition:.45s;
+    transition:.35s;
 
-    overflow:hidden
-}
-
-.pile.left{
-    left:4%;
-    width:92%
+    overflow:hidden;
 }
 
 .pile.clickable{
     cursor:pointer;
     border-color:#51dcd7;
-    box-shadow:0 0 18px rgba(69,222,216,.1)
+    box-shadow:0 0 18px rgba(69,222,216,.1);
 }
 
 .pile.clickable:hover{
     background:rgba(29,119,121,.2);
-    transform:translateY(-2px)
+    transform:translateY(-2px);
 }
 
-.stalk{
-    position:absolute;
+.pile-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
 
-    width:4px;
-    height:58px;
+.pile-title{
+    color:#8bbec0;
+    font-size:13px;
+    margin-bottom:8px;
+}
 
-    border-radius:4px;
+.pile-number{
+    font-size:35px;
+    color:#c9ffff;
+}
 
-    background:
-        linear-gradient(
-            90deg,
-            #d2ffff,
-            #38c5c0 55%,
-            #087174
-        );
+.pile-hint{
+    color:#527f82;
+    font-size:11px;
+    margin-top:7px;
+}
 
-    box-shadow:
-        0 0 7px rgba(96,237,230,.38);
+.choice{
+    text-align:center;
+    margin-top:10px;
+}
 
-    display:block;
+.choice-title{
+    color:#7fa9ab;
+    font-size:13px;
+    margin-bottom:10px;
+}
 
-    transform-origin:bottom center;
+.choice-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
 
-    transition:all .55s cubic-bezier(.2,.8,.2,1)
+.choice-btn{
+    border:1px solid #317c80;
+    background:#052329;
+    color:#a7d8d9;
+    border-radius:8px;
+    padding:9px 14px;
+    cursor:pointer;
+}
+
+.choice-btn:hover{
+    border-color:#5be9e3;
+    color:#dfffff;
 }
 
 .counts{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-top:12px
+    margin-top:12px;
 }
 
 .countbox{
     border:1px solid #205a5f;
     border-radius:11px;
-
     padding:12px;
-
     text-align:center;
-
-    color:#79a5a7
+    color:#79a5a7;
 }
 
 .countbox strong{
     display:block;
     font-size:24px;
     color:#c5ffff;
-    margin-top:5px
+    margin-top:5px;
 }
 
 .remainders{
     display:flex;
     justify-content:center;
     gap:12px;
-    margin:18px 0
+    margin:18px 0;
+    flex-wrap:wrap;
 }
 
 .r{
     padding:9px 15px;
-
     border-radius:9px;
-
     background:#062329;
-
     border:1px solid #23686d;
-
-    color:#8cb8ba
+    color:#8cb8ba;
 }
 
 .r b{
-    color:#d4ffff
+    color:#d4ffff;
 }
 
 .result{
     margin-top:16px;
-
     padding:16px;
-
     border:1px solid #245f64;
-
     border-radius:12px;
-
     background:rgba(1,22,27,.7);
-
-    text-align:center
+    text-align:center;
 }
 
 .result .num{
     font-size:31px;
-    color:#bafffa
+    color:#bafffa;
 }
 
 .result .name{
     font-size:15px;
     color:#7da9ab;
-    margin-top:4px
+    margin-top:4px;
 }
 
 .hexwrap{
     display:grid;
     grid-template-columns:1fr 1fr;
-
     gap:25px;
-
     margin-top:15px;
-
-    text-align:center
+    text-align:center;
 }
 
 .hexname{
     color:#7ea9ab;
     font-size:13px;
-    margin-bottom:11px
+    margin-bottom:11px;
 }
 
 .hex{
     display:flex;
     flex-direction:column;
-
     gap:7px;
-
-    align-items:center
+    align-items:center;
 }
 
 .line{
     height:11px;
     width:150px;
-    position:relative
+    position:relative;
 }
 
 .solid,
 .broken1,
 .broken2{
     position:absolute;
-
     top:3px;
-
     height:6px;
-
     background:#5bdcd8;
-
     border-radius:5px;
-
-    box-shadow:
-        0 0 8px rgba(74,225,219,.2)
+    box-shadow:0 0 8px rgba(74,225,219,.2);
 }
 
 .solid{
     left:0;
-    right:0
+    right:0;
 }
 
 .broken1{
     left:0;
-    width:64px
+    width:64px;
 }
 
 .broken2{
     right:0;
-    width:64px
+    width:64px;
 }
 
 .movingline .solid,
 .movingline .broken1,
 .movingline .broken2{
-    background:#caffff
+    background:#caffff;
 }
 
 .table{
     margin-top:18px;
-
     border:1px solid #20565b;
-
     border-radius:10px;
-
-    overflow:hidden
+    overflow:hidden;
 }
 
 .tr{
     display:grid;
-
     grid-template-columns:
         1fr 1fr 1fr 1fr;
 
@@ -516,108 +516,113 @@ textarea:focus{
 
     font-size:12px;
 
-    text-align:center
+    text-align:center;
 }
 
 .tr:last-child{
-    border-bottom:0
+    border-bottom:0;
 }
 
 .tr.head{
     color:#94c1c2;
-    background:rgba(30,101,105,.15)
+    background:rgba(30,101,105,.15);
 }
 
 .tr.move{
     background:rgba(59,205,201,.08);
-    color:#c4eeee
+    color:#c4eeee;
 }
 
 .api{
     margin-top:18px;
-
     padding:14px 20px;
-
     display:flex;
-
     justify-content:space-between;
-
-    align-items:center
+    align-items:center;
+    gap:15px;
 }
 
 .api button{
-    padding:7px 12px
+    padding:7px 12px;
 }
 
 .apiBox{
     display:none;
-    margin-top:8px
+    margin-top:8px;
 }
 
 .apiBox input{
     width:100%;
-
     background:#02161b;
-
     border:1px solid #28646a;
-
     border-radius:8px;
-
     color:white;
-
-    padding:10px
+    padding:10px;
 }
 
 .apiBox button{
-    margin-top:8px
+    margin-top:8px;
+}
+
+#answer{
+    white-space:pre-wrap;
+    line-height:1.9;
+    color:#c9eeee;
+    min-height:80px;
+}
+
+.status{
+    color:#6f9da0;
+    font-size:12px;
+    margin-top:8px;
 }
 
 .footer{
     text-align:center;
-
     color:#426b6e;
-
     font-size:11px;
-
-    margin-top:22px
+    margin-top:22px;
 }
 
 @media(max-width:900px){
 
     .container{
-        padding:22px 15px
+        padding:22px 15px;
     }
 
     .grid{
-        grid-template-columns:1fr
+        grid-template-columns:1fr;
     }
 
     header{
-        gap:20px
+        gap:20px;
     }
 
     .nav{
-        display:none
+        display:none;
     }
 }
 
 @media(max-width:560px){
 
-    .pile-area{
-        height:270px
-    }
-
     .hexwrap{
-        grid-template-columns:1fr
+        grid-template-columns:1fr;
     }
 
     .container{
-        padding-bottom:30px
+        padding-bottom:30px;
+    }
+
+    .pile-row{
+        grid-template-columns:1fr;
+    }
+
+    .tr{
+        font-size:11px;
     }
 }
 </style>
 </head>
-
 
 <body>
 
@@ -626,7 +631,6 @@ textarea:focus{
 <div class="space">
     <div class="nebula"></div>
 </div>
-
 
 <div class="container">
 
@@ -647,7 +651,6 @@ WANGXING
 </div>
 
 </div>
-
 
 <div class="nav">
 
@@ -676,7 +679,6 @@ WANGXING
 
 <section>
 
-
 <div class="panel pad">
 
 <h2>
@@ -685,10 +687,9 @@ WANGXING
 
 <textarea
 id="q"
-maxlength="200"
+maxlength="500"
 placeholder="请详细描述你想占卜的问题……"
 ></textarea>
-
 
 <div class="actions">
 
@@ -699,7 +700,6 @@ id="begin"
 ✦ 开始大衍筮法
 </button>
 
-
 <button
 class="btn alt"
 id="restart"
@@ -709,13 +709,13 @@ id="restart"
 
 </div>
 
-
 <p class="hint">
-本版本采用互动式分蓍：你可以亲自决定从哪里分二，并选择哪一蓍作为「挂一」。
+以五十蓍草象大衍之数，虚一不用，以四十九蓍进行筮法。
+每一爻经过三变，三变所得策数合为一爻。
+六爻完成后形成完整本卦与变卦。
 </p>
 
 </div>
-
 
 
 <div class="panel stage">
@@ -727,7 +727,6 @@ id="stageTitle"
 准备大衍之数
 </div>
 
-
 <div
 class="stage-desc"
 id="stageDesc"
@@ -735,13 +734,11 @@ id="stageDesc"
 五十根蓍草，虚一不用，以四十九根进入本次筮法。
 </div>
 
-
 <div class="progress">
 
 <i id="bar"></i>
 
 </div>
-
 
 <div
 class="pile-area"
@@ -749,13 +746,11 @@ id="piles"
 >
 </div>
 
-
 <div
 class="choice"
 id="choice"
 >
 </div>
-
 
 <div
 class="counts"
@@ -763,13 +758,11 @@ id="counts"
 >
 </div>
 
-
 <div
 class="remainders"
 id="remainders"
 >
 </div>
-
 
 <div
 class="result"
@@ -783,9 +776,7 @@ style="display:none"
 </section>
 
 
-
 <section>
-
 
 <div class="panel pad">
 
@@ -793,9 +784,7 @@ style="display:none"
 六爻结果
 </h2>
 
-
 <div class="hexwrap">
-
 
 <div>
 
@@ -813,7 +802,6 @@ id="bh"
 </div>
 
 </div>
-
 
 
 <div>
@@ -834,7 +822,6 @@ id="ch"
 </div>
 
 </div>
-
 
 
 <div class="table">
@@ -859,7 +846,6 @@ id="ch"
 
 </div>
 
-
 <div id="rows">
 </div>
 
@@ -878,36 +864,41 @@ disabled
 
 </div>
 
+<div
+class="status"
+id="status"
+>
+完成六爻后才能进行 AI 解读。
+</div>
 
 <div
 id="answer"
-class="hint"
-style="
-white-space:pre-wrap;
-line-height:1.8;
-margin-top:13px
-"
 >
-完成六爻后，点击「解读」查看卦象分析。
 </div>
 
 </div>
-
 
 
 <div class="panel api">
 
-<span>
-⚿ DeepSeek 解读设置　
-<small id="ks">
-未设置
-</small>
-</span>
+<div>
 
+<div>
+DeepSeek API
+</div>
+
+<div
+class="status"
+id="keyStatus"
+>
+未设置
+</div>
+
+</div>
 
 <button
 class="btn alt"
-id="kt"
+id="keyButton"
 >
 设置
 </button>
@@ -916,26 +907,36 @@ id="kt"
 
 
 <div
-class="apiBox"
-id="kb"
+class="panel pad apiBox"
+id="keyBox"
 >
+
+<h2>
+DeepSeek API Key
+</h2>
 
 <input
 id="key"
 type="password"
-placeholder="sk-..."
+autocomplete="off"
+placeholder="sk-xxxxxxxxxxxxxxxx"
 >
 
-
 <button
-class="btn alt"
-id="save"
+class="btn"
+id="saveKey"
 >
 保存设置
 </button>
 
-</div>
+<button
+class="btn alt"
+id="clearKey"
+>
+清除 Key
+</button>
 
+</div>
 
 </section>
 
@@ -943,14 +944,10 @@ id="save"
 
 
 <div class="footer">
-
-WANGXING · 星河大衍筮法　
-互动演算 · 卦象解读
-
+WANGXING · 星河大衍筮法
 </div>
 
 </div>
-
 
 
 <script>
@@ -959,1139 +956,1208 @@ WANGXING · 星河大衍筮法　
    星空背景
 ========================= */
 
-const canvas =
+const stars =
 document.getElementById("stars");
 
 const ctx =
-canvas.getContext("2d");
+stars.getContext("2d");
 
-let stars=[];
+let starList = [];
 
+function resizeStars(){
 
-function resize(){
+    stars.width =
+        window.innerWidth *
+        devicePixelRatio;
 
-canvas.width =
-innerWidth *
-devicePixelRatio;
+    stars.height =
+        window.innerHeight *
+        devicePixelRatio;
 
-canvas.height =
-innerHeight *
-devicePixelRatio;
+    ctx.scale(
+        devicePixelRatio,
+        devicePixelRatio
+    );
 
-canvas.style.width =
-innerWidth+"px";
+    starList = [];
 
-canvas.style.height =
-innerHeight+"px";
+    const count =
+        Math.floor(
+            window.innerWidth *
+            window.innerHeight /
+            9000
+        );
 
-ctx.setTransform(
-devicePixelRatio,
-0,
-0,
-devicePixelRatio,
-0,
-0
-);
+    for(let i=0;i<count;i++){
 
+        starList.push({
 
-stars =
-Array.from(
-{
-length:
-Math.min(
-420,
-Math.floor(innerWidth/3)
-)
-},
-()=>({
+            x:Math.random()*window.innerWidth,
 
-x:
-Math.random()*innerWidth,
+            y:Math.random()*window.innerHeight,
 
-y:
-Math.random()*innerHeight,
+            r:Math.random()*1.2+.2,
 
-r:
-Math.random()*1.4+.2,
+            a:Math.random()*.8+.2
 
-a:
-Math.random()*.8+.2,
+        });
 
-s:
-Math.random()*.25+.04
-
-})
-);
-
+    }
 }
 
+function drawStars(){
 
-function sky(){
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
 
-ctx.clearRect(
-0,
-0,
-innerWidth,
-innerHeight
-);
+    for(const s of starList){
 
+        ctx.beginPath();
 
-for(
-const s of stars
-){
+        ctx.arc(
+            s.x,
+            s.y,
+            s.r,
+            0,
+            Math.PI*2
+        );
 
-s.y-=s.s;
+        ctx.fillStyle =
+            `rgba(180,255,255,${s.a})`;
 
+        ctx.fill();
 
-if(
-s.y<0
-){
-s.y=innerHeight;
+    }
+
+    requestAnimationFrame(drawStars);
 }
 
-
-ctx.globalAlpha=s.a;
-
-ctx.fillStyle="#9dffff";
-
-ctx.beginPath();
-
-ctx.arc(
-s.x,
-s.y,
-s.r,
-0,
-Math.PI*2
+window.addEventListener(
+    "resize",
+    resizeStars
 );
 
-ctx.fill();
-
-}
-
-
-requestAnimationFrame(sky);
-
-}
+resizeStars();
+drawStars();
 
 
-addEventListener(
-"resize",
-resize
-);
+/* =========================
+   基础变量
+========================= */
 
-resize();
+const q =
+document.getElementById("q");
 
-sky();
+const begin =
+document.getElementById("begin");
 
+const restart =
+document.getElementById("restart");
+
+const piles =
+document.getElementById("piles");
+
+const choice =
+document.getElementById("choice");
+
+const counts =
+document.getElementById("counts");
+
+const remainders =
+document.getElementById("remainders");
+
+const result =
+document.getElementById("result");
+
+const stageTitle =
+document.getElementById("stageTitle");
+
+const stageDesc =
+document.getElementById("stageDesc");
+
+const bar =
+document.getElementById("bar");
+
+const bn =
+document.getElementById("bn");
+
+const cn =
+document.getElementById("cn");
+
+const bh =
+document.getElementById("bh");
+
+const ch =
+document.getElementById("ch");
+
+const rows =
+document.getElementById("rows");
+
+const ai =
+document.getElementById("ai");
+
+const answer =
+document.getElementById("answer");
+
+const status =
+document.getElementById("status");
+
+const keyBox =
+document.getElementById("keyBox");
+
+const key =
+document.getElementById("key");
+
+const keyStatus =
+document.getElementById("keyStatus");
+
+
+let question = "";
+
+let yaoIndex = 0;
+
+let changeIndex = 0;
+
+let stalks = 49;
+
+let currentYao = [];
+
+let allYao = [];
+
+let pendingSplit = false;
+
+
+/* =========================
+   八卦
+   二进制从下往上
+========================= */
+
+const trigramBits = {
+
+    "乾":"111",
+    "兑":"110",
+    "离":"101",
+    "震":"100",
+
+    "巽":"011",
+    "坎":"010",
+    "艮":"001",
+    "坤":"000"
+
+};
+
+const trigramName = {
+
+    "111":"乾",
+    "110":"兑",
+    "101":"离",
+    "100":"震",
+
+    "011":"巽",
+    "010":"坎",
+    "001":"艮",
+    "000":"坤"
+
+};
 
 
 /* =========================
    六十四卦
 ========================= */
 
-const H={
+const hexagrams = {
 
-"111111":"乾为天",
-"111110":"天泽履",
-"111101":"天火同人",
-"111100":"天雷无妄",
-"111011":"天风姤",
-"111010":"天水讼",
-"111001":"天山遯",
-"111000":"天地否",
+"乾乾":"乾为天",
+"坤坤":"坤为地",
 
-"110111":"泽天夬",
-"110110":"兑为泽",
-"110101":"泽火革",
-"110100":"泽雷随",
-"110011":"泽风大过",
-"110010":"泽水困",
-"110001":"泽山咸",
-"110000":"泽地萃",
+"坎震":"水雷屯",
+"艮坎":"山水蒙",
 
-"101111":"火天大有",
-"101110":"火泽睽",
-"101101":"离为火",
-"101100":"火雷噬嗑",
-"101011":"火风鼎",
-"101010":"火水未济",
-"101001":"火山旅",
-"101000":"火地晋",
+"坎乾":"水天需",
+"乾坎":"天水讼",
 
-"100111":"雷天大壮",
-"100110":"雷泽归妹",
-"100101":"雷火丰",
-"100100":"震为雷",
-"100011":"雷风恒",
-"100010":"雷水解",
-"100001":"雷山小过",
-"100000":"雷地豫",
+"坤坎":"地水师",
+"坎坤":"水地比",
 
-"011111":"风天小畜",
-"011110":"风泽中孚",
-"011101":"风火家人",
-"011100":"风雷益",
-"011011":"巽为风",
-"011010":"风水涣",
-"011001":"风山渐",
-"011000":"风地观",
+"巽乾":"风天小畜",
+"乾兑":"天泽履",
 
-"010111":"水天需",
-"010110":"水泽节",
-"010101":"水火既济",
-"010100":"水雷屯",
-"010011":"水风井",
-"010010":"坎为水",
-"010001":"水山蹇",
-"010000":"水地比",
+"坤乾":"地天泰",
+"乾坤":"天地否",
 
-"001111":"山天大畜",
-"001110":"山泽损",
-"001101":"山火贲",
-"001100":"山雷颐",
-"001011":"山风蛊",
-"001010":"山水蒙",
-"001001":"艮为山",
-"001000":"山地剥",
+"乾离":"天火同人",
+"离乾":"火天大有",
 
-"000111":"地天泰",
-"000110":"地泽临",
-"000101":"地火明夷",
-"000100":"地雷复",
-"000011":"地风升",
-"000010":"地水师",
-"000001":"地山谦",
-"000000":"坤为地"
+"坤艮":"地山谦",
+"震坤":"雷地豫",
+
+"兑震":"泽雷随",
+"艮巽":"山风蛊",
+
+"坤兑":"地泽临",
+"巽坤":"风地观",
+
+"离震":"火雷噬嗑",
+"艮离":"山火贲",
+
+"艮坤":"山地剥",
+"坤震":"地雷复",
+
+"乾震":"天雷无妄",
+"艮乾":"山天大畜",
+
+"艮震":"山雷颐",
+"兑巽":"泽风大过",
+
+"坎坎":"坎为水",
+"离离":"离为火",
+
+"兑艮":"泽山咸",
+"震巽":"雷风恒",
+
+"乾艮":"天山遁",
+"震乾":"雷天大壮",
+
+"离坤":"火地晋",
+"坤离":"地火明夷",
+
+"巽离":"风火家人",
+"离兑":"火泽睽",
+
+"坎艮":"水山蹇",
+"震坎":"雷水解",
+
+"艮兑":"山泽损",
+"巽震":"风雷益",
+
+"兑乾":"泽天夬",
+"乾巽":"天风姤",
+
+"兑坤":"泽地萃",
+"坤巽":"地风升",
+
+"兑坎":"泽水困",
+"坎巽":"水风井",
+
+"兑离":"泽火革",
+"离巽":"火风鼎",
+
+"震震":"震为雷",
+"艮艮":"艮为山",
+
+"巽艮":"风山渐",
+"震兑":"雷泽归妹",
+
+"震离":"雷火丰",
+"离艮":"火山旅",
+
+"巽巽":"巽为风",
+"兑兑":"兑为泽",
+
+"巽坎":"风水涣",
+"坎兑":"水泽节",
+
+"巽兑":"风泽中孚",
+"震艮":"雷山小过",
+
+"坎离":"水火既济",
+"离坎":"火水未济"
 
 };
 
 
-const names=[
-"初爻",
-"二爻",
-"三爻",
-"四爻",
-"五爻",
-"上爻"
-];
-
-
-let current=[];
-
-let turn=0;
-
-let question="";
-
-let stage={};
-
-
-
 /* =========================
-   DOM
+   通过六爻计算卦名
 ========================= */
 
-const title =
-document.getElementById(
-"stageTitle"
-);
+function getHexName(lines){
 
-const desc =
-document.getElementById(
-"stageDesc"
-);
+    const lowerBits =
+        lines
+            .slice(0,3)
+            .map(v =>
+                (v===7 || v===9) ? "1" : "0"
+            )
+            .reverse()
+            .join("");
 
-const choice =
-document.getElementById(
-"choice"
-);
+    const upperBits =
+        lines
+            .slice(3,6)
+            .map(v =>
+                (v===7 || v===9) ? "1" : "0"
+            )
+            .reverse()
+            .join("");
 
-const counts =
-document.getElementById(
-"counts"
-);
+    const lower =
+        trigramName[lowerBits];
 
-const rem =
-document.getElementById(
-"remainders"
-);
+    const upper =
+        trigramName[upperBits];
 
-const result =
-document.getElementById(
-"result"
-);
-
-const bar =
-document.getElementById(
-"bar"
-);
-
-const piles =
-document.getElementById(
-"piles"
-);
-
-
-
-/* =========================
-   进度条
-========================= */
-
-function stepBar(n){
-
-bar.style.width =
-(n/6*100)+"%";
-
+    return (
+        hexagrams[
+            upper + lower
+        ] ||
+        "未知卦"
+    );
 }
 
 
-
 /* =========================
-   创建蓍草
+   显示卦象
 ========================= */
 
-function showMixedPile(n){
-
-piles.innerHTML="";
-
-
-const p =
-document.createElement(
-"div"
-);
-
-p.className=
-"pile left clickable";
-
-p.id="MIXED";
-
-
-for(
-let i=0;
-i<Math.min(n,49);
-i++
+function renderHex(
+    target,
+    lines
 ){
 
-const s=
-document.createElement(
-"span"
-);
+    target.innerHTML = "";
 
-s.className="stalk";
+    for(
+        let i=5;
+        i>=0;
+        i--
+    ){
 
-s.style.left=
-(5+Math.random()*88)+"%";
+        const value =
+            lines[i];
 
-s.style.top=
-(8+Math.random()*75)+"%";
+        const div =
+            document.createElement("div");
 
-s.style.transform=
-"rotate("+
-(-12+Math.random()*24)+
-"deg)";
+        div.className =
+            "line";
 
-p.appendChild(s);
+        if(
+            value === 6 ||
+            value === 9
+        ){
 
+            div.classList.add(
+                "movingline"
+            );
+
+        }
+
+        if(
+            value === 7 ||
+            value === 9
+        ){
+
+            div.innerHTML =
+                `<div class="solid"></div>`;
+
+        }else{
+
+            div.innerHTML =
+                `
+                <div class="broken1"></div>
+                <div class="broken2"></div>
+                `;
+
+        }
+
+        target.appendChild(div);
+
+    }
 }
-
-
-p.onclick=function(e){
-
-const r=
-p.getBoundingClientRect();
-
-const pos=
-Math.max(
-1,
-Math.min(
-n-1,
-Math.round(
-(
-(e.clientX-r.left)/
-r.width
-)*n
-)
-)
-);
-
-splitAt(pos);
-
-};
-
-
-piles.appendChild(p);
-
-}
-
 
 
 /* =========================
-   开始起卦
+   进度
 ========================= */
 
-function begin(){
+function updateProgress(){
 
-question=
-document
-.getElementById("q")
-.value
-.trim();
+    const completed =
+        yaoIndex;
+
+    bar.style.width =
+        `${completed / 6 * 100}%`;
+}
 
 
-if(!question){
+/* =========================
+   开始
+========================= */
 
-document
-.getElementById("q")
-.focus();
+begin.addEventListener(
+    "click",
+    startDivination
+);
 
-document
-.getElementById("answer")
-.textContent=
-"请先输入问题。";
+restart.addEventListener(
+    "click",
+    resetAll
+);
 
-return;
+function startDivination(){
+
+    question =
+        q.value.trim();
+
+    if(!question){
+
+        alert(
+            "请先输入你想占卜的问题。"
+        );
+
+        q.focus();
+
+        return;
+    }
+
+    yaoIndex = 0;
+
+    allYao = [];
+
+    resetYaoUI();
+
+    begin.disabled = true;
+
+    ai.disabled = true;
+
+    status.textContent =
+        "正在进行大衍筮法。";
+
+    startYao();
 
 }
 
 
-current=[];
+/* =========================
+   开始一爻
+========================= */
 
-turn=0;
+function startYao(){
 
-stage={
-n:49,
-change:0
-};
+    currentYao = [];
 
+    stalks = 49;
 
-document
-.getElementById("rows")
-.innerHTML="";
+    changeIndex = 0;
 
+    stageTitle.textContent =
+        `第 ${yaoIndex + 1} 爻`;
 
-document
-.getElementById("bh")
-.innerHTML="";
+    stageDesc.textContent =
+        "49根蓍草进入第一变。请先分二。";
 
+    piles.innerHTML = "";
 
-document
-.getElementById("ch")
-.innerHTML="";
+    choice.innerHTML = "";
 
+    counts.innerHTML = "";
 
-document
-.getElementById("bn")
-.textContent="本卦";
+    remainders.innerHTML = "";
 
+    result.style.display =
+        "none";
 
-document
-.getElementById("cn")
-.textContent="变卦";
-
-
-document
-.getElementById("ai")
-.disabled=true;
-
-
-document
-.getElementById("answer")
-.textContent=
-"完成六爻后，点击「解读」查看卦象分析。";
-
-
-title.textContent=
-"第 1 爻 · 第一变";
-
-
-desc.textContent=
-"49 根蓍草。点击蓍草堆任意位置分二。";
-
-
-choice.innerHTML="";
-
-counts.innerHTML="";
-
-rem.innerHTML="";
-
-result.style.display="none";
-
-stepBar(0);
-
-showMixedPile(49);
+    renderSplit();
 
 }
-
 
 
 /* =========================
    分二
 ========================= */
 
-function splitAt(pos){
+function renderSplit(){
 
-if(stage.splitting)
-return;
+    const min = 1;
+
+    const max = 48;
+
+    const left =
+        Math.floor(
+            Math.random() *
+            (max-min+1)
+        ) + min;
+
+    const right =
+        stalks - left;
+
+    piles.innerHTML = `
+
+        <div class="pile-row">
+
+            <div
+                class="pile clickable"
+                data-side="left"
+                data-left="${left}"
+                data-right="${right}"
+            >
+
+                <div class="pile-title">
+                    左手
+                </div>
+
+                <div class="pile-number">
+                    ${left}
+                </div>
+
+                <div class="pile-hint">
+                    点击选择左手分二
+                </div>
+
+            </div>
 
 
-stage.splitting=true;
+            <div
+                class="pile clickable"
+                data-side="right"
+                data-left="${left}"
+                data-right="${right}"
+            >
 
-stage.left=pos;
+                <div class="pile-title">
+                    右手
+                </div>
 
-stage.right=
-stage.n-pos;
+                <div class="pile-number">
+                    ${right}
+                </div>
 
+                <div class="pile-hint">
+                    点击选择右手分二
+                </div>
 
-const pile=
-document.getElementById(
-"MIXED"
-);
+            </div>
 
+        </div>
 
-[
-...pile.querySelectorAll(
-".stalk"
-)
-].forEach(
-(s,i)=>{
+    `;
 
-s.style.left=
-(
-i<pos
-?
-10+Math.random()*35
-:
-55+Math.random()*35
-)+"%";
+    document
+        .querySelectorAll(".pile")
+        .forEach(el => {
 
-s.style.top=
-(
-16+Math.random()*64
-)+"%";
+            el.addEventListener(
+                "click",
+                () => {
+
+                    showHangOne(
+                        left,
+                        right
+                    );
+
+                }
+            );
+
+        });
 
 }
-);
-
-
-setTimeout(
-()=>{
-
-title.textContent=
-"挂一";
-
-desc.textContent=
-"分二完成。请选择从左束还是右束取一蓍。";
-
-
-choice.innerHTML=`
-
-<button
-class="btn"
-onclick="hang('left')"
->
-从左束取一蓍
-</button>
-
-<button
-class="btn"
-onclick="hang('right')"
->
-从右束取一蓍
-</button>
-
-`;
-
-
-stage.splitting=false;
-
-},
-400
-);
-
-}
-
 
 
 /* =========================
    挂一
 ========================= */
 
-function hang(side){
-
-stage.left2=
-stage.left-
-(
-side==="left"
-?
-1
-:
-0
-);
-
-
-stage.right2=
-stage.right-
-(
-side==="right"
-?
-1
-:
-0
-);
-
-
-const a=
-stage.left2%4||4;
-
-const b=
-stage.right2%4||4;
-
-
-stage.remainders=[
-a,
-b
-];
-
-
-title.textContent=
-"揲四 · 归奇";
-
-
-desc.textContent=
-"分别以四根为一组，记录两束余数。";
-
-
-counts.innerHTML=`
-
-<div class="countbox">
-
-左束余数
-
-<strong>
-${a}
-</strong>
-
-<small>
-根
-</small>
-
-</div>
-
-
-<div class="countbox">
-
-右束余数
-
-<strong>
-${b}
-</strong>
-
-<small>
-根
-</small>
-
-</div>
-
-`;
-
-
-rem.innerHTML=`
-
-<div class="r">
-
-归奇
-
-<b>
-${a+b+1}
-</b>
-
-根
-
-</div>
-
-`;
-
-
-choice.innerHTML=`
-
-<button
-class="btn"
-onclick="changeAgain()"
->
-完成本变
-</button>
-
-`;
-
-}
-
-
-
-/* =========================
-   三变
-========================= */
-
-function changeAgain(){
-
-stage.n-=
-stage.remainders[0]+
-stage.remainders[1]+
-1;
-
-stage.change++;
-
-
-if(
-stage.change<3
+function showHangOne(
+    left,
+    right
 ){
 
-title.textContent=
-"第 "+
-(stage.change+1)+
-" 变";
+    stageDesc.textContent =
+        "选择哪一边取一蓍挂一。";
 
+    choice.innerHTML = `
 
-desc.textContent=
-"余下 "+
-stage.n+
-" 根，继续分二。";
+        <div class="choice-title">
+            请选择挂一的一蓍
+        </div>
 
+        <div class="choice-buttons">
 
-choice.innerHTML="";
+            <button
+                class="choice-btn"
+                id="hangLeft"
+            >
+                从左手取一
+            </button>
 
-counts.innerHTML="";
+            <button
+                class="choice-btn"
+                id="hangRight"
+            >
+                从右手取一
+            </button>
 
-rem.innerHTML="";
+        </div>
 
+    `;
 
-showMixedPile(
-stage.n
-);
+    document
+        .getElementById("hangLeft")
+        .onclick = () => {
 
+            performChange(
+                left - 1,
+                right
+            );
 
-}else{
+        };
 
+    document
+        .getElementById("hangRight")
+        .onclick = () => {
 
-const value=
-stage.n/4;
+            performChange(
+                left,
+                right - 1
+            );
 
-
-current.push(value);
-
-
-result.style.display=
-"block";
-
-
-let type="";
-
-
-if(value===6){
-
-type="老阴（动）";
-
-}else if(value===7){
-
-type="少阳";
-
-}else if(value===8){
-
-type="少阴";
-
-}else if(value===9){
-
-type="老阳（动）";
-
-}else{
-
-type=value;
+        };
 
 }
-
-
-result.innerHTML=`
-
-<div>
-三变完成 · 余下
-<span class="num">
-${stage.n}
-</span>
-根
-</div>
-
-<div class="name">
-${type} · ${value}
-</div>
-
-`;
-
-
-choice.innerHTML=`
-
-<button
-class="btn"
-onclick="nextYao()"
->
-继续起第 ${turn+2} 爻
-</button>
-
-`;
-
-
-turn++;
-
-}
-
-}
-
 
 
 /* =========================
-   下一爻
+   揲四
 ========================= */
 
-function nextYao(){
+function remainder4(n){
 
-if(turn>=6){
+    const r =
+        n % 4;
 
-finish();
-
-return;
-
+    return r === 0 ? 4 : r;
 }
 
 
-stage={
-n:49,
-change:0
-};
+function performChange(
+    left,
+    right
+){
+
+    const leftRemainder =
+        remainder4(left);
+
+    const rightRemainder =
+        remainder4(right);
+
+    const removed =
+        leftRemainder +
+        rightRemainder +
+        1;
+
+    const remaining =
+        stalks -
+        removed;
+
+    counts.innerHTML = `
+
+        <div class="countbox">
+
+            左手余数
+
+            <strong>
+                ${leftRemainder}
+            </strong>
+
+        </div>
+
+        <div class="countbox">
+
+            右手余数
+
+            <strong>
+                ${rightRemainder}
+            </strong>
+
+        </div>
+
+    `;
+
+    remainders.innerHTML = `
+
+        <div class="r">
+            挂一：<b>1</b>
+        </div>
+
+        <div class="r">
+            左余：<b>${leftRemainder}</b>
+        </div>
+
+        <div class="r">
+            右余：<b>${rightRemainder}</b>
+        </div>
+
+        <div class="r">
+            本变余数：<b>${removed}</b>
+        </div>
+
+    `;
+
+    stalks =
+        remaining;
+
+    changeIndex++;
+
+    stageTitle.textContent =
+        `第 ${yaoIndex + 1} 爻 · 第 ${changeIndex} 变`;
+
+    if(changeIndex < 3){
+
+        stageDesc.textContent =
+            `本变后余 ${stalks} 策。进入下一变。`;
+
+        choice.innerHTML = `
+            <div class="choice-title">
+                下一变重新分二
+            </div>
+
+            <div class="choice-buttons">
+
+                <button
+                    class="choice-btn"
+                    id="nextChange"
+                >
+                    继续下一变
+                </button>
+
+            </div>
+        `;
+
+        document
+            .getElementById("nextChange")
+            .onclick = () => {
+
+                renderSplit();
+
+            };
+
+        return;
+    }
 
 
-result.style.display="none";
+    /* =========================
+       三变完成
+    ========================= */
 
+    const yaoNumber =
+        stalks / 4;
 
-title.textContent=
-"第 "+
-(turn+1)+
-" 爻 · 第一变";
+    currentYao.push(
+        yaoNumber
+    );
 
+    result.style.display =
+        "block";
 
-desc.textContent=
-"49 根蓍草。点击蓍草堆任意位置分二。";
+    result.innerHTML = `
 
+        <div class="num">
+            ${yaoNumber}
+        </div>
 
-choice.innerHTML="";
+        <div class="name">
+            ${getYaoState(yaoNumber)}
+        </div>
 
-counts.innerHTML="";
+    `;
 
-rem.innerHTML="";
+    stageDesc.textContent =
+        `第 ${yaoIndex + 1} 爻完成。`;
 
+    choice.innerHTML = `
+        <div class="choice-buttons">
 
-showMixedPile(49);
+            <button
+                class="choice-btn"
+                id="finishYao"
+            >
+                完成这一爻
+            </button>
+
+        </div>
+    `;
+
+    document
+        .getElementById("finishYao")
+        .onclick = finishYao;
 
 }
-
 
 
 /* =========================
-   爻线
+   爻状态
 ========================= */
 
-function lineHtml(v){
+function getYaoState(v){
 
-return `
+    if(v === 6)
+        return "老阴 · 动";
 
-<div
-class="line ${
-v===6||v===9
-?
-"movingline"
-:
-""
-}"
->
+    if(v === 7)
+        return "少阳 · 静";
 
-${
-v%2
+    if(v === 8)
+        return "少阴 · 静";
 
-?
+    if(v === 9)
+        return "老阳 · 动";
 
-'<span class="solid"></span>'
-
-:
-
-'<span class="broken1"></span><span class="broken2"></span>'
+    return "未知";
 
 }
 
-</div>
 
-`;
+/* =========================
+   完成一爻
+========================= */
+
+function finishYao(){
+
+    allYao =
+        currentYao.slice();
+
+    updateRows();
+
+    yaoIndex++;
+
+    updateProgress();
+
+    if(yaoIndex >= 6){
+
+        finishHexagram();
+
+        return;
+    }
+
+    startYao();
 
 }
-
 
 
 /* =========================
    六爻完成
 ========================= */
 
-function finish(){
+function finishHexagram(){
 
-const b=
-current
-.map(v=>v%2)
-.reverse()
-.join("");
+    begin.disabled = false;
 
+    ai.disabled = false;
 
-const c=
-current
-.map(
-v=>
-v===6
-?
-1
-:
-v===9
-?
-0
-:
-v%2
-)
-.reverse()
-.join("");
+    stageTitle.textContent =
+        "六爻成卦";
 
+    stageDesc.textContent =
+        "六爻已经完成，本卦与变卦已经生成。";
 
-document
-.getElementById("bn")
-.textContent=
-H[b]||
-"本卦";
+    bar.style.width =
+        "100%";
 
+    choice.innerHTML =
+        "";
 
-document
-.getElementById("cn")
-.textContent=
-H[c]||
-"变卦";
+    piles.innerHTML =
+        "";
 
+    counts.innerHTML =
+        "";
 
-document
-.getElementById("bh")
-.innerHTML=
-current
-.slice()
-.reverse()
-.map(lineHtml)
-.join("");
+    remainders.innerHTML =
+        "";
 
+    const original =
+        allYao.slice();
 
-document
-.getElementById("ch")
-.innerHTML=
-current
-.map(
-v=>
-v===6
-?
-7
-:
-v===9
-?
-8
-:
-v
-)
-.reverse()
-.map(lineHtml)
-.join("");
+    const changed =
+        allYao.map(v => {
 
+            if(v === 6)
+                return 7;
 
-document
-.getElementById("rows")
-.innerHTML=
-current
-.map(
-(v,i)=>`
+            if(v === 9)
+                return 8;
 
-<div
-class="tr ${
-v===6||v===9
-?
-"move"
-:
-""
-}"
->
+            return v;
 
-<div>
-${names[i]}
-</div>
+        });
 
-<div>
-${v%2?"⚊":"⚋"}
-</div>
+    const benName =
+        getHexName(original);
 
-<div>
-${v}
-</div>
+    const changeName =
+        getHexName(changed);
 
-<div>
+    bn.textContent =
+        `本卦 · ${benName}`;
 
-${
-v===6
-?
-"老阴 → 阳"
-:
-v===9
-?
-"老阳 → 阴"
-:
-"静"
-}
+    cn.textContent =
+        `变卦 · ${changeName}`;
 
-</div>
+    renderHex(
+        bh,
+        original
+    );
 
-</div>
+    renderHex(
+        ch,
+        changed
+    );
 
-`
-)
-.join("");
+    status.textContent =
+        "六爻完成，可以进行 AI 解读。";
 
-
-document
-.getElementById("ai")
-.disabled=false;
-
-
-document
-.getElementById("answer")
-.textContent=
-"六爻完成。现在可以进行解读。";
-
-
-title.textContent=
-"六爻成卦";
-
-
-desc.textContent=
-"大衍筮法完成，本卦与变卦已经生成。";
-
-
-stepBar(6);
+    answer.textContent =
+        "";
 
 }
-
 
 
 /* =========================
-   按钮
+   六爻表格
 ========================= */
 
-document
-.getElementById("begin")
-.onclick=
-begin;
+function updateRows(){
 
+    rows.innerHTML = "";
 
-document
-.getElementById("restart")
-.onclick=
-function(){
+    allYao.forEach(
+        (value,index) => {
 
-location.reload();
+            let symbol;
 
-};
+            if(
+                value === 7 ||
+                value === 9
+            ){
 
+                symbol =
+                    "━━━";
+
+            }else{
+
+                symbol =
+                    "━ ━";
+
+            }
+
+            const move =
+                value === 6 ||
+                value === 9;
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "tr" +
+                (move ? " move" : "");
+
+            div.innerHTML = `
+
+                <div>
+                    第${index+1}爻
+                </div>
+
+                <div>
+                    ${symbol}
+                </div>
+
+                <div>
+                    ${value}
+                </div>
+
+                <div>
+                    ${getYaoState(value)}
+                </div>
+
+            `;
+
+            rows.appendChild(div);
+
+        }
+    );
+
+}
 
 
 /* =========================
-   DeepSeek 设置
+   重置
 ========================= */
 
-const keyBox=
-document.getElementById("kb");
+function resetAll(){
 
-const keyInput=
-document.getElementById("key");
+    yaoIndex = 0;
 
-const keyStatus=
-document.getElementById("ks");
+    changeIndex = 0;
 
+    stalks = 49;
 
-const savedKey=
-localStorage.getItem(
-"wangxing_deepseek_key"
-);
+    currentYao = [];
 
+    allYao = [];
 
-if(savedKey){
+    question = "";
 
-keyInput.value=
-savedKey;
+    q.value = "";
 
-keyStatus.textContent=
-"已设置";
+    begin.disabled = false;
+
+    ai.disabled = true;
+
+    stageTitle.textContent =
+        "准备大衍之数";
+
+    stageDesc.textContent =
+        "五十根蓍草，虚一不用，以四十九根进入本次筮法。";
+
+    bar.style.width =
+        "0%";
+
+    piles.innerHTML =
+        "";
+
+    choice.innerHTML =
+        "";
+
+    counts.innerHTML =
+        "";
+
+    remainders.innerHTML =
+        "";
+
+    result.style.display =
+        "none";
+
+    rows.innerHTML =
+        "";
+
+    bh.innerHTML =
+        "";
+
+    ch.innerHTML =
+        "";
+
+    bn.textContent =
+        "本卦";
+
+    cn.textContent =
+        "变卦";
+
+    answer.textContent =
+        "";
+
+    status.textContent =
+        "完成六爻后才能进行 AI 解读。";
 
 }
 
 
-document
-.getElementById("kt")
-.onclick=
-function(){
-
-keyBox.style.display=
-keyBox.style.display==="block"
-?
-"none"
-:
-"block";
-
-};
-
+/* =========================
+   API Key
+========================= */
 
 document
-.getElementById("save")
-.onclick=
-function(){
+    .getElementById("keyButton")
+    .onclick = () => {
 
-const key=
-keyInput.value.trim();
+        keyBox.style.display =
+            keyBox.style.display === "block"
+            ? "none"
+            : "block";
+
+    };
 
 
-if(!key){
+document
+    .getElementById("saveKey")
+    .onclick = () => {
 
-alert(
-"请输入 DeepSeek API Key"
-);
+        const value =
+            key.value.trim();
 
-return;
+        if(!value){
+
+            alert(
+                "请输入 DeepSeek API Key"
+            );
+
+            return;
+        }
+
+        localStorage.setItem(
+            "wangxing_deepseek_key",
+            value
+        );
+
+        const saved =
+            localStorage.getItem(
+                "wangxing_deepseek_key"
+            );
+
+        if(!saved){
+
+            alert(
+                "API Key 保存失败。"
+            );
+
+            return;
+        }
+
+        keyStatus.textContent =
+            "已设置";
+
+        key.value =
+            "";
+
+        keyBox.style.display =
+            "none";
+
+    };
+
+
+document
+    .getElementById("clearKey")
+    .onclick = () => {
+
+        localStorage.removeItem(
+            "wangxing_deepseek_key"
+        );
+
+        keyStatus.textContent =
+            "未设置";
+
+        alert(
+            "DeepSeek API Key 已清除。"
+        );
+
+    };
+
+
+function checkKey(){
+
+    const saved =
+        localStorage.getItem(
+            "wangxing_deepseek_key"
+        );
+
+    if(saved){
+
+        keyStatus.textContent =
+            "已设置";
+
+    }else{
+
+        keyStatus.textContent =
+            "未设置";
+
+    }
 
 }
 
-
-localStorage.setItem(
-"wangxing_deepseek_key",
-key
-);
-
-
-keyStatus.textContent=
-"已设置";
-
-
-document
-.getElementById("answer")
-.textContent=
-"DeepSeek API Key 已保存，可以开始解读。";
-
-
-keyBox.style.display=
-"none";
-
-};
-
+checkKey();
 
 
 /* =========================
@@ -2100,477 +2166,334 @@ keyBox.style.display=
 
 function getYaoText(){
 
-return current
-.map(
-(v,i)=>{
-
-let type="";
-
-
-if(v===6){
-
-type="老阴（动爻）";
-
-}else if(v===7){
-
-type="少阳（静爻）";
-
-}else if(v===8){
-
-type="少阴（静爻）";
-
-}else if(v===9){
-
-type="老阳（动爻）";
-
-}else{
-
-type=String(v);
+    return allYao
+        .map(
+            (v,i) =>
+                `第${i+1}爻：${v}（${getYaoState(v)}）`
+        )
+        .join("\n");
 
 }
-
-
-return (
-names[i]+
-"："+type
-);
-
-}
-)
-.join("\n");
-
-}
-
 
 
 /* =========================
-   DeepSeek AI 解读
+   DeepSeek AI
 ========================= */
 
-document
-.getElementById("ai")
-.onclick=
-async function(){
-
-const apiKey=
-localStorage.getItem(
-"wangxing_deepseek_key"
-)||
-keyInput.value.trim();
+ai.addEventListener(
+    "click",
+    requestAI
+);
 
 
-if(!apiKey){
+async function requestAI(){
 
-keyBox.style.display=
-"block";
+    const apiKey =
+        localStorage.getItem(
+            "wangxing_deepseek_key"
+        );
 
+    if(!apiKey){
 
-document
-.getElementById("answer")
-.textContent=
-"请先在「解读设置」中填写 DeepSeek API Key。";
+        keyBox.style.display =
+            "block";
 
+        answer.textContent =
+            "请先设置 DeepSeek API Key。";
 
-return;
+        return;
+    }
 
-}
+    if(
+        !question ||
+        allYao.length !== 6
+    ){
 
+        answer.textContent =
+            "请先完成六爻起卦。";
 
-const userQuestion=
-question||
-document
-.getElementById("q")
-.value
-.trim();
-
-
-if(!userQuestion){
-
-document
-.getElementById("answer")
-.textContent=
-"请先输入你要占卜的问题。";
+        return;
+    }
 
 
-return;
+    const original =
+        allYao.slice();
 
-}
+    const changed =
+        allYao.map(v => {
 
+            if(v === 6)
+                return 7;
 
-if(
-!current||
-current.length!==6
-){
+            if(v === 9)
+                return 8;
 
-document
-.getElementById("answer")
-.textContent=
-"请先完成六爻起卦，再进行解读。";
+            return v;
 
-
-return;
-
-}
+        });
 
 
-const benGua=
-document
-.getElementById("bn")
-.textContent;
+    const benName =
+        getHexName(original);
+
+    const changeName =
+        getHexName(changed);
 
 
-const bianGua=
-document
-.getElementById("cn")
-.textContent;
+    const moving =
+        allYao
+            .map(
+                (v,i) =>
+                    (
+                        v === 6 ||
+                        v === 9
+                    )
+                    ? `第${i+1}爻`
+                    : null
+            )
+            .filter(Boolean)
+            .join("、");
 
 
-const yaoText=
-getYaoText();
+    const prompt = `
 
+用户问题：
 
-const movingYao=
-current
-.map(
-(v,i)=>
-(
-v===6||
-v===9
-)
-?
-names[i]
-:
-null
-)
-.filter(Boolean)
-.join("、");
+${question}
 
+本卦：
 
-const systemPrompt=`
+${benName}
 
-你是一个严谨的传统六爻、大衍筮法卦象解读助手。
+变卦：
 
-你的任务是根据用户提出的问题，对已经生成的卦象进行判断。
+${changeName}
 
-最重要的要求：
+动爻：
 
-【必须回答用户真正问的问题】
+${moving || "无动爻"}
 
-不要把用户的问题转换成泛泛的生活建议。
+六爻数据：
 
-不要大篇幅讨论性格。
+${getYaoText()}
 
-不要脱离卦象进行心理分析。
+请针对“用户问题”本身进行六爻解读。
 
-不要主动扩展到用户没有询问的问题。
+要求：
 
-必须优先给出直接结论。
-
-必须使用本卦、动爻、变卦作为判断依据。
-
-如果问题涉及：
-
-工作
-求职
-面试
-offer
-感情
-复合
-人物关系
-金钱
-结果
-时间
-是否成功
-是否会发生
-
-必须直接回答对应的问题。
-
-如果卦象只能判断趋势，就明确说“倾向于”，不要假装绝对确定。
-
-如果涉及时间，只在卦象有明显依据时判断时间阶段。
+1. 先直接给出结论。
+2. 必须围绕用户实际问题。
+3. 结合本卦、动爻、变卦分析。
+4. 不要泛泛而谈。
+5. 不要把回答变成人生建议。
+6. 如果卦象只能判断趋势，要明确使用“倾向于”等表述。
+7. 不要虚构不存在的爻辞或卦象信息。
 
 回答格式：
 
 【直接结论】
 
-直接回答用户的问题。
-
 【本卦】
-
-说明本卦对于这个问题的核心含义。
 
 【动爻】
 
-说明动爻具体改变了什么。
-
 【变卦】
-
-说明后续走势。
 
 【最终判断】
 
-再次给出明确答案。
-
-不要把“建议”作为主体。
-
-不要使用大量与问题无关的内容。
-
 `;
 
 
-const userPrompt=`
+    ai.disabled = true;
 
-用户问题：
+    ai.textContent =
+        "正在解读……";
 
-${userQuestion}
+    answer.textContent =
+        "正在连接 DeepSeek……";
 
 
-本卦：
+    const controller =
+        new AbortController();
 
-${benGua}
+    const timeout =
+        setTimeout(
+            () => controller.abort(),
+            30000
+        );
 
 
-变卦：
+    try{
 
-${bianGua}
+        console.log(
+            "WANGXING：开始请求 DeepSeek"
+        );
 
 
-动爻：
+        const response =
+            await fetch(
+                "https://api.deepseek.com/chat/completions",
+                {
 
-${movingYao||"无动爻"}
+                    method:"POST",
 
+                    headers:{
 
-六爻：
+                        "Content-Type":
+                            "application/json",
 
-${yaoText}
+                        "Authorization":
+                            "Bearer " +
+                            apiKey
 
+                    },
 
-请严格围绕用户问题进行解读。
+                    body:JSON.stringify({
 
-重点回答：
+                        model:
+                            "deepseek-chat",
 
-用户问的事情到底是什么结果或趋势？
+                        messages:[
 
-为什么？
+                            {
+                                role:
+                                    "system",
 
-本卦、动爻、变卦分别如何支持这个判断？
+                                content:
+                                    "你是专业的传统六爻与大衍筮法解卦助手。严格围绕用户的问题回答，不泛泛扩展，不主动给人生建议。"
+                            },
 
-不要泛泛而谈。
+                            {
+                                role:
+                                    "user",
 
-`;
+                                content:
+                                    prompt
+                            }
 
+                        ],
 
-const button=
-document.getElementById("ai");
+                        temperature:
+                            0.3,
 
+                        max_tokens:
+                            3000,
 
-const answer=
-document.getElementById("answer");
+                        stream:
+                            false
 
+                    }),
 
-button.disabled=true;
+                    signal:
+                        controller.signal
 
-button.textContent=
-"正在解读……";
+                }
+            );
 
 
-answer.textContent=
-"正在连接 DeepSeek，请稍候……";
+        const raw =
+            await response.text();
 
 
-try{
+        console.log(
+            "DeepSeek HTTP：",
+            response.status
+        );
 
 
-/*
-================================
-DeepSeek API
-================================
-*/
+        console.log(
+            "DeepSeek Response：",
+            raw
+        );
 
-const response=
-await fetch(
-"https://api.deepseek.com/chat/completions",
-{
 
-method:"POST",
+        let data;
 
-headers:{
+        try{
 
-"Content-Type":
-"application/json",
+            data =
+                JSON.parse(raw);
 
-"Authorization":
-"Bearer "+apiKey
+        }catch(e){
 
-},
+            throw new Error(
+                "DeepSeek 返回的不是有效 JSON。"
+            );
 
-body:
-JSON.stringify({
+        }
 
-model:
-"deepseek-chat",
 
-messages:[
+        if(!response.ok){
 
-{
-role:"system",
-content:
-systemPrompt
-},
+            throw new Error(
+                data?.error?.message ||
+                `HTTP ${response.status}`
+            );
 
-{
-role:"user",
-content:
-userPrompt
-}
+        }
 
-],
 
-temperature:
-0.3,
+        const content =
+            data
+            ?.choices
+            ?.[0]
+            ?.message
+            ?.content;
 
-max_tokens:
-3000,
 
-stream:
-false
+        if(!content){
 
-})
+            throw new Error(
+                "DeepSeek 没有返回解读内容。"
+            );
 
-}
-);
+        }
 
 
-/* =========================
-   解析返回
-========================= */
+        answer.textContent =
+            content;
 
-let data;
 
+        status.textContent =
+            "AI 解读完成。";
 
-try{
 
-data=
-await response.json();
+    }catch(error){
 
-}catch(e){
+        console.error(
+            "DeepSeek Error：",
+            error
+        );
 
-throw new Error(
-"DeepSeek 返回的数据无法解析"
-);
 
-}
+        if(
+            error.name ===
+            "AbortError"
+        ){
 
+            answer.textContent =
+                "解读失败：DeepSeek 请求超过 30 秒没有返回。";
 
-/* =========================
-   HTTP 错误
-========================= */
+        }else{
 
-if(!response.ok){
+            answer.textContent =
+                "解读失败：" +
+                error.message;
 
-let message=
-"HTTP "+response.status;
+        }
 
+    }finally{
 
-if(
-data&&
-data.error&&
-data.error.message
-){
+        clearTimeout(timeout);
 
-message=
-data.error.message;
+        ai.disabled = false;
 
-}
+        ai.textContent =
+            "✦ 解读";
 
-
-throw new Error(message);
-
-}
-
-
-/* =========================
-   获取回答
-========================= */
-
-const content=
-data&&
-data.choices&&
-data.choices[0]&&
-data.choices[0].message&&
-data.choices[0].message.content;
-
-
-if(!content){
-
-throw new Error(
-"DeepSeek 没有返回有效的解读内容"
-);
-
-}
-
-
-/* =========================
-   显示
-========================= */
-
-answer.textContent=
-content;
-
-
-}catch(error){
-
-console.error(
-"DeepSeek API Error:",
-error
-);
-
-
-/*
-================================
-Failed to fetch
-================================
-*/
-
-if(
-error instanceof TypeError&&
-error.message===
-"Failed to fetch"
-){
-
-answer.textContent=
-`解读失败：Failed to fetch
-
-浏览器无法正常连接 DeepSeek API。
-
-这通常不是卦象的问题，而是浏览器请求 DeepSeek 时被网络或 CORS 跨域限制拦截。
-
-如果你打开 F12 → Console 后看到：
-
-Access to fetch at ...
-has been blocked by CORS policy
-
-说明需要使用 API 后端中转。
-
-如果没有 CORS 错误，则可能是网络无法访问 DeepSeek API。`;
-
-}else{
-
-answer.textContent=
-"解读失败："+error.message;
+    }
 
 }
-
-}finally{
-
-button.disabled=false;
-
-button.textContent=
-"✦ 解读";
-
-}
-
-};
 
 </script>
 
