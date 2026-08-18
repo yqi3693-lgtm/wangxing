@@ -1,32 +1,24 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>望星 · 大衍筮法</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
     background:#f5f1e8;
     color:#29251f;
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "PingFang SC",
-        "Microsoft YaHei",
-        sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+    "PingFang SC","Microsoft YaHei",sans-serif;
 }
 
 .container{
     width:min(920px,94%);
-    margin:0 auto;
+    margin:auto;
     padding:30px 0 70px;
 }
 
@@ -39,10 +31,10 @@ header{
     font-family:"KaiTi","STKaiti",serif;
     font-size:42px;
     letter-spacing:8px;
-    margin-bottom:8px;
 }
 
 .subtitle{
+    margin-top:8px;
     color:#81786c;
     font-size:14px;
     letter-spacing:3px;
@@ -62,13 +54,7 @@ h2{
     font-size:20px;
 }
 
-h3{
-    margin:0 0 12px;
-}
-
-textarea,
-input,
-select{
+textarea,input,select{
     width:100%;
     border:1px solid #d9d0c1;
     border-radius:10px;
@@ -79,13 +65,11 @@ select{
 }
 
 textarea{
-    min-height:100px;
+    min-height:105px;
     resize:vertical;
 }
 
-textarea:focus,
-input:focus,
-select:focus{
+textarea:focus,input:focus,select:focus{
     border-color:#9d8a70;
 }
 
@@ -100,6 +84,12 @@ button{
 
 button:hover{
     transform:translateY(-1px);
+}
+
+button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+    transform:none;
 }
 
 .primary{
@@ -117,26 +107,20 @@ button:hover{
     color:#8a3e31;
 }
 
-button:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-    transform:none;
-}
-
 .row{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
 }
 
-.row > *{
+.row>*{
     flex:1;
 }
 
 .small{
     font-size:12px;
     color:#877e72;
-    line-height:1.7;
+    line-height:1.8;
 }
 
 .status{
@@ -165,10 +149,10 @@ button:disabled{
 }
 
 .hidden{
-    display:none !important;
+    display:none!important;
 }
 
-/* 起卦 */
+/* 六爻 */
 
 .line-box{
     margin-top:22px;
@@ -218,7 +202,7 @@ button:disabled{
 .step{
     border:1px solid #ddd4c7;
     border-radius:8px;
-    padding:10px;
+    padding:9px;
     background:#faf8f3;
     font-size:12px;
     text-align:center;
@@ -229,13 +213,8 @@ button:disabled{
     border-color:#c9bca8;
 }
 
-.step.active{
-    border-color:#8f7b61;
-    background:#f5efe5;
-}
-
 .draw-area{
-    margin-top:18px;
+    margin-top:20px;
     text-align:center;
 }
 
@@ -249,7 +228,7 @@ button:disabled{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-top:15px;
+    margin-top:14px;
 }
 
 .selection button{
@@ -262,53 +241,7 @@ button:disabled{
     background:#e9e0d2;
 }
 
-.selection button.selected{
-    background:#29251f;
-    color:#fff;
-}
-
 /* 卦象 */
-
-.hexagram{
-    text-align:center;
-    padding:20px;
-}
-
-.hexagram-name{
-    font-family:"KaiTi","STKaiti",serif;
-    font-size:32px;
-    margin-bottom:5px;
-}
-
-.hexagram-info{
-    color:#777066;
-    font-size:13px;
-}
-
-.hexagram-lines{
-    width:180px;
-    margin:25px auto;
-}
-
-.hex-line{
-    position:relative;
-    height:16px;
-    margin:8px 0;
-    display:flex;
-    gap:16px;
-}
-
-.hex-line span{
-    height:6px;
-    background:#29251f;
-    display:block;
-    flex:1;
-    border-radius:2px;
-}
-
-.hex-line.changing span{
-    background:#8b4034;
-}
 
 .result-grid{
     display:grid;
@@ -334,6 +267,51 @@ button:disabled{
     font-weight:600;
 }
 
+.hexagram{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.hexagram-name{
+    font-family:"KaiTi","STKaiti",serif;
+    font-size:32px;
+}
+
+.hexagram-info{
+    color:#777066;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.hexagram-lines{
+    width:190px;
+    margin:25px auto;
+}
+
+.hex-line{
+    height:14px;
+    margin:9px 0;
+    display:flex;
+    gap:18px;
+    position:relative;
+}
+
+.hex-line span{
+    display:block;
+    height:7px;
+    background:#29251f;
+    border-radius:2px;
+    flex:1;
+}
+
+.hex-line.changing span{
+    background:#8b4034;
+}
+
+.hex-line.yin span{
+    flex:0 0 calc(50% - 9px);
+}
+
 /* AI */
 
 .ai-output{
@@ -354,13 +332,12 @@ button:disabled{
     height:100%;
     width:30%;
     background:#665b4d;
-    border-radius:10px;
     animation:loading 1.5s infinite;
 }
 
 @keyframes loading{
-    0%{transform:translateX(-120%);}
-    100%{transform:translateX(400%);}
+    from{transform:translateX(-120%)}
+    to{transform:translateX(400%)}
 }
 
 /* 历史 */
@@ -390,26 +367,11 @@ button:disabled{
 }
 
 @media(max-width:600px){
-
-    .container{
-        padding-top:20px;
-    }
-
-    .logo{
-        font-size:34px;
-    }
-
-    .card{
-        padding:17px;
-    }
-
-    .result-grid{
-        grid-template-columns:1fr;
-    }
-
-    .selection{
-        grid-template-columns:1fr;
-    }
+    .container{padding-top:20px}
+    .logo{font-size:34px}
+    .card{padding:17px}
+    .result-grid{grid-template-columns:1fr}
+    .selection{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -423,7 +385,6 @@ button:disabled{
     <div class="subtitle">大衍筮法 · 问卜于心</div>
 </header>
 
-
 <!-- 问题 -->
 
 <section class="card">
@@ -431,34 +392,33 @@ button:disabled{
 <h2>一 · 所问之事</h2>
 
 <textarea
-    id="question"
-    placeholder="请写下你真正想问的问题。建议具体、明确，例如：我在八月底之前能否获得一份厦门的工作？"
-></textarea>
+id="question"
+placeholder="请写下你真正想问的问题。建议具体、明确，例如：我在八月底之前能否获得一份厦门的工作？"></textarea>
 
-<div class="row" style="margin-top:12px;">
-    <button class="primary" id="startBtn">
-        开始起卦
-    </button>
-
-    <button class="secondary" id="newBtn">
-        重新开始
-    </button>
+<div class="row" style="margin-top:12px">
+    <button class="primary" id="startBtn">开始起卦</button>
+    <button class="secondary" id="newBtn">重新开始</button>
 </div>
 
-<div class="status hidden" id="mainStatus"></div>
+<div id="mainStatus" class="status hidden"></div>
 
 </section>
 
 
-<!-- 起卦 -->
+<!-- 大衍筮法 -->
 
 <section class="card hidden" id="divinationCard">
 
 <h2>二 · 大衍筮法</h2>
 
 <div class="small">
-    每一爻经过三变。完成第三变后，系统会自动记录该爻，
-    然后进入下一爻。六爻完成后自动成卦。
+    大衍之数五十，其用四十有九。每一爻经过三变：
+    分二、挂一、揲四、归奇。三变完成后得到一爻。
+    六爻完成后自动生成本卦、变卦及动爻。
+</div>
+
+<div id="sticksInfo" class="status">
+    当前蓍草：49
 </div>
 
 <div class="line-box" id="lines"></div>
@@ -466,20 +426,16 @@ button:disabled{
 <div class="draw-area">
 
 <div id="currentInstruction" class="status">
-    请点击“开始第一变”
+    请开始第一变。
 </div>
 
 <button
-    class="primary draw-button"
-    id="drawBtn"
->
+id="drawBtn"
+class="primary draw-button">
     开始第一变
 </button>
 
-<div
-    class="selection hidden"
-    id="selection"
->
+<div id="selection" class="selection hidden">
     <button id="takeLeft">从左边取</button>
     <button id="takeRight">从右边取</button>
 </div>
@@ -489,7 +445,7 @@ button:disabled{
 </section>
 
 
-<!-- 卦象 -->
+<!-- 成卦 -->
 
 <section class="card hidden" id="resultCard">
 
@@ -521,24 +477,19 @@ button:disabled{
 
 <div class="hexagram">
 
-<div class="hexagram-name" id="bigHexagramName">
-    —
-</div>
+<div id="bigHexagramName" class="hexagram-name">—</div>
 
-<div class="hexagram-info" id="hexagramInfo">
-    —
-</div>
+<div id="hexagramInfo" class="hexagram-info">—</div>
 
-<div class="hexagram-lines" id="hexagramLines"></div>
+<div id="hexagramLines" class="hexagram-lines"></div>
 
 </div>
 
 <button
-    class="primary"
-    style="width:100%;"
-    id="aiBtn"
->
-    AI 解读此卦
+id="aiBtn"
+class="primary"
+style="width:100%">
+AI 解读此卦
 </button>
 
 </section>
@@ -550,75 +501,61 @@ button:disabled{
 
 <h2>四 · 卦象解读</h2>
 
-<div
-    class="status loading"
-    id="aiStatus"
->
+<div id="aiStatus" class="status loading">
     正在等待 AI……
 </div>
 
-<div
-    class="ai-progress hidden"
-    id="aiProgress"
->
+<div id="aiProgress" class="ai-progress hidden">
     <div class="ai-progress-bar"></div>
 </div>
 
 <div
-    class="ai-output"
-    id="aiOutput"
-    style="margin-top:18px;"
-></div>
+id="aiOutput"
+class="ai-output"
+style="margin-top:18px"></div>
 
 </section>
 
 
-<!-- API -->
+<!-- AI设置 -->
 
 <section class="card">
 
 <h2>AI 设置</h2>
 
-<div class="small" style="margin-bottom:12px;">
-    API Key 保存在当前浏览器本地，不会写入网页代码。
-    如果你已经填写过，刷新网页后无需重复填写。
+<div class="small" style="margin-bottom:12px">
+    API Key 仅保存在当前浏览器 localStorage 中。
+    注意：前端直连 API 不适合公开生产环境，因为浏览器中的 Key
+    仍可能被访问者查看。
 </div>
 
 <input
-    id="apiKey"
-    type="password"
-    placeholder="sk-..."
->
+id="apiKey"
+type="password"
+placeholder="请输入 API Key">
 
-<div style="height:10px;"></div>
+<div style="height:10px"></div>
+
+<select id="model">
+    <option value="gpt-5">GPT-5</option>
+    <option value="gpt-5-mini">GPT-5 mini</option>
+</select>
+
+<div style="height:10px"></div>
 
 <div class="row">
 
-<select id="model">
-    <option value="gpt-5.6">GPT-5.6</option>
-    <option value="gpt-5.6-luna">GPT-5.6 Luna</option>
-</select>
-
-<button
-    class="secondary"
-    id="saveKeyBtn"
->
+<button class="secondary" id="saveKeyBtn">
     保存 API Key
 </button>
 
-<button
-    class="danger"
-    id="clearKeyBtn"
->
+<button class="danger" id="clearKeyBtn">
     清除 API Key
 </button>
 
 </div>
 
-<div
-    class="status hidden"
-    id="keyStatus"
-></div>
+<div id="keyStatus" class="status hidden"></div>
 
 </section>
 
@@ -627,21 +564,17 @@ button:disabled{
 
 <section class="card">
 
-<div class="row" style="align-items:center;">
-    <h2 style="margin:0; flex:1;">历史记录</h2>
+<div class="row" style="align-items:center">
+    <h2 style="margin:0;flex:1">历史记录</h2>
 
     <button
-        class="danger"
-        id="clearHistoryBtn"
-    >
+    class="danger"
+    id="clearHistoryBtn">
         清空历史
     </button>
 </div>
 
-<div
-    id="history"
-    style="margin-top:16px;"
-></div>
+<div id="history" style="margin-top:16px"></div>
 
 </section>
 
@@ -651,30 +584,36 @@ button:disabled{
 <script>
 
 /* =========================================================
-   基础数据
+   存储
 ========================================================= */
 
 const STORAGE_KEY = "wangxing_api_key";
 const MODEL_KEY = "wangxing_model";
 const HISTORY_KEY = "wangxing_history";
 
+
+/* =========================================================
+   状态
+========================================================= */
+
 let state = {
-    question: "",
-    lines: [],
-    currentLine: 0,
-    currentChange: 0,
-    currentSticks: 49,
-    firstChangeDone: false,
-    finished: false,
-    startTime: null
+    question:"",
+    lines:[],
+    currentLine:0,
+    currentChange:0,
+    sticks:49,
+    startTime:null,
+    finished:false,
+    pendingChange:null
 };
 
 
 /* =========================================================
-   八卦 / 六十四卦
+   六十四卦
+   key = 下卦 + 上卦
 ========================================================= */
 
-const trigramNames = {
+const trigram={
     "111":"乾",
     "110":"兑",
     "101":"离",
@@ -685,77 +624,164 @@ const trigramNames = {
     "000":"坤"
 };
 
-const hexagrams = {
+
+/*
+    六十四卦名称按照：
+    下卦 + 上卦
+*/
+
+const hexagramNames={
+    "111111":"乾为天",
+    "110111":"泽天夬",
+    "101111":"火天大有",
+    "100111":"雷天大壮",
+    "011111":"风天小畜",
+    "010111":"水天需",
+    "001111":"山天大畜",
+    "000111":"地天泰",
+
+    "111110":"天泽履",
+    "110110":"兑为泽",
+    "101110":"火泽睽",
+    "100110":"雷泽归妹",
+    "011110":"风泽中孚",
+    "010110":"水泽节",
+    "001110":"山泽损",
+    "000110":"地泽临",
+
+    "111101":"天火同人",
+    "110101":"泽火革",
+    "101101":"离为火",
+    "100101":"雷火丰",
+    "011101":"风火家人",
+    "010101":"水火既济",
+    "001101":"山火贲",
+    "000101":"地火明夷",
+
+    "111100":"天雷无妄",
+    "110100":"泽雷随",
+    "101100":"火雷噬嗑",
+    "100100":"震为雷",
+    "011100":"风雷益",
+    "010100":"水雷屯",
+    "001100":"山雷颐",
+    "000100":"地雷复",
+
+    "111011":"天风姤",
+    "110011":"泽风大过",
+    "101011":"火风鼎",
+    "100011":"雷风恒",
+    "011011":"巽为风",
+    "010011":"水风井",
+    "001011":"山风蛊",
+    "000011":"地风升",
+
+    "111010":"天水讼",
+    "110010":"泽水困",
+    "101010":"火水未济",
+    "100010":"雷水解",
+    "011010":"风水涣",
+    "010010":"坎为水",
+    "001010":"山水蒙",
+    "000010":"地水师",
+
+    "111001":"天山遁",
+    "110001":"泽山咸",
+    "101001":"火山旅",
+    "100001":"雷山小过",
+    "011001":"风山渐",
+    "010001":"水山蹇",
+    "001001":"艮为山",
+    "000001":"山地剥",
+
+    "111000":"天地否",
+    "110000":"泽地萃",
+    "101000":"火地晋",
+    "100000":"雷地豫",
+    "011000":"风地观",
+    "010000":"水地比",
+    "001000":"山地剥",
+    "000000":"坤为地"
+};
+
+
+/*
+   上面的卦名表为了避免人工输入错误，
+   实际显示名称时再根据上下卦进行组合。
+*/
+
+const exactHexagrams = {
+
 "111111":["乾","乾为天"],
-"111110":["履","天泽履"],
-"111101":["同人","天火同人"],
-"111100":["无妄","天雷无妄"],
-"111011":["姤","天风姤"],
-"111010":["讼","天水讼"],
-"111001":["遁","天山遁"],
-"111000":["否","天地否"],
-
 "110111":["夬","泽天夬"],
-"110110":["兑","兑为泽"],
-"110101":["革","泽火革"],
-"110100":["随","泽雷随"],
-"110011":["大过","泽风大过"],
-"110010":["困","泽水困"],
-"110001":["咸","泽山咸"],
-"110000":["萃","泽地萃"],
-
 "101111":["大有","火天大有"],
-"101110":["睽","火泽睽"],
-"101101":["离","离为火"],
-"101100":["噬嗑","火雷噬嗑"],
-"101011":["鼎","火风鼎"],
-"101010":["未济","火水未济"],
-"101001":["旅","火山旅"],
-"101000":["晋","火地晋"],
-
 "100111":["大壮","雷天大壮"],
-"100110":["归妹","雷泽归妹"],
-"100101":["噬嗑","雷火丰"],
-"100100":["震","震为雷"],
-"100011":["恒","雷风恒"],
-"100010":["解","雷水解"],
-"100001":["小过","雷山小过"],
-"100000":["豫","雷地豫"],
-
 "011111":["小畜","风天小畜"],
-"011110":["中孚","风泽中孚"],
-"011101":["家人","风火家人"],
-"011100":["益","风雷益"],
-"011011":["巽","巽为风"],
-"011010":["涣","风水涣"],
-"011001":["渐","风山渐"],
-"011000":["观","风地观"],
-
 "010111":["需","水天需"],
-"010110":["节","水泽节"],
-"010101":["既济","水火既济"],
-"010100":["屯","水雷屯"],
-"010011":["井","水风井"],
-"010010":["坎","坎为水"],
-"010001":["蹇","水山蹇"],
-"010000":["比","水地比"],
-
 "001111":["大畜","山天大畜"],
-"001110":["损","山泽损"],
-"001101":["贲","山火贲"],
-"001100":["颐","山雷颐"],
-"001011":["蛊","山风蛊"],
-"001010":["蒙","山水蒙"],
-"001001":["艮","艮为山"],
-"001000":["剥","山地剥"],
-
 "000111":["泰","地天泰"],
+
+"111110":["履","天泽履"],
+"110110":["兑","兑为泽"],
+"101110":["睽","火泽睽"],
+"100110":["归妹","雷泽归妹"],
+"011110":["中孚","风泽中孚"],
+"010110":["节","水泽节"],
+"001110":["损","山泽损"],
 "000110":["临","地泽临"],
+
+"111101":["同人","天火同人"],
+"110101":["革","泽火革"],
+"101101":["离","离为火"],
+"100101":["丰","雷火丰"],
+"011101":["家人","风火家人"],
+"010101":["既济","水火既济"],
+"001101":["贲","山火贲"],
 "000101":["明夷","地火明夷"],
+
+"111100":["无妄","天雷无妄"],
+"110100":["随","泽雷随"],
+"101100":["噬嗑","火雷噬嗑"],
+"100100":["震","震为雷"],
+"011100":["益","风雷益"],
+"010100":["屯","水雷屯"],
+"001100":["颐","山雷颐"],
 "000100":["复","地雷复"],
+
+"111011":["姤","天风姤"],
+"110011":["大过","泽风大过"],
+"101011":["鼎","火风鼎"],
+"100011":["恒","雷风恒"],
+"011011":["巽","巽为风"],
+"010011":["井","水风井"],
+"001011":["蛊","山风蛊"],
 "000011":["升","地风升"],
+
+"111010":["讼","天水讼"],
+"110010":["困","泽水困"],
+"101010":["未济","火水未济"],
+"100010":["解","雷水解"],
+"011010":["涣","风水涣"],
+"010010":["坎","坎为水"],
+"001010":["蒙","山水蒙"],
 "000010":["师","地水师"],
+
+"111001":["遁","天山遁"],
+"110001":["咸","泽山咸"],
+"101001":["旅","火山旅"],
+"100001":["小过","雷山小过"],
+"011001":["渐","风山渐"],
+"010001":["蹇","水山蹇"],
+"001001":["艮","艮为山"],
 "000001":["谦","地山谦"],
+
+"111000":["否","天地否"],
+"110000":["萃","泽地萃"],
+"101000":["晋","火地晋"],
+"100000":["豫","雷地豫"],
+"011000":["观","风地观"],
+"010000":["比","水地比"],
+"001000":["剥","山地剥"],
 "000000":["坤","坤为地"]
 };
 
@@ -764,81 +790,75 @@ const hexagrams = {
    DOM
 ========================================================= */
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const questionInput = $("question");
-const startBtn = $("startBtn");
-const newBtn = $("newBtn");
+const question=$("question");
+const startBtn=$("startBtn");
+const newBtn=$("newBtn");
 
-const divinationCard = $("divinationCard");
-const resultCard = $("resultCard");
-const aiCard = $("aiCard");
+const divinationCard=$("divinationCard");
+const resultCard=$("resultCard");
+const aiCard=$("aiCard");
 
-const linesEl = $("lines");
-const drawBtn = $("drawBtn");
-const selectionEl = $("selection");
-const takeLeft = $("takeLeft");
-const takeRight = $("takeRight");
+const drawBtn=$("drawBtn");
+const selection=$("selection");
 
-const currentInstruction = $("currentInstruction");
+const linesEl=$("lines");
+const currentInstruction=$("currentInstruction");
+const sticksInfo=$("sticksInfo");
 
-const originalName = $("originalName");
-const changedName = $("changedName");
-const changingLines = $("changingLines");
-const divinationTime = $("divinationTime");
+const originalName=$("originalName");
+const changedName=$("changedName");
+const changingLines=$("changingLines");
+const divinationTime=$("divinationTime");
 
-const bigHexagramName = $("bigHexagramName");
-const hexagramInfo = $("hexagramInfo");
-const hexagramLines = $("hexagramLines");
+const bigHexagramName=$("bigHexagramName");
+const hexagramInfo=$("hexagramInfo");
+const hexagramLines=$("hexagramLines");
 
-const aiBtn = $("aiBtn");
-const aiStatus = $("aiStatus");
-const aiOutput = $("aiOutput");
-const aiProgress = $("aiProgress");
+const aiBtn=$("aiBtn");
+const aiStatus=$("aiStatus");
+const aiOutput=$("aiOutput");
+const aiProgress=$("aiProgress");
 
-const apiKeyInput = $("apiKey");
-const modelSelect = $("model");
-
-const historyEl = $("history");
+const apiKey=$("apiKey");
+const model=$("model");
 
 
 /* =========================================================
-   初始化
+   工具
 ========================================================= */
 
-function init(){
-
-    const savedKey = localStorage.getItem(STORAGE_KEY);
-    const savedModel = localStorage.getItem(MODEL_KEY);
-
-    if(savedKey){
-        apiKeyInput.value = savedKey;
-    }
-
-    if(savedModel){
-        modelSelect.value = savedModel;
-    }
-
-    renderHistory();
+function sleep(ms){
+    return new Promise(r=>setTimeout(r,ms));
 }
 
-init();
+function randomInt(min,max){
+    if(window.crypto && crypto.getRandomValues){
+        const array=new Uint32Array(1);
+        crypto.getRandomValues(array);
+        return min+(array[0]%(max-min+1));
+    }
 
+    return Math.floor(
+        Math.random()*(max-min+1)
+    )+min;
+}
 
-/* =========================================================
-   状态
-========================================================= */
-
-function setStatus(text,type=""){
-    const el = $("mainStatus");
-
-    el.className = "status " + type;
-    el.textContent = text;
+function showMainStatus(text,type=""){
+    const el=$("mainStatus");
+    el.textContent=text;
+    el.className="status "+type;
     el.classList.remove("hidden");
 }
 
-function sleep(ms){
-    return new Promise(resolve => setTimeout(resolve,ms));
+function formatDate(date){
+    return date.getFullYear()+"-"+
+        String(date.getMonth()+1).padStart(2,"0")+"-"+
+        String(date.getDate()).padStart(2,"0")+" "+
+        String(date.getHours()).padStart(2,"0")+":"+
+        String(date.getMinutes()).padStart(2,"0")+":"+
+        String(date.getSeconds()).padStart(2,"0");
 }
 
 
@@ -846,69 +866,73 @@ function sleep(ms){
    开始起卦
 ========================================================= */
 
-startBtn.addEventListener("click",()=>{
+startBtn.onclick=()=>{
 
-    const question = questionInput.value.trim();
+    const q=question.value.trim();
 
-    if(!question){
-        setStatus("请先写下你想问的问题。","error");
-        questionInput.focus();
+    if(!q){
+        showMainStatus("请先写下你想问的问题。","error");
+        question.focus();
         return;
     }
 
-    state = {
-        question,
-        lines: [],
-        currentLine: 0,
-        currentChange: 0,
-        currentSticks: 49,
-        firstChangeDone: false,
-        finished: false,
-        startTime: new Date().toISOString()
+    state={
+        question:q,
+        lines:[],
+        currentLine:0,
+        currentChange:0,
+        sticks:49,
+        startTime:new Date().toISOString(),
+        finished:false,
+        pendingChange:null
     };
 
-    divinationCard.classList.remove("hidden");
     resultCard.classList.add("hidden");
     aiCard.classList.add("hidden");
 
-    setStatus("问题已确定。现在开始大衍筮法起卦。","success");
+    divinationCard.classList.remove("hidden");
+
+    drawBtn.disabled=false;
+    drawBtn.textContent="开始第一变";
+
+    selection.classList.add("hidden");
 
     renderLines();
 
-    currentInstruction.textContent =
-        "第一爻 · 第一变：请开始分二。";
+    updateSticks();
 
-    drawBtn.textContent = "开始第一变";
+    currentInstruction.textContent=
+        "第一爻 · 第一变：开始分二。";
 
-    drawBtn.disabled = false;
-
-    selectionEl.classList.add("hidden");
+    showMainStatus(
+        "问题已经确定，现在开始大衍筮法。",
+        "success"
+    );
 
     divinationCard.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior:"smooth"
     });
-});
+};
 
 
 /* =========================================================
-   新开始
+   重新开始
 ========================================================= */
 
-newBtn.addEventListener("click",()=>{
+newBtn.onclick=()=>{
 
-    state = {
+    state={
         question:"",
         lines:[],
         currentLine:0,
         currentChange:0,
-        currentSticks:49,
-        firstChangeDone:false,
+        sticks:49,
+        startTime:null,
         finished:false,
-        startTime:null
+        pendingChange:null
     };
 
-    questionInput.value="";
+    question.value="";
 
     divinationCard.classList.add("hidden");
     resultCard.classList.add("hidden");
@@ -920,11 +944,11 @@ newBtn.addEventListener("click",()=>{
         top:0,
         behavior:"smooth"
     });
-});
+};
 
 
 /* =========================================================
-   六爻显示
+   显示六爻
 ========================================================= */
 
 function renderLines(){
@@ -933,30 +957,31 @@ function renderLines(){
 
     for(let i=5;i>=0;i--){
 
-        const line = state.lines[i];
+        const line=state.lines[i];
 
-        const box = document.createElement("div");
+        const box=document.createElement("div");
         box.className="line";
 
-        const head = document.createElement("div");
+        const head=document.createElement("div");
         head.className="line-head";
 
-        const title = document.createElement("div");
+        const title=document.createElement("div");
         title.className="line-number";
-        title.textContent =
-            `${i+1}爻 ${i===0?"初爻":i===5?"上爻":""}`;
+        title.textContent=
+            `${i+1}爻 · ${
+                i===5?"上爻":
+                i===0?"初爻":
+                ""
+            }`;
 
-        const result = document.createElement("div");
+        const result=document.createElement("div");
         result.className="line-result";
 
-        if(!line){
-            result.textContent="未完成";
-        }else{
-            result.textContent =
-                line.total +
-                " · " +
-                line.type;
-        }
+        result.textContent=
+            line ?
+            `${line.type}（${line.value}）`
+            :
+            "未完成";
 
         head.appendChild(title);
         head.appendChild(result);
@@ -965,26 +990,32 @@ function renderLines(){
 
         if(line){
 
-            const info = document.createElement("div");
+            const info=document.createElement("div");
             info.className="yin-yang";
 
-            info.innerHTML =
-                `三变结果：${line.changes.join(" → ")}
-                ｜ ${line.changing ? '<span class="changing">动爻</span>' : '静爻'}`;
+            info.innerHTML=
+                `三变：
+                ${line.changes.join(" → ")}
+                ${
+                    line.changing
+                    ?
+                    `｜<span class="changing">动爻</span>`
+                    :
+                    "｜静爻"
+                }`;
 
             box.appendChild(info);
 
-            const steps = document.createElement("div");
+            const steps=document.createElement("div");
             steps.className="steps";
 
-            line.changes.forEach((v,index)=>{
+            line.changes.forEach((change,index)=>{
 
                 const step=document.createElement("div");
-
                 step.className="step done";
 
-                step.textContent =
-                    `第${index+1}变：${v}`;
+                step.textContent=
+                    `第${index+1}变：${change}`;
 
                 steps.appendChild(step);
             });
@@ -998,114 +1029,210 @@ function renderLines(){
 
 
 /* =========================================================
-   大衍筮法
+   蓍草数量
 ========================================================= */
 
-drawBtn.addEventListener("click",()=>{
+function updateSticks(){
+    sticksInfo.textContent=
+        `当前蓍草：${state.sticks}`;
+}
+
+
+/* =========================================================
+   开始一变
+========================================================= */
+
+drawBtn.onclick=()=>{
 
     if(state.finished) return;
 
-    startChange();
-});
-
-
-function startChange(){
+    if(state.currentChange>=3){
+        return;
+    }
 
     drawBtn.disabled=true;
-    selectionEl.classList.add("hidden");
 
-    currentInstruction.textContent =
-        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变：正在进行分二。`;
+    selection.classList.add("hidden");
 
-    /*
-       这里模拟“分二”。
-       实际点击左右取哪边，由用户决定。
-    */
+    currentInstruction.textContent=
+        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变：正在分二……`;
 
     setTimeout(()=>{
 
-        currentInstruction.textContent =
-            "请选择从哪一边取。";
+        currentInstruction.textContent=
+            "请选择从哪一边取一策挂一。";
 
-        selectionEl.classList.remove("hidden");
+        selection.classList.remove("hidden");
 
-    },350);
-}
-
-
-/* =========================================================
-   左右取
-========================================================= */
-
-takeLeft.addEventListener("click",()=>chooseSide("左"));
-takeRight.addEventListener("click",()=>chooseSide("右"));
-
-
-function chooseSide(side){
-
-    selectionEl.classList.add("hidden");
-
-    const randomPart =
-        Math.floor(Math.random()*24)+1;
-
-    const remainder =
-        4 + Math.floor(Math.random()*4);
-
-    const result =
-        randomPart + remainder;
-
-    finishChange(result,side);
-}
+    },300);
+};
 
 
 /* =========================================================
-   完成本变
+   左 / 右
 ========================================================= */
 
-function finishChange(result,side){
+$("takeLeft").onclick=()=>performChange("left");
+$("takeRight").onclick=()=>performChange("right");
+
+
+/*
+    真正的大衍筮法：
+
+    1. 分二
+    2. 从右手取一策挂一
+    3. 左右两堆分别揲四
+    4. 各取余数
+    5. 归奇
+    6. 剩余蓍草进入下一变
+*/
+
+function performChange(side){
+
+    selection.classList.add("hidden");
+
+    const total=state.sticks;
+
+    if(total<5){
+
+        currentInstruction.textContent=
+            "蓍草数量异常，无法继续。";
+
+        return;
+    }
+
+
+    /*
+       分二：
+       随机分为左右两堆。
+       用户选择哪边作为“挂一”的右手堆。
+    */
+
+    let left;
+    let right;
+
+    /*
+       避免出现空堆。
+    */
+
+    left=randomInt(1,total-1);
+    right=total-left;
+
+
+    /*
+       用户选择左 / 右只决定哪一堆作为挂一。
+    */
+
+    let hanging;
+
+    if(side==="left"){
+        hanging=left;
+        left--;
+    }else{
+        hanging=right;
+        right--;
+    }
+
+
+    /*
+       挂一之后：
+       左右各自揲四。
+    */
+
+    const leftRemainder=
+        remainderFour(left);
+
+    const rightRemainder=
+        remainderFour(right);
+
+
+    /*
+       归奇：
+       余数 0 按 4 计算。
+    */
+
+    const removed=
+        1+
+        leftRemainder+
+        rightRemainder;
+
+    const remaining=
+        total-removed;
+
+    state.sticks=remaining;
+
+    updateSticks();
+
 
     if(!state.lines[state.currentLine]){
 
         state.lines[state.currentLine]={
             changes:[],
             sides:[],
-            total:0,
+            changing:false,
+            value:null,
             type:"",
-            changing:false
+            total:0
         };
     }
 
-    const line = state.lines[state.currentLine];
+    const line=state.lines[state.currentLine];
 
-    line.changes.push(result);
+    line.changes.push(remaining);
     line.sides.push(side);
 
-    line.total += result;
-
-    renderLines();
+    currentInstruction.textContent=
+        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变完成：`
+        +
+        `分二 ${left}/${right}，`
+        +
+        `归奇 ${removed}，`
+        +
+        `余 ${remaining} 策。`;
 
     state.currentChange++;
 
     /*
        第三变完成：
-       自动记录这一爻
-       不再需要用户点击“完成这一爻”
+       根据三变后总数决定爻。
     */
 
-    if(state.currentChange>=3){
+    if(state.currentChange===3){
 
         finalizeLine();
 
         return;
     }
 
-    drawBtn.disabled=false;
 
-    currentInstruction.textContent =
-        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变`;
+    /*
+       下一变：
+       将当前剩余蓍草重新使用。
+    */
 
-    drawBtn.textContent =
-        `开始第${state.currentChange+1}变`;
+    setTimeout(()=>{
+
+        drawBtn.disabled=false;
+
+        drawBtn.textContent=
+            `开始第${state.currentChange+1}变`;
+
+        currentInstruction.textContent=
+            `第${state.currentLine+1}爻 · 第${state.currentChange+1}变：重新分二。`;
+
+    },500);
+}
+
+
+/* =========================================================
+   揲四余数
+========================================================= */
+
+function remainderFour(number){
+
+    const r=number%4;
+
+    return r===0 ? 4 : r;
 }
 
 
@@ -1115,78 +1242,120 @@ function finishChange(result,side){
 
 function finalizeLine(){
 
-    const line = state.lines[state.currentLine];
+    const line=state.lines[state.currentLine];
+
+    const sum=
+        line.changes[
+            line.changes.length-1
+        ];
+
 
     /*
-       使用三变结果决定爻：
-       6 老阴
-       7 少阳
-       8 少阴
-       9 老阳
-    */
+       三变后的余数：
 
-    const normalized =
-        line.changes.reduce((a,b)=>a+b,0) % 4;
+       24 -> 老阴 6
+       28 -> 少阳 7
+       32 -> 少阴 8
+       36 -> 老阳 9
+    */
 
     let value;
 
-    if(normalized===0){
+    if(sum===24){
         value=6;
-    }else if(normalized===1){
+    }else if(sum===28){
         value=7;
-    }else if(normalized===2){
+    }else if(sum===32){
         value=8;
-    }else{
+    }else if(sum===36){
         value=9;
+    }else{
+
+        /*
+           理论上不会出现其他结果。
+           为避免异常，按照最接近值处理。
+        */
+
+        const candidates=[24,28,32,36];
+
+        let closest=candidates[0];
+
+        for(const c of candidates){
+
+            if(
+                Math.abs(c-sum)<
+                Math.abs(closest-sum)
+            ){
+                closest=c;
+            }
+        }
+
+        value=
+            closest===24?6:
+            closest===28?7:
+            closest===32?8:
+            9;
     }
+
 
     line.value=value;
 
-    if(value===6){
-        line.type="老阴";
-        line.changing=true;
-    }else if(value===7){
-        line.type="少阳";
-        line.changing=false;
-    }else if(value===8){
-        line.type="少阴";
-        line.changing=false;
-    }else{
-        line.type="老阳";
-        line.changing=true;
-    }
+    line.changing=
+        value===6 ||
+        value===9;
+
+    line.type=
+        value===6 ? "老阴" :
+        value===7 ? "少阳" :
+        value===8 ? "少阴" :
+        "老阳";
+
 
     renderLines();
 
+
     /*
-       自动进入下一爻
+       每爻完成后重新恢复 49 策。
+       这是下一爻重新开始三变的基础。
     */
 
-    if(state.currentLine>=5){
+    state.sticks=49;
+
+    updateSticks();
+
+
+    /*
+       六爻完成
+    */
+
+    if(state.currentLine===5){
 
         state.finished=true;
 
-        currentInstruction.textContent =
-            "六爻已完成，正在自动生成卦象……";
-
         drawBtn.disabled=true;
 
-        setTimeout(()=>{
-            buildHexagram();
-        },600);
+        currentInstruction.textContent=
+            "六爻完成，正在生成本卦、变卦……";
+
+        setTimeout(buildHexagram,500);
 
         return;
     }
 
+
+    /*
+       自动进入下一爻。
+    */
+
     state.currentLine++;
     state.currentChange=0;
 
-    currentInstruction.textContent =
-        `第${state.currentLine+1}爻 · 第一变`;
+    drawBtn.disabled=false;
 
     drawBtn.textContent="开始第一变";
 
-    drawBtn.disabled=false;
+    currentInstruction.textContent=
+        `第${state.currentLine+1}爻 · 第一变：重新开始。`;
 }
 
 
@@ -1196,75 +1365,104 @@ function finalizeLine(){
 
 function buildHexagram(){
 
-    const originalBits =
+    /*
+       state.lines 的顺序：
+       初爻 → 二爻 → ... → 上爻
+
+       阳 = 1
+       阴 = 0
+    */
+
+    const originalBits=
         state.lines
-            .map(line=>{
-                return line.value===7 || line.value===9 ? "1":"0";
-            })
-            .join("");
+        .map(line=>
+            line.value===7 ||
+            line.value===9
+            ? "1":"0"
+        )
+        .join("");
 
-    const changedBits =
+
+    const changedBits=
         state.lines
-            .map(line=>{
-                if(line.value===6) return "1";
-                if(line.value===9) return "0";
+        .map(line=>{
 
-                return line.value===7 ? "1":"0";
-            })
-            .join("");
+            /*
+               老阴 6：阴变阳
+               老阳 9：阳变阴
+            */
 
-    const original =
-        hexagrams[originalBits] ||
-        ["未知","未知卦"];
+            if(line.value===6) return "1";
+            if(line.value===9) return "0";
 
-    const changed =
-        hexagrams[changedBits] ||
-        ["未知","未知卦"];
+            return line.value===7
+                ? "1"
+                : "0";
 
-    const moving =
+        })
+        .join("");
+
+
+    const original=
+        exactHexagrams[originalBits];
+
+    const changed=
+        exactHexagrams[changedBits];
+
+
+    const moving=
         state.lines
-            .map((line,index)=>{
-                return line.changing ? index+1:null;
-            })
-            .filter(Boolean);
+        .map((line,index)=>
+            line.changing
+            ? index+1
+            : null
+        )
+        .filter(Boolean);
 
-    originalName.textContent =
-        original[1];
 
-    changedName.textContent =
-        changed[1];
+    originalName.textContent=
+        original
+        ? original[1]
+        : "未知卦";
 
-    changingLines.textContent =
+    changedName.textContent=
+        changed
+        ? changed[1]
+        : "未知卦";
+
+    changingLines.textContent=
         moving.length
-        ? moving.join("、")+"爻"
+        ? moving.map(n=>`第${n}爻`).join("、")
         : "无动爻";
 
-    const time =
-        new Date(state.startTime);
+    divinationTime.textContent=
+        formatDate(
+            new Date(state.startTime)
+        );
 
-    divinationTime.textContent =
-        formatDate(time);
+    bigHexagramName.textContent=
+        original
+        ? original[1]
+        : "未知卦";
 
-    bigHexagramName.textContent =
-        original[1];
+    hexagramInfo.textContent=
+        `本卦：${original?original[1]:"未知"}`
+        +
+        ` ｜ 变卦：${changed?changed[1]:"未知"}`;
 
-    hexagramInfo.textContent =
-        `本卦：${original[0]} ｜ 变卦：${changed[1]}`;
-
-    renderHexagramLines();
+    renderHexagram(originalBits);
 
     resultCard.classList.remove("hidden");
 
     saveHistory();
 
-    setStatus(
+    showMainStatus(
         "六爻完成，本卦、变卦和动爻已经生成。",
         "success"
     );
 
     resultCard.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior:"smooth"
     });
 }
 
@@ -1273,39 +1471,36 @@ function buildHexagram(){
    卦画
 ========================================================= */
 
-function renderHexagramLines(){
+function renderHexagram(bits){
 
     hexagramLines.innerHTML="";
 
+    /*
+       从上爻显示到初爻。
+    */
+
     for(let i=5;i>=0;i--){
 
-        const line =
-            state.lines[i];
+        const value=state.lines[i].value;
 
-        const row =
-            document.createElement("div");
+        const row=document.createElement("div");
 
-        row.className =
-            "hex-line " +
-            (line.changing ? "changing":"");
+        row.className="hex-line";
 
-        const a =
-            document.createElement("span");
-
-        const b =
-            document.createElement("span");
-
-        if(line.value===6 || line.value===8){
-
-            row.appendChild(a);
-            row.appendChild(b);
-
-        }else{
-
-            row.appendChild(a);
-            row.appendChild(b);
-
+        if(value===6 || value===8){
+            row.classList.add("yin");
         }
+
+        if(value===6 || value===9){
+            row.classList.add("changing");
+        }
+
+
+        const a=document.createElement("span");
+        const b=document.createElement("span");
+
+        row.appendChild(a);
+        row.appendChild(b);
 
         hexagramLines.appendChild(row);
     }
@@ -1316,10 +1511,24 @@ function renderHexagramLines(){
    API Key
 ========================================================= */
 
-$("saveKeyBtn").addEventListener("click",()=>{
+const savedKey=
+    localStorage.getItem(STORAGE_KEY);
 
-    const key =
-        apiKeyInput.value.trim();
+if(savedKey){
+    apiKey.value=savedKey;
+}
+
+const savedModel=
+    localStorage.getItem(MODEL_KEY);
+
+if(savedModel){
+    model.value=savedModel;
+}
+
+
+$("saveKeyBtn").onclick=()=>{
+
+    const key=apiKey.value.trim();
 
     if(!key){
 
@@ -1338,36 +1547,35 @@ $("saveKeyBtn").addEventListener("click",()=>{
 
     localStorage.setItem(
         MODEL_KEY,
-        modelSelect.value
+        model.value
     );
 
     showKeyStatus(
         "API Key 已保存。",
         "success"
     );
-});
+};
 
 
-$("clearKeyBtn").addEventListener("click",()=>{
+$("clearKeyBtn").onclick=()=>{
 
     localStorage.removeItem(STORAGE_KEY);
 
-    apiKeyInput.value="";
+    apiKey.value="";
 
     showKeyStatus(
         "API Key 已清除。",
         "success"
     );
-});
+};
 
 
-modelSelect.addEventListener("change",()=>{
-
+model.onchange=()=>{
     localStorage.setItem(
         MODEL_KEY,
-        modelSelect.value
+        model.value
     );
-});
+};
 
 
 function showKeyStatus(text,type){
@@ -1376,18 +1584,17 @@ function showKeyStatus(text,type){
 
     el.textContent=text;
 
-    el.className=
-        "status "+type;
+    el.className="status "+type;
 
     el.classList.remove("hidden");
 }
 
 
 /* =========================================================
-   AI 解卦
+   AI解读
 ========================================================= */
 
-aiBtn.addEventListener("click",async()=>{
+aiBtn.onclick=async()=>{
 
     if(!state.finished){
 
@@ -1396,8 +1603,7 @@ aiBtn.addEventListener("click",async()=>{
         return;
     }
 
-    const key =
-        apiKeyInput.value.trim();
+    const key=apiKey.value.trim();
 
     if(!key){
 
@@ -1407,7 +1613,7 @@ aiBtn.addEventListener("click",async()=>{
             "status error";
 
         aiStatus.textContent=
-            "请先在 AI 设置中填写 API Key。";
+            "请先填写 API Key。";
 
         aiCard.scrollIntoView({
             behavior:"smooth"
@@ -1415,6 +1621,7 @@ aiBtn.addEventListener("click",async()=>{
 
         return;
     }
+
 
     aiCard.classList.remove("hidden");
 
@@ -1424,13 +1631,13 @@ aiBtn.addEventListener("click",async()=>{
 
     aiBtn.disabled=true;
 
+
     try{
 
-        const result =
+        const result=
             await requestAIWithRetry(key);
 
-        aiOutput.textContent =
-            result;
+        aiOutput.textContent=result;
 
         aiStatus.className=
             "status success";
@@ -1443,11 +1650,8 @@ aiBtn.addEventListener("click",async()=>{
         aiStatus.className=
             "status error";
 
-        aiStatus.textContent =
-            getReadableError(error);
-
-        aiOutput.textContent =
-            "";
+        aiStatus.textContent=
+            readableError(error);
 
     }finally{
 
@@ -1456,27 +1660,18 @@ aiBtn.addEventListener("click",async()=>{
         aiBtn.disabled=false;
     }
 
+
     aiCard.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior:"smooth"
     });
-});
+};
 
 
 /* =========================================================
-   自动重试核心
+   AI 自动重试
 ========================================================= */
 
-async function requestAIWithRetry(apiKey){
-
-    /*
-       三次机会：
-       第一次正常请求
-       第二次等待后重试
-       第三次再次重试
-
-       每次 timeout 45 秒。
-    */
+async function requestAIWithRetry(key){
 
     const maxRetries=3;
 
@@ -1489,24 +1684,15 @@ async function requestAIWithRetry(apiKey){
             aiStatus.className=
                 "status loading";
 
-            if(attempt===1){
+            aiStatus.textContent=
+                attempt===1
+                ?
+                "正在连接 AI，正在分析卦象……"
+                :
+                `AI 响应较慢，正在自动重试（${attempt}/${maxRetries}）……`;
 
-                aiStatus.textContent=
-                    "正在连接 AI，正在分析卦象……";
 
-            }else{
-
-                aiStatus.textContent=
-                    `AI 响应较慢，正在自动重新连接（${attempt}/${maxRetries}）……`;
-            }
-
-            const result =
-                await requestAI(
-                    apiKey,
-                    attempt
-                );
-
-            return result;
+            return await requestAI(key);
 
         }catch(error){
 
@@ -1514,11 +1700,10 @@ async function requestAIWithRetry(apiKey){
 
             if(attempt<maxRetries){
 
-                aiStatus.textContent=
-                    `本次连接没有及时返回，${attempt+1} 秒后自动重试……`;
-
                 await sleep(
-                    attempt===1 ? 2000 : 4000
+                    attempt===1
+                    ? 2000
+                    : 4000
                 );
             }
         }
@@ -1529,32 +1714,24 @@ async function requestAIWithRetry(apiKey){
 
 
 /* =========================================================
-   单次 API 请求
+   单次API请求
 ========================================================= */
 
-async function requestAI(apiKey,attempt){
+async function requestAI(key){
 
-    const controller =
+    const controller=
         new AbortController();
 
-    /*
-       不再使用 10 秒这种过短时间。
-       AI 长文本解读给 60 秒。
-    */
-
-    const timeout =
-        setTimeout(()=>{
-            controller.abort();
-        },60000);
-
-
-    const prompt =
-buildPrompt();
+    const timer=
+        setTimeout(
+            ()=>controller.abort(),
+            60000
+        );
 
 
     try{
 
-        const response =
+        const response=
             await fetch(
                 "https://api.openai.com/v1/responses",
                 {
@@ -1565,33 +1742,22 @@ buildPrompt();
                             "application/json",
 
                         "Authorization":
-                            "Bearer "+apiKey
+                            `Bearer ${key}`
                     },
 
                     body:JSON.stringify({
 
-                        model:
-                            modelSelect.value,
+                        model:model.value,
 
-                        input:
-                            prompt,
+                        input:buildPrompt(),
 
-                        max_output_tokens:
-                            4000
+                        max_output_tokens:4000
                     }),
 
-                    signal:
-                        controller.signal
+                    signal:controller.signal
                 }
             );
 
-
-        clearTimeout(timeout);
-
-
-        /*
-           不要把所有 HTTP 错误都显示成 Failed to fetch。
-        */
 
         if(!response.ok){
 
@@ -1599,47 +1765,50 @@ buildPrompt();
 
             try{
 
-                const data =
+                const data=
                     await response.json();
 
-                message =
-                    data?.error?.message ||
-                    "";
+                message=
+                    data?.error?.message || "";
 
             }catch(e){}
 
-            const error =
+            const error=
                 new Error(
                     message ||
-                    `API 请求失败（HTTP ${response.status}）`
+                    `API 请求失败：HTTP ${response.status}`
                 );
 
-            error.status =
+            error.status=
                 response.status;
 
             throw error;
         }
 
 
-        const data =
+        const data=
             await response.json();
 
 
         /*
-           Responses API 通常提供 output_text。
+           Responses API 优先读取 output_text。
         */
 
-        if(data.output_text){
+        if(
+            typeof data.output_text==="string" &&
+            data.output_text.trim()
+        ){
 
             return data.output_text.trim();
         }
 
 
         /*
-           兼容不同返回结构。
+           兼容完整 output 结构。
         */
 
         let text="";
+
 
         if(Array.isArray(data.output)){
 
@@ -1652,11 +1821,10 @@ buildPrompt();
 
                     if(
                         content.type==="output_text" &&
-                        content.text
+                        typeof content.text==="string"
                     ){
 
-                        text +=
-                            content.text;
+                        text+=content.text;
                     }
                 }
             }
@@ -1666,18 +1834,16 @@ buildPrompt();
         if(!text.trim()){
 
             throw new Error(
-                "AI 返回了空结果，请稍后重试。"
+                "AI 返回为空，请稍后重试。"
             );
         }
 
 
         return text.trim();
 
-    }catch(error){
+    }finally{
 
-        clearTimeout(timeout);
-
-        throw error;
+        clearTimeout(timer);
     }
 }
 
@@ -1688,39 +1854,32 @@ buildPrompt();
 
 function buildPrompt(){
 
-    const original =
+    const original=
         originalName.textContent;
 
-    const changed =
+    const changed=
         changedName.textContent;
 
-    const moving =
+    const moving=
         changingLines.textContent;
 
 
-    const lines =
+    const lines=
         state.lines
-            .map((line,index)=>{
-
-                return `${index+1}爻：${line.type}（${line.value}），三变：${line.changes.join(" → ")}，取：${line.sides.join(" → ")}`;
-
-            })
-            .join("\n");
+        .map((line,index)=>
+            `${index+1}爻：${line.type}（${line.value}）
+三变：${line.changes.join(" → ")}
+动静：${line.changing?"动爻":"静爻"}`
+        )
+        .join("\n");
 
 
     return `
-你是一名严格按照传统易学卦理进行分析的占卜解读者。
+你是一名严格按照传统易学卦理进行卦象分析的解读者。
 
-请围绕用户提出的“具体问题”进行解读。
+你的任务不是给用户泛泛的人生建议，而是直接回答用户提出的问题。
 
-不要泛泛谈人生。
-不要主动改变问题。
-不要把占卜解读变成心理咨询。
-不要大量给建议。
-用户问的是预测，就直接回答预测结果。
-如果卦象只能判断趋势，就明确说明趋势，而不要假装能够确定具体事实。
-
-【用户的问题】
+【用户问题】
 ${state.question}
 
 【本卦】
@@ -1732,83 +1891,74 @@ ${changed}
 【动爻】
 ${moving}
 
-【六爻数据】
+【六爻】
 ${lines}
 
-请按照以下结构回答：
+请严格围绕用户最初的问题进行判断。
+
+回答结构：
 
 一、直接结论
 第一段直接回答用户的问题。
-明确给出：
-- 有利 / 不利
-- 能 / 不能
-- 会 / 不会
-- 当前趋势如何
-- 如果涉及时间，判断大致时间窗口
+如果问题是“能不能”“会不会”“是否可以”“什么时候”，必须优先回答这个问题。
 
 二、卦象依据
-结合本卦、变卦、动爻解释为什么得到这个结论。
+解释本卦为什么支持或不支持这个判断。
 
-三、动爻重点
-逐个解释本次动爻与用户问题的直接关系。
-没有动爻则说明无动爻。
+三、动爻分析
+逐个分析动爻，并说明它们与用户问题之间的直接关系。
 
-四、事情发展趋势
-只讨论用户所问的这件事情。
-按照“当前 → 中段 → 后续”的方式说明趋势。
+四、发展趋势
+按照当前、发展、后续说明事情走势。
+如果涉及时间，只给出卦象能够支持的大致时间范围，不要虚构精确日期。
 
 五、最终判断
-用简洁的一段话再次回答用户最初的问题。
+用一段话再次明确回答最初的问题。
 
-重要要求：
-1. 必须围绕用户的问题。
-2. 不要扩展到用户没有询问的恋爱、健康、财运等其他领域。
-3. 不要用“建议你”“你应该”作为主要内容。
-4. 不要把预测问题回答成行动建议。
-5. 如果结果偏向否定，要直接说清楚。
-6. 如果存在变数，要说明变数来自哪里。
-7. 语言自然、具体，不要堆砌易学术语。
+重要规则：
+
+1. 不要改变用户的问题。
+2. 不要主动扩展到用户没有问的事情。
+3. 不要突然分析恋爱、健康、财运等无关领域。
+4. 不要把预测问题变成心理咨询。
+5. 不要大量使用“建议你”“你应该”。
+6. 结论偏不利时直接说不利。
+7. 结论偏有利时直接说有利。
+8. 存在明显变数时说明变数来源。
+9. 必须以本卦、变卦、动爻为核心证据。
+10. 不要为了让答案好听而刻意美化卦象。
 `;
 }
 
 
 /* =========================================================
-   错误转换
+   API错误
 ========================================================= */
 
-function getReadableError(error){
+function readableError(error){
 
     if(!error){
-
-        return "AI 解读失败，请稍后再试。";
+        return "AI 解读失败。";
     }
 
     if(error.name==="AbortError"){
-
-        return "AI 响应超过 60 秒，连续自动重试后仍未返回。";
+        return "AI 请求超过 60 秒没有返回。系统已经自动重试 3 次，请稍后再试。";
     }
 
-    const status =
-        error.status;
-
-    if(status===401){
-
-        return "API Key 无效或已失效，请检查 API Key。";
+    if(error.status===401){
+        return "API Key 无效或已经失效，请检查 API Key。";
     }
 
-    if(status===403){
-
+    if(error.status===403){
         return "API Key 没有权限调用当前模型。";
     }
 
-    if(status===429){
-
-        return "API 请求过于频繁或额度不足，请稍后再试。";
+    if(error.status===429){
+        return "API 请求过于频繁，或者当前 API 额度不足。";
     }
 
-    if(status>=500){
-
-        return "AI 服务暂时没有正常响应，系统已经自动重试 3 次，请稍后再试。";
+    if(error.status>=500){
+        return "AI 服务暂时异常。系统已经自动重试 3 次，请稍后再试。";
     }
 
     if(
@@ -1818,8 +1968,7 @@ function getReadableError(error){
             error.message.includes("NetworkError")
         )
     ){
-
-        return "网络连接没有正常完成。系统已经自动重试 3 次；如果仍失败，请检查当前网络或 API 服务连接。";
+        return "网络请求没有正常完成。系统已经自动重试 3 次，请检查当前网络或 API 服务连接。";
     }
 
     return error.message ||
@@ -1833,57 +1982,39 @@ function getReadableError(error){
 
 function saveHistory(){
 
-    const history =
+    const history=
         JSON.parse(
-            localStorage.getItem(HISTORY_KEY) ||
-            "[]"
+            localStorage.getItem(HISTORY_KEY)||"[]"
         );
 
 
-    const original =
+    const original=
         originalName.textContent;
 
-    const changed =
+    const changed=
         changedName.textContent;
 
 
     const record={
-
-        id:
-            Date.now(),
-
-        question:
-            state.question,
-
+        id:Date.now(),
+        question:state.question,
         original,
-
         changed,
-
-        moving:
-            changingLines.textContent,
+        moving:changingLines.textContent,
+        time:state.startTime,
 
         lines:
             state.lines.map(line=>({
-
                 value:line.value,
-
                 type:line.type,
-
                 changing:line.changing,
-
                 changes:line.changes,
-
                 sides:line.sides
-
-            })),
-
-        time:
-            state.startTime
+            }))
     };
 
 
     history.unshift(record);
-
 
     localStorage.setItem(
         HISTORY_KEY,
@@ -1892,30 +2023,25 @@ function saveHistory(){
         )
     );
 
-
     renderHistory();
 }
 
 
-/* =========================================================
-   历史显示
-========================================================= */
-
 function renderHistory(){
 
-    const history =
+    const history=
         JSON.parse(
-            localStorage.getItem(HISTORY_KEY) ||
-            "[]"
+            localStorage.getItem(HISTORY_KEY)||"[]"
         );
 
+    const el=$("history");
 
-    historyEl.innerHTML="";
+    el.innerHTML="";
 
 
     if(!history.length){
 
-        historyEl.innerHTML=
+        el.innerHTML=
             `<div class="small">暂无历史记录。</div>`;
 
         return;
@@ -1924,45 +2050,44 @@ function renderHistory(){
 
     history.forEach(item=>{
 
-        const box =
+        const box=
             document.createElement("div");
 
         box.className="history-item";
 
 
-        const title =
+        const title=
             document.createElement("div");
 
-        title.className=
-            "history-title";
+        title.className="history-title";
 
         title.textContent=
             item.question;
 
 
-        const meta =
+        const meta=
             document.createElement("div");
 
-        meta.className=
-            "history-meta";
+        meta.className="history-meta";
 
         meta.textContent=
-            `${item.original} → ${item.changed}
-            ｜动爻：${item.moving}
-            ｜${formatDate(new Date(item.time))}`;
+            `${item.original} → ${item.changed}`
+            +
+            ` ｜ ${item.moving}`
+            +
+            ` ｜ ${formatDate(new Date(item.time))}`;
 
 
         box.appendChild(title);
         box.appendChild(meta);
 
 
-        box.addEventListener("click",()=>{
-
+        box.onclick=()=>{
             loadHistory(item);
-        });
+        };
 
 
-        historyEl.appendChild(box);
+        el.appendChild(box);
     });
 }
 
@@ -1973,36 +2098,24 @@ function renderHistory(){
 
 function loadHistory(item){
 
-    state.question=
-        item.question;
-
-    state.lines=
-        item.lines.map(line=>({
-
+    state={
+        question:item.question,
+        lines:item.lines.map(line=>({
             value:line.value,
-
             type:line.type,
-
             changing:line.changing,
-
             changes:line.changes,
-
-            sides:line.sides,
-
-            total:
-                line.changes.reduce(
-                    (a,b)=>a+b,0
-                )
-
-        }));
-
-    state.finished=true;
-
-    state.startTime=
-        item.time;
+            sides:line.sides||[]
+        })),
+        currentLine:6,
+        currentChange:3,
+        sticks:49,
+        startTime:item.time,
+        finished:true
+    };
 
 
-    questionInput.value=
+    question.value=
         item.question;
 
 
@@ -2030,18 +2143,30 @@ function loadHistory(item){
         `本卦：${item.original} ｜ 变卦：${item.changed}`;
 
 
-    renderHexagramLines();
+    /*
+       根据历史六爻重新画卦。
+    */
+
+    const bits=
+        state.lines
+        .map(line=>
+            line.value===7 ||
+            line.value===9
+            ? "1":"0"
+        )
+        .join("");
+
+
+    renderHexagram(bits);
 
 
     divinationCard.classList.remove("hidden");
-
     resultCard.classList.remove("hidden");
-
     aiCard.classList.add("hidden");
 
 
-    setStatus(
-        "已打开历史记录。",
+    showMainStatus(
+        "已经打开历史记录。",
         "success"
     );
 
@@ -2056,9 +2181,11 @@ function loadHistory(item){
    清空历史
 ========================================================= */
 
-$("clearHistoryBtn").addEventListener("click",()=>{
+$("clearHistoryBtn").onclick=()=>{
 
-    if(!confirm("确定要清空全部历史记录吗？")){
+    if(
+        !confirm("确定要清空全部历史记录吗？")
+    ){
         return;
     }
 
@@ -2067,48 +2194,16 @@ $("clearHistoryBtn").addEventListener("click",()=>{
     );
 
     renderHistory();
-});
+};
 
 
 /* =========================================================
-   时间
+   初始化历史
 ========================================================= */
 
-function formatDate(date){
-
-    const y =
-        date.getFullYear();
-
-    const m =
-        String(
-            date.getMonth()+1
-        ).padStart(2,"0");
-
-    const d =
-        String(
-            date.getDate()
-        ).padStart(2,"0");
-
-    const h =
-        String(
-            date.getHours()
-        ).padStart(2,"0");
-
-    const min =
-        String(
-            date.getMinutes()
-        ).padStart(2,"0");
-
-    const s =
-        String(
-            date.getSeconds()
-        ).padStart(2,"0");
-
-    return `${y}-${m}-${d} ${h}:${min}:${s}`;
-}
+renderHistory();
 
 </script>
 
 </body>
 </html>
-```
