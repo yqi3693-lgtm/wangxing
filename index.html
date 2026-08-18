@@ -676,12 +676,12 @@ textarea:focus{
 }
 
 .history-answer{
-    margin-top:10px;
-    padding-top:10px;
-    border-top:1px solid #143b40;
-    color:#9dc8ca;
-    line-height:1.8;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #16454a;
+    color:#bfe8e8;
     white-space:pre-wrap;
+    line-height:1.8;
 }
 
 .empty{
@@ -971,8 +971,6 @@ WANGXING · 星河大衍筮法
 
 <script>
 
-"use strict";
-
 /* =====================================================
    DOM
 ===================================================== */
@@ -1014,20 +1012,6 @@ const historyList = $("historyList");
 
 /* =====================================================
    八卦
-=====================================================
-
-   三爻顺序：
-
-   初爻 → 二爻 → 三爻
-
-   111 乾
-   110 兑
-   101 离
-   100 震
-   011 巽
-   010 坎
-   001 艮
-   000 坤
 ===================================================== */
 
 const tri = {
@@ -1128,24 +1112,20 @@ let yaoIndex = 0;
 
 let changeIndex = 0;
 
-/*
- * 每一爻开始时固定为49策
- */
 let stalks = 49;
 
-/*
- * 当前爻三变过程记录
- */
-let changeRecords = [];
-
-/*
- * 六爻：
- * 6 老阴
- * 7 少阳
- * 8 少阴
- * 9 老阳
- */
 let allYao = [];
+
+let currentSplit = {
+    left:0,
+    right:0
+};
+
+let selectedSide = null;
+
+let currentInterpretation = "";
+
+let aiBusy = false;
 
 
 /* =====================================================
@@ -1153,32 +1133,44 @@ let allYao = [];
 ===================================================== */
 
 function wait(ms){
-
-    return new Promise(
-        resolve => setTimeout(resolve,ms)
-    );
-
+    return new Promise(resolve => setTimeout(resolve,ms));
 }
 
 
 /*
- * 揲四取余：
+ * 大衍筮法：
  *
- * 余1、2、3、4。
- * 余0按照4计。
+ * 每一变：
+ *
+ * 1. 分二
+ * 2. 从右束取一挂一
+ * 3. 左右揲四
+ * 4. 余数归奇
+ *
+ * 每一变归奇之数只能为：
+ *
+ * 5 / 9
+ *
+ * 三变之后：
+ *
+ * 49 - 三变归奇总数
+ *
+ * 得到：
+ *
+ * 24 / 28 / 32 / 36
+ *
+ * 再除四：
+ *
+ * 6 / 7 / 8 / 9
  */
+
 function remainder4(n){
 
     const r = n % 4;
 
     return r === 0 ? 4 : r;
-
 }
 
-
-/* =====================================================
-   爻状态
-===================================================== */
 
 function yaoState(v){
 
@@ -1195,7 +1187,6 @@ function yaoState(v){
         return "老阳 · 动";
 
     return "未知";
-
 }
 
 
@@ -1205,15 +1196,6 @@ function yaoState(v){
 
 function hexName(lines){
 
-    /*
-     * lines[0] = 初爻
-     * lines[1] = 二爻
-     * lines[2] = 三爻
-     * lines[3] = 四爻
-     * lines[4] = 五爻
-     * lines[5] = 上爻
-     */
-
     const lower =
         lines
         .slice(0,3)
@@ -1222,6 +1204,7 @@ function hexName(lines){
                 ? "1"
                 : "0"
         )
+        .reverse()
         .join("");
 
     const upper =
@@ -1232,20 +1215,13 @@ function hexName(lines){
                 ? "1"
                 : "0"
         )
+        .reverse()
         .join("");
 
-    const lowerName =
-        tri[lower];
+    const lowerName = tri[lower];
+    const upperName = tri[upper];
 
-    const upperName =
-        tri[upper];
-
-    return (
-        hex[upperName + lowerName]
-        ||
-        "未知卦"
-    );
-
+    return hex[upperName + lowerName] || "未知卦";
 }
 
 
@@ -1259,11 +1235,9 @@ function renderHex(target,lines){
 
     for(let i=5;i>=0;i--){
 
-        const v =
-            Number(lines[i]);
+        const v = lines[i];
 
-        const d =
-            document.createElement("div");
+        const d = document.createElement("div");
 
         d.className =
             "line" +
@@ -1288,9 +1262,7 @@ function renderHex(target,lines){
         }
 
         target.appendChild(d);
-
     }
-
 }
 
 
@@ -1304,8 +1276,7 @@ function updateRows(){
 
     allYao.forEach((v,i)=>{
 
-        const d =
-            document.createElement("div");
+        const d = document.createElement("div");
 
         d.className =
             "tr" +
@@ -1336,14 +1307,12 @@ function updateRows(){
         `;
 
         rows.appendChild(d);
-
     });
-
 }
 
 
 /* =====================================================
-   蓍草视觉
+   筮草视觉
 ===================================================== */
 
 function createStalks(count){
@@ -1354,13 +1323,9 @@ function createStalks(count){
     wrapper.className =
         "stalk-visual";
 
-    /*
-     * 为了不让49根草把页面撑爆，
-     * 每根仍然是真实对应的视觉单位。
-     */
     const displayCount =
         Math.min(
-            Math.max(Number(count),1),
+            Math.max(count,1),
             49
         );
 
@@ -1373,100 +1338,27 @@ function createStalks(count){
             "stalk";
 
         stalk.style.transform =
-            `rotate(${
-                Math.random()*10-5
-            }deg)`;
+            `rotate(${Math.random()*10-5}deg)`;
 
         wrapper.appendChild(stalk);
-
     }
 
     return wrapper;
-
 }
 
 
 /* =====================================================
-   显示左右两束
-===================================================== */
-
-function renderTwoPiles(left,right){
-
-    piles.innerHTML = "";
-
-    const row =
-        document.createElement("div");
-
-    row.className =
-        "pile-row";
-
-
-    const leftPile =
-        document.createElement("div");
-
-    leftPile.className =
-        "pile";
-
-    leftPile.innerHTML = `
-        <div class="pile-title">
-            左束
-        </div>
-    `;
-
-    leftPile.appendChild(
-        createStalks(left)
-    );
-
-    leftPile.innerHTML += `
-        <div class="pile-number">
-            ${left} 蓍
-        </div>
-    `;
-
-
-    const rightPile =
-        document.createElement("div");
-
-    rightPile.className =
-        "pile";
-
-    rightPile.innerHTML = `
-        <div class="pile-title">
-            右束
-        </div>
-    `;
-
-    rightPile.appendChild(
-        createStalks(right)
-    );
-
-    rightPile.innerHTML += `
-        <div class="pile-number">
-            ${right} 蓍
-        </div>
-    `;
-
-
-    row.appendChild(leftPile);
-    row.appendChild(rightPile);
-
-    piles.appendChild(row);
-
-}
-
-
-/* =====================================================
-   重置一爻
+   重置一变
 ===================================================== */
 
 function resetChange(){
 
-    changeIndex = 0;
+    selectedSide = null;
 
-    stalks = 49;
-
-    changeRecords = [];
-
+    currentSplit = {
+        left:0,
+        right:0
+    };
 }
 
 
@@ -1476,8 +1368,7 @@ function resetChange(){
 
 async function start(){
 
-    question =
-        q.value.trim();
+    question = q.value.trim();
 
     if(!question){
 
@@ -1486,14 +1377,15 @@ async function start(){
         q.focus();
 
         return;
-
     }
 
     yaoIndex = 0;
 
     allYao = [];
 
-    resetChange();
+    currentInterpretation = "";
+
+    aiBusy = false;
 
     begin.disabled = true;
 
@@ -1516,13 +1408,11 @@ async function start(){
     status.textContent =
         "正在进行大衍筮法。";
 
-
     stageTitle.textContent =
         "大衍之数";
 
     stageDesc.textContent =
         "天地之数五十，虚一不用。";
-
 
     piles.innerHTML = `
 
@@ -1538,9 +1428,7 @@ async function start(){
 
     `;
 
-
-    await wait(1200);
-
+    await wait(900);
 
     piles.innerHTML = `
 
@@ -1558,12 +1446,9 @@ async function start(){
 
     `;
 
-
-    await wait(1300);
-
+    await wait(1100);
 
     startYao();
-
 }
 
 
@@ -1577,7 +1462,7 @@ async function startYao(){
 
     changeIndex = 0;
 
-    changeRecords = [];
+    resetChange();
 
     piles.innerHTML = "";
 
@@ -1589,19 +1474,16 @@ async function startYao(){
 
     result.style.display = "none";
 
-
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 起筮`;
 
     stageDesc.textContent =
         "取四十九蓍，准备进行第一变。";
 
-
     const pile =
         document.createElement("div");
 
-    pile.className =
-        "pile";
+    pile.className = "pile";
 
     pile.innerHTML = `
         <div class="pile-title">
@@ -1617,115 +1499,158 @@ async function startYao(){
         <div class="pile-number">
             49 蓍
         </div>
-        <div class="pile-hint">
-            大衍之数，其用四十有九
-        </div>
     `;
 
     piles.appendChild(pile);
 
-
-    await wait(1100);
+    await wait(900);
 
     renderSplit();
-
 }
 
 
 /* =====================================================
    分二
-=====================================================
-
-   真实流程：
-
-   49策随意分为左右两部分。
-   这里随机决定分配，但不由用户点击改变。
-
-   例如：
-
-   左 23
-   右 26
-
-   然后进入挂一。
 ===================================================== */
 
-async function renderSplit(){
+function renderSplit(){
 
-    const total =
-        stalks;
+    const total = stalks;
 
     /*
-     * 分二必须左右均至少有1策。
+     * 分二时左右各至少一蓍
      */
     const left =
         Math.floor(
-            Math.random() *
-            (total - 1)
+            Math.random() * (total - 1)
         ) + 1;
 
     const right =
         total - left;
 
+    currentSplit.left = left;
+    currentSplit.right = right;
+
+    selectedSide = null;
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
 
     stageDesc.textContent =
-        "分而为二。左右两束已随机分成两部分。";
+        "分而为二。请选择一束，从中取一蓍挂之。";
 
+    piles.innerHTML = "";
 
-    renderTwoPiles(
-        left,
-        right
-    );
+    const row =
+        document.createElement("div");
 
+    row.className = "pile-row";
 
-    choice.innerHTML = `
+    const leftPile =
+        document.createElement("div");
 
-        <div class="choice-title">
-            分二完成
+    leftPile.className =
+        "pile clickable";
+
+    leftPile.innerHTML = `
+        <div class="pile-title">
+            左束
         </div>
-
-        <button
-            class="choice-btn"
-            id="hangBtn"
-        >
-            挂一
-        </button>
-
     `;
 
+    leftPile.appendChild(
+        createStalks(left)
+    );
 
-    $("hangBtn").onclick =
-        () => {
+    leftPile.innerHTML += `
+        <div class="pile-number">
+            ${left} 蓍
+        </div>
 
-            hangOne(
-                left,
-                right
-            );
+        <div class="pile-hint">
+            点击此束取一蓍
+        </div>
+    `;
 
-        };
+    const rightPile =
+        document.createElement("div");
 
+    rightPile.className =
+        "pile clickable";
+
+    rightPile.innerHTML = `
+        <div class="pile-title">
+            右束
+        </div>
+    `;
+
+    rightPile.appendChild(
+        createStalks(right)
+    );
+
+    rightPile.innerHTML += `
+        <div class="pile-number">
+            ${right} 蓍
+        </div>
+
+        <div class="pile-hint">
+            点击此束取一蓍
+        </div>
+    `;
+
+    row.appendChild(leftPile);
+    row.appendChild(rightPile);
+
+    piles.appendChild(row);
+
+    leftPile.onclick = () => {
+
+        if(selectedSide)
+            return;
+
+        selectedSide = "left";
+
+        hangOne(
+            left,
+            right,
+            "left"
+        );
+
+    };
+
+    rightPile.onclick = () => {
+
+        if(selectedSide)
+            return;
+
+        selectedSide = "right";
+
+        hangOne(
+            left,
+            right,
+            "right"
+        );
+
+    };
 }
 
 
 /* =====================================================
    挂一
-=====================================================
-
-   这里采用传统流程：
-
-   分二之后，从右手一束取一策，
-   挂于左手小指之间。
-
-   因此不会再让用户随便选择左/右，
-   避免人为改变大衍计算。
 ===================================================== */
 
 async function hangOne(
     left,
-    right
+    right,
+    side
 ){
+
+    const sideName =
+        side === "left"
+            ? "左"
+            : "右";
+
+    piles.innerHTML = "";
 
     choice.innerHTML = "";
 
@@ -1733,8 +1658,7 @@ async function hangOne(
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
 
     stageDesc.textContent =
-        "挂一：从右束取一蓍，挂于旁。";
-
+        `从${sideName}束取一蓍，挂于旁。`;
 
     piles.innerHTML = `
 
@@ -1745,36 +1669,42 @@ async function hangOne(
             <div class="single-stalk"></div>
 
             <div class="ritual-sub">
-                右束取一蓍，挂于旁
+                从${sideName}束取出一蓍
             </div>
 
         </div>
 
     `;
 
-
-    await wait(1200);
-
-
-    const leftAfter =
-        left;
-
-    const rightAfter =
-        right - 1;
-
+    await wait(850);
 
     /*
-     * 挂一后的左右两束。
+     * 注意：
+     *
+     * 传统演算中“挂一”取右手一策。
+     * 这里为了保留用户原页面的互动，
+     * 仍然允许用户选择左右视觉上的一束。
+     *
+     * 取出一策之后：
+     * 左右两束合计减少1。
      */
-    piles.innerHTML = "";
 
+    const leftAfter =
+        side === "left"
+            ? left - 1
+            : left;
+
+    const rightAfter =
+        side === "right"
+            ? right - 1
+            : right;
+
+    piles.innerHTML = "";
 
     const box =
         document.createElement("div");
 
-    box.className =
-        "process-box";
-
+    box.className = "process-box";
 
     box.innerHTML = `
 
@@ -1797,16 +1727,9 @@ async function hangOne(
             <strong>1 蓍</strong>
         </div>
 
-        <div class="process-line">
-            <span>当前合计</span>
-            <strong>${leftAfter + rightAfter + 1} 蓍</strong>
-        </div>
-
     `;
 
-
     piles.appendChild(box);
-
 
     choice.innerHTML = `
 
@@ -1823,7 +1746,6 @@ async function hangOne(
 
     `;
 
-
     $("suanBtn").onclick =
         () => {
 
@@ -1833,35 +1755,11 @@ async function hangOne(
             );
 
         };
-
 }
 
 
 /* =====================================================
    揲四归奇
-=====================================================
-
-   核心算法：
-
-   左束、右束分别四四分组。
-
-   余数：
-   1 / 2 / 3 / 4
-
-   然后：
-
-   挂一 + 左余 + 右余
-   = 本变归奇数
-
-   从49策中扣除归奇数。
-
-   三变之后：
-
-   24 / 28 / 32 / 36
-
-   除以4：
-
-   6 / 7 / 8 / 9
 ===================================================== */
 
 async function performSuan(
@@ -1875,13 +1773,11 @@ async function performSuan(
 
     remainders.innerHTML = "";
 
-
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
 
     stageDesc.textContent =
-        "揲四：左右两束分别以四根为一组计数，余数归奇。";
-
+        "左右两束分别揲四，余数归奇。";
 
     piles.innerHTML = `
 
@@ -1897,9 +1793,7 @@ async function performSuan(
 
     `;
 
-
-    await wait(1200);
-
+    await wait(850);
 
     const leftRemainder =
         remainder4(left);
@@ -1907,77 +1801,47 @@ async function performSuan(
     const rightRemainder =
         remainder4(right);
 
-
     /*
-     * 每一变必须减去：
+     * 每一变归奇：
      *
-     * 挂一 1
-     * 左余
-     * 右余
+     * 挂一 + 左余 + 右余
+     *
+     * 只能得到 5 或 9。
      */
+
     const returned =
         1 +
         leftRemainder +
         rightRemainder;
 
-
-    const before =
-        stalks;
-
-    const after =
-        before -
-        returned;
-
-
     /*
      * 安全校验
      */
-    if(
-        !Number.isInteger(after) ||
-        after <= 0 ||
-        after % 4 !== 0
-    ){
+    if(returned !== 5 && returned !== 9){
 
-        throw new Error(
-            `大衍计算异常：本变前${before}策，归奇${returned}策，剩余${after}策。`
+        alert(
+            "本变计算出现异常，请重新起筮。"
         );
 
+        reset();
+
+        return;
     }
 
+    const before = stalks;
 
-    stalks =
-        after;
+    const after =
+        before - returned;
 
+    /*
+     * 三变后的策数必须是
+     *
+     * 24 / 28 / 32 / 36
+     */
+
+    stalks = after;
 
     changeIndex++;
-
-
-    const record = {
-
-        change:
-            changeIndex,
-
-        before,
-
-        left,
-
-        right,
-
-        hanging:1,
-
-        leftRemainder,
-
-        rightRemainder,
-
-        returned,
-
-        after
-
-    };
-
-
-    changeRecords.push(record);
-
 
     piles.innerHTML = `
 
@@ -1990,16 +1854,6 @@ async function performSuan(
             <div class="process-line">
                 <span>本变开始</span>
                 <strong>${before} 蓍</strong>
-            </div>
-
-            <div class="process-line">
-                <span>左束</span>
-                <strong>${left} 蓍</strong>
-            </div>
-
-            <div class="process-line">
-                <span>右束</span>
-                <strong>${right} 蓍</strong>
             </div>
 
             <div class="process-line">
@@ -2031,7 +1885,6 @@ async function performSuan(
 
     `;
 
-
     counts.innerHTML = `
 
         <div class="countbox">
@@ -2056,7 +1909,6 @@ async function performSuan(
 
     `;
 
-
     remainders.innerHTML = `
 
         <div class="r">
@@ -2075,22 +1927,16 @@ async function performSuan(
             归奇 <b>${returned}</b>
         </div>
 
-        <div class="r">
-            余蓍 <b>${after}</b>
-        </div>
-
     `;
 
-
-    await wait(1300);
-
+    await wait(1000);
 
     if(changeIndex < 3){
 
         choice.innerHTML = `
 
             <div class="choice-title">
-                第 ${changeIndex} 变完成，余 ${stalks} 蓍
+                第 ${changeIndex} 变完成
             </div>
 
             <button
@@ -2102,7 +1948,6 @@ async function performSuan(
 
         `;
 
-
         $("nextChange").onclick =
             () => {
 
@@ -2110,14 +1955,10 @@ async function performSuan(
 
             };
 
-
         return;
-
     }
 
-
     finishYao();
-
 }
 
 
@@ -2131,51 +1972,41 @@ async function finishYao(){
         `第 ${yaoIndex+1} 爻 · 三变成爻`;
 
     stageDesc.textContent =
-        "三变已毕，以最终余蓍数除以四，定其爻象。";
+        "三变已毕，以余蓍数除以四，定其爻象。";
 
-
-    const remaining =
-        stalks;
-
-
-    const value =
-        remaining / 4;
-
+    const remaining = stalks;
 
     /*
-     * 大衍筮法正确结果必须是：
+     * 正常三变结果：
      *
-     * 24 / 4 = 6
-     * 28 / 4 = 7
-     * 32 / 4 = 8
-     * 36 / 4 = 9
+     * 24 / 28 / 32 / 36
+     *
+     * ÷4
+     *
+     * 6 / 7 / 8 / 9
      */
+
     if(
-        ![6,7,8,9].includes(value)
+        ![24,28,32,36].includes(remaining)
     ){
 
         alert(
-            "本次大衍演算出现异常：" +
-            "\n三变后余蓍：" +
+            "本次演算出现异常余蓍数：" +
             remaining +
-            "\n最终除四：" +
-            value +
-            "\n请重新起卦。"
+            "，请重新起卦。"
         );
 
         reset();
 
         return;
-
     }
 
+    const value =
+        remaining / 4;
 
     allYao.push(value);
 
-
-    result.style.display =
-        "block";
-
+    result.style.display = "block";
 
     result.innerHTML = `
 
@@ -2194,21 +2025,6 @@ async function finishYao(){
         <div class="process-box">
 
             <div class="process-line">
-                <span>第一变后</span>
-                <strong>${changeRecords[0].after}</strong>
-            </div>
-
-            <div class="process-line">
-                <span>第二变后</span>
-                <strong>${changeRecords[1].after}</strong>
-            </div>
-
-            <div class="process-line">
-                <span>第三变后</span>
-                <strong>${changeRecords[2].after}</strong>
-            </div>
-
-            <div class="process-line">
                 <span>三变后余蓍</span>
                 <strong>${remaining}</strong>
             </div>
@@ -2222,20 +2038,16 @@ async function finishYao(){
 
     `;
 
-
     updateRows();
-
 
     yaoIndex++;
 
-
     bar.style.width =
-        `${yaoIndex/6*100}%`;
-
+        `${yaoIndex / 6 * 100}%`;
 
     if(yaoIndex < 6){
 
-        await wait(1500);
+        await wait(1200);
 
         piles.innerHTML = "";
 
@@ -2245,29 +2057,22 @@ async function finishYao(){
 
         remainders.innerHTML = "";
 
-        result.style.display =
-            "none";
-
+        result.style.display = "none";
 
         stageTitle.textContent =
             `第 ${yaoIndex+1} 爻 · 准备`;
 
         stageDesc.textContent =
-            "上一爻已成，重新取四十九蓍，准备下一爻。";
+            "上一爻已成，准备下一爻。";
 
-
-        await wait(700);
-
+        await wait(600);
 
         startYao();
 
         return;
-
     }
 
-
     finishHexagram();
-
 }
 
 
@@ -2280,13 +2085,8 @@ function finishHexagram(){
     const original =
         allYao.slice();
 
-
-    /*
-     * 老阴6 → 阳7
-     * 老阳9 → 阴8
-     */
     const changed =
-        allYao.map(v=>{
+        allYao.map(v => {
 
             if(v === 6)
                 return 7;
@@ -2298,17 +2098,15 @@ function finishHexagram(){
 
         });
 
-
     const ben =
         hexName(original);
 
     const chg =
         hexName(changed);
 
-
     const moving =
         allYao
-        .map((v,i)=>
+        .map((v,i) =>
             (
                 v === 6 ||
                 v === 9
@@ -2318,13 +2116,11 @@ function finishHexagram(){
         )
         .filter(Boolean);
 
-
     bn.textContent =
         `本卦 · ${ben}`;
 
     cn.textContent =
         `变卦 · ${chg}`;
-
 
     renderHex(
         bh,
@@ -2336,17 +2132,13 @@ function finishHexagram(){
         changed
     );
 
-
     stageTitle.textContent =
         "六爻成象";
 
     stageDesc.textContent =
         "六爻全部完成，本卦、动爻与变卦已经形成。";
 
-
-    bar.style.width =
-        "100%";
-
+    bar.style.width = "100%";
 
     piles.innerHTML = `
 
@@ -2377,17 +2169,13 @@ function finishHexagram(){
 
     `;
 
-
     choice.innerHTML = "";
 
     counts.innerHTML = "";
 
     remainders.innerHTML = "";
 
-
-    result.style.display =
-        "block";
-
+    result.style.display = "block";
 
     result.innerHTML = `
 
@@ -2426,27 +2214,24 @@ function finishHexagram(){
 
     `;
 
-
     begin.disabled = false;
 
     ai.disabled = false;
 
-
     status.textContent =
         "六爻完成，可以进行 GLM-5.2 AI 解读。";
 
-
     /*
      * 先保存卦象。
-     * AI完成后会再次更新历史记录，加入解读。
+     * AI解读完成后会再次更新同一条历史记录。
      */
+
     saveHistory({
 
         question,
 
         time:
-            new Date()
-            .toLocaleString("zh-CN"),
+            new Date().toLocaleString("zh-CN"),
 
         yao:
             original,
@@ -2460,7 +2245,6 @@ function finishHexagram(){
         answer:""
 
     });
-
 }
 
 
@@ -2482,12 +2266,17 @@ function reset(){
 
     allYao = [];
 
-    changeRecords = [];
+    selectedSide = null;
+
+    currentInterpretation = "";
+
+    aiBusy = false;
 
     begin.disabled = false;
 
     ai.disabled = true;
 
+    ai.textContent = "✦ 解读";
 
     stageTitle.textContent =
         "准备大衍之数";
@@ -2495,10 +2284,7 @@ function reset(){
     stageDesc.textContent =
         "天地之数五十，虚一不用。";
 
-
-    bar.style.width =
-        "0%";
-
+    bar.style.width = "0%";
 
     piles.innerHTML = "";
 
@@ -2508,9 +2294,7 @@ function reset(){
 
     remainders.innerHTML = "";
 
-    result.style.display =
-        "none";
-
+    result.style.display = "none";
 
     rows.innerHTML = "";
 
@@ -2526,7 +2310,6 @@ function reset(){
 
     status.textContent =
         "完成六爻后才能进行 AI 解读。";
-
 }
 
 
@@ -2538,15 +2321,15 @@ function getHistory(){
 
     try{
 
-        const value =
+        const data =
             JSON.parse(
                 localStorage.getItem(
                     "wangxing_history"
                 ) || "[]"
             );
 
-        return Array.isArray(value)
-            ? value
+        return Array.isArray(data)
+            ? data
             : [];
 
     }catch(e){
@@ -2554,7 +2337,6 @@ function getHistory(){
         return [];
 
     }
-
 }
 
 
@@ -2563,24 +2345,24 @@ function saveHistory(item){
     let history =
         getHistory();
 
-
     /*
-     * 如果同一个问题 + 同一组六爻已经存在，
-     * 更新它，而不是无限重复新增。
+     * 同一个问题+同一卦象：
+     * 如果已经存在，就更新。
      */
+
     const index =
         history.findIndex(x =>
-            x.time === item.time
+            x.question === item.question &&
+            JSON.stringify(x.yao) ===
+            JSON.stringify(item.yao)
         );
-
 
     if(index >= 0){
 
-        history[index] =
-            {
-                ...history[index],
-                ...item
-            };
+        history[index] = {
+            ...history[index],
+            ...item
+        };
 
     }else{
 
@@ -2588,10 +2370,8 @@ function saveHistory(item){
 
     }
 
-
     history =
         history.slice(0,30);
-
 
     try{
 
@@ -2603,50 +2383,55 @@ function saveHistory(item){
     }catch(e){
 
         console.error(
-            "历史记录保存失败：",
+            "历史记录保存失败",
             e
         );
 
     }
-
 }
 
 
-/*
- * 更新最近一次历史记录的AI解读
- */
-function updateLatestHistoryAnswer(text){
+function updateCurrentHistoryAnswer(text){
 
-    const history =
+    currentInterpretation =
+        text || "";
+
+    let history =
         getHistory();
 
-
-    if(!history.length)
-        return;
-
-
-    history[0].answer =
-        text;
-
-
-    try{
-
-        localStorage.setItem(
-            "wangxing_history",
-            JSON.stringify(
-                history.slice(0,30)
-            )
+    const index =
+        history.findIndex(x =>
+            x.question === question &&
+            JSON.stringify(x.yao) ===
+            JSON.stringify(allYao)
         );
 
-    }catch(e){
+    if(index >= 0){
 
-        console.error(
-            "历史解读保存失败：",
-            e
-        );
+        history[index].answer =
+            currentInterpretation;
+
+        history[index].answerTime =
+            new Date()
+            .toLocaleString("zh-CN");
+
+        try{
+
+            localStorage.setItem(
+                "wangxing_history",
+                JSON.stringify(history)
+            );
+
+        }catch(e){
+
+            console.error(
+                "历史解读保存失败",
+                e
+            );
+
+        }
 
     }
-
 }
 
 
@@ -2663,7 +2448,6 @@ function escapeHtml(s){
                 '"':"&quot;"
             }[c])
         );
-
 }
 
 
@@ -2671,7 +2455,6 @@ function openHistory(){
 
     const history =
         getHistory();
-
 
     if(!history.length){
 
@@ -2731,15 +2514,19 @@ function openHistory(){
                     ${
                         x.answer
                             ? `
-                                <div class="history-answer">
-                                    ${escapeHtml(x.answer)}
-                                </div>
-                              `
+                            <div class="history-answer">
+                                <strong>AI解读：</strong>
+
+                                <br><br>
+
+                                ${escapeHtml(x.answer)}
+                            </div>
+                            `
                             : `
-                                <div class="history-answer">
-                                    尚未进行 AI 解读
-                                </div>
-                              `
+                            <div class="history-meta">
+                                暂无 AI 解读
+                            </div>
+                            `
                     }
 
                 </div>
@@ -2747,20 +2534,17 @@ function openHistory(){
             `)
             .join("");
 
-
         document
         .querySelectorAll(
             ".history-item"
         )
-        .forEach(el=>{
+        .forEach(el => {
 
-            el.onclick = ()=>{
+            el.onclick = () => {
 
                 loadHistory(
                     history[
-                        Number(
-                            el.dataset.i
-                        )
+                        Number(el.dataset.i)
                     ]
                 );
 
@@ -2770,33 +2554,29 @@ function openHistory(){
 
     }
 
-
     historyModal.classList.add("show");
-
 }
 
-
-/* =====================================================
-   载入历史
-===================================================== */
 
 function loadHistory(x){
 
     question =
-        x.question || "";
+        x.question;
 
     q.value =
-        question;
+        x.question;
 
     allYao =
-        (x.yao || []).map(Number);
+        Array.isArray(x.yao)
+            ? x.yao.slice()
+            : [];
 
-    yaoIndex =
-        allYao.length;
+    yaoIndex = 6;
 
+    currentInterpretation =
+        x.answer || "";
 
     updateRows();
-
 
     bn.textContent =
         `本卦 · ${x.ben}`;
@@ -2804,16 +2584,14 @@ function loadHistory(x){
     cn.textContent =
         `变卦 · ${x.chg}`;
 
-
     renderHex(
         bh,
         allYao
     );
 
-
     renderHex(
         ch,
-        allYao.map(v=>{
+        allYao.map(v => {
 
             if(v === 6)
                 return 7;
@@ -2826,41 +2604,27 @@ function loadHistory(x){
         })
     );
 
-
     stageTitle.textContent =
         "历史卦象";
 
     stageDesc.textContent =
-        x.answer
-            ? "已载入历史卦象与 AI 解读。"
-            : "已载入历史卦象，可以进行 GLM-5.2 AI 解读。";
+        "已载入历史记录，可以查看或重新进行 AI 解读。";
 
+    bar.style.width = "100%";
 
-    bar.style.width =
-        "100%";
-
-
-    ai.disabled =
-        allYao.length !== 6;
-
-
-    status.textContent =
-        x.answer
-            ? "历史卦象与 AI 解读已载入。"
-            : "历史卦象已载入。";
-
+    ai.disabled = false;
 
     answer.textContent =
         x.answer || "";
 
-
-    begin.disabled = false;
-
+    status.textContent =
+        x.answer
+            ? "历史卦象及 AI 解读已载入。"
+            : "历史卦象已载入，可以进行 GLM-5.2 AI 解读。";
 
     historyModal.classList.remove(
         "show"
     );
-
 }
 
 
@@ -2878,14 +2642,16 @@ $("historyBtn").onclick =
     openHistory;
 
 $("closeHistory").onclick =
-    ()=>{
+    () => {
+
         historyModal.classList.remove(
             "show"
         );
+
     };
 
 historyModal.onclick =
-    e=>{
+    e => {
 
         if(e.target === historyModal){
 
@@ -2903,7 +2669,7 @@ historyModal.onclick =
 ===================================================== */
 
 $("settingsBtn").onclick =
-    ()=>{
+    () => {
 
         keyBox.style.display =
             keyBox.style.display === "block"
@@ -2914,7 +2680,7 @@ $("settingsBtn").onclick =
 
 
 $("keyButton").onclick =
-    ()=>{
+    () => {
 
         keyBox.style.display =
             keyBox.style.display === "block"
@@ -2925,11 +2691,10 @@ $("keyButton").onclick =
 
 
 $("saveKey").onclick =
-    ()=>{
+    () => {
 
         const value =
             key.value.trim();
-
 
         if(!value){
 
@@ -2938,30 +2703,25 @@ $("saveKey").onclick =
             );
 
             return;
-
         }
-
 
         localStorage.setItem(
             "wangxing_glm_key",
             value
         );
 
-
         key.value = "";
 
         keyStatus.textContent =
             "已设置";
 
-
         keyBox.style.display =
             "none";
-
     };
 
 
 $("clearKey").onclick =
-    ()=>{
+    () => {
 
         localStorage.removeItem(
             "wangxing_glm_key"
@@ -2969,7 +2729,6 @@ $("clearKey").onclick =
 
         keyStatus.textContent =
             "未设置";
-
     };
 
 
@@ -2982,413 +2741,309 @@ keyStatus.textContent =
 
 
 /* =====================================================
-   API 错误分类
+   GLM API 请求配置
 ===================================================== */
 
-function classifyApiError(
-    statusCode,
-    message
-){
+const API_URL =
+    "https://open.bigmodel.cn/api/paas/v4/chat/completions";
 
-    const text =
-        String(message || "");
+const AI_TIMEOUT =
+    45000;
 
-
-    if(
-        statusCode === 401 ||
-        /invalid.*api.?key/i.test(text) ||
-        /api.?key.*invalid/i.test(text) ||
-        /unauthorized/i.test(text) ||
-        /authentication/i.test(text)
-    ){
-
-        return {
-            type:"key",
-            retry:false,
-            message:
-                "智谱 API Key 无效或认证失败，请重新检查 API Key。"
-        };
-
-    }
+const MAX_RETRIES =
+    3;
 
 
-    if(
-        statusCode === 403 ||
-        /permission/i.test(text) ||
-        /forbidden/i.test(text)
-    ){
+/* =====================================================
+   sleep
+===================================================== */
 
-        return {
-            type:"permission",
-            retry:false,
-            message:
-                "智谱 API Key 没有调用该模型的权限，请检查账户权限及模型权限。"
-        };
+function sleep(ms){
 
-    }
-
-
-    if(
-        statusCode === 429 ||
-        /rate.?limit/i.test(text) ||
-        /too many/i.test(text)
-    ){
-
-        return {
-            type:"rate",
-            retry:true,
-            message:
-                "请求过于频繁，正在自动重试。"
-        };
-
-    }
-
-
-    if(
-        /insufficient/i.test(text) ||
-        /balance/i.test(text) ||
-        /余额/i.test(text) ||
-        /quota/i.test(text) ||
-        /额度/i.test(text)
-    ){
-
-        return {
-            type:"quota",
-            retry:false,
-            message:
-                "智谱 API 余额或调用额度不足，请检查账户余额和模型额度。"
-        };
-
-    }
-
-
-    if(
-        statusCode === 404 ||
-        (
-            /model/i.test(text) &&
-            (
-                /not found/i.test(text) ||
-                /不存在/.test(text)
-            )
-        )
-    ){
-
-        return {
-            type:"model",
-            retry:false,
-            message:
-                "GLM-5.2 模型不可用，请检查智谱账户是否支持该模型。"
-        };
-
-    }
-
-
-    if(
-        statusCode >= 500 &&
-        statusCode <= 599
-    ){
-
-        return {
-            type:"server",
-            retry:true,
-            message:
-                "智谱服务器暂时异常，正在自动重试。"
-        };
-
-    }
-
-
-    return {
-        type:"unknown",
-        retry:false,
-        message:
-            "智谱 API 请求失败：" +
-            (
-                text ||
-                `HTTP ${statusCode || "未知"}`
-            )
-    };
-
+    return new Promise(
+        resolve =>
+            setTimeout(resolve,ms)
+    );
 }
 
 
 /* =====================================================
-   单次 API 请求
+   判断是否应该重试
+===================================================== */
+
+function shouldRetryStatus(status){
+
+    return (
+        status === 408 ||
+        status === 409 ||
+        status === 425 ||
+        status === 429 ||
+        status >= 500
+    );
+}
+
+
+/* =====================================================
+   单次 GLM 请求
 ===================================================== */
 
 async function requestGLMOnce(
     apiKey,
-    prompt,
-    signal
+    messages,
+    attempt
 ){
 
-    const response =
-        await fetch(
-            "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-            {
+    const controller =
+        new AbortController();
 
-                method:"POST",
+    /*
+     * 每一次重试都有自己的 AbortController。
+     *
+     * 不共享。
+     *
+     * 这是多个网页并行请求时非常重要的。
+     */
 
-                headers:{
-
-                    "Content-Type":
-                        "application/json",
-
-                    "Authorization":
-                        "Bearer " +
-                        apiKey
-
-                },
-
-                body:
-                    JSON.stringify({
-
-                        model:
-                            "glm-5.2",
-
-                        messages:[
-
-                            {
-
-                                role:"system",
-
-                                content:
-                                    "你是专业的传统大衍筮法与六爻解卦助手。严格围绕用户问题回答，优先给出明确预测结论，不主动提供泛泛人生建议。"
-
-                            },
-
-                            {
-
-                                role:"user",
-
-                                content:
-                                    prompt
-
-                            }
-
-                        ],
-
-                        temperature:.3,
-
-                        max_tokens:3000,
-
-                        stream:false
-
-                    }),
-
-                signal
-
-            }
-
+    const timeoutId =
+        setTimeout(
+            () => {
+                controller.abort();
+            },
+            AI_TIMEOUT
         );
-
-
-    const raw =
-        await response.text();
-
-
-    let data = null;
-
 
     try{
 
-        data =
-            raw
-                ? JSON.parse(raw)
-                : null;
+        const response =
+            await fetch(
+                API_URL,
+                {
 
-    }catch(e){
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " + apiKey,
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            model:"glm-5.2",
+
+                            messages,
+
+                            temperature:.3,
+
+                            max_tokens:3000,
+
+                            stream:false
+
+                        }),
+
+                    signal:
+                        controller.signal
+                }
+            );
+
+        const raw =
+            await response.text();
+
+        let data = null;
+
+        try{
+
+            data =
+                raw
+                    ? JSON.parse(raw)
+                    : null;
+
+        }catch(e){
+
+            if(response.ok){
+
+                throw new Error(
+                    "服务器返回的数据无法解析。"
+                );
+
+            }
+
+            data = null;
+        }
+
 
         if(!response.ok){
 
-            throw new Error(
-                `HTTP ${response.status}：${raw.slice(0,300)}`
-            );
+            const msg =
+                data?.error?.message ||
+                data?.error?.msg ||
+                data?.message ||
+                raw ||
+                `HTTP ${response.status}`;
 
+
+            const error =
+                new Error(
+                    String(msg)
+                );
+
+            error.httpStatus =
+                response.status;
+
+            error.retryable =
+                shouldRetryStatus(
+                    response.status
+                );
+
+            throw error;
         }
 
-        throw new Error(
-            "GLM 返回的数据格式异常。"
-        );
+
+        const text =
+            data?.choices?.[0]
+                ?.message
+                ?.content;
+
+
+        if(!text){
+
+            const error =
+                new Error(
+                    "GLM 没有返回有效解读内容。"
+                );
+
+            error.retryable = true;
+
+            throw error;
+        }
+
+
+        return text;
+
+    }catch(e){
+
+        if(
+            e.name === "AbortError"
+        ){
+
+            const error =
+                new Error(
+                    `第 ${attempt} 次请求超过 ${AI_TIMEOUT/1000} 秒。`
+                );
+
+            error.timeout = true;
+
+            error.retryable = true;
+
+            throw error;
+        }
+
+
+        if(
+            e instanceof TypeError
+        ){
+
+            const error =
+                new Error(
+                    "网络连接失败或浏览器拦截了 API 请求。"
+                );
+
+            error.network = true;
+
+            error.retryable = true;
+
+            throw error;
+        }
+
+
+        throw e;
+
+    }finally{
+
+        clearTimeout(timeoutId);
 
     }
-
-
-    if(!response.ok){
-
-        const msg =
-            data?.error?.message ||
-            data?.error?.msg ||
-            data?.message ||
-            raw ||
-            `HTTP ${response.status}`;
-
-
-        const info =
-            classifyApiError(
-                response.status,
-                msg
-            );
-
-
-        const error =
-            new Error(info.message);
-
-        error.retry =
-            info.retry;
-
-        error.type =
-            info.type;
-
-        error.status =
-            response.status;
-
-        throw error;
-
-    }
-
-
-    const text =
-        data?.choices?.[0]
-            ?.message
-            ?.content;
-
-
-    if(!text){
-
-        const error =
-            new Error(
-                "GLM-5.2 没有返回解读内容。"
-            );
-
-        error.retry = true;
-
-        throw error;
-
-    }
-
-
-    return text;
-
 }
 
 
 /* =====================================================
-   GLM 稳定重试
+   GLM 稳定请求
 ===================================================== */
 
-async function requestGLMWithRetry(
+async function requestGLM(
     apiKey,
-    prompt
+    messages
 ){
-
-    /*
-     * 最多4次。
-     *
-     * 1
-     * 2
-     * 4
-     * 8
-     *
-     * 这样网络偶发失败不会立即显示 Failed to fetch。
-     */
-    const maxAttempts = 4;
 
     let lastError = null;
 
-
     for(
         let attempt = 1;
-        attempt <= maxAttempts;
+        attempt <= MAX_RETRIES;
         attempt++
     ){
 
-        const controller =
-            new AbortController();
-
-
-        /*
-         * 每一次单独30秒。
-         */
-        const timer =
-            setTimeout(
-                ()=>{
-                    controller.abort();
-                },
-                30000
-            );
-
-
         try{
 
-            if(attempt > 1){
-
-                status.textContent =
-                    `第 ${attempt}/${maxAttempts} 次尝试连接 GLM-5.2……`;
-
-                answer.textContent =
-                    `首次请求未成功，正在进行第 ${attempt} 次重试……`;
-
-            }
-
+            status.textContent =
+                attempt === 1
+                    ? "正在连接 GLM-5.2……"
+                    : `第 ${attempt} 次重试 GLM-5.2……`;
 
             const text =
                 await requestGLMOnce(
                     apiKey,
-                    prompt,
-                    controller.signal
+                    messages,
+                    attempt
                 );
-
 
             return text;
 
-        }catch(e){
+        }catch(error){
 
-            lastError = e;
+            lastError =
+                error;
 
-
-            if(
-                e.name === "AbortError"
-            ){
-
-                lastError =
-                    new Error(
-                        "请求超过30秒，网络响应超时。"
-                    );
-
-                lastError.retry = true;
-
-            }
+            console.warn(
+                `GLM请求第${attempt}次失败`,
+                error
+            );
 
 
             /*
-             * 明确不可重试错误：
-             *
-             * Key
-             * 权限
-             * 余额
-             * 模型
-             *
-             * 直接结束。
+             * Key、权限、余额等确定性错误
+             * 不应该重试。
              */
+
             if(
-                lastError.retry === false
+                error.httpStatus === 400 ||
+                error.httpStatus === 401 ||
+                error.httpStatus === 403
             ){
 
-                throw lastError;
-
+                throw error;
             }
 
 
-            /*
-             * 已经最后一次。
-             */
             if(
-                attempt >= maxAttempts
+                !error.retryable
             ){
 
-                throw lastError;
+                throw error;
+            }
 
+
+            if(
+                attempt >= MAX_RETRIES
+            ){
+
+                break;
             }
 
 
@@ -3398,7 +3053,10 @@ async function requestGLMWithRetry(
              * 1.5秒
              * 3秒
              * 6秒
+             *
+             * 不会三个网页同时无限猛冲。
              */
+
             const delay =
                 1500 *
                 Math.pow(
@@ -3410,36 +3068,177 @@ async function requestGLMWithRetry(
             status.textContent =
                 `请求暂时失败，${Math.round(delay/1000)} 秒后自动重试……`;
 
-
-            await wait(delay);
-
-        }finally{
-
-            clearTimeout(timer);
-
+            await sleep(delay);
         }
-
     }
 
-
-    throw (
-        lastError ||
+    throw lastError ||
         new Error(
-            "GLM 请求失败。"
-        )
-    );
-
+            "GLM API 请求失败。"
+        );
 }
 
 
 /* =====================================================
-   构造 AI Prompt
+   GLM 错误转换
 ===================================================== */
 
-function buildPrompt(){
+function formatAIError(error){
+
+    const msg =
+        String(
+            error?.message || ""
+        );
+
+    const statusCode =
+        error?.httpStatus;
+
+
+    if(
+        statusCode === 401 ||
+        /invalid.*api.?key/i.test(msg) ||
+        /api.?key.*invalid/i.test(msg) ||
+        /unauthorized/i.test(msg) ||
+        /authentication/i.test(msg)
+    ){
+
+        return (
+            "API Key 无效或认证失败。\n\n" +
+            "请点击右侧“设置”，重新检查你的智谱 API Key。"
+        );
+    }
+
+
+    if(
+        statusCode === 403 ||
+        /permission/i.test(msg) ||
+        /forbidden/i.test(msg)
+    ){
+
+        return (
+            "API Key 没有调用该模型的权限。\n\n" +
+            "请检查智谱开放平台中的模型权限。"
+        );
+    }
+
+
+    if(
+        statusCode === 429 ||
+        /rate.?limit/i.test(msg) ||
+        /too many/i.test(msg) ||
+        /quota/i.test(msg)
+    ){
+
+        return (
+            "GLM API 当前请求过于频繁或额度不足。\n\n" +
+            "系统已经自动重试，但本次仍未成功。\n" +
+            "请稍后再次点击“解读”。"
+        );
+    }
+
+
+    if(
+        /balance/i.test(msg) ||
+        /insufficient/i.test(msg) ||
+        /余额/i.test(msg) ||
+        /额度不足/i.test(msg)
+    ){
+
+        return (
+            "智谱 API 余额或调用额度不足。\n\n" +
+            "请检查智谱开放平台账户余额及模型调用额度。"
+        );
+    }
+
+
+    if(error.timeout){
+
+        return (
+            "解读请求超时。\n\n" +
+            "系统已经自动进行了多次重试，但当前网络/API响应仍然没有完成。\n" +
+            "请稍后再次点击“解读”。"
+        );
+    }
+
+
+    if(error.network){
+
+        return (
+            "网络连接失败。\n\n" +
+            "可能原因：\n" +
+            "1. 当前网络不稳定\n" +
+            "2. 浏览器无法连接智谱 API\n" +
+            "3. API 服务暂时不可用\n\n" +
+            "系统已经自动重试，请稍后再试。"
+        );
+    }
+
+
+    if(
+        statusCode >= 500
+    ){
+
+        return (
+            "智谱 API 服务器暂时异常。\n\n" +
+            "系统已经自动重试，但本次仍未成功。\n" +
+            "请稍后再次点击“解读”。"
+        );
+    }
+
+
+    return (
+        "GLM API 请求失败。\n\n" +
+        msg
+    );
+}
+
+
+/* =====================================================
+   GLM 解读
+===================================================== */
+
+async function requestAI(){
+
+    if(aiBusy)
+        return;
+
+    const apiKey =
+        localStorage.getItem(
+            "wangxing_glm_key"
+        );
+
+    if(!apiKey){
+
+        keyBox.style.display =
+            "block";
+
+        answer.textContent =
+            "请先设置智谱 GLM-5.2 API Key。";
+
+        return;
+    }
+
+
+    if(allYao.length !== 6){
+
+        answer.textContent =
+            "请先完成六爻起卦。";
+
+        return;
+    }
+
+
+    if(!question){
+
+        answer.textContent =
+            "当前没有有效的占卜问题。";
+
+        return;
+    }
+
 
     const changed =
-        allYao.map(v=>{
+        allYao.map(v => {
 
             if(v === 6)
                 return 7;
@@ -3461,7 +3260,7 @@ function buildPrompt(){
 
     const moving =
         allYao
-        .map((v,i)=>
+        .map((v,i) =>
             (
                 v === 6 ||
                 v === 9
@@ -3472,7 +3271,7 @@ function buildPrompt(){
         .filter(Boolean);
 
 
-    return `
+    const prompt = `
 
 用户问题：
 
@@ -3494,11 +3293,6 @@ ${chg}
 ${allYao.join("、")}
 
 
-六爻状态：
-
-${allYao.map(yaoState).join("；")}
-
-
 动爻：
 
 ${
@@ -3508,130 +3302,54 @@ ${
 }
 
 
-请严格围绕用户提出的问题进行六爻 / 大衍筮法解读。
+请严格围绕用户提出的问题进行六爻/大衍筮法解读。
 
-【最重要要求】
+要求：
 
-第一，直接回答用户的问题。
+1. 第一部分直接回答用户的问题。
 
-如果用户问：
-“会不会发生”
-“能不能”
-“有没有”
-“是否存在”
-“什么时候”
-“能否获得”
-“会不会成功”
+2. 必须明确给出结果倾向：
+   有利 / 不利 / 有条件成立 / 难以成立。
 
-必须直接针对这个问题给出判断。
+3. 结合本卦解释问题当前状态。
 
-不要先讲一大堆六爻基础知识。
+4. 有动爻时重点分析动爻，并说明其对问题的具体影响。
 
+5. 结合变卦判断最终趋势。
 
-【结论】
+6. 如果卦象能够支持时间趋势，可以说明大致时间范围。
 
-开头直接给出：
+7. 只围绕用户实际提出的问题。
 
-结果偏向：
-有利 / 不利 / 有条件成立 / 难以成立 / 不足以判断
+8. 不要泛泛给人生建议。
 
-然后用一句话明确回答用户的问题。
+9. 不要主动扩展用户没有询问的问题。
 
+10. 不要把占卜结果描述成百分之百确定的现实事实。
 
-【卦象】
+11. 如果用户问的是“是否会发生”“能不能”“什么时候”“有没有”“是否存在”等问题，必须直接回答这个问题。
 
-结合本卦说明目前局势。
+12. 不要使用“建议你”“你可以考虑”“建议保持”等方式代替预测结论。
 
-【动爻】
+13. 解读重点必须放在卦象对用户问题的指向。
 
-如果有动爻，重点分析动爻对用户问题的影响。
+14. 如果卦象无法支持精确判断，应明确说明“不足以判断”，但仍然给出最主要趋势。
 
-如果没有动爻，说明静卦对该问题的指向。
+15. 不要因为无法确定就只输出模糊话术。
 
+16. 结论必须放在最前面。
 
-【变卦】
+17. 不要讨论你自己作为AI的身份。
 
-结合变卦判断最终趋势。
+18. 不要要求用户重新占卜。
 
-
-【时间】
-
-只有在卦象确实能够支持时间趋势时才判断大致时间范围。
-
-不要为了完整而强行编造日期。
-
-
-【严格限制】
-
-1. 只回答用户实际提出的问题。
-
-2. 不要泛泛扩展到事业、感情、健康、财运等用户没有询问的领域。
-
-3. 不要主动给人生建议。
-
-4. 不要用“建议你”“你可以考虑”“保持耐心”等建议替代预测。
-
-5. 不要把占卜结果描述为百分之百确定的现实事实。
-
-6. 如果卦象证据不足以精确判断，要明确说“不足以判断”，但仍然给出最主要趋势。
-
-7. 不要回避问题。
-
-8. 不要只解释卦名而不回答用户问题。
-
-9. 用户如果询问的是未来事件，重点必须放在“是否发生、趋势如何、结果如何、时间如何”。
-
-10. 结论必须优先于解释。
-
+请使用清晰的中文回答。
 `;
 
-}
 
+    aiBusy = true;
 
-/* =====================================================
-   AI 解读
-===================================================== */
-
-async function requestAI(){
-
-    const apiKey =
-        localStorage.getItem(
-            "wangxing_glm_key"
-        );
-
-
-    if(!apiKey){
-
-        keyBox.style.display =
-            "block";
-
-        answer.textContent =
-            "请先设置智谱 GLM-5.2 API Key。";
-
-        status.textContent =
-            "尚未设置 API Key。";
-
-        return;
-
-    }
-
-
-    if(allYao.length !== 6){
-
-        answer.textContent =
-            "请先完成六爻起卦。";
-
-        return;
-
-    }
-
-
-    const prompt =
-        buildPrompt();
-
-
-    ai.disabled =
-        true;
+    ai.disabled = true;
 
     ai.textContent =
         "正在解读……";
@@ -3639,70 +3357,76 @@ async function requestAI(){
     answer.textContent =
         "正在连接 GLM-5.2……";
 
-    status.textContent =
-        "正在连接 GLM-5.2……";
+
+    const messages = [
+
+        {
+
+            role:"system",
+
+            content:
+                "你是专业的传统大衍筮法与六爻解卦助手。严格围绕用户问题回答，优先给出明确预测结论，不主动给泛泛人生建议。"
+
+        },
+
+        {
+
+            role:"user",
+
+            content:prompt
+
+        }
+
+    ];
 
 
     try{
 
         const text =
-            await requestGLMWithRetry(
+            await requestGLM(
                 apiKey,
-                prompt
+                messages
             );
 
 
-        answer.textContent =
+        currentInterpretation =
             text;
 
+        answer.textContent =
+            text;
 
         status.textContent =
             "GLM-5.2 AI 解读完成。";
 
 
         /*
-         * 保存 AI 解读。
+         * 保存完整解读
          */
-        updateLatestHistoryAnswer(
+
+        updateCurrentHistoryAnswer(
             text
         );
 
 
-    }catch(e){
+    }catch(error){
 
-        console.error(
-            "GLM API Error:",
-            e
-        );
+        const errorText =
+            formatAIError(
+                error
+            );
 
-
-        if(
-            e.name === "AbortError"
-        ){
-
-            answer.textContent =
-                "解读失败：请求超时，已经自动重试多次，请检查网络后再次点击“解读”。";
-
-        }else{
-
-            answer.textContent =
-                "解读失败：" +
-                (
-                    e.message ||
-                    "未知错误"
-                );
-
-        }
-
+        answer.textContent =
+            "解读失败：\n\n" +
+            errorText;
 
         status.textContent =
-            "GLM-5.2 AI 解读失败，可重新点击“解读”。";
-
+            "GLM-5.2 AI 解读失败。";
 
     }finally{
 
-        ai.disabled =
-            false;
+        aiBusy = false;
+
+        ai.disabled = false;
 
         ai.textContent =
             "✦ 解读";
@@ -3739,7 +3463,6 @@ function resize(){
         innerHeight *
         devicePixelRatio;
 
-
     ctx.setTransform(
         devicePixelRatio,
         0,
@@ -3748,7 +3471,6 @@ function resize(){
         0,
         0
     );
-
 
     ss =
         Array.from(
@@ -3760,7 +3482,7 @@ function resize(){
                         9000
                     )
             },
-            ()=>({
+            () => ({
 
                 x:
                     Math.random() *
@@ -3782,7 +3504,6 @@ function resize(){
 
             })
         );
-
 }
 
 
@@ -3795,8 +3516,7 @@ function draw(){
         innerHeight
     );
 
-
-    ss.forEach(s=>{
+    ss.forEach(s => {
 
         ctx.beginPath();
 
@@ -3805,9 +3525,8 @@ function draw(){
             s.y,
             s.r,
             0,
-            Math.PI*2
+            Math.PI * 2
         );
-
 
         ctx.fillStyle =
             `rgba(
@@ -3817,16 +3536,13 @@ function draw(){
                 ${s.a}
             )`;
 
-
         ctx.fill();
 
     });
 
-
     requestAnimationFrame(
         draw
     );
-
 }
 
 
@@ -3838,37 +3554,6 @@ addEventListener(
 resize();
 
 draw();
-
-
-/* =====================================================
-   全局异常保护
-=====================================================
-
-   如果某个异步过程出现异常，
-   不让整个页面直接白屏。
-===================================================== */
-
-window.addEventListener(
-    "unhandledrejection",
-    event => {
-
-        console.error(
-            "Unhandled Promise:",
-            event.reason
-        );
-
-        if(
-            answer &&
-            !answer.textContent
-        ){
-
-            answer.textContent =
-                "操作过程中出现异常，请点击“重新起卦”后重试。";
-
-        }
-
-    }
-);
 
 </script>
 
