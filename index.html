@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>WANGXING · 大衍筮法</title>
 
@@ -25,7 +20,7 @@ html,
 body{
     margin:0;
     min-height:100%;
-    background:#01090c;
+    background:#01080d;
     color:#d9ffff;
     font-family:
         "PingFang SC",
@@ -39,14 +34,23 @@ body{
 
 
 /* =====================================================
-   动态星河背景
+   动态蓝绿色星河背景
 ===================================================== */
 
 #stars{
     position:fixed;
     inset:0;
     z-index:0;
-    background:#01090c;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(
+            ellipse at 50% 50%,
+            #06363b 0%,
+            #021b22 32%,
+            #010c12 65%,
+            #000609 100%
+        );
 }
 
 .space{
@@ -59,52 +63,177 @@ body{
 
 .nebula{
     position:absolute;
-    inset:-20%;
+    width:140%;
+    height:140%;
+    left:-20%;
+    top:-20%;
 
     background:
 
         radial-gradient(
-            ellipse at 50% 10%,
-            rgba(50,255,236,.38),
-            transparent 24%
+            ellipse 55% 18% at 50% 48%,
+            rgba(50,255,235,.32),
+            rgba(17,190,190,.18) 28%,
+            transparent 70%
         ),
 
         radial-gradient(
-            ellipse at 15% 35%,
-            rgba(0,180,220,.24),
-            transparent 27%
+            ellipse 30% 42% at 12% 38%,
+            rgba(0,220,255,.23),
+            transparent 70%
         ),
 
         radial-gradient(
-            ellipse at 85% 45%,
-            rgba(25,240,215,.20),
-            transparent 25%
+            ellipse 32% 45% at 88% 55%,
+            rgba(0,255,210,.20),
+            transparent 70%
         ),
 
         radial-gradient(
-            ellipse at 45% 80%,
-            rgba(0,120,180,.20),
-            transparent 30%
+            ellipse 42% 28% at 50% 0%,
+            rgba(30,255,230,.20),
+            transparent 75%
+        ),
+
+        radial-gradient(
+            ellipse 55% 35% at 45% 100%,
+            rgba(0,110,190,.20),
+            transparent 75%
         );
 
-    filter:blur(20px);
+    filter:blur(35px);
+
+    transform:rotate(-8deg);
 
     animation:
-        drift 20s ease-in-out infinite alternate;
+        galaxyMove 24s ease-in-out infinite alternate;
 }
 
-@keyframes drift{
+.space::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
 
-    from{
-        transform:scale(1);
-    }
+    background:
+        repeating-linear-gradient(
+            108deg,
+            transparent 0px,
+            transparent 80px,
+            rgba(65,255,240,.025) 120px,
+            rgba(65,255,240,.06) 150px,
+            transparent 210px
+        );
 
-    to{
+    filter:blur(18px);
+
+    transform:
+        rotate(-7deg)
+        scale(1.2);
+
+    animation:
+        galaxyFlow 35s linear infinite;
+}
+
+.space::after{
+    content:"";
+    position:absolute;
+
+    width:150%;
+    height:30%;
+
+    left:-25%;
+    top:35%;
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent 0%,
+            rgba(0,255,235,.02) 18%,
+            rgba(30,255,235,.13) 35%,
+            rgba(100,255,240,.25) 50%,
+            rgba(0,220,220,.12) 65%,
+            rgba(0,180,220,.03) 82%,
+            transparent 100%
+        );
+
+    filter:blur(35px);
+
+    transform:rotate(-12deg);
+
+    opacity:.8;
+
+    animation:
+        milkyway 18s ease-in-out infinite alternate;
+}
+
+@keyframes galaxyMove{
+
+    0%{
         transform:
-            scale(1.08)
-            translate(2%,-1%);
+            rotate(-8deg)
+            translate3d(-2%,-1%,0)
+            scale(1);
     }
 
+    50%{
+        transform:
+            rotate(-6deg)
+            translate3d(2%,2%,0)
+            scale(1.05);
+    }
+
+    100%{
+        transform:
+            rotate(-10deg)
+            translate3d(-1%,3%,0)
+            scale(1.1);
+    }
+}
+
+@keyframes galaxyFlow{
+
+    0%{
+        transform:
+            rotate(-7deg)
+            translateX(-5%);
+    }
+
+    50%{
+        transform:
+            rotate(-7deg)
+            translateX(5%);
+    }
+
+    100%{
+        transform:
+            rotate(-7deg)
+            translateX(-5%);
+    }
+}
+
+@keyframes milkyway{
+
+    0%{
+        transform:
+            rotate(-12deg)
+            translateX(-4%)
+            scaleY(.85);
+
+        opacity:.45;
+    }
+
+    50%{
+        opacity:.9;
+    }
+
+    100%{
+        transform:
+            rotate(-10deg)
+            translateX(5%)
+            scaleY(1.1);
+
+        opacity:.65;
+    }
 }
 
 
@@ -113,18 +242,11 @@ body{
 ===================================================== */
 
 .container{
-
     position:relative;
     z-index:2;
-
     max-width:1450px;
-
     margin:auto;
-
-    padding:
-        34px
-        42px
-        50px;
+    padding:34px 42px 50px;
 }
 
 
@@ -133,13 +255,9 @@ body{
 ===================================================== */
 
 header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:flex-start;
-
     margin-bottom:24px;
 }
 
@@ -148,7 +266,6 @@ header{
 }
 
 .en{
-
     font:
         32px
         Georgia,
@@ -158,47 +275,37 @@ header{
 }
 
 .cn{
-
     font-size:29px;
-
     margin-top:5px;
 }
 
 .sub{
-
     margin-top:8px;
-
     font-size:12px;
-
     color:#689497;
 }
 
 .nav{
-
     display:flex;
-
     gap:28px;
-
     color:#78a7aa;
-
     font-size:12px;
 }
 
 .nav div{
-
     text-align:center;
-
     cursor:pointer;
+    transition:.25s;
+}
+
+.nav div:hover{
+    color:#c9ffff;
 }
 
 .nav b{
-
     display:block;
-
     font-size:20px;
-
     font-weight:400;
-
     margin-bottom:4px;
 }
 
@@ -208,18 +315,12 @@ header{
 ===================================================== */
 
 .grid{
-
     display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
+    grid-template-columns:1fr 1fr;
     gap:18px;
 }
 
 .panel{
-
     background:
         linear-gradient(
             145deg,
@@ -234,12 +335,8 @@ header{
     border-radius:18px;
 
     box-shadow:
-
-        0 0 35px
-        rgba(23,203,202,.07),
-
-        inset 0 0 30px
-        rgba(67,240,233,.025);
+        0 0 35px rgba(23,203,202,.07),
+        inset 0 0 30px rgba(67,240,233,.025);
 
     backdrop-filter:blur(10px);
 }
@@ -249,19 +346,11 @@ header{
 }
 
 h2{
-
     font-size:19px;
-
     font-weight:500;
-
     color:#aaf2ef;
-
     letter-spacing:.08em;
-
-    margin:
-        0
-        0
-        17px;
+    margin:0 0 17px;
 }
 
 
@@ -270,13 +359,9 @@ h2{
 ===================================================== */
 
 textarea{
-
     width:100%;
-
     height:108px;
-
     resize:none;
-
     outline:none;
 
     background:
@@ -297,10 +382,11 @@ textarea{
         "PingFang SC",
         "Microsoft YaHei",
         sans-serif;
+
+    transition:.25s;
 }
 
 textarea:focus{
-
     border-color:#5be9e3;
 
     box-shadow:
@@ -314,18 +400,13 @@ textarea:focus{
 ===================================================== */
 
 .actions{
-
     display:flex;
-
     gap:12px;
-
     margin-top:16px;
-
     flex-wrap:wrap;
 }
 
 .btn{
-
     border:
         1px solid
         #48d6d2;
@@ -352,31 +433,37 @@ textarea:focus{
     box-shadow:
         0 0 18px
         rgba(54,217,212,.14);
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        opacity .2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 0 25px
+        rgba(54,217,212,.25);
 }
 
 .btn.alt{
-
-    background:transparent;
-
+    background:rgba(2,26,31,.55);
     color:#91babc;
-
     border-color:#286d72;
 }
 
 .btn:disabled{
-
     opacity:.4;
-
     cursor:not-allowed;
+    transform:none;
 }
 
 .hint,
 .status{
-
     font-size:12px;
-
     color:#638d90;
-
     line-height:1.8;
 }
 
@@ -386,70 +473,44 @@ textarea:focus{
 ===================================================== */
 
 .stage{
-
     min-height:600px;
-
     margin-top:18px;
-
-    padding:
-        25px
-        22px;
+    padding:25px 22px;
 }
 
 .stage-title{
-
     text-align:center;
-
     color:#b2f5f1;
-
     font-size:19px;
-
     letter-spacing:.08em;
 }
 
 .stage-desc{
-
     text-align:center;
-
     color:#658f92;
-
     font-size:12px;
-
     line-height:1.8;
-
     min-height:43px;
-
     margin-top:7px;
 }
 
 
 /* =====================================================
-   进度条
+   进度
 ===================================================== */
 
 .progress{
-
     height:5px;
-
     background:#08262a;
-
     border-radius:10px;
-
     overflow:hidden;
-
-    margin:
-        15px
-        0;
+    margin:15px 0;
 }
 
 .progress i{
-
     display:block;
-
     width:0;
-
     height:100%;
-
     background:#55dfda;
 
     box-shadow:
@@ -465,39 +526,25 @@ textarea:focus{
 ===================================================== */
 
 .pile-area{
-
     min-height:260px;
-
-    margin:
-        12px
-        0;
+    margin:12px 0;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 }
 
 .ritual{
-
     text-align:center;
-
     color:#c2ffff;
-
     font-size:16px;
-
     letter-spacing:.08em;
 }
 
 .ritual-sub{
-
     margin-top:8px;
-
     color:#638f92;
-
     font-size:11px;
-
     letter-spacing:.03em;
 }
 
@@ -507,14 +554,9 @@ textarea:focus{
 ===================================================== */
 
 .single-stalk{
-
     width:5px;
-
     height:80px;
-
-    margin:
-        20px
-        auto;
+    margin:20px auto;
 
     border-radius:5px;
 
@@ -536,23 +578,18 @@ textarea:focus{
 @keyframes hang{
 
     from{
-
         opacity:0;
-
         transform:
             translateY(-40px)
             rotate(-20deg);
     }
 
     to{
-
         opacity:1;
-
         transform:
             translateY(0)
             rotate(0);
     }
-
 }
 
 
@@ -561,13 +598,7 @@ textarea:focus{
 ===================================================== */
 
 .combined-pile{
-
-    width:
-        min(
-            620px,
-            95%
-        );
-
+    width:min(620px,95%);
     min-height:250px;
 
     border:
@@ -579,15 +610,11 @@ textarea:focus{
     padding:22px;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
 
     background:
-
         radial-gradient(
             ellipse,
             rgba(14,103,108,.25),
@@ -605,24 +632,18 @@ textarea:focus{
 }
 
 .combined-pile:hover{
+    transform:translateY(-3px);
 
-    transform:
-        translateY(-3px);
-
-    border-color:
-        #51dcd7;
+    border-color:#51dcd7;
 
     box-shadow:
-        0 0 25px
-        rgba(69,222,216,.14);
+        0 0 30px
+        rgba(69,222,216,.18);
 }
 
 .combined-title{
-
     color:#9dd6d7;
-
     font-size:14px;
-
     margin-bottom:15px;
 }
 
@@ -632,29 +653,21 @@ textarea:focus{
 ===================================================== */
 
 .stalk-visual{
-
     width:100%;
-
     max-width:520px;
-
     min-height:100px;
 
     display:flex;
-
     flex-wrap:wrap;
-
     justify-content:center;
-
     align-content:center;
 
     gap:3px;
-
     padding:12px;
 
     border-radius:12px;
 
     background:
-
         radial-gradient(
             ellipse,
             rgba(37,139,143,.17),
@@ -663,17 +676,13 @@ textarea:focus{
 }
 
 .stalk{
-
     width:3px;
-
     height:31px;
-
     display:block;
 
     border-radius:3px;
 
     background:
-
         linear-gradient(
             180deg,
             #dcffff,
@@ -693,19 +702,15 @@ textarea:focus{
 @keyframes stalkAppear{
 
     from{
-
         opacity:0;
-
         transform:
             translateY(-10px)
             rotate(0deg);
     }
 
     to{
-
         opacity:.82;
     }
-
 }
 
 
@@ -714,22 +719,16 @@ textarea:focus{
 ===================================================== */
 
 .pile-row{
-
     width:100%;
 
     display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:14px;
 }
 
 .pile{
-
     min-height:220px;
-
     padding:17px;
 
     border:
@@ -739,15 +738,11 @@ textarea:focus{
     border-radius:14px;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
 
     background:
-
         radial-gradient(
             ellipse,
             rgba(14,103,108,.23),
@@ -755,13 +750,11 @@ textarea:focus{
             transparent 78%
         );
 
-    transition:.3s;
+    transition:.5s;
 }
 
 .pile.highlight{
-
-    border-color:
-        #51dcd7;
+    border-color:#51dcd7;
 
     box-shadow:
         0 0 22px
@@ -769,29 +762,20 @@ textarea:focus{
 }
 
 .pile-title{
-
     color:#8bbec0;
-
     font-size:13px;
-
     margin-bottom:9px;
 }
 
 .pile-number{
-
     font-size:26px;
-
     color:#c9ffff;
-
     margin-top:9px;
 }
 
 .pile-hint{
-
     color:#527f82;
-
     font-size:11px;
-
     margin-top:7px;
 }
 
@@ -801,11 +785,8 @@ textarea:focus{
 ===================================================== */
 
 .process-box{
-
     width:100%;
-
     max-width:620px;
-
     margin:auto;
 
     border:
@@ -821,23 +802,15 @@ textarea:focus{
 }
 
 .process-title{
-
     text-align:center;
-
     color:#9dd6d7;
-
     font-size:13px;
-
     margin-bottom:14px;
 }
 
 .process-line{
-
     display:grid;
-
-    grid-template-columns:
-        1fr
-        auto;
+    grid-template-columns:1fr auto;
 
     gap:15px;
 
@@ -853,14 +826,11 @@ textarea:focus{
 }
 
 .process-line:last-child{
-
     border-bottom:0;
 }
 
 .process-line strong{
-
     color:#c8ffff;
-
     font-size:15px;
 }
 
@@ -870,34 +840,24 @@ textarea:focus{
 ===================================================== */
 
 .choice{
-
     text-align:center;
-
     min-height:55px;
 }
 
 .choice-title{
-
     color:#7fa9ab;
-
     font-size:13px;
-
     margin-bottom:10px;
 }
 
 .choice-buttons{
-
     display:flex;
-
     justify-content:center;
-
     gap:10px;
-
     flex-wrap:wrap;
 }
 
 .choice-btn{
-
     border:
         1px solid
         #317c80;
@@ -913,13 +873,16 @@ textarea:focus{
         15px;
 
     cursor:pointer;
+
+    transition:.2s;
 }
 
 .choice-btn:hover{
-
     border-color:#5be9e3;
-
     color:#dfffff;
+    box-shadow:
+        0 0 14px
+        rgba(70,230,220,.12);
 }
 
 
@@ -928,12 +891,8 @@ textarea:focus{
 ===================================================== */
 
 .counts{
-
     display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:12px;
 
@@ -941,7 +900,6 @@ textarea:focus{
 }
 
 .countbox{
-
     border:
         1px solid
         #205a5f;
@@ -956,7 +914,6 @@ textarea:focus{
 }
 
 .countbox strong{
-
     display:block;
 
     font-size:24px;
@@ -972,7 +929,6 @@ textarea:focus{
 ===================================================== */
 
 .remainders{
-
     display:flex;
 
     justify-content:center;
@@ -981,16 +937,11 @@ textarea:focus{
 
     flex-wrap:wrap;
 
-    margin:
-        13px
-        0;
+    margin:13px 0;
 }
 
 .r{
-
-    padding:
-        8px
-        11px;
+    padding:8px 11px;
 
     border-radius:9px;
 
@@ -1004,7 +955,6 @@ textarea:focus{
 }
 
 .r b{
-
     color:#d4ffff;
 }
 
@@ -1014,7 +964,6 @@ textarea:focus{
 ===================================================== */
 
 .result{
-
     margin-top:15px;
 
     padding:16px;
@@ -1032,18 +981,13 @@ textarea:focus{
 }
 
 .result .num{
-
     font-size:32px;
-
     color:#bafffa;
 }
 
 .result .name{
-
     font-size:15px;
-
     color:#7da9ab;
-
     margin-top:5px;
 }
 
@@ -1053,12 +997,8 @@ textarea:focus{
 ===================================================== */
 
 .hexwrap{
-
     display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:25px;
 
@@ -1068,40 +1008,28 @@ textarea:focus{
 }
 
 .hexname{
-
     color:#7ea9ab;
-
     font-size:13px;
-
     margin-bottom:11px;
 }
 
 .hex{
-
     display:flex;
-
     flex-direction:column;
-
     gap:7px;
-
     align-items:center;
 }
 
 .line{
-
     height:11px;
-
     width:150px;
-
     position:relative;
 }
 
 .solid,
 .broken1,
 .broken2{
-
     position:absolute;
-
     top:3px;
 
     height:6px;
@@ -1116,32 +1044,28 @@ textarea:focus{
 }
 
 .solid{
-
     left:0;
-
     right:0;
 }
 
 .broken1{
-
     left:0;
-
     width:64px;
 }
 
 .broken2{
-
     right:0;
-
     width:64px;
 }
 
 .movingline .solid,
 .movingline .broken1,
 .movingline .broken2{
-
     background:#caffff;
 
+    box-shadow:
+        0 0 12px
+        rgba(200,255,255,.55);
 }
 
 
@@ -1150,7 +1074,6 @@ textarea:focus{
 ===================================================== */
 
 .table{
-
     margin-top:18px;
 
     border:
@@ -1163,7 +1086,6 @@ textarea:focus{
 }
 
 .tr{
-
     display:grid;
 
     grid-template-columns:
@@ -1188,12 +1110,10 @@ textarea:focus{
 }
 
 .tr:last-child{
-
     border-bottom:0;
 }
 
 .tr.head{
-
     color:#94c1c2;
 
     background:
@@ -1201,7 +1121,6 @@ textarea:focus{
 }
 
 .tr.move{
-
     background:
         rgba(59,205,201,.08);
 
@@ -1214,7 +1133,6 @@ textarea:focus{
 ===================================================== */
 
 .api{
-
     margin-top:18px;
 
     padding:
@@ -1231,14 +1149,11 @@ textarea:focus{
 }
 
 .apiBox{
-
     display:none;
-
     margin-top:8px;
 }
 
 .apiBox input{
-
     width:100%;
 
     background:#02161b;
@@ -1256,8 +1171,11 @@ textarea:focus{
     outline:none;
 }
 
-.apiBox button{
+.apiBox input:focus{
+    border-color:#5be9e3;
+}
 
+.apiBox button{
     margin-top:8px;
 }
 
@@ -1267,7 +1185,6 @@ textarea:focus{
 ===================================================== */
 
 #answer{
-
     white-space:pre-wrap;
 
     line-height:1.9;
@@ -1285,7 +1202,6 @@ textarea:focus{
 ===================================================== */
 
 .modal{
-
     display:none;
 
     position:fixed;
@@ -1303,7 +1219,6 @@ textarea:focus{
 }
 
 .modal.show{
-
     display:flex;
 
     align-items:center;
@@ -1312,12 +1227,7 @@ textarea:focus{
 }
 
 .modal-card{
-
-    width:
-        min(
-            820px,
-            100%
-        );
+    width:min(820px,100%);
 
     max-height:85vh;
 
@@ -1332,10 +1242,13 @@ textarea:focus{
     border-radius:18px;
 
     padding:24px;
+
+    box-shadow:
+        0 0 45px
+        rgba(30,220,215,.12);
 }
 
 .modal-head{
-
     display:flex;
 
     justify-content:space-between;
@@ -1346,7 +1259,6 @@ textarea:focus{
 }
 
 .history-item{
-
     border:
         1px solid
         #205a5f;
@@ -1361,32 +1273,29 @@ textarea:focus{
 
     background:
         rgba(3,31,37,.65);
+
+    transition:.2s;
 }
 
 .history-item:hover{
+    border-color:#50ddd8;
 
-    border-color:
-        #50ddd8;
+    transform:
+        translateY(-1px);
 }
 
 .history-question{
-
     color:#c8ffff;
-
     margin-bottom:8px;
 }
 
 .history-meta{
-
     font-size:12px;
-
     color:#6f9da0;
-
     line-height:1.7;
 }
 
 .history-answer{
-
     margin-top:10px;
 
     padding-top:10px;
@@ -1403,11 +1312,8 @@ textarea:focus{
 }
 
 .empty{
-
     color:#668f92;
-
     text-align:center;
-
     padding:30px;
 }
 
@@ -1417,7 +1323,6 @@ textarea:focus{
 ===================================================== */
 
 .footer{
-
     text-align:center;
 
     color:#426b6e;
@@ -1435,20 +1340,16 @@ textarea:focus{
 @media(max-width:900px){
 
     .container{
-
         padding:
             22px
             15px;
     }
 
     .grid{
-
-        grid-template-columns:
-            1fr;
+        grid-template-columns:1fr;
     }
 
     .nav{
-
         display:none;
     }
 
@@ -1456,26 +1357,42 @@ textarea:focus{
 
 @media(max-width:560px){
 
-    .hexwrap{
+    .en{
+        font-size:28px;
+    }
 
-        grid-template-columns:
-            1fr;
+    .cn{
+        font-size:25px;
+    }
+
+    .hexwrap{
+        grid-template-columns:1fr;
     }
 
     .pile-row{
-
-        grid-template-columns:
-            1fr;
+        grid-template-columns:1fr;
     }
 
     .tr{
-
         font-size:11px;
     }
 
     .modal{
-
         padding:15px;
+    }
+
+    .stage{
+        padding:
+            20px 12px;
+    }
+
+    .line{
+        width:125px;
+    }
+
+    .broken1,
+    .broken2{
+        width:52px;
     }
 
 }
@@ -1485,6 +1402,10 @@ textarea:focus{
 
 
 <body>
+
+<!-- =====================================================
+     动态星空
+===================================================== -->
 
 <canvas id="stars"></canvas>
 
@@ -1518,20 +1439,13 @@ textarea:focus{
 <div class="nav">
 
     <div id="historyBtn">
-
         <b>◷</b>
-
         历史记录
-
     </div>
 
-
     <div id="settingsBtn">
-
         <b>⚙</b>
-
         设置
-
     </div>
 
 </div>
@@ -1590,8 +1504,8 @@ textarea:focus{
 
 每一爻三变，六爻成象。<br>
 
-将真实展示：
-分二 → 挂一 → 揲四 → 归奇 → 三变成爻。
+真实展示：
+合置 → 分二 → 挂一 → 揲四 → 归奇 → 三变成爻。
 
 </p>
 
@@ -1770,7 +1684,7 @@ textarea:focus{
 
 
 <!-- ===================================================
-     API 设置
+     API
 =================================================== -->
 
 <div class="panel api">
@@ -1859,9 +1773,9 @@ WANGXING · 星河大衍筮法
 
 
 
-<!-- ===================================================
+<!-- =====================================================
      历史记录
-=================================================== -->
+===================================================== -->
 
 <div
     class="modal"
@@ -1876,9 +1790,7 @@ WANGXING · 星河大衍筮法
 
 
 <h2 style="margin:0">
-
 历史记录
-
 </h2>
 
 
@@ -1912,101 +1824,45 @@ const $ =
     id => document.getElementById(id);
 
 
-const q =
-    $("q");
-
-const begin =
-    $("begin");
-
-const restart =
-    $("restart");
-
-const piles =
-    $("piles");
-
-const choice =
-    $("choice");
-
-const counts =
-    $("counts");
-
-const remainders =
-    $("remainders");
-
-const result =
-    $("result");
-
-const stageTitle =
-    $("stageTitle");
-
-const stageDesc =
-    $("stageDesc");
-
-const bar =
-    $("bar");
-
-const bn =
-    $("bn");
-
-const cn =
-    $("cn");
-
-const bh =
-    $("bh");
-
-const ch =
-    $("ch");
-
-const rows =
-    $("rows");
-
-const ai =
-    $("ai");
-
-const answer =
-    $("answer");
-
-const status =
-    $("status");
-
-const keyBox =
-    $("keyBox");
-
-const key =
-    $("key");
-
-const keyStatus =
-    $("keyStatus");
-
-const historyModal =
-    $("historyModal");
-
-const historyList =
-    $("historyList");
+const q = $("q");
+const begin = $("begin");
+const restart = $("restart");
+const piles = $("piles");
+const choice = $("choice");
+const counts = $("counts");
+const remainders = $("remainders");
+const result = $("result");
+const stageTitle = $("stageTitle");
+const stageDesc = $("stageDesc");
+const bar = $("bar");
+const bn = $("bn");
+const cn = $("cn");
+const bh = $("bh");
+const ch = $("ch");
+const rows = $("rows");
+const ai = $("ai");
+const answer = $("answer");
+const status = $("status");
+const keyBox = $("keyBox");
+const key = $("key");
+const keyStatus = $("keyStatus");
+const historyModal = $("historyModal");
+const historyList = $("historyList");
 
 
 /* =====================================================
    八卦
-   注意：
-   这里使用“初爻 → 上爻”的二进制顺序。
 ===================================================== */
 
 const tri = {
 
     "111":"乾",
-
     "110":"兑",
-
     "101":"离",
-
     "100":"震",
-
     "011":"巽",
-
     "010":"坎",
-
     "001":"艮",
-
     "000":"坤"
 
 };
@@ -2154,34 +2010,14 @@ function wait(ms){
 
 
 /* =====================================================
-   安全随机整数
-===================================================== */
-
-function randomInt(min,max){
-
-    if(max < min)
-        return min;
-
-    return Math.floor(
-        Math.random() *
-        (max-min+1)
-    ) + min;
-
-}
-
-
-/* =====================================================
    四取余
 ===================================================== */
 
 function remainder4(n){
 
-    const r =
-        n % 4;
+    const r = n % 4;
 
-    return r === 0
-        ? 4
-        : r;
+    return r === 0 ? 4 : r;
 
 }
 
@@ -2210,12 +2046,7 @@ function yaoState(v){
 
 
 /* =====================================================
-   正确计算卦名
-   allYao:
-   [初爻,二爻,三爻,四爻,五爻,上爻]
-
-   初爻在数组第0位。
-   不再 reverse。
+   卦名
 ===================================================== */
 
 function hexName(lines){
@@ -2233,15 +2064,11 @@ function hexName(lines){
 
 
     const lowerBits =
-        bits
-        .slice(0,3)
-        .join("");
+        bits.slice(0,3).join("");
 
 
     const upperBits =
-        bits
-        .slice(3,6)
-        .join("");
+        bits.slice(3,6).join("");
 
 
     const lowerName =
@@ -2414,8 +2241,8 @@ function createStalks(count){
 
 
     for(
-        let i=0;
-        i<displayCount;
+        let i = 0;
+        i < displayCount;
         i++
     ){
 
@@ -2431,12 +2258,15 @@ function createStalks(count){
 
         stalk.style.transform =
             `rotate(${
-                Math.random()*10-5
+                Math.random() * 10 - 5
             }deg)`;
 
 
         stalk.style.animationDelay =
-            `${Math.min(i*0.008,.4)}s`;
+            `${Math.min(
+                i * .008,
+                .4
+            )}s`;
 
 
         wrapper.appendChild(
@@ -2447,17 +2277,6 @@ function createStalks(count){
 
 
     return wrapper;
-
-}
-
-
-/* =====================================================
-   重置一变
-===================================================== */
-
-function resetChange(){
-
-    changeIndex = 0;
 
 }
 
@@ -2491,8 +2310,9 @@ async function start(){
 
     isCalculating = true;
 
-
     yaoIndex = 0;
+
+    changeIndex = 0;
 
     allYao = [];
 
@@ -2565,7 +2385,7 @@ async function start(){
         "none";
 
 
-    await wait(1000);
+    await wait(900);
 
 
     piles.innerHTML = `
@@ -2604,16 +2424,6 @@ async function startYao(){
     changeIndex = 0;
 
 
-    if(yaoIndex > 0){
-
-        /*
-         * 下一爻重新取四十九蓍
-         */
-        stalks = 49;
-
-    }
-
-
     piles.innerHTML = "";
 
     choice.innerHTML = "";
@@ -2631,7 +2441,7 @@ async function startYao(){
 
 
     stageDesc.textContent =
-        "重新取四十九蓍，先合置于前。";
+        "重新取四十九蓍，合置于前。";
 
 
     const combined =
@@ -2684,8 +2494,6 @@ async function startYao(){
 
 /* =====================================================
    分二
-   不再让用户选择左右。
-   点击整体筮草后自动分二。
 ===================================================== */
 
 async function beginSplit(){
@@ -2702,18 +2510,19 @@ async function beginSplit(){
 
 
     /*
-     * 左右至少各一根。
+     * 自动随机分二。
+     * 左右各至少一蓍。
      */
 
     const left =
         randomInt(
             1,
-            total-1
+            total - 1
         );
 
 
     const right =
-        total-left;
+        total - left;
 
 
     stageTitle.textContent =
@@ -2801,7 +2610,7 @@ async function beginSplit(){
         </div>
 
         <div class="pile-hint">
-            自动取一蓍挂一
+            自动挂一
         </div>
 
     `;
@@ -2873,7 +2682,7 @@ async function hangOne(
     `;
 
 
-    await wait(1100);
+    await wait(1000);
 
 
     piles.innerHTML = "";
@@ -2897,23 +2706,17 @@ async function hangOne(
 
         <div class="process-line">
             <span>左束</span>
-            <strong>
-                ${leftAfter} 蓍
-            </strong>
+            <strong>${leftAfter} 蓍</strong>
         </div>
 
         <div class="process-line">
             <span>右束</span>
-            <strong>
-                ${rightAfter} 蓍
-            </strong>
+            <strong>${rightAfter} 蓍</strong>
         </div>
 
         <div class="process-line">
             <span>挂起</span>
-            <strong>
-                1 蓍
-            </strong>
+            <strong>1 蓍</strong>
         </div>
 
     `;
@@ -2952,7 +2755,7 @@ async function hangOne(
 
 
 /* =====================================================
-   揲四
+   揲四 · 归奇
 ===================================================== */
 
 async function performSuan(
@@ -3004,7 +2807,7 @@ async function performSuan(
     /*
      * 挂一 + 左余 + 右余
      *
-     * 每变必去 5 或 9 根。
+     * 正常结果只能是 5 或 9。
      */
 
     const returned =
@@ -3012,11 +2815,6 @@ async function performSuan(
         leftRemainder +
         rightRemainder;
 
-
-    /*
-     * 安全校验：
-     * 正常大衍每变只能去5或9根。
-     */
 
     if(
         returned !== 5 &&
@@ -3036,9 +2834,15 @@ async function performSuan(
         );
 
 
-        throw new Error(
+        isCalculating = false;
+
+        alert(
             "本变归奇计算异常，请重新起筮。"
         );
+
+        reset();
+
+        return;
 
     }
 
@@ -3048,19 +2852,8 @@ async function performSuan(
 
 
     const after =
-        before -
-        returned;
+        before - returned;
 
-
-    /*
-     * 三变后必须最终得到
-     *
-     * 24 / 28 / 32 / 36
-     *
-     * 对应
-     *
-     * 6 / 7 / 8 / 9
-     */
 
     stalks =
         after;
@@ -3078,83 +2871,43 @@ async function performSuan(
             </div>
 
             <div class="process-line">
-                <span>
-                    本变开始
-                </span>
-
-                <strong>
-                    ${before} 蓍
-                </strong>
+                <span>本变开始</span>
+                <strong>${before} 蓍</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    左束
-                </span>
-
-                <strong>
-                    ${left} 蓍
-                </strong>
+                <span>左束</span>
+                <strong>${left} 蓍</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    左余
-                </span>
-
-                <strong>
-                    ${leftRemainder}
-                </strong>
+                <span>左余</span>
+                <strong>${leftRemainder}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    右束
-                </span>
-
-                <strong>
-                    ${right} 蓍
-                </strong>
+                <span>右束</span>
+                <strong>${right} 蓍</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    右余
-                </span>
-
-                <strong>
-                    ${rightRemainder}
-                </strong>
+                <span>右余</span>
+                <strong>${rightRemainder}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    挂一
-                </span>
-
-                <strong>
-                    1
-                </strong>
+                <span>挂一</span>
+                <strong>1</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    本变归奇
-                </span>
-
-                <strong>
-                    ${returned}
-                </strong>
+                <span>本变归奇</span>
+                <strong>${returned}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    本变之后
-                </span>
-
-                <strong>
-                    ${after} 蓍
-                </strong>
+                <span>本变之后</span>
+                <strong>${after} 蓍</strong>
             </div>
 
         </div>
@@ -3173,7 +2926,6 @@ async function performSuan(
             </strong>
 
         </div>
-
 
         <div class="countbox">
 
@@ -3213,7 +2965,7 @@ async function performSuan(
     `;
 
 
-    await wait(1100);
+    await wait(1000);
 
 
     if(
@@ -3237,9 +2989,7 @@ async function performSuan(
 
 
         $("nextChange").onclick =
-            ()=>{
-                beginNextChange();
-            };
+            beginNextChange;
 
 
         return;
@@ -3273,7 +3023,7 @@ async function beginNextChange(){
 
 
     stageDesc.textContent =
-        `上一变归奇后余 ${stalks} 蓍，重新分二。`;
+        `上一变归奇后余 ${stalks} 蓍，重新合置后分二。`;
 
 
     piles.innerHTML = `
@@ -3316,7 +3066,6 @@ async function beginNextChange(){
     combined.onclick =
         beginSplit;
 
-
 }
 
 
@@ -3343,7 +3092,7 @@ async function finishYao(){
 
 
     /*
-     * 正常三变结果：
+     * 正常结果：
      *
      * 24 → 6 老阴
      * 28 → 7 少阳
@@ -3372,6 +3121,7 @@ async function finishYao(){
 
 
         isCalculating = false;
+
 
         alert(
             "本爻三变计算异常：" +
@@ -3416,20 +3166,12 @@ async function finishYao(){
         <div class="process-box">
 
             <div class="process-line">
-                <span>
-                    三变后余蓍
-                </span>
-
-                <strong>
-                    ${remaining}
-                </strong>
+                <span>三变后余蓍</span>
+                <strong>${remaining}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    除以四
-                </span>
-
+                <span>除以四</span>
                 <strong>
                     ${remaining} ÷ 4 = ${value}
                 </strong>
@@ -3447,7 +3189,7 @@ async function finishYao(){
 
 
     bar.style.width =
-        `${yaoIndex/6*100}%`;
+        `${yaoIndex / 6 * 100}%`;
 
 
     if(
@@ -3628,30 +3370,17 @@ function finishHexagram(){
         <div class="process-box">
 
             <div class="process-line">
-                <span>
-                    本卦
-                </span>
-
-                <strong>
-                    ${ben}
-                </strong>
+                <span>本卦</span>
+                <strong>${ben}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    变卦
-                </span>
-
-                <strong>
-                    ${chg}
-                </strong>
+                <span>变卦</span>
+                <strong>${chg}</strong>
             </div>
 
             <div class="process-line">
-                <span>
-                    动爻
-                </span>
-
+                <span>动爻</span>
                 <strong>
                     ${
                         moving.length
@@ -3680,10 +3409,6 @@ function finishHexagram(){
     status.textContent =
         "六爻完成，可以进行 GLM AI 解读。";
 
-
-    /*
-     * 六爻完成后保存历史。
-     */
 
     currentHistoryId =
         createHistory({
@@ -3736,6 +3461,9 @@ function reset(){
 
 
     begin.disabled =
+        false;
+
+    restart.disabled =
         false;
 
     ai.disabled =
@@ -3792,7 +3520,7 @@ function reset(){
 
 
 /* =====================================================
-   History Storage
+   History
 ===================================================== */
 
 function getHistory(){
@@ -3813,10 +3541,6 @@ function getHistory(){
 
 }
 
-
-/* =====================================================
-   保存历史
-===================================================== */
 
 function createHistory(item){
 
@@ -3860,10 +3584,6 @@ function createHistory(item){
 
 }
 
-
-/* =====================================================
-   更新历史中的 AI 解读
-===================================================== */
 
 function updateHistoryAnswer(
     id,
@@ -3963,7 +3683,6 @@ function openHistory(){
                             )}
                         </div>
 
-
                         <div
                             class="history-meta"
                         >
@@ -4006,7 +3725,6 @@ function openHistory(){
                             }
 
                         </div>
-
 
                         ${
                             x.answer
@@ -4084,6 +3802,7 @@ function loadHistory(x){
 
     yaoIndex = 6;
 
+
     currentHistoryId =
         x.id || null;
 
@@ -4139,12 +3858,39 @@ function loadHistory(x){
         false;
 
 
+    begin.disabled =
+        false;
+
+
+    isCalculating =
+        false;
+
+
     status.textContent =
         "历史卦象已载入。";
 
 
     answer.textContent =
         x.answer || "";
+
+
+    piles.innerHTML = `
+
+        <div class="ritual">
+
+            ✦ 历史卦象 ✦
+
+            <div class="ritual-sub">
+                本卦：${x.ben}
+            </div>
+
+            <div class="ritual-sub">
+                变卦：${x.chg}
+            </div>
+
+        </div>
+
+    `;
 
 
     historyModal.classList.remove(
@@ -4211,28 +3957,23 @@ function updateKeyStatus(){
 }
 
 
+function toggleKeyBox(){
+
+    keyBox.style.display =
+        keyBox.style.display ===
+            "block"
+            ? "none"
+            : "block";
+
+}
+
+
 $("settingsBtn").onclick =
-    ()=>{
-
-        keyBox.style.display =
-            keyBox.style.display ===
-                "block"
-                ? "none"
-                : "block";
-
-    };
+    toggleKeyBox;
 
 
 $("keyButton").onclick =
-    ()=>{
-
-        keyBox.style.display =
-            keyBox.style.display ===
-                "block"
-                ? "none"
-                : "block";
-
-    };
+    toggleKeyBox;
 
 
 $("saveKey").onclick =
@@ -4261,7 +4002,6 @@ $("saveKey").onclick =
 
         key.value = "";
 
-
         updateKeyStatus();
 
 
@@ -4288,23 +4028,7 @@ updateKeyStatus();
 
 
 /* =====================================================
-   API 请求
-===================================================== */
-
-/*
- * 重要：
- *
- * 每个网页都有自己独立的 AbortController。
- *
- * 不使用全局 controller。
- *
- * 因此多个 WANGXING 页面同时请求时，
- * 一个页面的超时不会取消另一个页面。
- */
-
-
-/* =====================================================
-   sleep
+   API sleep
 ===================================================== */
 
 function sleep(ms){
@@ -4321,7 +4045,7 @@ function sleep(ms){
 
 
 /* =====================================================
-   单次 API 请求
+   带超时请求
 ===================================================== */
 
 async function fetchWithTimeout(
@@ -4366,7 +4090,7 @@ async function fetchWithTimeout(
 
 
 /* =====================================================
-   API 错误解析
+   API 响应解析
 ===================================================== */
 
 async function parseApiResponse(
@@ -4377,8 +4101,7 @@ async function parseApiResponse(
         await response.text();
 
 
-    let data =
-        null;
+    let data = null;
 
 
     try{
@@ -4390,15 +4113,12 @@ async function parseApiResponse(
 
     }catch(e){
 
-        data =
-            null;
+        data = null;
 
     }
 
 
-    if(
-        !response.ok
-    ){
+    if(!response.ok){
 
         const message =
             data?.error?.message ||
@@ -4441,11 +4161,13 @@ async function parseApiResponse(
                     "API 当前请求过多或额度受限。"
                 );
 
+
             error.retryable =
                 true;
 
             error.rateLimited =
                 true;
+
 
             throw error;
 
@@ -4464,8 +4186,10 @@ async function parseApiResponse(
                     "）。"
                 );
 
+
             error.retryable =
                 true;
+
 
             throw error;
 
@@ -4508,15 +4232,9 @@ async function callGLM(
 
 
     /*
-     * 3 次尝试。
+     * 每次请求拥有独立 AbortController。
      *
-     * 每次独立超时。
-     *
-     * 第一次 45 秒
-     * 第二次 60 秒
-     * 第三次 75 秒
-     *
-     * 多网页同时打开时不会共享 controller。
+     * 45s → 60s → 75s
      */
 
     const timeouts =
@@ -4527,8 +4245,7 @@ async function callGLM(
         ];
 
 
-    let lastError =
-        null;
+    let lastError = null;
 
 
     for(
@@ -4568,7 +4285,7 @@ async function callGLM(
                                     messages,
 
                                 temperature:
-                                    0.3,
+                                    .3,
 
                                 max_tokens:
                                     3000,
@@ -4597,38 +4314,32 @@ async function callGLM(
                 error;
 
 
+            const isAbort =
+                error.name ===
+                "AbortError";
+
+
+            const isNetwork =
+                error instanceof
+                    TypeError ||
+                /network/i.test(
+                    error.message ||
+                    ""
+                );
+
+
             /*
-             * 用户 Key / 权限 / 参数错误
-             * 不应该继续重试。
+             * 认证、参数等明确错误
+             * 不继续重试。
              */
 
             if(
                 !error.retryable &&
-                !(
-                    error.name ===
-                    "AbortError"
-                )
+                !isAbort &&
+                !isNetwork
             ){
 
-                /*
-                 * 网络错误没有 retryable，
-                 * 仍然允许继续重试。
-                 */
-
-                const isNetworkError =
-                    error instanceof
-                        TypeError ||
-                    /network/i.test(
-                        error.message ||
-                        ""
-                    );
-
-
-                if(!isNetworkError){
-
-                    throw error;
-
-                }
+                throw error;
 
             }
 
@@ -4636,13 +4347,6 @@ async function callGLM(
             if(
                 attempt < 2
             ){
-
-                /*
-                 * 指数退避 + 随机抖动
-                 *
-                 * 防止多个页面同时
-                 * 重试形成请求洪峰。
-                 */
 
                 const base =
                     1500 *
@@ -4654,7 +4358,7 @@ async function callGLM(
 
                 const jitter =
                     Math.random() *
-                    1000;
+                    1200;
 
 
                 await sleep(
@@ -4807,6 +4511,7 @@ ${
 
 请严格围绕用户提出的问题进行传统六爻 / 大衍筮法解读。
 
+
 【最重要要求】
 
 第一句话必须直接回答用户的问题。
@@ -4814,10 +4519,15 @@ ${
 例如：
 
 “此卦整体偏向可以。”
+
 “此卦整体偏向不利。”
+
 “此卦显示有条件成立。”
+
 “此卦目前难以成立。”
+
 “此卦不足以判断具体时间，但趋势偏向……”
+
 
 不能先讲一大段卦象知识再回答问题。
 
@@ -4827,18 +4537,18 @@ ${
 1. 第一段直接给出针对用户问题的结论。
 
 2. 明确判断属于：
-   有利 / 不利 / 有条件成立 / 难以成立 / 信息不足。
+有利 / 不利 / 有条件成立 / 难以成立 / 信息不足。
 
 3. 必须围绕用户真正询问的事情。
 
 4. 本卦：
-   解释事情目前的状态。
+解释事情目前的状态。
 
 5. 动爻：
-   如果存在动爻，重点分析与用户问题直接相关的动爻。
+如果存在动爻，重点分析与用户问题直接相关的动爻。
 
 6. 变卦：
-   判断事情最终趋势。
+判断事情最终趋势。
 
 7. 如果用户问“什么时候”，可以根据卦象给出大致时间趋势，但不能虚构精确日期。
 
@@ -4847,33 +4557,34 @@ ${
 9. 不要把占卜描述为百分之百确定的现实事实。
 
 10. 如果卦象不足以支持精确判断，要明确写：
-   “卦象不足以判断这一点。”
-   但仍然给出目前最主要的趋势。
+“卦象不足以判断这一点。”
+但仍然给出目前最主要的趋势。
 
 11. 不要主动扩展用户没有询问的问题。
 
 12. 不要泛泛进行人生指导。
 
 13. 不要用：
-   “建议你……”
-   “你可以考虑……”
-   “建议保持……”
-   来代替预测。
+“建议你……”
+“你可以考虑……”
+“建议保持……”
+来代替预测。
 
 14. 重点是：
-   卦象 → 对用户问题的指向 → 结论。
+卦象 → 对用户问题的指向 → 结论。
 
 15. 不需要解释无关的基础易学知识。
 
 16. 如果存在动爻，请说明：
-   动爻为什么会影响这个问题。
+动爻为什么会影响这个问题。
 
-17. 最后给出一个非常简短的：
-   【最终判断】
-   直接回答用户问题。
+17. 最后给出：
+
+【最终判断】
+
+直接回答用户问题。
 
 请使用中文回答。
-
 `;
 
 
@@ -4901,21 +4612,17 @@ ${
                 [
 
                     {
-
                         role:"system",
 
                         content:
                             "你是专业的传统大衍筮法与六爻解卦助手。必须严格围绕用户问题回答，第一段直接给出结论，不主动给泛泛人生建议。"
-
                     },
 
                     {
-
                         role:"user",
 
                         content:
                             prompt
-
                     }
 
                 ]
@@ -4945,10 +4652,6 @@ ${
         status.textContent =
             "GLM AI 解读完成。";
 
-
-        /*
-         * 保存 AI 解读
-         */
 
         if(currentHistoryId){
 
@@ -4999,7 +4702,7 @@ ai.onclick =
 
 
 /* =====================================================
-   星空
+   动态星河粒子系统
 ===================================================== */
 
 const stars =
@@ -5014,6 +4717,14 @@ const ctx =
 
 let ss = [];
 
+let shootingStars = [];
+
+let galaxyDust = [];
+
+
+/* =====================================================
+   星空尺寸
+===================================================== */
 
 function resize(){
 
@@ -5032,6 +4743,16 @@ function resize(){
         dpr;
 
 
+    stars.style.width =
+        innerWidth +
+        "px";
+
+
+    stars.style.height =
+        innerHeight +
+        "px";
+
+
     ctx.setTransform(
         dpr,
         0,
@@ -5042,15 +4763,25 @@ function resize(){
     );
 
 
+    const starCount =
+        Math.min(
+            420,
+            Math.max(
+                180,
+                Math.floor(
+                    innerWidth *
+                    innerHeight /
+                    4200
+                )
+            )
+        );
+
+
     ss =
         Array.from(
             {
                 length:
-                    Math.floor(
-                        innerWidth *
-                        innerHeight /
-                        7000
-                    )
+                    starCount
             },
             ()=>({
 
@@ -5063,21 +4794,60 @@ function resize(){
                     innerHeight,
 
                 r:
-                    .2 +
+                    .25 +
                     Math.random() *
-                    1.2,
+                    1.35,
 
                 a:
-                    .2 +
+                    .25 +
                     Math.random() *
-                    .8,
+                    .75,
+
+                twinkle:
+                    Math.random() *
+                    Math.PI *
+                    2,
 
                 speed:
+                    .3 +
+                    Math.random() *
+                    1.5,
+
+                drift:
+                    .02 +
+                    Math.random() *
+                    .08
+
+            })
+        );
+
+
+    galaxyDust =
+        Array.from(
+            {
+                length:120
+            },
+            ()=>({
+
+                x:
+                    Math.random() *
+                    innerWidth,
+
+                y:
+                    Math.random() *
+                    innerHeight,
+
+                size:
+                    .4 +
+                    Math.random() *
+                    1.4,
+
+                alpha:
                     .05 +
                     Math.random() *
                     .25,
 
-                twinkle:
+                phase:
                     Math.random() *
                     Math.PI *
                     2
@@ -5088,36 +4858,144 @@ function resize(){
 }
 
 
-function draw(){
+/* =====================================================
+   创建流星
+===================================================== */
 
-    ctx.clearRect(
-        0,
-        0,
-        innerWidth,
-        innerHeight
+function createShootingStar(){
+
+    if(
+        Math.random() >
+        .018
+    ){
+
+        return;
+
+    }
+
+
+    shootingStars.push({
+
+        x:
+            Math.random() *
+            innerWidth *
+            1.2 -
+            innerWidth * .1,
+
+        y:
+            Math.random() *
+            innerHeight *
+            .65,
+
+        length:
+            80 +
+            Math.random() *
+            150,
+
+        speed:
+            8 +
+            Math.random() *
+            8,
+
+        alpha:
+            .7 +
+            Math.random() *
+            .3,
+
+        life:1
+
+    });
+
+}
+
+
+/* =====================================================
+   银河尘埃
+===================================================== */
+
+function drawGalaxyDust(time){
+
+    galaxyDust.forEach(
+        d=>{
+
+            const pulse =
+                d.alpha +
+                Math.sin(
+                    time * .0006 +
+                    d.phase
+                ) * .04;
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                d.x,
+                d.y,
+                d.size,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                `rgba(
+                    90,
+                    255,
+                    235,
+                    ${Math.max(
+                        .02,
+                        pulse
+                    )}
+                )`;
+
+
+            ctx.fill();
+
+        }
     );
 
+}
 
-    const time =
-        Date.now() *
-        0.001;
 
+/* =====================================================
+   普通星星
+===================================================== */
+
+function drawStars(time){
 
     ss.forEach(
         s=>{
 
+            s.x += s.drift;
+
+
+            if(
+                s.x >
+                innerWidth + 5
+            ){
+
+                s.x = -5;
+
+            }
+
+
+            const twinkle =
+                Math.sin(
+                    time *
+                    .001 *
+                    s.speed +
+                    s.twinkle
+                );
+
+
             const alpha =
                 Math.max(
-                    .12,
+                    .08,
                     Math.min(
                         1,
                         s.a +
-                        Math.sin(
-                            time *
-                            s.speed +
-                            s.twinkle
-                        ) *
-                        .15
+                        twinkle * .18
                     )
                 );
 
@@ -5136,17 +5014,252 @@ function draw(){
 
             ctx.fillStyle =
                 `rgba(
-                    180,
+                    190,
                     255,
-                    255,
+                    250,
                     ${alpha}
                 )`;
 
 
             ctx.fill();
 
+
+            if(
+                s.r > 1
+            ){
+
+                const gradient =
+                    ctx.createRadialGradient(
+                        s.x,
+                        s.y,
+                        0,
+                        s.x,
+                        s.y,
+                        s.r * 6
+                    );
+
+
+                gradient.addColorStop(
+                    0,
+                    `rgba(
+                        90,
+                        255,
+                        240,
+                        ${alpha * .35}
+                    )`
+                );
+
+
+                gradient.addColorStop(
+                    1,
+                    "rgba(0,0,0,0)"
+                );
+
+
+                ctx.fillStyle =
+                    gradient;
+
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+                    s.x,
+                    s.y,
+                    s.r * 6,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fill();
+
+            }
+
         }
     );
+
+}
+
+
+/* =====================================================
+   流星
+===================================================== */
+
+function drawShootingStars(){
+
+    shootingStars =
+        shootingStars.filter(
+            s=>{
+
+                s.x += s.speed;
+
+                s.y +=
+                    s.speed *
+                    .42;
+
+                s.life -= .018;
+
+
+                const gradient =
+                    ctx.createLinearGradient(
+                        s.x,
+                        s.y,
+                        s.x -
+                        s.length,
+                        s.y -
+                        s.length * .42
+                    );
+
+
+                gradient.addColorStop(
+                    0,
+                    `rgba(
+                        180,
+                        255,
+                        250,
+                        ${s.alpha *
+                        s.life}
+                    )`
+                );
+
+
+                gradient.addColorStop(
+                    .25,
+                    `rgba(
+                        70,
+                        240,
+                        220,
+                        ${s.alpha *
+                        s.life *
+                        .5}
+                    )`
+                );
+
+
+                gradient.addColorStop(
+                    1,
+                    "rgba(0,0,0,0)"
+                );
+
+
+                ctx.beginPath();
+
+
+                ctx.moveTo(
+                    s.x,
+                    s.y
+                );
+
+
+                ctx.lineTo(
+                    s.x -
+                    s.length,
+                    s.y -
+                    s.length * .42
+                );
+
+
+                ctx.strokeStyle =
+                    gradient;
+
+
+                ctx.lineWidth =
+                    1.5;
+
+
+                ctx.stroke();
+
+
+                return (
+                    s.life > 0 &&
+                    s.x <
+                        innerWidth +
+                        s.length
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   星空动画
+===================================================== */
+
+function draw(){
+
+    const now =
+        Date.now();
+
+
+    ctx.clearRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
+
+
+    const bg =
+        ctx.createRadialGradient(
+            innerWidth * .5,
+            innerHeight * .5,
+            0,
+            innerWidth * .5,
+            innerHeight * .5,
+            Math.max(
+                innerWidth,
+                innerHeight
+            )
+        );
+
+
+    bg.addColorStop(
+        0,
+        "rgba(3,45,50,.16)"
+    );
+
+
+    bg.addColorStop(
+        .45,
+        "rgba(0,20,27,.08)"
+    );
+
+
+    bg.addColorStop(
+        1,
+        "rgba(0,4,8,.05)"
+    );
+
+
+    ctx.fillStyle =
+        bg;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
+
+
+    drawGalaxyDust(
+        now
+    );
+
+
+    drawStars(
+        now
+    );
+
+
+    createShootingStar();
+
+
+    drawShootingStars();
 
 
     requestAnimationFrame(
@@ -5155,6 +5268,10 @@ function draw(){
 
 }
 
+
+/* =====================================================
+   启动
+===================================================== */
 
 addEventListener(
     "resize",
