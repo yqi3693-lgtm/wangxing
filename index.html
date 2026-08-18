@@ -32,7 +32,6 @@ body{
     overflow-x:hidden;
 }
 
-
 /* =====================================================
    动态星河背景
 ===================================================== */
@@ -234,7 +233,6 @@ body{
     }
 }
 
-
 /* =====================================================
    页面
 ===================================================== */
@@ -246,7 +244,6 @@ body{
     margin:auto;
     padding:34px 42px 50px;
 }
-
 
 /* =====================================================
    Header
@@ -308,7 +305,6 @@ header{
     margin-bottom:4px;
 }
 
-
 /* =====================================================
    Layout
 ===================================================== */
@@ -352,7 +348,6 @@ h2{
     margin:0 0 17px;
 }
 
-
 /* =====================================================
    输入
 ===================================================== */
@@ -392,7 +387,6 @@ textarea:focus{
         0 0 18px
         rgba(61,227,220,.13);
 }
-
 
 /* =====================================================
    按钮
@@ -466,7 +460,6 @@ textarea:focus{
     line-height:1.8;
 }
 
-
 /* =====================================================
    起筮区域
 ===================================================== */
@@ -492,7 +485,6 @@ textarea:focus{
     min-height:43px;
     margin-top:7px;
 }
-
 
 /* =====================================================
    进度
@@ -520,7 +512,6 @@ textarea:focus{
     transition:.6s;
 }
 
-
 /* =====================================================
    筮草区域
 ===================================================== */
@@ -547,7 +538,6 @@ textarea:focus{
     font-size:11px;
     letter-spacing:.03em;
 }
-
 
 /* =====================================================
    单根筮草
@@ -590,7 +580,6 @@ textarea:focus{
             rotate(0);
     }
 }
-
 
 /* =====================================================
    整体筮草
@@ -645,7 +634,6 @@ textarea:focus{
     font-size:14px;
     margin-bottom:15px;
 }
-
 
 /* =====================================================
    筮草视觉
@@ -710,7 +698,6 @@ textarea:focus{
         opacity:.82;
     }
 }
-
 
 /* =====================================================
    分束
@@ -777,7 +764,6 @@ textarea:focus{
     margin-top:7px;
 }
 
-
 /* =====================================================
    过程
 ===================================================== */
@@ -832,7 +818,6 @@ textarea:focus{
     font-size:15px;
 }
 
-
 /* =====================================================
    操作提示
 ===================================================== */
@@ -884,7 +869,6 @@ textarea:focus{
         rgba(70,230,220,.12);
 }
 
-
 /* =====================================================
    数值
 ===================================================== */
@@ -922,7 +906,6 @@ textarea:focus{
     margin-top:5px;
 }
 
-
 /* =====================================================
    余数
 ===================================================== */
@@ -957,7 +940,6 @@ textarea:focus{
     color:#d4ffff;
 }
 
-
 /* =====================================================
    结果
 ===================================================== */
@@ -989,7 +971,6 @@ textarea:focus{
     color:#7da9ab;
     margin-top:5px;
 }
-
 
 /* =====================================================
    六爻
@@ -1067,7 +1048,6 @@ textarea:focus{
         rgba(200,255,255,.55);
 }
 
-
 /* =====================================================
    六爻表
 ===================================================== */
@@ -1126,7 +1106,6 @@ textarea:focus{
     color:#c4eeee;
 }
 
-
 /* =====================================================
    API
 ===================================================== */
@@ -1178,7 +1157,6 @@ textarea:focus{
     margin-top:8px;
 }
 
-
 /* =====================================================
    AI
 ===================================================== */
@@ -1194,7 +1172,6 @@ textarea:focus{
 
     margin-top:15px;
 }
-
 
 /* =====================================================
    历史
@@ -1316,7 +1293,6 @@ textarea:focus{
     padding:30px;
 }
 
-
 /* =====================================================
    Footer
 ===================================================== */
@@ -1330,7 +1306,6 @@ textarea:focus{
 
     margin-top:22px;
 }
-
 
 /* =====================================================
    手机
@@ -1395,7 +1370,6 @@ textarea:focus{
 
 }
 
-
 /* =====================================================
    星河增强光效
 ===================================================== */
@@ -1454,9 +1428,7 @@ textarea:focus{
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      动态星空
@@ -1470,9 +1442,7 @@ textarea:focus{
 
 <div class="glow-orb"></div>
 
-
 <div class="container">
-
 
 <header>
 
@@ -1492,7 +1462,6 @@ textarea:focus{
 
     </div>
 
-
     <div class="nav">
 
         <div id="historyBtn">
@@ -1509,9 +1478,7 @@ textarea:focus{
 
 </header>
 
-
 <div class="grid">
-
 
 <!-- ===================================================
      左侧
@@ -1519,20 +1486,17 @@ textarea:focus{
 
 <section>
 
-
 <div class="panel pad">
 
 <h2>
     你的问题
 </h2>
 
-
 <textarea
     id="q"
     maxlength="500"
     placeholder="请详细描述你想占卜的问题……"
 ></textarea>
-
 
 <div class="actions">
 
@@ -1543,7 +1507,6 @@ textarea:focus{
     ✦ 开始大衍筮法
 </button>
 
-
 <button
     class="btn alt"
     id="restart"
@@ -1552,7 +1515,6 @@ textarea:focus{
 </button>
 
 </div>
-
 
 <p class="hint">
 
@@ -1567,9 +1529,7 @@ textarea:focus{
 
 </div>
 
-
 <div class="panel stage">
-
 
 <div
     class="stage-title"
@@ -1578,7 +1538,6 @@ textarea:focus{
     准备大衍之数
 </div>
 
-
 <div
     class="stage-desc"
     id="stageDesc"
@@ -1586,35 +1545,29 @@ textarea:focus{
     天地之数五十，虚一不用。
 </div>
 
-
 <div class="progress">
     <i id="bar"></i>
 </div>
-
 
 <div
     class="pile-area"
     id="piles"
 ></div>
 
-
 <div
     class="choice"
     id="choice"
 ></div>
-
 
 <div
     class="counts"
     id="counts"
 ></div>
 
-
 <div
     class="remainders"
     id="remainders"
 ></div>
-
 
 <div
     class="result"
@@ -1622,11 +1575,9 @@ textarea:focus{
     style="display:none"
 ></div>
 
-
 </div>
 
 </section>
-
 
 <!-- ===================================================
      右侧
@@ -1634,17 +1585,13 @@ textarea:focus{
 
 <section>
 
-
 <div class="panel pad">
-
 
 <h2>
     六爻结果
 </h2>
 
-
 <div class="hexwrap">
-
 
 <div>
 
@@ -1662,7 +1609,6 @@ textarea:focus{
 
 </div>
 
-
 <div>
 
 <div
@@ -1679,9 +1625,7 @@ textarea:focus{
 
 </div>
 
-
 </div>
-
 
 <div class="table">
 
@@ -1694,11 +1638,9 @@ textarea:focus{
 
 </div>
 
-
 <div id="rows"></div>
 
 </div>
-
 
 <div class="actions">
 
@@ -1712,7 +1654,6 @@ textarea:focus{
 
 </div>
 
-
 <div
     class="status"
     id="status"
@@ -1720,19 +1661,15 @@ textarea:focus{
     完成六爻后才能进行 AI 解读。
 </div>
 
-
 <div id="answer"></div>
 
-
 </div>
-
 
 <!-- ===================================================
      API
 =================================================== -->
 
 <div class="panel api">
-
 
 <div>
 
@@ -1749,7 +1686,6 @@ textarea:focus{
 
 </div>
 
-
 <button
     class="btn alt"
     id="keyButton"
@@ -1757,20 +1693,16 @@ textarea:focus{
     设置
 </button>
 
-
 </div>
-
 
 <div
     class="panel pad apiBox"
     id="keyBox"
 >
 
-
 <h2>
     GLM API Key
 </h2>
-
 
 <input
     id="key"
@@ -1779,14 +1711,12 @@ textarea:focus{
     placeholder="请输入智谱 API Key"
 />
 
-
 <button
     class="btn"
     id="saveKey"
 >
     保存设置
 </button>
-
 
 <button
     class="btn alt"
@@ -1795,14 +1725,11 @@ textarea:focus{
     清除 Key
 </button>
 
-
 </div>
-
 
 </section>
 
 </div>
-
 
 <div class="footer">
 
@@ -1810,9 +1737,7 @@ WANGXING · 星河大衍筮法
 
 </div>
 
-
 </div>
-
 
 <!-- =====================================================
      历史记录
@@ -1823,16 +1748,13 @@ WANGXING · 星河大衍筮法
     id="historyModal"
 >
 
-
 <div class="modal-card">
-
 
 <div class="modal-head">
 
 <h2 style="margin:0">
 历史记录
 </h2>
-
 
 <button
     class="btn alt"
@@ -1843,14 +1765,11 @@ WANGXING · 星河大衍筮法
 
 </div>
 
-
 <div id="historyList"></div>
 
-
 </div>
 
 </div>
-
 
 <script>
 
@@ -1885,7 +1804,6 @@ const keyStatus = $("keyStatus");
 const historyModal = $("historyModal");
 const historyList = $("historyList");
 
-
 /* =====================================================
    八卦
 ===================================================== */
@@ -1902,7 +1820,6 @@ const tri = {
     "000":"坤"
 
 };
-
 
 /* =====================================================
    六十四卦
@@ -2008,7 +1925,6 @@ const hex = {
 
 };
 
-
 /* =====================================================
    状态
 ===================================================== */
@@ -2020,7 +1936,6 @@ let stalks = 49;
 let allYao = [];
 let currentHistoryId = null;
 let isCalculating = false;
-
 
 /* =====================================================
    工具
@@ -2035,16 +1950,20 @@ function sleep(ms){
 }
 
 function randomInt(min,max){
+
     return Math.floor(
         Math.random() * (max - min + 1)
     ) + min;
+
 }
 
 function remainder4(n){
-    const r = n % 4;
-    return r === 0 ? 4 : r;
-}
 
+    const r = n % 4;
+
+    return r === 0 ? 4 : r;
+
+}
 
 /* =====================================================
    爻状态
@@ -2065,8 +1984,8 @@ function yaoState(v){
         return "老阳 · 动";
 
     return "未知";
-}
 
+}
 
 /* =====================================================
    卦名
@@ -2074,15 +1993,16 @@ function yaoState(v){
 
 function hexName(lines){
 
-    const bits = lines.map(
-        v =>
-            (
-                v === 7 ||
-                v === 9
-            )
-            ? "1"
-            : "0"
-    );
+    const bits =
+        lines.map(
+            v =>
+                (
+                    v === 7 ||
+                    v === 9
+                )
+                ? "1"
+                : "0"
+        );
 
     const lowerBits =
         bits.slice(0,3).join("");
@@ -2103,8 +2023,8 @@ function hexName(lines){
         ||
         "未知卦"
     );
-}
 
+}
 
 /* =====================================================
    画卦
@@ -2147,9 +2067,10 @@ function renderHex(target,lines){
         }
 
         target.appendChild(d);
-    }
-}
 
+    }
+
+}
 
 /* =====================================================
    六爻表
@@ -2201,8 +2122,8 @@ function updateRows(){
         rows.appendChild(d);
 
     });
-}
 
+}
 
 /* =====================================================
    筮草
@@ -2237,11 +2158,12 @@ function createStalks(count){
             `${Math.min(i*.008,.4)}s`;
 
         wrapper.appendChild(stalk);
+
     }
 
     return wrapper;
-}
 
+}
 
 /* =====================================================
    开始
@@ -2338,8 +2260,8 @@ async function start(){
     await wait(1100);
 
     startYao();
-}
 
+}
 
 /* =====================================================
    开始一爻
@@ -2396,8 +2318,8 @@ async function startYao(){
 
     combined.onclick =
         beginSplit;
-}
 
+}
 
 /* =====================================================
    分二
@@ -2413,6 +2335,10 @@ async function beginSplit(){
     const total =
         stalks;
 
+    /*
+     * 分二：
+     * 必须左右各至少一蓍。
+     */
     const left =
         randomInt(
             1,
@@ -2503,8 +2429,8 @@ async function beginSplit(){
         left,
         right
     );
-}
 
+}
 
 /* =====================================================
    挂一
@@ -2512,11 +2438,44 @@ async function beginSplit(){
 
 async function hangOne(left,right){
 
+    /*
+     * 从右束取一蓍。
+     *
+     * 注意：
+     * 后面的揲四使用的是
+     *
+     * 左束 = left
+     * 右束 = right - 1
+     *
+     * 挂起的一蓍单独归奇。
+     */
+
     const rightAfter =
         right - 1;
 
     const leftAfter =
         left;
+
+    if(rightAfter < 1){
+
+        console.error(
+            "挂一失败：右束没有足够蓍草",
+            {
+                left,
+                right
+            }
+        );
+
+        isCalculating = false;
+
+        alert(
+            "本次分二后右束不足以完成挂一，请重新起筮。"
+        );
+
+        reset();
+
+        return;
+    }
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变 · 挂一`;
@@ -2597,11 +2556,11 @@ async function hangOne(left,right){
                 rightAfter
             );
         };
+
 }
 
-
 /* =====================================================
-   揲四
+   揲四 · 核心修复版
 ===================================================== */
 
 async function performSuan(left,right){
@@ -2613,8 +2572,17 @@ async function performSuan(left,right){
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变 · 揲四`;
 
-    stageDesc.textContent =
-        "左右两束分别以四为数，取其余数，归奇。";
+    if(changeIndex === 0){
+
+        stageDesc.textContent =
+            "第一变：左右两束分别以四为数，取其余数，加挂一归奇五或九。";
+
+    }else{
+
+        stageDesc.textContent =
+            `第 ${changeIndex+1} 变：左右两束分别以四为数，取其余数，归奇四或八。`;
+
+    }
 
     piles.innerHTML = `
 
@@ -2632,38 +2600,81 @@ async function performSuan(left,right){
 
     await wait(900);
 
+    /*
+     * =================================================
+     * 左右余数
+     * =================================================
+     */
+
     const leftRemainder =
         remainder4(left);
 
     const rightRemainder =
         remainder4(right);
 
+    /*
+     * =================================================
+     * 归奇
+     *
+     * 第一变：
+     *
+     *   挂一 + 左余 + 右余
+     *   = 5 或 9
+     *
+     * 第二、第三变：
+     *
+     *   挂一 + 左余 + 右余
+     *   = 4 或 8
+     *
+     * 这里不能把三变统一成 5 / 9。
+     * =================================================
+     */
+
     const returned =
         1 +
         leftRemainder +
         rightRemainder;
 
-    if(
-        returned !== 5 &&
-        returned !== 9
-    ){
+    const expected =
+        changeIndex === 0
+            ? [5,9]
+            : [4,8];
+
+    /*
+     * =================================================
+     * 严格验证
+     * =================================================
+     */
+
+    if(!expected.includes(returned)){
 
         console.error(
-            "大衍计算异常",
+            "大衍归奇计算异常",
             {
+                yaoIndex,
+                changeIndex,
                 stalks,
                 left,
                 right,
                 leftRemainder,
                 rightRemainder,
-                returned
+                returned,
+                expected
             }
         );
 
         isCalculating = false;
 
         alert(
-            "本变归奇计算异常，请重新起筮。"
+            `第 ${changeIndex+1} 变归奇计算异常。\n\n` +
+            `当前蓍数：${stalks}\n` +
+            `左束：${left}\n` +
+            `右束：${right}\n` +
+            `左余：${leftRemainder}\n` +
+            `右余：${rightRemainder}\n` +
+            `归奇：${returned}\n\n` +
+            `正常应为：${expected.join(" 或 ")}。\n\n` +
+            `请重新起筮。`
         );
 
         reset();
@@ -2677,10 +2688,144 @@ async function performSuan(left,right){
     const after =
         before - returned;
 
+    /*
+     * =================================================
+     * 每变结束后的蓍数必须：
+     *
+     * 第一变：
+     * 40 或 44
+     *
+     * 第二变：
+     * 32 / 36 / 40
+     *
+     * 第三变：
+     * 24 / 28 / 32 / 36
+     *
+     * 并且必须为4的倍数。
+     * =================================================
+     */
+
+    if(
+        after <= 0 ||
+        after % 4 !== 0
+    ){
+
+        console.error(
+            "归奇后蓍数异常",
+            {
+                before,
+                returned,
+                after,
+                changeIndex
+            }
+        );
+
+        isCalculating = false;
+
+        alert(
+            `第 ${changeIndex+1} 变结束后蓍数异常：${after}。\n\n请重新起筮。`
+        );
+
+        reset();
+
+        return;
+    }
+
+    /*
+     * 第一变结果检查
+     */
+
+    if(
+        changeIndex === 0 &&
+        ![40,44].includes(after)
+    ){
+
+        console.error(
+            "第一变结束数量异常",
+            {
+                after
+            }
+        );
+
+        isCalculating = false;
+
+        alert(
+            "第一变结束后蓍数异常，请重新起筮。"
+        );
+
+        reset();
+
+        return;
+    }
+
+    /*
+     * 第二变结果检查
+     */
+
+    if(
+        changeIndex === 1 &&
+        ![32,36,40].includes(after)
+    ){
+
+        console.error(
+            "第二变结束数量异常",
+            {
+                after
+            }
+        );
+
+        isCalculating = false;
+
+        alert(
+            "第二变结束后蓍数异常，请重新起筮。"
+        );
+
+        reset();
+
+        return;
+    }
+
+    /*
+     * 第三变结果检查
+     */
+
+    if(
+        changeIndex === 2 &&
+        ![24,28,32,36].includes(after)
+    ){
+
+        console.error(
+            "第三变结束数量异常",
+            {
+                after
+            }
+        );
+
+        isCalculating = false;
+
+        alert(
+            "第三变结束后蓍数异常，请重新起筮。"
+        );
+
+        reset();
+
+        return;
+    }
+
+    /*
+     * 更新当前蓍数
+     */
+
     stalks =
         after;
 
     changeIndex++;
+
+    /*
+     * =================================================
+     * 页面显示
+     * =================================================
+     */
 
     piles.innerHTML = `
 
@@ -2721,13 +2866,23 @@ async function performSuan(left,right){
             </div>
 
             <div class="process-line">
-                <span>本变归奇</span>
-                <strong>${returned}</strong>
+                <span>
+                    第 ${changeIndex} 变归奇
+                </span>
+
+                <strong>
+                    ${returned}
+                </strong>
             </div>
 
             <div class="process-line">
-                <span>本变之后</span>
-                <strong>${after} 蓍</strong>
+                <span>
+                    本变之后
+                </span>
+
+                <strong>
+                    ${after} 蓍
+                </strong>
             </div>
 
         </div>
@@ -2784,12 +2939,18 @@ async function performSuan(left,right){
 
     await wait(1000);
 
+    /*
+     * =================================================
+     * 还没有完成三变
+     * =================================================
+     */
+
     if(changeIndex < 3){
 
         choice.innerHTML = `
 
             <div class="choice-title">
-                第 ${changeIndex} 变完成
+                第 ${changeIndex} 变完成 · 当前余 ${stalks} 蓍
             </div>
 
             <button
@@ -2807,9 +2968,15 @@ async function performSuan(left,right){
         return;
     }
 
-    finishYao();
-}
+    /*
+     * =================================================
+     * 三变全部完成
+     * =================================================
+     */
 
+    finishYao();
+
+}
 
 /* =====================================================
    下一变
@@ -2817,10 +2984,23 @@ async function performSuan(left,right){
 
 async function beginNextChange(){
 
+    if(!isCalculating)
+        return;
+
     choice.innerHTML = "";
     counts.innerHTML = "";
     remainders.innerHTML = "";
     result.style.display = "none";
+
+    /*
+     * 此时 stalks 应该是：
+     *
+     * 第二变开始：
+     * 40 / 44
+     *
+     * 第三变开始：
+     * 32 / 36 / 40
+     */
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
@@ -2828,22 +3008,21 @@ async function beginNextChange(){
     stageDesc.textContent =
         `上一变归奇后余 ${stalks} 蓍，重新合置后分二。`;
 
-    piles.innerHTML = `
+    piles.innerHTML = "";
 
-        <div class="combined-pile">
+    const combined =
+        document.createElement("div");
 
-            <div class="combined-title">
-                余蓍重新合置
-            </div>
+    combined.className =
+        "combined-pile";
 
+    combined.innerHTML = `
+
+        <div class="combined-title">
+            余蓍重新合置
         </div>
 
     `;
-
-    const combined =
-        piles.querySelector(
-            ".combined-pile"
-        );
 
     combined.appendChild(
         createStalks(stalks)
@@ -2861,10 +3040,12 @@ async function beginNextChange(){
 
     `;
 
+    piles.appendChild(combined);
+
     combined.onclick =
         beginSplit;
-}
 
+}
 
 /* =====================================================
    三变成爻
@@ -2880,6 +3061,15 @@ async function finishYao(){
 
     const remaining =
         stalks;
+
+    /*
+     * 三变后的余蓍：
+     *
+     * 24 → 6
+     * 28 → 7
+     * 32 → 8
+     * 36 → 9
+     */
 
     const value =
         remaining / 4;
@@ -2987,8 +3177,8 @@ async function finishYao(){
     }
 
     finishHexagram();
-}
 
+}
 
 /* =====================================================
    六爻成卦
@@ -3157,8 +3347,8 @@ function finishHexagram(){
             answer:""
 
         });
-}
 
+}
 
 /* =====================================================
    重置
@@ -3218,8 +3408,8 @@ function reset(){
 
     status.textContent =
         "完成六爻后才能进行 AI 解读。";
-}
 
+}
 
 /* =====================================================
    History
@@ -3240,8 +3430,8 @@ function getHistory(){
         return [];
 
     }
-}
 
+}
 
 function createHistory(item){
 
@@ -3269,8 +3459,8 @@ function createHistory(item){
     );
 
     return id;
-}
 
+}
 
 function updateHistoryAnswer(id,text){
 
@@ -3297,8 +3487,8 @@ function updateHistoryAnswer(id,text){
         "wangxing_history",
         JSON.stringify(history)
     );
-}
 
+}
 
 /* =====================================================
    HTML 转义
@@ -3318,8 +3508,8 @@ function escapeHtml(s){
                     '"':"&quot;"
                 }[c])
         );
-}
 
+}
 
 /* =====================================================
    历史记录
@@ -3442,13 +3632,14 @@ function openHistory(){
 
             }
         );
+
     }
 
     historyModal.classList.add(
         "show"
     );
-}
 
+}
 
 /* =====================================================
    加载历史
@@ -3543,8 +3734,8 @@ function loadHistory(x){
     historyModal.classList.remove(
         "show"
     );
-}
 
+}
 
 /* =====================================================
    页面按钮
@@ -3582,7 +3773,6 @@ historyModal.onclick =
 
     };
 
-
 /* =====================================================
    API 设置
 ===================================================== */
@@ -3595,8 +3785,8 @@ function updateKeyStatus(){
         )
             ? "已设置"
             : "未设置";
-}
 
+}
 
 function toggleKeyBox(){
 
@@ -3604,15 +3794,14 @@ function toggleKeyBox(){
         keyBox.style.display === "block"
             ? "none"
             : "block";
-}
 
+}
 
 $("settingsBtn").onclick =
     toggleKeyBox;
 
 $("keyButton").onclick =
     toggleKeyBox;
-
 
 $("saveKey").onclick =
     ()=>{
@@ -3640,8 +3829,8 @@ $("saveKey").onclick =
 
         keyBox.style.display =
             "none";
-    };
 
+    };
 
 $("clearKey").onclick =
     ()=>{
@@ -3651,11 +3840,10 @@ $("clearKey").onclick =
         );
 
         updateKeyStatus();
+
     };
 
-
 updateKeyStatus();
-
 
 /* =====================================================
    API 请求
@@ -3694,8 +3882,8 @@ async function fetchWithTimeout(
         clearTimeout(timer);
 
     }
-}
 
+}
 
 /* =====================================================
    API 响应解析
@@ -3746,6 +3934,7 @@ async function parseApiResponse(response){
             throw new Error(
                 "API Key 无效或认证失败，请检查智谱 API Key。"
             );
+
         }
 
         if(
@@ -3764,6 +3953,7 @@ async function parseApiResponse(response){
             error.rateLimited = true;
 
             throw error;
+
         }
 
         if(
@@ -3781,12 +3971,14 @@ async function parseApiResponse(response){
             error.retryable = true;
 
             throw error;
+
         }
 
         throw new Error(
             "智谱 API 请求失败：" +
             text
         );
+
     }
 
     if(!data){
@@ -3794,11 +3986,12 @@ async function parseApiResponse(response){
         throw new Error(
             "智谱 API 返回为空。"
         );
+
     }
 
     return data;
-}
 
+}
 
 /* =====================================================
    稳定 API 请求
@@ -3898,6 +4091,7 @@ async function callGLM(
             ){
 
                 throw error;
+
             }
 
             if(
@@ -3917,8 +4111,11 @@ async function callGLM(
                 await sleep(
                     base + jitter
                 );
+
             }
+
         }
+
     }
 
     if(
@@ -3929,6 +4126,7 @@ async function callGLM(
         throw new Error(
             "请求连续超时。请检查网络、API 服务状态或 API 额度后再试。"
         );
+
     }
 
     throw new Error(
@@ -3938,8 +4136,8 @@ async function callGLM(
             "网络连接异常"
         )
     );
-}
 
+}
 
 /* =====================================================
    AI 解读
@@ -3961,6 +4159,7 @@ async function requestAI(){
             "请先设置智谱 API Key。";
 
         return;
+
     }
 
     if(
@@ -3971,6 +4170,7 @@ async function requestAI(){
             "请先完成六爻起卦。";
 
         return;
+
     }
 
     const changed =
@@ -4153,6 +4353,7 @@ ${
             throw new Error(
                 "GLM 没有返回解读内容。"
             );
+
         }
 
         answer.textContent =
@@ -4167,6 +4368,7 @@ ${
                 currentHistoryId,
                 text
             );
+
         }
 
     }catch(error){
@@ -4193,13 +4395,13 @@ ${
 
         ai.textContent =
             "✦ 解读";
-    }
-}
 
+    }
+
+}
 
 ai.onclick =
     requestAI;
-
 
 /* =====================================================
    动态星河粒子系统
@@ -4214,7 +4416,6 @@ const ctx =
 let ss = [];
 let shootingStars = [];
 let galaxyDust = [];
-
 
 /* =====================================================
    星空尺寸
@@ -4334,8 +4535,8 @@ function resize(){
 
             })
         );
-}
 
+}
 
 /* =====================================================
    流星
@@ -4382,8 +4583,8 @@ function createShootingStar(){
         life:1
 
     });
-}
 
+}
 
 /* =====================================================
    银河尘埃
@@ -4424,8 +4625,8 @@ function drawGalaxyDust(time){
         ctx.fill();
 
     });
-}
 
+}
 
 /* =====================================================
    普通星星
@@ -4443,6 +4644,7 @@ function drawStars(time){
         ){
 
             s.x = -5;
+
         }
 
         const twinkle =
@@ -4526,11 +4728,12 @@ function drawStars(time){
             );
 
             ctx.fill();
+
         }
 
     });
-}
 
+}
 
 /* =====================================================
    流星
@@ -4616,8 +4819,8 @@ function drawShootingStars(){
             );
 
         });
-}
 
+}
 
 /* =====================================================
    星空动画
@@ -4682,8 +4885,8 @@ function draw(){
     drawShootingStars();
 
     requestAnimationFrame(draw);
-}
 
+}
 
 /* =====================================================
    启动
