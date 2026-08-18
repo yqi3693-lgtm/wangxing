@@ -34,7 +34,7 @@ body{
 
 
 /* =====================================================
-   动态蓝绿色星河背景
+   动态星河背景
 ===================================================== */
 
 #stars{
@@ -43,6 +43,7 @@ body{
     z-index:0;
     width:100%;
     height:100%;
+
     background:
         radial-gradient(
             ellipse at 50% 50%,
@@ -63,50 +64,50 @@ body{
 
 .nebula{
     position:absolute;
-    width:140%;
-    height:140%;
-    left:-20%;
-    top:-20%;
+    width:145%;
+    height:145%;
+    left:-22%;
+    top:-22%;
 
     background:
 
         radial-gradient(
             ellipse 55% 18% at 50% 48%,
-            rgba(50,255,235,.32),
-            rgba(17,190,190,.18) 28%,
-            transparent 70%
+            rgba(50,255,235,.36),
+            rgba(17,190,190,.18) 30%,
+            transparent 72%
         ),
 
         radial-gradient(
             ellipse 30% 42% at 12% 38%,
-            rgba(0,220,255,.23),
+            rgba(0,220,255,.24),
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 32% 45% at 88% 55%,
-            rgba(0,255,210,.20),
+            rgba(0,255,210,.21),
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 42% 28% at 50% 0%,
-            rgba(30,255,230,.20),
+            rgba(30,255,230,.18),
             transparent 75%
         ),
 
         radial-gradient(
             ellipse 55% 35% at 45% 100%,
-            rgba(0,110,190,.20),
+            rgba(0,110,190,.18),
             transparent 75%
         );
 
-    filter:blur(35px);
+    filter:blur(38px);
 
     transform:rotate(-8deg);
 
     animation:
-        galaxyMove 24s ease-in-out infinite alternate;
+        galaxyMove 25s ease-in-out infinite alternate;
 }
 
 .space::before{
@@ -117,11 +118,11 @@ body{
     background:
         repeating-linear-gradient(
             108deg,
-            transparent 0px,
-            transparent 80px,
+            transparent 0,
+            transparent 75px,
             rgba(65,255,240,.025) 120px,
-            rgba(65,255,240,.06) 150px,
-            transparent 210px
+            rgba(65,255,240,.07) 155px,
+            transparent 215px
         );
 
     filter:blur(18px);
@@ -131,7 +132,7 @@ body{
         scale(1.2);
 
     animation:
-        galaxyFlow 35s linear infinite;
+        galaxyFlow 34s linear infinite;
 }
 
 .space::after{
@@ -150,13 +151,13 @@ body{
             transparent 0%,
             rgba(0,255,235,.02) 18%,
             rgba(30,255,235,.13) 35%,
-            rgba(100,255,240,.25) 50%,
+            rgba(100,255,240,.28) 50%,
             rgba(0,220,220,.12) 65%,
             rgba(0,180,220,.03) 82%,
             transparent 100%
         );
 
-    filter:blur(35px);
+    filter:blur(38px);
 
     transform:rotate(-12deg);
 
@@ -167,7 +168,6 @@ body{
 }
 
 @keyframes galaxyMove{
-
     0%{
         transform:
             rotate(-8deg)
@@ -191,7 +191,6 @@ body{
 }
 
 @keyframes galaxyFlow{
-
     0%{
         transform:
             rotate(-7deg)
@@ -212,7 +211,6 @@ body{
 }
 
 @keyframes milkyway{
-
     0%{
         transform:
             rotate(-12deg)
@@ -267,11 +265,12 @@ header{
 
 .en{
     font:
-        32px
-        Georgia,
-        serif;
+        32px Georgia,serif;
 
     color:#c1ffff;
+
+    text-shadow:
+        0 0 20px rgba(80,255,240,.25);
 }
 
 .cn{
@@ -324,8 +323,8 @@ header{
     background:
         linear-gradient(
             145deg,
-            rgba(3,29,35,.84),
-            rgba(1,15,20,.78)
+            rgba(3,29,35,.82),
+            rgba(1,15,20,.72)
         );
 
     border:
@@ -338,7 +337,7 @@ header{
         0 0 35px rgba(23,203,202,.07),
         inset 0 0 30px rgba(67,240,233,.025);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
 }
 
 .pad{
@@ -473,7 +472,7 @@ textarea:focus{
 ===================================================== */
 
 .stage{
-    min-height:600px;
+    min-height:620px;
     margin-top:18px;
     padding:25px 22px;
 }
@@ -511,6 +510,7 @@ textarea:focus{
     display:block;
     width:0;
     height:100%;
+
     background:#55dfda;
 
     box-shadow:
@@ -526,7 +526,7 @@ textarea:focus{
 ===================================================== */
 
 .pile-area{
-    min-height:260px;
+    min-height:280px;
     margin:12px 0;
 
     display:flex;
@@ -576,7 +576,6 @@ textarea:focus{
 }
 
 @keyframes hang{
-
     from{
         opacity:0;
         transform:
@@ -598,8 +597,8 @@ textarea:focus{
 ===================================================== */
 
 .combined-pile{
-    width:min(620px,95%);
-    min-height:250px;
+    width:min(680px,95%);
+    min-height:270px;
 
     border:
         1px solid
@@ -617,7 +616,7 @@ textarea:focus{
     background:
         radial-gradient(
             ellipse,
-            rgba(14,103,108,.25),
+            rgba(14,103,108,.27),
             rgba(0,25,30,.18) 60%,
             transparent 80%
         );
@@ -654,8 +653,8 @@ textarea:focus{
 
 .stalk-visual{
     width:100%;
-    max-width:520px;
-    min-height:100px;
+    max-width:560px;
+    min-height:105px;
 
     display:flex;
     flex-wrap:wrap;
@@ -663,7 +662,7 @@ textarea:focus{
     align-content:center;
 
     gap:3px;
-    padding:12px;
+    padding:14px;
 
     border-radius:12px;
 
@@ -700,7 +699,6 @@ textarea:focus{
 }
 
 @keyframes stalkAppear{
-
     from{
         opacity:0;
         transform:
@@ -715,7 +713,7 @@ textarea:focus{
 
 
 /* =====================================================
-   左右分束
+   分束
 ===================================================== */
 
 .pile-row{
@@ -880,6 +878,7 @@ textarea:focus{
 .choice-btn:hover{
     border-color:#5be9e3;
     color:#dfffff;
+
     box-shadow:
         0 0 14px
         rgba(70,230,220,.12);
@@ -1352,7 +1351,6 @@ textarea:focus{
     .nav{
         display:none;
     }
-
 }
 
 @media(max-width:560px){
@@ -1397,11 +1395,68 @@ textarea:focus{
 
 }
 
+
+/* =====================================================
+   星河增强光效
+===================================================== */
+
+.glow-orb{
+    position:fixed;
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,255,235,.08),
+            transparent 70%
+        );
+
+    filter:blur(30px);
+
+    pointer-events:none;
+
+    z-index:1;
+
+    animation:
+        orbMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes orbMove{
+
+    0%{
+        transform:
+            translate(
+                -20vw,
+                -10vh
+            );
+    }
+
+    50%{
+        transform:
+            translate(
+                30vw,
+                20vh
+            );
+    }
+
+    100%{
+        transform:
+            translate(
+                60vw,
+                -5vh
+            );
+    }
+}
+
 </style>
 </head>
 
 
 <body>
+
 
 <!-- =====================================================
      动态星空
@@ -1413,45 +1468,46 @@ textarea:focus{
     <div class="nebula"></div>
 </div>
 
+<div class="glow-orb"></div>
+
 
 <div class="container">
 
 
 <header>
 
-<div class="logo">
+    <div class="logo">
 
-    <div class="en">
-        WANGXING
+        <div class="en">
+            WANGXING
+        </div>
+
+        <div class="cn">
+            大衍筮法
+        </div>
+
+        <div class="sub">
+            一问一卦 · 六爻成象 · 星河筮问
+        </div>
+
     </div>
 
-    <div class="cn">
-        大衍筮法
+
+    <div class="nav">
+
+        <div id="historyBtn">
+            <b>◷</b>
+            历史记录
+        </div>
+
+        <div id="settingsBtn">
+            <b>⚙</b>
+            设置
+        </div>
+
     </div>
-
-    <div class="sub">
-        一问一卦 · 六爻成象 · 星河筮问
-    </div>
-
-</div>
-
-
-<div class="nav">
-
-    <div id="historyBtn">
-        <b>◷</b>
-        历史记录
-    </div>
-
-    <div id="settingsBtn">
-        <b>⚙</b>
-        设置
-    </div>
-
-</div>
 
 </header>
-
 
 
 <div class="grid">
@@ -1512,7 +1568,6 @@ textarea:focus{
 </div>
 
 
-
 <div class="panel stage">
 
 
@@ -1533,9 +1588,7 @@ textarea:focus{
 
 
 <div class="progress">
-
     <i id="bar"></i>
-
 </div>
 
 
@@ -1573,7 +1626,6 @@ textarea:focus{
 </div>
 
 </section>
-
 
 
 <!-- ===================================================
@@ -1631,18 +1683,13 @@ textarea:focus{
 </div>
 
 
-
 <div class="table">
-
 
 <div class="tr head">
 
 <div>爻位</div>
-
 <div>爻象</div>
-
 <div>数值</div>
-
 <div>状态</div>
 
 </div>
@@ -1650,9 +1697,7 @@ textarea:focus{
 
 <div id="rows"></div>
 
-
 </div>
-
 
 
 <div class="actions">
@@ -1680,7 +1725,6 @@ textarea:focus{
 
 
 </div>
-
 
 
 <!-- ===================================================
@@ -1717,7 +1761,6 @@ textarea:focus{
 </div>
 
 
-
 <div
     class="panel pad apiBox"
     id="keyBox"
@@ -1734,7 +1777,7 @@ textarea:focus{
     type="password"
     autocomplete="off"
     placeholder="请输入智谱 API Key"
->
+/>
 
 
 <button
@@ -1761,7 +1804,6 @@ textarea:focus{
 </div>
 
 
-
 <div class="footer">
 
 WANGXING · 星河大衍筮法
@@ -1770,7 +1812,6 @@ WANGXING · 星河大衍筮法
 
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1788,7 +1829,6 @@ WANGXING · 星河大衍筮法
 
 <div class="modal-head">
 
-
 <h2 style="margin:0">
 历史记录
 </h2>
@@ -1801,7 +1841,6 @@ WANGXING · 星河大衍筮法
     关闭
 </button>
 
-
 </div>
 
 
@@ -1813,16 +1852,13 @@ WANGXING · 星河大衍筮法
 </div>
 
 
-
 <script>
 
 /* =====================================================
    DOM
 ===================================================== */
 
-const $ =
-    id => document.getElementById(id);
-
+const $ = id => document.getElementById(id);
 
 const q = $("q");
 const begin = $("begin");
@@ -1978,47 +2014,35 @@ const hex = {
 ===================================================== */
 
 let question = "";
-
 let yaoIndex = 0;
-
 let changeIndex = 0;
-
 let stalks = 49;
-
 let allYao = [];
-
 let currentHistoryId = null;
-
 let isCalculating = false;
 
 
 /* =====================================================
-   延迟
+   工具
 ===================================================== */
 
 function wait(ms){
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-
+    return new Promise(resolve => setTimeout(resolve,ms));
 }
 
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve,ms));
+}
 
-/* =====================================================
-   四取余
-===================================================== */
+function randomInt(min,max){
+    return Math.floor(
+        Math.random() * (max - min + 1)
+    ) + min;
+}
 
 function remainder4(n){
-
     const r = n % 4;
-
     return r === 0 ? 4 : r;
-
 }
 
 
@@ -2041,7 +2065,6 @@ function yaoState(v){
         return "老阳 · 动";
 
     return "未知";
-
 }
 
 
@@ -2051,25 +2074,21 @@ function yaoState(v){
 
 function hexName(lines){
 
-    const bits =
-        lines.map(
-            v =>
-                (
-                    v === 7 ||
-                    v === 9
-                )
-                    ? "1"
-                    : "0"
-        );
-
+    const bits = lines.map(
+        v =>
+            (
+                v === 7 ||
+                v === 9
+            )
+            ? "1"
+            : "0"
+    );
 
     const lowerBits =
         bits.slice(0,3).join("");
 
-
     const upperBits =
         bits.slice(3,6).join("");
-
 
     const lowerName =
         tri[lowerBits];
@@ -2077,16 +2096,13 @@ function hexName(lines){
     const upperName =
         tri[upperBits];
 
-
     return (
         hex[
-            upperName +
-            lowerName
+            upperName + lowerName
         ]
         ||
         "未知卦"
     );
-
 }
 
 
@@ -2094,29 +2110,16 @@ function hexName(lines){
    画卦
 ===================================================== */
 
-function renderHex(
-    target,
-    lines
-){
+function renderHex(target,lines){
 
     target.innerHTML = "";
 
+    for(let i=5;i>=0;i--){
 
-    for(
-        let i = 5;
-        i >= 0;
-        i--
-    ){
-
-        const v =
-            lines[i];
-
+        const v = lines[i];
 
         const d =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         d.className =
             "line" +
@@ -2126,7 +2129,6 @@ function renderHex(
                     ? " movingline"
                     : ""
             );
-
 
         if(
             v === 7 ||
@@ -2144,11 +2146,8 @@ function renderHex(
 
         }
 
-
         target.appendChild(d);
-
     }
-
 }
 
 
@@ -2160,57 +2159,48 @@ function updateRows(){
 
     rows.innerHTML = "";
 
+    allYao.forEach((v,i)=>{
 
-    allYao.forEach(
-        (v,i)=>{
+        const d =
+            document.createElement("div");
 
-            const d =
-                document.createElement(
-                    "div"
-                );
+        d.className =
+            "tr" +
+            (
+                v === 6 ||
+                v === 9
+                    ? " move"
+                    : ""
+            );
 
+        d.innerHTML = `
 
-            d.className =
-                "tr" +
-                (
-                    v === 6 ||
+            <div>
+                第${i+1}爻
+            </div>
+
+            <div>
+                ${
+                    v === 7 ||
                     v === 9
-                        ? " move"
-                        : ""
-                );
+                        ? "━━━"
+                        : "━ ━"
+                }
+            </div>
 
+            <div>
+                ${v}
+            </div>
 
-            d.innerHTML = `
+            <div>
+                ${yaoState(v)}
+            </div>
 
-                <div>
-                    第${i+1}爻
-                </div>
+        `;
 
-                <div>
-                    ${
-                        v === 7 ||
-                        v === 9
-                            ? "━━━"
-                            : "━ ━"
-                    }
-                </div>
+        rows.appendChild(d);
 
-                <div>
-                    ${v}
-                </div>
-
-                <div>
-                    ${yaoState(v)}
-                </div>
-
-            `;
-
-
-            rows.appendChild(d);
-
-        }
-    );
-
+    });
 }
 
 
@@ -2221,63 +2211,35 @@ function updateRows(){
 function createStalks(count){
 
     const wrapper =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     wrapper.className =
         "stalk-visual";
 
-
     const displayCount =
         Math.min(
-            Math.max(
-                count,
-                1
-            ),
+            Math.max(count,1),
             49
         );
 
-
-    for(
-        let i = 0;
-        i < displayCount;
-        i++
-    ){
+    for(let i=0;i<displayCount;i++){
 
         const stalk =
-            document.createElement(
-                "span"
-            );
-
+            document.createElement("span");
 
         stalk.className =
             "stalk";
 
-
         stalk.style.transform =
-            `rotate(${
-                Math.random() * 10 - 5
-            }deg)`;
-
+            `rotate(${Math.random()*10-5}deg)`;
 
         stalk.style.animationDelay =
-            `${Math.min(
-                i * .008,
-                .4
-            )}s`;
+            `${Math.min(i*.008,.4)}s`;
 
-
-        wrapper.appendChild(
-            stalk
-        );
-
+        wrapper.appendChild(stalk);
     }
 
-
     return wrapper;
-
 }
 
 
@@ -2290,10 +2252,8 @@ async function start(){
     if(isCalculating)
         return;
 
-
     question =
         q.value.trim();
-
 
     if(!question){
 
@@ -2304,61 +2264,38 @@ async function start(){
         q.focus();
 
         return;
-
     }
-
 
     isCalculating = true;
 
     yaoIndex = 0;
-
     changeIndex = 0;
-
     allYao = [];
-
     currentHistoryId = null;
-
     stalks = 49;
 
-
     begin.disabled = true;
-
     restart.disabled = false;
-
     ai.disabled = true;
 
-
     answer.textContent = "";
-
     rows.innerHTML = "";
-
     bh.innerHTML = "";
-
     ch.innerHTML = "";
 
+    bn.textContent = "本卦";
+    cn.textContent = "变卦";
 
-    bn.textContent =
-        "本卦";
-
-    cn.textContent =
-        "变卦";
-
-
-    bar.style.width =
-        "0%";
-
+    bar.style.width = "0%";
 
     status.textContent =
         "正在进行大衍筮法。";
 
-
     stageTitle.textContent =
         "大衍之数";
 
-
     stageDesc.textContent =
         "天地之数五十，虚一不用。";
-
 
     piles.innerHTML = `
 
@@ -2374,19 +2311,13 @@ async function start(){
 
     `;
 
-
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
 
-    result.style.display =
-        "none";
-
+    result.style.display = "none";
 
     await wait(900);
-
 
     piles.innerHTML = `
 
@@ -2404,12 +2335,9 @@ async function start(){
 
     `;
 
-
     await wait(1100);
 
-
     startYao();
-
 }
 
 
@@ -2420,39 +2348,25 @@ async function start(){
 async function startYao(){
 
     stalks = 49;
-
     changeIndex = 0;
 
-
     piles.innerHTML = "";
-
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
-
-    result.style.display =
-        "none";
-
+    result.style.display = "none";
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 起筮`;
 
-
     stageDesc.textContent =
         "重新取四十九蓍，合置于前。";
 
-
     const combined =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     combined.className =
         "combined-pile";
-
 
     combined.innerHTML = `
 
@@ -2462,11 +2376,9 @@ async function startYao(){
 
     `;
 
-
     combined.appendChild(
         createStalks(49)
     );
-
 
     combined.innerHTML += `
 
@@ -2480,15 +2392,10 @@ async function startYao(){
 
     `;
 
-
-    piles.appendChild(
-        combined
-    );
-
+    piles.appendChild(combined);
 
     combined.onclick =
         beginSplit;
-
 }
 
 
@@ -2501,18 +2408,10 @@ async function beginSplit(){
     if(!isCalculating)
         return;
 
-
     choice.innerHTML = "";
-
 
     const total =
         stalks;
-
-
-    /*
-     * 自动随机分二。
-     * 左右各至少一蓍。
-     */
 
     const left =
         randomInt(
@@ -2520,41 +2419,28 @@ async function beginSplit(){
             total - 1
         );
 
-
     const right =
         total - left;
-
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变 · 分二`;
 
-
     stageDesc.textContent =
         "四十九蓍合置后，自动分为左右两束，以象天地。";
 
-
     piles.innerHTML = "";
 
-
     const row =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     row.className =
         "pile-row";
 
-
     const leftPile =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     leftPile.className =
         "pile";
-
 
     leftPile.innerHTML = `
 
@@ -2564,11 +2450,9 @@ async function beginSplit(){
 
     `;
 
-
     leftPile.appendChild(
         createStalks(left)
     );
-
 
     leftPile.innerHTML += `
 
@@ -2578,16 +2462,11 @@ async function beginSplit(){
 
     `;
 
-
     const rightPile =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     rightPile.className =
         "pile highlight";
-
 
     rightPile.innerHTML = `
 
@@ -2597,11 +2476,9 @@ async function beginSplit(){
 
     `;
 
-
     rightPile.appendChild(
         createStalks(right)
     );
-
 
     rightPile.innerHTML += `
 
@@ -2615,29 +2492,17 @@ async function beginSplit(){
 
     `;
 
+    row.appendChild(leftPile);
+    row.appendChild(rightPile);
 
-    row.appendChild(
-        leftPile
-    );
-
-    row.appendChild(
-        rightPile
-    );
-
-
-    piles.appendChild(
-        row
-    );
-
+    piles.appendChild(row);
 
     await wait(1200);
-
 
     await hangOne(
         left,
         right
     );
-
 }
 
 
@@ -2645,10 +2510,7 @@ async function beginSplit(){
    挂一
 ===================================================== */
 
-async function hangOne(
-    left,
-    right
-){
+async function hangOne(left,right){
 
     const rightAfter =
         right - 1;
@@ -2656,14 +2518,11 @@ async function hangOne(
     const leftAfter =
         left;
 
-
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变 · 挂一`;
 
-
     stageDesc.textContent =
         "从右束取一蓍挂于旁，然后进行揲四。";
-
 
     piles.innerHTML = `
 
@@ -2681,22 +2540,15 @@ async function hangOne(
 
     `;
 
-
     await wait(1000);
-
 
     piles.innerHTML = "";
 
-
     const box =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     box.className =
         "process-box";
-
 
     box.innerHTML = `
 
@@ -2721,11 +2573,7 @@ async function hangOne(
 
     `;
 
-
-    piles.appendChild(
-        box
-    );
-
+    piles.appendChild(box);
 
     choice.innerHTML = `
 
@@ -2742,7 +2590,6 @@ async function hangOne(
 
     `;
 
-
     $("suanBtn").onclick =
         ()=>{
             performSuan(
@@ -2750,33 +2597,24 @@ async function hangOne(
                 rightAfter
             );
         };
-
 }
 
 
 /* =====================================================
-   揲四 · 归奇
+   揲四
 ===================================================== */
 
-async function performSuan(
-    left,
-    right
-){
+async function performSuan(left,right){
 
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
-
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变 · 揲四`;
 
-
     stageDesc.textContent =
         "左右两束分别以四为数，取其余数，归奇。";
-
 
     piles.innerHTML = `
 
@@ -2792,29 +2630,18 @@ async function performSuan(
 
     `;
 
-
     await wait(900);
-
 
     const leftRemainder =
         remainder4(left);
 
-
     const rightRemainder =
         remainder4(right);
-
-
-    /*
-     * 挂一 + 左余 + 右余
-     *
-     * 正常结果只能是 5 或 9。
-     */
 
     const returned =
         1 +
         leftRemainder +
         rightRemainder;
-
 
     if(
         returned !== 5 &&
@@ -2833,7 +2660,6 @@ async function performSuan(
             }
         );
 
-
         isCalculating = false;
 
         alert(
@@ -2843,24 +2669,18 @@ async function performSuan(
         reset();
 
         return;
-
     }
-
 
     const before =
         stalks;
 
-
     const after =
         before - returned;
-
 
     stalks =
         after;
 
-
     changeIndex++;
-
 
     piles.innerHTML = `
 
@@ -2914,7 +2734,6 @@ async function performSuan(
 
     `;
 
-
     counts.innerHTML = `
 
         <div class="countbox">
@@ -2938,7 +2757,6 @@ async function performSuan(
         </div>
 
     `;
-
 
     remainders.innerHTML = `
 
@@ -2964,13 +2782,9 @@ async function performSuan(
 
     `;
 
-
     await wait(1000);
 
-
-    if(
-        changeIndex < 3
-    ){
+    if(changeIndex < 3){
 
         choice.innerHTML = `
 
@@ -2987,18 +2801,13 @@ async function performSuan(
 
         `;
 
-
         $("nextChange").onclick =
             beginNextChange;
 
-
         return;
-
     }
 
-
     finishYao();
-
 }
 
 
@@ -3009,22 +2818,15 @@ async function performSuan(
 async function beginNextChange(){
 
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
-
-    result.style.display =
-        "none";
-
+    result.style.display = "none";
 
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
 
-
     stageDesc.textContent =
         `上一变归奇后余 ${stalks} 蓍，重新合置后分二。`;
-
 
     piles.innerHTML = `
 
@@ -3038,17 +2840,14 @@ async function beginNextChange(){
 
     `;
 
-
     const combined =
         piles.querySelector(
             ".combined-pile"
         );
 
-
     combined.appendChild(
         createStalks(stalks)
     );
-
 
     combined.innerHTML += `
 
@@ -3062,10 +2861,8 @@ async function beginNextChange(){
 
     `;
 
-
     combined.onclick =
         beginSplit;
-
 }
 
 
@@ -3078,27 +2875,14 @@ async function finishYao(){
     stageTitle.textContent =
         `第 ${yaoIndex+1} 爻 · 三变成爻`;
 
-
     stageDesc.textContent =
         "三变已毕，以余蓍数除四，定六、七、八、九。";
-
 
     const remaining =
         stalks;
 
-
     const value =
         remaining / 4;
-
-
-    /*
-     * 正常结果：
-     *
-     * 24 → 6 老阴
-     * 28 → 7 少阳
-     * 32 → 8 少阴
-     * 36 → 9 老阳
-     */
 
     if(
         ![
@@ -3119,9 +2903,7 @@ async function finishYao(){
             }
         );
 
-
         isCalculating = false;
-
 
         alert(
             "本爻三变计算异常：" +
@@ -3132,22 +2914,15 @@ async function finishYao(){
             "\n\n正常结果只能是 6、7、8、9。\n\n请重新起筮。"
         );
 
-
         reset();
 
         return;
-
     }
 
-
-    allYao.push(
-        value
-    );
-
+    allYao.push(value);
 
     result.style.display =
         "block";
-
 
     result.innerHTML = `
 
@@ -3181,56 +2956,37 @@ async function finishYao(){
 
     `;
 
-
     updateRows();
 
-
     yaoIndex++;
-
 
     bar.style.width =
         `${yaoIndex / 6 * 100}%`;
 
-
-    if(
-        yaoIndex < 6
-    ){
+    if(yaoIndex < 6){
 
         await wait(1300);
 
-
         piles.innerHTML = "";
-
         choice.innerHTML = "";
-
         counts.innerHTML = "";
-
         remainders.innerHTML = "";
-
-        result.style.display =
-            "none";
-
+        result.style.display = "none";
 
         stageTitle.textContent =
             `第 ${yaoIndex+1} 爻 · 准备`;
 
-
         stageDesc.textContent =
             "重新取四十九蓍，准备下一爻。";
 
-
         await wait(600);
-
 
         startYao();
 
         return;
-
     }
 
-
     finishHexagram();
-
 }
 
 
@@ -3243,34 +2999,24 @@ function finishHexagram(){
     const original =
         allYao.slice();
 
-
     const changed =
-        allYao.map(
-            v=>{
+        allYao.map(v=>{
 
-                if(v === 6)
-                    return 7;
+            if(v === 6)
+                return 7;
 
-                if(v === 9)
-                    return 8;
+            if(v === 9)
+                return 8;
 
-                return v;
+            return v;
 
-            }
-        );
-
+        });
 
     const ben =
-        hexName(
-            original
-        );
-
+        hexName(original);
 
     const chg =
-        hexName(
-            changed
-        );
-
+        hexName(changed);
 
     const moving =
         allYao
@@ -3285,38 +3031,30 @@ function finishHexagram(){
         )
         .filter(Boolean);
 
-
     bn.textContent =
         `本卦 · ${ben}`;
 
-
     cn.textContent =
         `变卦 · ${chg}`;
-
 
     renderHex(
         bh,
         original
     );
 
-
     renderHex(
         ch,
         changed
     );
 
-
     stageTitle.textContent =
         "六爻成象";
-
 
     stageDesc.textContent =
         "六爻全部完成，本卦、动爻与变卦已经形成。";
 
-
     bar.style.width =
         "100%";
-
 
     piles.innerHTML = `
 
@@ -3345,17 +3083,12 @@ function finishHexagram(){
 
     `;
 
-
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
-
 
     result.style.display =
         "block";
-
 
     result.innerHTML = `
 
@@ -3394,21 +3127,14 @@ function finishHexagram(){
 
     `;
 
-
     isCalculating = false;
 
+    begin.disabled = false;
 
-    begin.disabled =
-        false;
-
-
-    ai.disabled =
-        false;
-
+    ai.disabled = false;
 
     status.textContent =
         "六爻完成，可以进行 GLM AI 解读。";
-
 
     currentHistoryId =
         createHistory({
@@ -3417,9 +3143,7 @@ function finishHexagram(){
 
             time:
                 new Date()
-                .toLocaleString(
-                    "zh-CN"
-                ),
+                .toLocaleString("zh-CN"),
 
             yao:
                 original,
@@ -3433,7 +3157,6 @@ function finishHexagram(){
             answer:""
 
         });
-
 }
 
 
@@ -3450,7 +3173,6 @@ function reset(){
     question = "";
 
     yaoIndex = 0;
-
     changeIndex = 0;
 
     stalks = 49;
@@ -3459,48 +3181,31 @@ function reset(){
 
     currentHistoryId = null;
 
-
-    begin.disabled =
-        false;
-
-    restart.disabled =
-        false;
-
-    ai.disabled =
-        true;
-
+    begin.disabled = false;
+    restart.disabled = false;
+    ai.disabled = true;
 
     stageTitle.textContent =
         "准备大衍之数";
 
-
     stageDesc.textContent =
         "天地之数五十，虚一不用。";
-
 
     bar.style.width =
         "0%";
 
-
     piles.innerHTML = "";
-
     choice.innerHTML = "";
-
     counts.innerHTML = "";
-
     remainders.innerHTML = "";
-
 
     result.style.display =
         "none";
 
-
     rows.innerHTML = "";
 
     bh.innerHTML = "";
-
     ch.innerHTML = "";
-
 
     bn.textContent =
         "本卦";
@@ -3508,14 +3213,11 @@ function reset(){
     cn.textContent =
         "变卦";
 
-
     answer.textContent =
         "";
 
-
     status.textContent =
         "完成六爻后才能进行 AI 解读。";
-
 }
 
 
@@ -3538,7 +3240,6 @@ function getHistory(){
         return [];
 
     }
-
 }
 
 
@@ -3547,7 +3248,6 @@ function createHistory(item){
     const history =
         getHistory();
 
-
     const id =
         Date.now().toString() +
         "_" +
@@ -3555,44 +3255,27 @@ function createHistory(item){
             .toString(36)
             .slice(2);
 
-
     item.id =
         id;
 
-
-    history.unshift(
-        item
-    );
-
+    history.unshift(item);
 
     const limited =
-        history.slice(
-            0,
-            30
-        );
-
+        history.slice(0,30);
 
     localStorage.setItem(
         "wangxing_history",
-        JSON.stringify(
-            limited
-        )
+        JSON.stringify(limited)
     );
 
-
     return id;
-
 }
 
 
-function updateHistoryAnswer(
-    id,
-    text
-){
+function updateHistoryAnswer(id,text){
 
     const history =
         getHistory();
-
 
     const index =
         history.findIndex(
@@ -3600,29 +3283,20 @@ function updateHistoryAnswer(
                 x.id === id
         );
 
-
     if(index === -1)
         return;
-
 
     history[index].answer =
         text;
 
-
     history[index].answerTime =
         new Date()
-        .toLocaleString(
-            "zh-CN"
-        );
-
+        .toLocaleString("zh-CN");
 
     localStorage.setItem(
         "wangxing_history",
-        JSON.stringify(
-            history
-        )
+        JSON.stringify(history)
     );
-
 }
 
 
@@ -3644,7 +3318,6 @@ function escapeHtml(s){
                     '"':"&quot;"
                 }[c])
         );
-
 }
 
 
@@ -3656,7 +3329,6 @@ function openHistory(){
 
     const history =
         getHistory();
-
 
     if(!history.length){
 
@@ -3708,9 +3380,7 @@ function openHistory(){
                             <br>
 
                             六爻：
-                            ${x.yao.join(
-                                "、"
-                            )}
+                            ${x.yao.join("、")}
 
                             <br>
 
@@ -3718,9 +3388,7 @@ function openHistory(){
                                 x.moving &&
                                 x.moving.length
                                     ? "动爻：" +
-                                      x.moving.join(
-                                          "、"
-                                      )
+                                      x.moving.join("、")
                                     : "六爻皆静"
                             }
 
@@ -3729,9 +3397,11 @@ function openHistory(){
                         ${
                             x.answer
                                 ? `
+
                                     <div
                                         class="history-answer"
                                     >
+
                                         <strong>
                                             AI 解读
                                         </strong>
@@ -3741,7 +3411,9 @@ function openHistory(){
                                         ${escapeHtml(
                                             x.answer
                                         )}
+
                                     </div>
+
                                   `
                                 : ""
                         }
@@ -3751,7 +3423,6 @@ function openHistory(){
                 `
             )
             .join("");
-
 
         document
         .querySelectorAll(
@@ -3771,14 +3442,11 @@ function openHistory(){
 
             }
         );
-
     }
-
 
     historyModal.classList.add(
         "show"
     );
-
 }
 
 
@@ -3791,88 +3459,68 @@ function loadHistory(x){
     question =
         x.question;
 
-
     q.value =
         x.question;
-
 
     allYao =
         x.yao.slice();
 
-
     yaoIndex = 6;
-
 
     currentHistoryId =
         x.id || null;
 
-
     updateRows();
-
 
     bn.textContent =
         `本卦 · ${x.ben}`;
 
-
     cn.textContent =
         `变卦 · ${x.chg}`;
-
 
     renderHex(
         bh,
         allYao
     );
 
-
     renderHex(
         ch,
-        allYao.map(
-            v=>{
+        allYao.map(v=>{
 
-                if(v === 6)
-                    return 7;
+            if(v === 6)
+                return 7;
 
-                if(v === 9)
-                    return 8;
+            if(v === 9)
+                return 8;
 
-                return v;
+            return v;
 
-            }
-        )
+        })
     );
-
 
     stageTitle.textContent =
         "历史卦象";
 
-
     stageDesc.textContent =
         "已载入历史记录，可以继续查看或重新进行 AI 解读。";
-
 
     bar.style.width =
         "100%";
 
-
     ai.disabled =
         false;
-
 
     begin.disabled =
         false;
 
-
     isCalculating =
         false;
-
 
     status.textContent =
         "历史卦象已载入。";
 
-
     answer.textContent =
         x.answer || "";
-
 
     piles.innerHTML = `
 
@@ -3892,11 +3540,9 @@ function loadHistory(x){
 
     `;
 
-
     historyModal.classList.remove(
         "show"
     );
-
 }
 
 
@@ -3907,14 +3553,11 @@ function loadHistory(x){
 begin.onclick =
     start;
 
-
 restart.onclick =
     reset;
 
-
 $("historyBtn").onclick =
     openHistory;
-
 
 $("closeHistory").onclick =
     ()=>{
@@ -3922,7 +3565,6 @@ $("closeHistory").onclick =
             "show"
         );
     };
-
 
 historyModal.onclick =
     e=>{
@@ -3953,24 +3595,20 @@ function updateKeyStatus(){
         )
             ? "已设置"
             : "未设置";
-
 }
 
 
 function toggleKeyBox(){
 
     keyBox.style.display =
-        keyBox.style.display ===
-            "block"
+        keyBox.style.display === "block"
             ? "none"
             : "block";
-
 }
 
 
 $("settingsBtn").onclick =
     toggleKeyBox;
-
 
 $("keyButton").onclick =
     toggleKeyBox;
@@ -3982,7 +3620,6 @@ $("saveKey").onclick =
         const value =
             key.value.trim();
 
-
         if(!value){
 
             alert(
@@ -3990,24 +3627,19 @@ $("saveKey").onclick =
             );
 
             return;
-
         }
-
 
         localStorage.setItem(
             "wangxing_glm_key",
             value
         );
 
-
         key.value = "";
 
         updateKeyStatus();
 
-
         keyBox.style.display =
             "none";
-
     };
 
 
@@ -4018,9 +3650,7 @@ $("clearKey").onclick =
             "wangxing_glm_key"
         );
 
-
         updateKeyStatus();
-
     };
 
 
@@ -4028,24 +3658,7 @@ updateKeyStatus();
 
 
 /* =====================================================
-   API sleep
-===================================================== */
-
-function sleep(ms){
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-
-}
-
-
-/* =====================================================
-   带超时请求
+   API 请求
 ===================================================== */
 
 async function fetchWithTimeout(
@@ -4057,7 +3670,6 @@ async function fetchWithTimeout(
     const controller =
         new AbortController();
 
-
     const timer =
         setTimeout(
             ()=>{
@@ -4065,7 +3677,6 @@ async function fetchWithTimeout(
             },
             timeout
         );
-
 
     try{
 
@@ -4080,12 +3691,9 @@ async function fetchWithTimeout(
 
     }finally{
 
-        clearTimeout(
-            timer
-        );
+        clearTimeout(timer);
 
     }
-
 }
 
 
@@ -4093,16 +3701,12 @@ async function fetchWithTimeout(
    API 响应解析
 ===================================================== */
 
-async function parseApiResponse(
-    response
-){
+async function parseApiResponse(response){
 
     const raw =
         await response.text();
 
-
     let data = null;
-
 
     try{
 
@@ -4117,7 +3721,6 @@ async function parseApiResponse(
 
     }
 
-
     if(!response.ok){
 
         const message =
@@ -4128,10 +3731,8 @@ async function parseApiResponse(
             raw ||
             `HTTP ${response.status}`;
 
-
         const text =
             String(message);
-
 
         if(
             response.status === 401 ||
@@ -4145,9 +3746,7 @@ async function parseApiResponse(
             throw new Error(
                 "API Key 无效或认证失败，请检查智谱 API Key。"
             );
-
         }
-
 
         if(
             response.status === 429 ||
@@ -4161,18 +3760,11 @@ async function parseApiResponse(
                     "API 当前请求过多或额度受限。"
                 );
 
-
-            error.retryable =
-                true;
-
-            error.rateLimited =
-                true;
-
+            error.retryable = true;
+            error.rateLimited = true;
 
             throw error;
-
         }
-
 
         if(
             response.status >= 500 &&
@@ -4186,35 +3778,25 @@ async function parseApiResponse(
                     "）。"
                 );
 
-
-            error.retryable =
-                true;
-
+            error.retryable = true;
 
             throw error;
-
         }
-
 
         throw new Error(
             "智谱 API 请求失败：" +
             text
         );
-
     }
-
 
     if(!data){
 
         throw new Error(
             "智谱 API 返回为空。"
         );
-
     }
 
-
     return data;
-
 }
 
 
@@ -4230,13 +3812,6 @@ async function callGLM(
     const url =
         "https://open.bigmodel.cn/api/paas/v4/chat/completions";
 
-
-    /*
-     * 每次请求拥有独立 AbortController。
-     *
-     * 45s → 60s → 75s
-     */
-
     const timeouts =
         [
             45000,
@@ -4244,9 +3819,7 @@ async function callGLM(
             75000
         ];
 
-
     let lastError = null;
-
 
     for(
         let attempt = 0;
@@ -4281,7 +3854,6 @@ async function callGLM(
                                     "glm-5.2",
 
                                 messages:
-
                                     messages,
 
                                 temperature:
@@ -4297,41 +3869,27 @@ async function callGLM(
 
                     },
 
-                    timeouts[
-                        attempt
-                    ]
+                    timeouts[attempt]
                 );
-
 
             return await parseApiResponse(
                 response
             );
-
 
         }catch(error){
 
             lastError =
                 error;
 
-
             const isAbort =
                 error.name ===
                 "AbortError";
 
-
             const isNetwork =
-                error instanceof
-                    TypeError ||
+                error instanceof TypeError ||
                 /network/i.test(
-                    error.message ||
-                    ""
+                    error.message || ""
                 );
-
-
-            /*
-             * 认证、参数等明确错误
-             * 不继续重试。
-             */
 
             if(
                 !error.retryable &&
@@ -4340,9 +3898,7 @@ async function callGLM(
             ){
 
                 throw error;
-
             }
-
 
             if(
                 attempt < 2
@@ -4355,23 +3911,15 @@ async function callGLM(
                         attempt
                     );
 
-
                 const jitter =
-                    Math.random() *
-                    1200;
-
+                    Math.random() * 1200;
 
                 await sleep(
-                    base +
-                    jitter
+                    base + jitter
                 );
-
             }
-
         }
-
     }
-
 
     if(
         lastError?.name ===
@@ -4381,9 +3929,7 @@ async function callGLM(
         throw new Error(
             "请求连续超时。请检查网络、API 服务状态或 API 额度后再试。"
         );
-
     }
-
 
     throw new Error(
         "连续请求失败：" +
@@ -4392,7 +3938,6 @@ async function callGLM(
             "网络连接异常"
         )
     );
-
 }
 
 
@@ -4407,21 +3952,16 @@ async function requestAI(){
             "wangxing_glm_key"
         );
 
-
     if(!apiKey){
 
         keyBox.style.display =
             "block";
 
-
         answer.textContent =
             "请先设置智谱 API Key。";
 
-
         return;
-
     }
-
 
     if(
         allYao.length !== 6
@@ -4430,39 +3970,27 @@ async function requestAI(){
         answer.textContent =
             "请先完成六爻起卦。";
 
-
         return;
-
     }
 
-
     const changed =
-        allYao.map(
-            v=>{
+        allYao.map(v=>{
 
-                if(v === 6)
-                    return 7;
+            if(v === 6)
+                return 7;
 
-                if(v === 9)
-                    return 8;
+            if(v === 9)
+                return 8;
 
-                return v;
+            return v;
 
-            }
-        );
-
+        });
 
     const ben =
-        hexName(
-            allYao
-        );
-
+        hexName(allYao);
 
     const chg =
-        hexName(
-            changed
-        );
-
+        hexName(changed);
 
     const moving =
         allYao
@@ -4477,28 +4005,23 @@ async function requestAI(){
         )
         .filter(Boolean);
 
-
     const prompt = `
 
 用户问题：
 
 ${question}
 
-
 本卦：
 
 ${ben}
-
 
 变卦：
 
 ${chg}
 
-
 六爻：
 
 ${allYao.join("、")}
-
 
 动爻：
 
@@ -4508,9 +4031,7 @@ ${
         : "无"
 }
 
-
 请严格围绕用户提出的问题进行传统六爻 / 大衍筮法解读。
-
 
 【最重要要求】
 
@@ -4528,9 +4049,7 @@ ${
 
 “此卦不足以判断具体时间，但趋势偏向……”
 
-
 不能先讲一大段卦象知识再回答问题。
-
 
 【解读规则】
 
@@ -4587,22 +4106,17 @@ ${
 请使用中文回答。
 `;
 
-
     ai.disabled =
         true;
-
 
     ai.textContent =
         "正在解读……";
 
-
     answer.textContent =
         "正在连接 GLM……";
 
-
     status.textContent =
         "正在请求 AI，网络异常会自动重试。";
-
 
     try{
 
@@ -4628,30 +4142,24 @@ ${
                 ]
             );
 
-
         const text =
             data
                 ?.choices?.[0]
                 ?.message
                 ?.content;
 
-
         if(!text){
 
             throw new Error(
                 "GLM 没有返回解读内容。"
             );
-
         }
-
 
         answer.textContent =
             text;
 
-
         status.textContent =
             "GLM AI 解读完成。";
-
 
         if(currentHistoryId){
 
@@ -4659,9 +4167,7 @@ ${
                 currentHistoryId,
                 text
             );
-
         }
-
 
     }catch(error){
 
@@ -4670,7 +4176,6 @@ ${
             error
         );
 
-
         answer.textContent =
             "解读失败：" +
             (
@@ -4678,22 +4183,17 @@ ${
                 "未知错误"
             );
 
-
         status.textContent =
             "GLM AI 解读失败。";
-
 
     }finally{
 
         ai.disabled =
             false;
 
-
         ai.textContent =
             "✦ 解读";
-
     }
-
 }
 
 
@@ -4708,17 +4208,11 @@ ai.onclick =
 const stars =
     $("stars");
 
-
 const ctx =
-    stars.getContext(
-        "2d"
-    );
-
+    stars.getContext("2d");
 
 let ss = [];
-
 let shootingStars = [];
-
 let galaxyDust = [];
 
 
@@ -4729,29 +4223,19 @@ let galaxyDust = [];
 function resize(){
 
     const dpr =
-        window.devicePixelRatio ||
-        1;
-
+        window.devicePixelRatio || 1;
 
     stars.width =
-        innerWidth *
-        dpr;
-
+        innerWidth * dpr;
 
     stars.height =
-        innerHeight *
-        dpr;
-
+        innerHeight * dpr;
 
     stars.style.width =
-        innerWidth +
-        "px";
-
+        innerWidth + "px";
 
     stars.style.height =
-        innerHeight +
-        "px";
-
+        innerHeight + "px";
 
     ctx.setTransform(
         dpr,
@@ -4762,10 +4246,9 @@ function resize(){
         0
     );
 
-
     const starCount =
         Math.min(
-            420,
+            460,
             Math.max(
                 180,
                 Math.floor(
@@ -4776,12 +4259,10 @@ function resize(){
             )
         );
 
-
     ss =
         Array.from(
             {
-                length:
-                    starCount
+                length:starCount
             },
             ()=>({
 
@@ -4821,11 +4302,10 @@ function resize(){
             })
         );
 
-
     galaxyDust =
         Array.from(
             {
-                length:120
+                length:160
             },
             ()=>({
 
@@ -4854,25 +4334,22 @@ function resize(){
 
             })
         );
-
 }
 
 
 /* =====================================================
-   创建流星
+   流星
 ===================================================== */
 
 function createShootingStar(){
 
     if(
         Math.random() >
-        .018
+        .014
     ){
 
         return;
-
     }
-
 
     shootingStars.push({
 
@@ -4905,7 +4382,6 @@ function createShootingStar(){
         life:1
 
     });
-
 }
 
 
@@ -4915,46 +4391,39 @@ function createShootingStar(){
 
 function drawGalaxyDust(time){
 
-    galaxyDust.forEach(
-        d=>{
+    galaxyDust.forEach(d=>{
 
-            const pulse =
-                d.alpha +
-                Math.sin(
-                    time * .0006 +
-                    d.phase
-                ) * .04;
+        const pulse =
+            d.alpha +
+            Math.sin(
+                time * .0006 +
+                d.phase
+            ) * .04;
 
+        ctx.beginPath();
 
-            ctx.beginPath();
+        ctx.arc(
+            d.x,
+            d.y,
+            d.size,
+            0,
+            Math.PI * 2
+        );
 
+        ctx.fillStyle =
+            `rgba(
+                90,
+                255,
+                235,
+                ${Math.max(
+                    .02,
+                    pulse
+                )}
+            )`;
 
-            ctx.arc(
-                d.x,
-                d.y,
-                d.size,
-                0,
-                Math.PI * 2
-            );
+        ctx.fill();
 
-
-            ctx.fillStyle =
-                `rgba(
-                    90,
-                    255,
-                    235,
-                    ${Math.max(
-                        .02,
-                        pulse
-                    )}
-                )`;
-
-
-            ctx.fill();
-
-        }
-    );
-
+    });
 }
 
 
@@ -4964,121 +4433,102 @@ function drawGalaxyDust(time){
 
 function drawStars(time){
 
-    ss.forEach(
-        s=>{
+    ss.forEach(s=>{
 
-            s.x += s.drift;
+        s.x += s.drift;
 
+        if(
+            s.x >
+            innerWidth + 5
+        ){
 
-            if(
-                s.x >
-                innerWidth + 5
-            ){
+            s.x = -5;
+        }
 
-                s.x = -5;
+        const twinkle =
+            Math.sin(
+                time *
+                .001 *
+                s.speed +
+                s.twinkle
+            );
 
-            }
+        const alpha =
+            Math.max(
+                .08,
+                Math.min(
+                    1,
+                    s.a +
+                    twinkle * .18
+                )
+            );
 
+        ctx.beginPath();
 
-            const twinkle =
-                Math.sin(
-                    time *
-                    .001 *
-                    s.speed +
-                    s.twinkle
+        ctx.arc(
+            s.x,
+            s.y,
+            s.r,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(
+                190,
+                255,
+                250,
+                ${alpha}
+            )`;
+
+        ctx.fill();
+
+        if(
+            s.r > 1
+        ){
+
+            const gradient =
+                ctx.createRadialGradient(
+                    s.x,
+                    s.y,
+                    0,
+                    s.x,
+                    s.y,
+                    s.r * 6
                 );
 
+            gradient.addColorStop(
+                0,
+                `rgba(
+                    90,
+                    255,
+                    240,
+                    ${alpha * .35}
+                )`
+            );
 
-            const alpha =
-                Math.max(
-                    .08,
-                    Math.min(
-                        1,
-                        s.a +
-                        twinkle * .18
-                    )
-                );
+            gradient.addColorStop(
+                1,
+                "rgba(0,0,0,0)"
+            );
 
+            ctx.fillStyle =
+                gradient;
 
             ctx.beginPath();
-
 
             ctx.arc(
                 s.x,
                 s.y,
-                s.r,
+                s.r * 6,
                 0,
                 Math.PI * 2
             );
 
-
-            ctx.fillStyle =
-                `rgba(
-                    190,
-                    255,
-                    250,
-                    ${alpha}
-                )`;
-
-
             ctx.fill();
-
-
-            if(
-                s.r > 1
-            ){
-
-                const gradient =
-                    ctx.createRadialGradient(
-                        s.x,
-                        s.y,
-                        0,
-                        s.x,
-                        s.y,
-                        s.r * 6
-                    );
-
-
-                gradient.addColorStop(
-                    0,
-                    `rgba(
-                        90,
-                        255,
-                        240,
-                        ${alpha * .35}
-                    )`
-                );
-
-
-                gradient.addColorStop(
-                    1,
-                    "rgba(0,0,0,0)"
-                );
-
-
-                ctx.fillStyle =
-                    gradient;
-
-
-                ctx.beginPath();
-
-
-                ctx.arc(
-                    s.x,
-                    s.y,
-                    s.r * 6,
-                    0,
-                    Math.PI * 2
-                );
-
-
-                ctx.fill();
-
-            }
-
         }
-    );
 
+    });
 }
 
 
@@ -5089,98 +4539,83 @@ function drawStars(time){
 function drawShootingStars(){
 
     shootingStars =
-        shootingStars.filter(
-            s=>{
+        shootingStars.filter(s=>{
 
-                s.x += s.speed;
+            s.x += s.speed;
 
-                s.y +=
-                    s.speed *
-                    .42;
+            s.y +=
+                s.speed *
+                .42;
 
-                s.life -= .018;
+            s.life -= .018;
 
-
-                const gradient =
-                    ctx.createLinearGradient(
-                        s.x,
-                        s.y,
-                        s.x -
-                        s.length,
-                        s.y -
-                        s.length * .42
-                    );
-
-
-                gradient.addColorStop(
-                    0,
-                    `rgba(
-                        180,
-                        255,
-                        250,
-                        ${s.alpha *
-                        s.life}
-                    )`
-                );
-
-
-                gradient.addColorStop(
-                    .25,
-                    `rgba(
-                        70,
-                        240,
-                        220,
-                        ${s.alpha *
-                        s.life *
-                        .5}
-                    )`
-                );
-
-
-                gradient.addColorStop(
-                    1,
-                    "rgba(0,0,0,0)"
-                );
-
-
-                ctx.beginPath();
-
-
-                ctx.moveTo(
+            const gradient =
+                ctx.createLinearGradient(
                     s.x,
-                    s.y
-                );
-
-
-                ctx.lineTo(
+                    s.y,
                     s.x -
                     s.length,
                     s.y -
                     s.length * .42
                 );
 
+            gradient.addColorStop(
+                0,
+                `rgba(
+                    180,
+                    255,
+                    250,
+                    ${s.alpha * s.life}
+                )`
+            );
 
-                ctx.strokeStyle =
-                    gradient;
+            gradient.addColorStop(
+                .25,
+                `rgba(
+                    70,
+                    240,
+                    220,
+                    ${s.alpha *
+                    s.life *
+                    .5}
+                )`
+            );
 
+            gradient.addColorStop(
+                1,
+                "rgba(0,0,0,0)"
+            );
 
-                ctx.lineWidth =
-                    1.5;
+            ctx.beginPath();
 
+            ctx.moveTo(
+                s.x,
+                s.y
+            );
 
-                ctx.stroke();
+            ctx.lineTo(
+                s.x -
+                s.length,
+                s.y -
+                s.length * .42
+            );
 
+            ctx.strokeStyle =
+                gradient;
 
-                return (
-                    s.life > 0 &&
-                    s.x <
-                        innerWidth +
-                        s.length
-                );
+            ctx.lineWidth =
+                1.5;
 
-            }
-        );
+            ctx.stroke();
 
+            return (
+                s.life > 0 &&
+                s.x <
+                    innerWidth +
+                    s.length
+            );
+
+        });
 }
 
 
@@ -5193,14 +4628,12 @@ function draw(){
     const now =
         Date.now();
 
-
     ctx.clearRect(
         0,
         0,
         innerWidth,
         innerHeight
     );
-
 
     const bg =
         ctx.createRadialGradient(
@@ -5215,28 +4648,23 @@ function draw(){
             )
         );
 
-
     bg.addColorStop(
         0,
         "rgba(3,45,50,.16)"
     );
-
 
     bg.addColorStop(
         .45,
         "rgba(0,20,27,.08)"
     );
 
-
     bg.addColorStop(
         1,
         "rgba(0,4,8,.05)"
     );
 
-
     ctx.fillStyle =
         bg;
-
 
     ctx.fillRect(
         0,
@@ -5245,27 +4673,15 @@ function draw(){
         innerHeight
     );
 
+    drawGalaxyDust(now);
 
-    drawGalaxyDust(
-        now
-    );
-
-
-    drawStars(
-        now
-    );
-
+    drawStars(now);
 
     createShootingStar();
 
-
     drawShootingStars();
 
-
-    requestAnimationFrame(
-        draw
-    );
-
+    requestAnimationFrame(draw);
 }
 
 
@@ -5278,9 +4694,7 @@ addEventListener(
     resize
 );
 
-
 resize();
-
 draw();
 
 </script>
