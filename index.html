@@ -3,649 +3,1010 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>望星 · 大衍筮法</title>
+<title>WANGXING · 大衍筮法</title>
 
 <style>
 *{box-sizing:border-box}
 
-body{
+html,body{
     margin:0;
-    background:#f5f1e8;
-    color:#29251f;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
-    "PingFang SC","Microsoft YaHei",sans-serif;
+    min-height:100%;
+    background:#01090c;
+    color:#d9ffff;
+    font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+#stars{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    background:#01090c;
+}
+
+.space{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.nebula{
+    position:absolute;
+    inset:-20%;
+    background:
+        radial-gradient(ellipse at 50% 10%,rgba(50,255,236,.38),transparent 24%),
+        radial-gradient(ellipse at 15% 35%,rgba(0,180,220,.24),transparent 27%),
+        radial-gradient(ellipse at 85% 45%,rgba(25,240,215,.20),transparent 25%),
+        radial-gradient(ellipse at 45% 80%,rgba(0,120,180,.20),transparent 30%);
+    filter:blur(20px);
+    animation:drift 20s ease-in-out infinite alternate;
+}
+
+@keyframes drift{
+    from{transform:scale(1)}
+    to{transform:scale(1.08) translate(2%,-1%)}
 }
 
 .container{
-    width:min(920px,94%);
+    position:relative;
+    z-index:2;
+    max-width:1450px;
     margin:auto;
-    padding:30px 0 70px;
+    padding:34px 42px 50px;
 }
 
 header{
-    text-align:center;
-    margin-bottom:28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:24px;
 }
 
 .logo{
-    font-family:"KaiTi","STKaiti",serif;
-    font-size:42px;
-    letter-spacing:8px;
+    letter-spacing:.12em;
 }
 
-.subtitle{
+.en{
+    font:32px Georgia,serif;
+    color:#c1ffff;
+}
+
+.cn{
+    font-size:29px;
+    margin-top:5px;
+}
+
+.sub{
     margin-top:8px;
-    color:#81786c;
-    font-size:14px;
-    letter-spacing:3px;
+    font-size:12px;
+    color:#689497;
 }
 
-.card{
-    background:#fffdf8;
-    border:1px solid #e5ddcf;
-    border-radius:16px;
-    padding:24px;
-    margin-bottom:18px;
-    box-shadow:0 4px 20px rgba(70,50,20,.05);
+.nav{
+    display:flex;
+    gap:28px;
+    color:#78a7aa;
+    font-size:12px;
+}
+
+.nav div{
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav b{
+    display:block;
+    font-size:20px;
+    font-weight:400;
+    margin-bottom:4px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.panel{
+    background:linear-gradient(
+        145deg,
+        rgba(3,29,35,.84),
+        rgba(1,15,20,.78)
+    );
+    border:1px solid rgba(60,218,214,.42);
+    border-radius:18px;
+    box-shadow:
+        0 0 35px rgba(23,203,202,.07),
+        inset 0 0 30px rgba(67,240,233,.025);
+    backdrop-filter:blur(10px);
+}
+
+.pad{
+    padding:24px 28px;
 }
 
 h2{
-    margin:0 0 18px;
-    font-size:20px;
-}
-
-textarea,input,select{
-    width:100%;
-    border:1px solid #d9d0c1;
-    border-radius:10px;
-    background:#fff;
-    padding:13px 14px;
-    font-size:15px;
-    outline:none;
+    font-size:19px;
+    font-weight:500;
+    color:#aaf2ef;
+    letter-spacing:.08em;
+    margin:0 0 17px;
 }
 
 textarea{
-    min-height:105px;
-    resize:vertical;
+    width:100%;
+    height:108px;
+    resize:none;
+    outline:none;
+    background:rgba(0,13,18,.72);
+    border:1px solid #287b80;
+    border-radius:11px;
+    color:#d9ffff;
+    padding:15px;
+    font:15px "PingFang SC","Microsoft YaHei",sans-serif;
 }
 
-textarea:focus,input:focus,select:focus{
-    border-color:#9d8a70;
+textarea:focus{
+    border-color:#5be9e3;
+    box-shadow:0 0 18px rgba(61,227,220,.13);
 }
 
-button{
-    border:0;
-    border-radius:10px;
-    padding:12px 18px;
-    cursor:pointer;
-    font-size:14px;
-    transition:.2s;
-}
-
-button:hover{
-    transform:translateY(-1px);
-}
-
-button:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-    transform:none;
-}
-
-.primary{
-    background:#29251f;
-    color:#fff;
-}
-
-.secondary{
-    background:#eee7db;
-    color:#39332b;
-}
-
-.danger{
-    background:#eee0dc;
-    color:#8a3e31;
-}
-
-.row{
+.actions{
     display:flex;
-    gap:10px;
+    gap:12px;
+    margin-top:16px;
     flex-wrap:wrap;
 }
 
-.row>*{
-    flex:1;
+.btn{
+    border:1px solid #48d6d2;
+    background:linear-gradient(180deg,#41c8c7,#169b9d);
+    color:#efffff;
+    border-radius:9px;
+    padding:12px 20px;
+    cursor:pointer;
+    font:inherit;
+    box-shadow:0 0 18px rgba(54,217,212,.14);
 }
 
-.small{
+.btn.alt{
+    background:transparent;
+    color:#91babc;
+    border-color:#286d72;
+}
+
+.btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+.hint,
+.status{
     font-size:12px;
-    color:#877e72;
+    color:#638d90;
     line-height:1.8;
 }
 
-.status{
-    margin-top:16px;
-    padding:13px 15px;
-    border-radius:10px;
-    background:#f3eee5;
-    color:#665e54;
-    font-size:14px;
-    line-height:1.7;
+.stage{
+    min-height:600px;
+    margin-top:18px;
+    padding:25px 22px;
 }
 
-.status.success{
-    background:#e9f1e8;
-    color:#496143;
+.stage-title{
+    text-align:center;
+    color:#b2f5f1;
+    font-size:19px;
+    letter-spacing:.08em;
 }
 
-.status.error{
-    background:#f5e7e3;
-    color:#874438;
-}
-
-.status.loading{
-    background:#eee9df;
-    color:#61584d;
-}
-
-.hidden{
-    display:none!important;
-}
-
-/* 六爻 */
-
-.line-box{
-    margin-top:22px;
-}
-
-.line{
-    border:1px solid #e2d9cb;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:10px;
-    background:#fff;
-}
-
-.line-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:8px;
-}
-
-.line-number{
-    font-weight:600;
-}
-
-.line-result{
-    font-family:"KaiTi","STKaiti",serif;
-    font-size:18px;
-}
-
-.yin-yang{
-    font-size:13px;
-    color:#756d63;
-}
-
-.changing{
-    color:#8b4034;
-    font-weight:600;
-}
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin-top:12px;
-}
-
-.step{
-    border:1px solid #ddd4c7;
-    border-radius:8px;
-    padding:9px;
-    background:#faf8f3;
+.stage-desc{
+    text-align:center;
+    color:#658f92;
     font-size:12px;
+    line-height:1.8;
+    min-height:43px;
+    margin-top:7px;
+}
+
+.progress{
+    height:5px;
+    background:#08262a;
+    border-radius:10px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress i{
+    display:block;
+    width:0;
+    height:100%;
+    background:#55dfda;
+    box-shadow:0 0 12px #43e3dc;
+    transition:.6s;
+}
+
+.pile-area{
+    min-height:240px;
+    margin:12px 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ritual{
     text-align:center;
-}
-
-.step.done{
-    background:#ece5d8;
-    border-color:#c9bca8;
-}
-
-.draw-area{
-    margin-top:20px;
-    text-align:center;
-}
-
-.draw-button{
-    width:100%;
-    padding:16px;
+    color:#c2ffff;
     font-size:16px;
+    letter-spacing:.08em;
 }
 
-.selection{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:14px;
+.ritual-sub{
+    margin-top:8px;
+    color:#638f92;
+    font-size:11px;
+    letter-spacing:.03em;
 }
 
-.selection button{
-    padding:18px 10px;
-    background:#f3eee5;
-    border:1px solid #ddd3c5;
+.single-stalk{
+    width:5px;
+    height:80px;
+    margin:20px auto;
+    border-radius:5px;
+    background:linear-gradient(180deg,#efffff,#50d8d2);
+    box-shadow:0 0 18px rgba(82,224,217,.65);
+    animation:hang 1.2s ease forwards;
 }
 
-.selection button:hover{
-    background:#e9e0d2;
+@keyframes hang{
+    from{
+        opacity:0;
+        transform:translateY(-40px) rotate(-20deg);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) rotate(0);
+    }
 }
 
-/* 卦象 */
-
-.result-grid{
+.pile-row{
+    width:100%;
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:14px;
 }
 
-.result-item{
-    border:1px solid #e2d9cb;
-    border-radius:10px;
-    padding:14px;
-    background:#fff;
-}
-
-.result-label{
-    font-size:12px;
-    color:#877e72;
-    margin-bottom:6px;
-}
-
-.result-value{
-    font-size:16px;
-    font-weight:600;
-}
-
-.hexagram{
-    text-align:center;
-    padding:25px 10px;
-}
-
-.hexagram-name{
-    font-family:"KaiTi","STKaiti",serif;
-    font-size:32px;
-}
-
-.hexagram-info{
-    color:#777066;
-    font-size:13px;
-    margin-top:6px;
-}
-
-.hexagram-lines{
-    width:190px;
-    margin:25px auto;
-}
-
-.hex-line{
-    height:14px;
-    margin:9px 0;
+.pile{
+    min-height:220px;
+    padding:17px;
+    border:1px dashed #277276;
+    border-radius:14px;
     display:flex;
-    gap:18px;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(14,103,108,.23),
+            rgba(0,25,30,.18) 60%,
+            transparent 78%
+        );
+    transition:.3s;
+}
+
+.pile.clickable{
+    cursor:pointer;
+    border-color:#51dcd7;
+    box-shadow:0 0 18px rgba(69,222,216,.10);
+}
+
+.pile.clickable:hover{
+    transform:translateY(-3px);
+    background:rgba(29,119,121,.20);
+}
+
+.pile-title{
+    color:#8bbec0;
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.pile-number{
+    font-size:26px;
+    color:#c9ffff;
+    margin-top:9px;
+}
+
+.pile-hint{
+    color:#527f82;
+    font-size:11px;
+    margin-top:7px;
+}
+
+.stalk-visual{
+    width:100%;
+    max-width:270px;
+    min-height:90px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-content:center;
+    gap:3px;
+    padding:10px;
+    border-radius:12px;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(37,139,143,.17),
+            rgba(1,23,28,.30)
+        );
+}
+
+.stalk{
+    width:3px;
+    height:31px;
+    display:block;
+    border-radius:3px;
+    background:linear-gradient(
+        180deg,
+        #dcffff,
+        #52c9c5
+    );
+    opacity:.82;
+    box-shadow:0 0 4px rgba(87,225,218,.35);
+}
+
+.process-box{
+    width:100%;
+    max-width:620px;
+    margin:auto;
+    border:1px solid #205c61;
+    border-radius:13px;
+    padding:18px;
+    background:rgba(2,22,27,.65);
+}
+
+.process-title{
+    text-align:center;
+    color:#9dd6d7;
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.process-line{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #143b40;
+    color:#719b9d;
+    font-size:12px;
+}
+
+.process-line:last-child{
+    border-bottom:0;
+}
+
+.process-line strong{
+    color:#c8ffff;
+    font-size:15px;
+}
+
+.choice{
+    text-align:center;
+    min-height:55px;
+}
+
+.choice-title{
+    color:#7fa9ab;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.choice-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.choice-btn{
+    border:1px solid #317c80;
+    background:#052329;
+    color:#a7d8d9;
+    border-radius:8px;
+    padding:9px 15px;
+    cursor:pointer;
+}
+
+.choice-btn:hover{
+    border-color:#5be9e3;
+    color:#dfffff;
+}
+
+.counts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:10px;
+}
+
+.countbox{
+    border:1px solid #205a5f;
+    border-radius:11px;
+    padding:12px;
+    text-align:center;
+    color:#79a5a7;
+}
+
+.countbox strong{
+    display:block;
+    font-size:24px;
+    color:#c5ffff;
+    margin-top:5px;
+}
+
+.remainders{
+    display:flex;
+    justify-content:center;
+    gap:9px;
+    flex-wrap:wrap;
+    margin:13px 0;
+}
+
+.r{
+    padding:8px 11px;
+    border-radius:9px;
+    background:#062329;
+    border:1px solid #23686d;
+    color:#8cb8ba;
+}
+
+.r b{
+    color:#d4ffff;
+}
+
+.result{
+    margin-top:15px;
+    padding:16px;
+    border:1px solid #245f64;
+    border-radius:12px;
+    background:rgba(1,22,27,.70);
+    text-align:center;
+}
+
+.result .num{
+    font-size:32px;
+    color:#bafffa;
+}
+
+.result .name{
+    font-size:15px;
+    color:#7da9ab;
+    margin-top:5px;
+}
+
+.hexwrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-top:15px;
+    text-align:center;
+}
+
+.hexname{
+    color:#7ea9ab;
+    font-size:13px;
+    margin-bottom:11px;
+}
+
+.hex{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    align-items:center;
+}
+
+.line{
+    height:11px;
+    width:150px;
     position:relative;
 }
 
-.hex-line span{
-    display:block;
-    height:7px;
-    background:#29251f;
-    border-radius:2px;
-    flex:1;
+.solid,
+.broken1,
+.broken2{
+    position:absolute;
+    top:3px;
+    height:6px;
+    background:#5bdcd8;
+    border-radius:5px;
+    box-shadow:0 0 8px rgba(74,225,219,.2);
 }
 
-.hex-line.changing span{
-    background:#8b4034;
+.solid{
+    left:0;
+    right:0;
 }
 
-.hex-line.yin span{
-    flex:0 0 calc(50% - 9px);
+.broken1{
+    left:0;
+    width:64px;
 }
 
-/* AI */
-
-.ai-output{
-    line-height:1.9;
-    font-size:15px;
-    white-space:pre-wrap;
+.broken2{
+    right:0;
+    width:64px;
 }
 
-.ai-progress{
-    margin-top:15px;
-    height:5px;
-    background:#e7e0d5;
+.movingline .solid,
+.movingline .broken1,
+.movingline .broken2{
+    background:#caffff;
+}
+
+.table{
+    margin-top:18px;
+    border:1px solid #20565b;
     border-radius:10px;
     overflow:hidden;
 }
 
-.ai-progress-bar{
-    height:100%;
-    width:30%;
-    background:#665b4d;
-    animation:loading 1.5s infinite;
+.tr{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    padding:9px 4px;
+    border-bottom:1px solid #12383c;
+    color:#789da0;
+    font-size:12px;
+    text-align:center;
 }
 
-@keyframes loading{
-    from{transform:translateX(-120%)}
-    to{transform:translateX(400%)}
+.tr:last-child{
+    border-bottom:0;
 }
 
-/* 历史 */
+.tr.head{
+    color:#94c1c2;
+    background:rgba(30,101,105,.15);
+}
+
+.tr.move{
+    background:rgba(59,205,201,.08);
+    color:#c4eeee;
+}
+
+.api{
+    margin-top:18px;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.apiBox{
+    display:none;
+    margin-top:8px;
+}
+
+.apiBox input{
+    width:100%;
+    background:#02161b;
+    border:1px solid #28646a;
+    border-radius:8px;
+    color:white;
+    padding:10px;
+    outline:none;
+}
+
+.apiBox button{
+    margin-top:8px;
+}
+
+#answer{
+    white-space:pre-wrap;
+    line-height:1.9;
+    color:#c9eeee;
+    min-height:80px;
+    margin-top:15px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:20;
+    background:rgba(0,8,12,.78);
+    backdrop-filter:blur(8px);
+    padding:30px;
+}
+
+.modal.show{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-card{
+    width:min(820px,100%);
+    max-height:85vh;
+    overflow:auto;
+    background:#03171c;
+    border:1px solid #3ed4d0;
+    border-radius:18px;
+    padding:24px;
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
 
 .history-item{
-    border:1px solid #e2d9cb;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:10px;
-    background:#fff;
+    border:1px solid #205a5f;
+    border-radius:11px;
+    padding:14px;
+    margin:10px 0;
     cursor:pointer;
+    background:rgba(3,31,37,.65);
 }
 
 .history-item:hover{
-    background:#faf7f1;
+    border-color:#50ddd8;
 }
 
-.history-title{
-    font-weight:600;
-    margin-bottom:7px;
+.history-question{
+    color:#c8ffff;
+    margin-bottom:8px;
 }
 
 .history-meta{
-    color:#847b70;
     font-size:12px;
+    color:#6f9da0;
     line-height:1.7;
 }
 
-@media(max-width:600px){
-    .container{padding-top:20px}
-    .logo{font-size:34px}
-    .card{padding:17px}
-    .result-grid{grid-template-columns:1fr}
-    .selection{grid-template-columns:1fr}
+.empty{
+    color:#668f92;
+    text-align:center;
+    padding:30px;
+}
+
+.footer{
+    text-align:center;
+    color:#426b6e;
+    font-size:11px;
+    margin-top:22px;
+}
+
+@media(max-width:900px){
+
+    .container{
+        padding:22px 15px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .nav{
+        display:none;
+    }
+}
+
+@media(max-width:560px){
+
+    .hexwrap{
+        grid-template-columns:1fr;
+    }
+
+    .pile-row{
+        grid-template-columns:1fr;
+    }
+
+    .tr{
+        font-size:11px;
+    }
+
+    .modal{
+        padding:15px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="stars"></canvas>
+
+<div class="space">
+    <div class="nebula"></div>
+</div>
+
 <div class="container">
 
 <header>
-    <div class="logo">望星</div>
-    <div class="subtitle">大衍筮法 · 问卜于心</div>
+
+<div class="logo">
+    <div class="en">WANGXING</div>
+    <div class="cn">大衍筮法</div>
+    <div class="sub">
+        一问一卦 · 六爻成象 · 星河筮问
+    </div>
+</div>
+
+<div class="nav">
+
+    <div id="historyBtn">
+        <b>◷</b>
+        历史记录
+    </div>
+
+    <div id="settingsBtn">
+        <b>⚙</b>
+        设置
+    </div>
+
+</div>
+
 </header>
 
-<!-- 问题 -->
 
-<section class="card">
+<div class="grid">
 
-<h2>一 · 所问之事</h2>
+<section>
+
+<div class="panel pad">
+
+<h2>你的问题</h2>
 
 <textarea
-id="question"
-placeholder="请写下你真正想问的问题。建议具体、明确，例如：我在八月底之前能否获得一份厦门的工作？"></textarea>
+id="q"
+maxlength="500"
+placeholder="请详细描述你想占卜的问题……"></textarea>
 
-<div class="row" style="margin-top:12px">
-    <button class="primary" id="startBtn">开始起卦</button>
-    <button class="secondary" id="newBtn">重新开始</button>
-</div>
+<div class="actions">
 
-<div id="mainStatus" class="status hidden"></div>
-
-</section>
-
-
-<!-- 大衍筮法 -->
-
-<section class="card hidden" id="divinationCard">
-
-<h2>二 · 大衍筮法</h2>
-
-<div class="small">
-    大衍之数五十，其用四十有九。每一爻经过三变：
-    分二、挂一、揲四、归奇。三变完成后得到一爻。
-    六爻完成后自动生成本卦、变卦及动爻。
-</div>
-
-<div id="sticksInfo" class="status">
-    当前蓍草：49
-</div>
-
-<div class="line-box" id="lines"></div>
-
-<div class="draw-area">
-
-<div id="currentInstruction" class="status">
-    请开始第一变。
-</div>
-
-<button
-id="drawBtn"
-class="primary draw-button">
-    开始第一变
+<button class="btn" id="begin">
+    ✦ 开始大衍筮法
 </button>
 
-<div id="selection" class="selection hidden">
-    <button id="takeLeft">从左边取</button>
-    <button id="takeRight">从右边取</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- 成卦 -->
-
-<section class="card hidden" id="resultCard">
-
-<h2>三 · 成卦</h2>
-
-<div class="result-grid">
-
-<div class="result-item">
-    <div class="result-label">本卦</div>
-    <div class="result-value" id="originalName">—</div>
-</div>
-
-<div class="result-item">
-    <div class="result-label">变卦</div>
-    <div class="result-value" id="changedName">—</div>
-</div>
-
-<div class="result-item">
-    <div class="result-label">动爻</div>
-    <div class="result-value" id="changingLines">—</div>
-</div>
-
-<div class="result-item">
-    <div class="result-label">起卦时间</div>
-    <div class="result-value" id="divinationTime">—</div>
-</div>
-
-</div>
-
-<div class="hexagram">
-
-<div id="bigHexagramName" class="hexagram-name">—</div>
-
-<div id="hexagramInfo" class="hexagram-info">—</div>
-
-<div id="hexagramLines" class="hexagram-lines"></div>
-
-</div>
-
-<button
-id="aiBtn"
-class="primary"
-style="width:100%">
-AI 解读此卦
+<button class="btn alt" id="restart">
+    重新起卦
 </button>
 
+</div>
+
+<p class="hint">
+大衍之数五十，其用四十有九。
+每一爻三变，六爻成卦。
+过程中会真实展示分二、挂一、揲四、归奇。
+</p>
+
+</div>
+
+
+<div class="panel stage">
+
+<div class="stage-title" id="stageTitle">
+准备大衍之数
+</div>
+
+<div class="stage-desc" id="stageDesc">
+天地之数五十，虚一不用。
+</div>
+
+<div class="progress">
+    <i id="bar"></i>
+</div>
+
+<div class="pile-area" id="piles"></div>
+
+<div class="choice" id="choice"></div>
+
+<div class="counts" id="counts"></div>
+
+<div class="remainders" id="remainders"></div>
+
+<div class="result" id="result" style="display:none"></div>
+
+</div>
+
 </section>
 
 
-<!-- AI -->
+<section>
 
-<section class="card hidden" id="aiCard">
+<div class="panel pad">
 
-<h2>四 · 卦象解读</h2>
+<h2>六爻结果</h2>
 
-<div id="aiStatus" class="status loading">
-    正在等待 AI……
+<div class="hexwrap">
+
+<div>
+
+<div class="hexname" id="bn">
+本卦
 </div>
 
-<div id="aiProgress" class="ai-progress hidden">
-    <div class="ai-progress-bar"></div>
+<div class="hex" id="bh"></div>
+
 </div>
 
-<div
-id="aiOutput"
-class="ai-output"
-style="margin-top:18px"></div>
+<div>
 
-</section>
-
-
-<!-- AI设置 -->
-
-<section class="card">
-
-<h2>AI 设置</h2>
-
-<div class="small" style="margin-bottom:12px">
-    API Key 仅保存在当前浏览器 localStorage 中。
-    注意：前端直连 API 不适合公开生产环境，因为浏览器中的 Key
-    仍可能被访问者查看。
+<div class="hexname" id="cn">
+变卦
 </div>
+
+<div class="hex" id="ch"></div>
+
+</div>
+
+</div>
+
+
+<div class="table">
+
+<div class="tr head">
+<div>爻位</div>
+<div>爻象</div>
+<div>数值</div>
+<div>状态</div>
+</div>
+
+<div id="rows"></div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" id="ai" disabled>
+✦ 解读
+</button>
+
+</div>
+
+<div class="status" id="status">
+完成六爻后才能进行 AI 解读。
+</div>
+
+<div id="answer"></div>
+
+</div>
+
+
+<div class="panel api">
+
+<div>
+
+<div>GLM-5.2 API</div>
+
+<div class="status" id="keyStatus">
+未设置
+</div>
+
+</div>
+
+<button class="btn alt" id="keyButton">
+设置
+</button>
+
+</div>
+
+
+<div class="panel pad apiBox" id="keyBox">
+
+<h2>GLM-5.2 API Key</h2>
 
 <input
-id="apiKey"
+id="key"
 type="password"
-placeholder="请输入 API Key">
+autocomplete="off"
+placeholder="请输入智谱 API Key">
 
-<div style="height:10px"></div>
-
-<select id="model">
-    <option value="gpt-5">GPT-5</option>
-    <option value="gpt-5-mini">GPT-5 mini</option>
-</select>
-
-<div style="height:10px"></div>
-
-<div class="row">
-
-<button class="secondary" id="saveKeyBtn">
-    保存 API Key
+<button class="btn" id="saveKey">
+保存设置
 </button>
 
-<button class="danger" id="clearKeyBtn">
-    清除 API Key
+<button class="btn alt" id="clearKey">
+清除 Key
 </button>
 
 </div>
 
-<div id="keyStatus" class="status hidden"></div>
-
 </section>
 
-
-<!-- 历史 -->
-
-<section class="card">
-
-<div class="row" style="align-items:center">
-    <h2 style="margin:0;flex:1">历史记录</h2>
-
-    <button
-    class="danger"
-    id="clearHistoryBtn">
-        清空历史
-    </button>
 </div>
 
-<div id="history" style="margin-top:16px"></div>
 
-</section>
+<div class="footer">
+WANGXING · 星河大衍筮法
+</div>
+
+</div>
+
+
+<div class="modal" id="historyModal">
+
+<div class="modal-card">
+
+<div class="modal-head">
+
+<h2 style="margin:0">
+历史记录
+</h2>
+
+<button class="btn alt" id="closeHistory">
+关闭
+</button>
+
+</div>
+
+<div id="historyList"></div>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   存储
-========================================================= */
+/* =====================================================
+   DOM
+===================================================== */
 
-const STORAGE_KEY = "wangxing_api_key";
-const MODEL_KEY = "wangxing_model";
-const HISTORY_KEY = "wangxing_history";
+const $ = id => document.getElementById(id);
 
+const q = $("q");
+const begin = $("begin");
+const restart = $("restart");
 
-/* =========================================================
-   API 请求配置
-========================================================= */
+const piles = $("piles");
+const choice = $("choice");
+const counts = $("counts");
+const remainders = $("remainders");
+const result = $("result");
 
-/*
-   这里是本次主要修复区域。
+const stageTitle = $("stageTitle");
+const stageDesc = $("stageDesc");
+const bar = $("bar");
 
-   原版问题：
-   1. 单次请求等待 60 秒。
-   2. 所有错误都会重试。
-   3. 网络失败时浏览器只返回 Failed to fetch，
-      页面无法区分具体情况。
-   4. 429、401、403 等明显不会通过重试解决的问题
-      也会重复请求。
-   5. 没有 Retry-After 处理。
-   6. 重复点击虽然按钮会禁用，但异常情况下状态恢复不够稳定。
+const bn = $("bn");
+const cn = $("cn");
+const bh = $("bh");
+const ch = $("ch");
 
-   下面只修改 API 请求逻辑，不改变页面。
-*/
+const rows = $("rows");
 
-const API_URL =
-    "https://api.openai.com/v1/responses";
+const ai = $("ai");
+const answer = $("answer");
+const status = $("status");
 
-const API_TIMEOUT =
-    45000;
+const keyBox = $("keyBox");
+const key = $("key");
+const keyStatus = $("keyStatus");
 
-const API_MAX_RETRIES =
-    3;
-
-
-/* =========================================================
-   状态
-========================================================= */
-
-let state = {
-    question:"",
-    lines:[],
-    currentLine:0,
-    currentChange:0,
-    sticks:49,
-    startTime:null,
-    finished:false,
-    pendingChange:null
-};
-
-let aiRequestRunning=false;
+const historyModal = $("historyModal");
+const historyList = $("historyList");
 
 
-/* =========================================================
-   六十四卦
-   key = 下卦 + 上卦
-========================================================= */
+/* =====================================================
+   八卦
+===================================================== */
 
-const trigram={
+const tri = {
+
     "111":"乾",
     "110":"兑",
     "101":"离",
@@ -654,1845 +1015,2224 @@ const trigram={
     "010":"坎",
     "001":"艮",
     "000":"坤"
+
 };
 
 
-const hexagramNames={
-    "111111":"乾为天",
-    "110111":"泽天夬",
-    "101111":"火天大有",
-    "100111":"雷天大壮",
-    "011111":"风天小畜",
-    "010111":"水天需",
-    "001111":"山天大畜",
-    "000111":"地天泰",
+/* =====================================================
+   六十四卦
+===================================================== */
 
-    "111110":"天泽履",
-    "110110":"兑为泽",
-    "101110":"火泽睽",
-    "100110":"雷泽归妹",
-    "011110":"风泽中孚",
-    "010110":"水泽节",
-    "001110":"山泽损",
-    "000110":"地泽临",
+const hex = {
 
-    "111101":"天火同人",
-    "110101":"泽火革",
-    "101101":"离为火",
-    "100101":"雷火丰",
-    "011101":"风火家人",
-    "010101":"水火既济",
-    "001101":"山火贲",
-    "000101":"地火明夷",
+"乾乾":"乾为天",
+"坤坤":"坤为地",
+"坎震":"水雷屯",
+"艮坎":"山水蒙",
+"坎乾":"水天需",
+"乾坎":"天水讼",
+"坤坎":"地水师",
+"坎坤":"水地比",
+"巽乾":"风天小畜",
+"乾兑":"天泽履",
+"坤乾":"地天泰",
+"乾坤":"天地否",
+"乾离":"天火同人",
+"离乾":"火天大有",
+"坤艮":"地山谦",
+"震坤":"雷地豫",
+"兑震":"泽雷随",
+"艮巽":"山风蛊",
+"坤兑":"地泽临",
+"巽坤":"风地观",
+"离震":"火雷噬嗑",
+"艮离":"山火贲",
+"艮坤":"山地剥",
+"坤震":"地雷复",
+"乾震":"天雷无妄",
+"艮乾":"山天大畜",
+"艮震":"山雷颐",
+"兑巽":"泽风大过",
+"坎坎":"坎为水",
+"离离":"离为火",
+"兑艮":"泽山咸",
+"震巽":"雷风恒",
+"乾艮":"天山遁",
+"震乾":"雷天大壮",
+"离坤":"火地晋",
+"坤离":"地火明夷",
+"巽离":"风火家人",
+"离兑":"火泽睽",
+"坎艮":"水山蹇",
+"震坎":"雷水解",
+"艮兑":"山泽损",
+"巽震":"风雷益",
+"兑乾":"泽天夬",
+"乾巽":"天风姤",
+"兑坤":"泽地萃",
+"坤巽":"地风升",
+"兑坎":"泽水困",
+"坎巽":"水风井",
+"兑离":"泽火革",
+"离巽":"火风鼎",
+"震震":"震为雷",
+"艮艮":"艮为山",
+"巽艮":"风山渐",
+"震兑":"雷泽归妹",
+"震离":"雷火丰",
+"离艮":"火山旅",
+"巽巽":"巽为风",
+"兑兑":"兑为泽",
+"巽坎":"风水涣",
+"坎兑":"水泽节",
+"巽兑":"风泽中孚",
+"震艮":"雷山小过",
+"坎离":"水火既济",
+"离坎":"火水未济"
 
-    "111100":"天雷无妄",
-    "110100":"泽雷随",
-    "101100":"火雷噬嗑",
-    "100100":"震为雷",
-    "011100":"风雷益",
-    "010100":"水雷屯",
-    "001100":"山雷颐",
-    "000100":"地雷复",
-
-    "111011":"天风姤",
-    "110011":"泽风大过",
-    "101011":"火风鼎",
-    "100011":"雷风恒",
-    "011011":"巽为风",
-    "010011":"水风井",
-    "001011":"山风蛊",
-    "000011":"地风升",
-
-    "111010":"天水讼",
-    "110010":"泽水困",
-    "101010":"火水未济",
-    "100010":"雷水解",
-    "011010":"风水涣",
-    "010010":"坎为水",
-    "001010":"山水蒙",
-    "000010":"地水师",
-
-    "111001":"天山遁",
-    "110001":"泽山咸",
-    "101001":"火山旅",
-    "100001":"雷山小过",
-    "011001":"风山渐",
-    "010001":"水山蹇",
-    "001001":"艮为山",
-    "000001":"地山谦",
-
-    "111000":"天地否",
-    "110000":"泽地萃",
-    "101000":"火地晋",
-    "100000":"雷地豫",
-    "011000":"风地观",
-    "010000":"水地比",
-    "001000":"山地剥",
-    "000000":"坤为地"
 };
 
 
-const exactHexagrams = {
+/* =====================================================
+   状态
+===================================================== */
 
-"111111":["乾","乾为天"],
-"110111":["夬","泽天夬"],
-"101111":["大有","火天大有"],
-"100111":["大壮","雷天大壮"],
-"011111":["小畜","风天小畜"],
-"010111":["需","水天需"],
-"001111":["大畜","山天大畜"],
-"000111":["泰","地天泰"],
+let question = "";
 
-"111110":["履","天泽履"],
-"110110":["兑","兑为泽"],
-"101110":["睽","火泽睽"],
-"100110":["归妹","雷泽归妹"],
-"011110":["中孚","风泽中孚"],
-"010110":["节","水泽节"],
-"001110":["损","山泽损"],
-"000110":["临","地泽临"],
+let yaoIndex = 0;
 
-"111101":["同人","天火同人"],
-"110101":["革","泽火革"],
-"101101":["离","离为火"],
-"100101":["丰","雷火丰"],
-"011101":["家人","风火家人"],
-"010101":["既济","水火既济"],
-"001101":["贲","山火贲"],
-"000101":["明夷","地火明夷"],
+let changeIndex = 0;
 
-"111100":["无妄","天雷无妄"],
-"110100":["随","泽雷随"],
-"101100":["噬嗑","火雷噬嗑"],
-"100100":["震","震为雷"],
-"011100":["益","风雷益"],
-"010100":["屯","水雷屯"],
-"001100":["颐","山雷颐"],
-"000100":["复","地雷复"],
+let stalks = 49;
 
-"111011":["姤","天风姤"],
-"110011":["大过","泽风大过"],
-"101011":["鼎","火风鼎"],
-"100011":["恒","雷风恒"],
-"011011":["巽","巽为风"],
-"010011":["井","水风井"],
-"001011":["蛊","山风蛊"],
-"000011":["升","地风升"],
+let allYao = [];
 
-"111010":["讼","天水讼"],
-"110010":["困","泽水困"],
-"101010":["未济","火水未济"],
-"100010":["解","雷水解"],
-"011010":["涣","风水涣"],
-"010010":["坎","坎为水"],
-"001010":["蒙","山水蒙"],
-"000010":["师","地水师"],
-
-"111001":["遁","天山遁"],
-"110001":["咸","泽山咸"],
-"101001":["旅","火山旅"],
-"100001":["小过","雷山小过"],
-"011001":["渐","风山渐"],
-"010001":["蹇","水山蹇"],
-"001001":["艮","艮为山"],
-"000001":["谦","地山谦"],
-
-"111000":["否","天地否"],
-"110000":["萃","泽地萃"],
-"101000":["晋","火地晋"],
-"100000":["豫","雷地豫"],
-"011000":["观","风地观"],
-"010000":["比","水地比"],
-"001000":["剥","山地剥"],
-"000000":["坤","坤为地"]
+let currentSplit = {
+    left:0,
+    right:0
 };
 
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const $=id=>document.getElementById(id);
-
-const question=$("question");
-const startBtn=$("startBtn");
-const newBtn=$("newBtn");
-
-const divinationCard=$("divinationCard");
-const resultCard=$("resultCard");
-const aiCard=$("aiCard");
-
-const drawBtn=$("drawBtn");
-const selection=$("selection");
-
-const linesEl=$("lines");
-const currentInstruction=$("currentInstruction");
-const sticksInfo=$("sticksInfo");
-
-const originalName=$("originalName");
-const changedName=$("changedName");
-const changingLines=$("changingLines");
-const divinationTime=$("divinationTime");
-
-const bigHexagramName=$("bigHexagramName");
-const hexagramInfo=$("hexagramInfo");
-const hexagramLines=$("hexagramLines");
-
-const aiBtn=$("aiBtn");
-const aiStatus=$("aiStatus");
-const aiOutput=$("aiOutput");
-const aiProgress=$("aiProgress");
-
-const apiKey=$("apiKey");
-const model=$("model");
+let selectedSide = null;
 
 
-/* =========================================================
+/* =====================================================
    工具
-========================================================= */
+===================================================== */
 
-function sleep(ms){
-    return new Promise(r=>setTimeout(r,ms));
-}
+function wait(ms){
 
-
-function randomInt(min,max){
-
-    if(
-        window.crypto &&
-        window.crypto.getRandomValues
-    ){
-
-        const array=new Uint32Array(1);
-
-        window.crypto.getRandomValues(array);
-
-        return min+
-            (array[0]%(max-min+1));
-    }
-
-    return Math.floor(
-        Math.random()*(max-min+1)
-    )+min;
-}
-
-
-function showMainStatus(text,type=""){
-
-    const el=$("mainStatus");
-
-    el.textContent=text;
-
-    el.className="status "+type;
-
-    el.classList.remove("hidden");
-}
-
-
-function formatDate(date){
-
-    return date.getFullYear()+"-"+
-        String(date.getMonth()+1).padStart(2,"0")+"-"+
-        String(date.getDate()).padStart(2,"0")+" "+
-        String(date.getHours()).padStart(2,"0")+":"+
-        String(date.getMinutes()).padStart(2,"0")+":"+
-        String(date.getSeconds()).padStart(2,"0");
-}
-
-
-/* =========================================================
-   开始起卦
-========================================================= */
-
-startBtn.onclick=()=>{
-
-    const q=question.value.trim();
-
-    if(!q){
-
-        showMainStatus(
-            "请先写下你想问的问题。",
-            "error"
-        );
-
-        question.focus();
-
-        return;
-    }
-
-    state={
-        question:q,
-        lines:[],
-        currentLine:0,
-        currentChange:0,
-        sticks:49,
-        startTime:new Date().toISOString(),
-        finished:false,
-        pendingChange:null
-    };
-
-    resultCard.classList.add("hidden");
-    aiCard.classList.add("hidden");
-
-    divinationCard.classList.remove("hidden");
-
-    drawBtn.disabled=false;
-    drawBtn.textContent="开始第一变";
-
-    selection.classList.add("hidden");
-
-    renderLines();
-
-    updateSticks();
-
-    currentInstruction.textContent=
-        "第一爻 · 第一变：开始分二。";
-
-    showMainStatus(
-        "问题已经确定，现在开始大衍筮法。",
-        "success"
+    return new Promise(
+        resolve => setTimeout(resolve,ms)
     );
 
-    divinationCard.scrollIntoView({
-        behavior:"smooth"
-    });
-};
+}
 
 
-/* =========================================================
-   重新开始
-========================================================= */
+/*
+ * 四营揲四：
+ *
+ * 余数如果为0，按4计。
+ */
 
-newBtn.onclick=()=>{
+function remainder4(n){
 
-    state={
-        question:"",
-        lines:[],
-        currentLine:0,
-        currentChange:0,
-        sticks:49,
-        startTime:null,
-        finished:false,
-        pendingChange:null
-    };
+    const r = n % 4;
 
-    question.value="";
+    return r === 0 ? 4 : r;
 
-    divinationCard.classList.add("hidden");
-    resultCard.classList.add("hidden");
-    aiCard.classList.add("hidden");
-
-    $("mainStatus").classList.add("hidden");
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-};
+}
 
 
-/* =========================================================
-   显示六爻
-========================================================= */
+/* =====================================================
+   爻状态
+===================================================== */
 
-function renderLines(){
+function yaoState(v){
 
-    linesEl.innerHTML="";
+    if(v === 6)
+        return "老阴 · 动";
+
+    if(v === 7)
+        return "少阳 · 静";
+
+    if(v === 8)
+        return "少阴 · 静";
+
+    if(v === 9)
+        return "老阳 · 动";
+
+    return "未知";
+
+}
+
+
+/* =====================================================
+   六十四卦名称
+===================================================== */
+
+function hexName(lines){
+
+    const lower =
+        lines
+        .slice(0,3)
+        .map(v =>
+            (v === 7 || v === 9)
+                ? "1"
+                : "0"
+        )
+        .reverse()
+        .join("");
+
+    const upper =
+        lines
+        .slice(3,6)
+        .map(v =>
+            (v === 7 || v === 9)
+                ? "1"
+                : "0"
+        )
+        .reverse()
+        .join("");
+
+    const lowerName =
+        tri[lower];
+
+    const upperName =
+        tri[upper];
+
+    return (
+        hex[upperName + lowerName]
+        ||
+        "未知卦"
+    );
+
+}
+
+
+/* =====================================================
+   画卦
+===================================================== */
+
+function renderHex(target,lines){
+
+    target.innerHTML = "";
 
     for(let i=5;i>=0;i--){
 
-        const line=state.lines[i];
+        const v = lines[i];
 
-        const box=document.createElement("div");
+        const d =
+            document.createElement("div");
 
-        box.className="line";
+        d.className =
+            "line" +
+            (
+                v === 6 ||
+                v === 9
+                    ? " movingline"
+                    : ""
+            );
 
-        const head=document.createElement("div");
+        if(v === 7 || v === 9){
 
-        head.className="line-head";
+            d.innerHTML =
+                '<div class="solid"></div>';
 
-        const title=document.createElement("div");
+        }else{
 
-        title.className="line-number";
+            d.innerHTML =
+                '<div class="broken1"></div>' +
+                '<div class="broken2"></div>';
 
-        title.textContent=
-            `${i+1}爻 · ${
-                i===5?"上爻":
-                i===0?"初爻":
-                ""
-            }`;
-
-        const result=document.createElement("div");
-
-        result.className="line-result";
-
-        result.textContent=
-            line ?
-            `${line.type}（${line.value}）`
-            :
-            "未完成";
-
-        head.appendChild(title);
-
-        head.appendChild(result);
-
-        box.appendChild(head);
-
-        if(line){
-
-            const info=document.createElement("div");
-
-            info.className="yin-yang";
-
-            info.innerHTML=
-                `三变：
-                ${line.changes.join(" → ")}
-                ${
-                    line.changing
-                    ?
-                    `｜<span class="changing">动爻</span>`
-                    :
-                    "｜静爻"
-                }`;
-
-            box.appendChild(info);
-
-            const steps=document.createElement("div");
-
-            steps.className="steps";
-
-            line.changes.forEach((change,index)=>{
-
-                const step=document.createElement("div");
-
-                step.className="step done";
-
-                step.textContent=
-                    `第${index+1}变：${change}`;
-
-                steps.appendChild(step);
-            });
-
-            box.appendChild(steps);
         }
 
-        linesEl.appendChild(box);
+        target.appendChild(d);
+
     }
+
 }
 
 
-/* =========================================================
-   蓍草数量
-========================================================= */
+/* =====================================================
+   六爻表
+===================================================== */
 
-function updateSticks(){
+function updateRows(){
 
-    sticksInfo.textContent=
-        `当前蓍草：${state.sticks}`;
+    rows.innerHTML = "";
+
+    allYao.forEach((v,i)=>{
+
+        const d =
+            document.createElement("div");
+
+        d.className =
+            "tr" +
+            (
+                v === 6 ||
+                v === 9
+                    ? " move"
+                    : ""
+            );
+
+        d.innerHTML = `
+
+            <div>第${i+1}爻</div>
+
+            <div>
+                ${
+                    v === 7 ||
+                    v === 9
+                        ? "━━━"
+                        : "━ ━"
+                }
+            </div>
+
+            <div>${v}</div>
+
+            <div>${yaoState(v)}</div>
+
+        `;
+
+        rows.appendChild(d);
+
+    });
+
 }
 
 
-/* =========================================================
-   开始一变
-========================================================= */
+/* =====================================================
+   蓍草视觉
+===================================================== */
 
-drawBtn.onclick=()=>{
+function createStalks(count){
 
-    if(state.finished) return;
+    const wrapper =
+        document.createElement("div");
 
-    if(state.currentChange>=3){
+    wrapper.className =
+        "stalk-visual";
+
+    const displayCount =
+        Math.min(
+            Math.max(count,1),
+            49
+        );
+
+    for(let i=0;i<displayCount;i++){
+
+        const stalk =
+            document.createElement("span");
+
+        stalk.className =
+            "stalk";
+
+        stalk.style.transform =
+            `rotate(${
+                Math.random()*10-5
+            }deg)`;
+
+        wrapper.appendChild(stalk);
+
+    }
+
+    return wrapper;
+
+}
+
+
+/* =====================================================
+   重置一变
+===================================================== */
+
+function resetChange(){
+
+    selectedSide = null;
+
+    currentSplit = {
+        left:0,
+        right:0
+    };
+
+}
+
+
+/* =====================================================
+   开始
+===================================================== */
+
+async function start(){
+
+    question =
+        q.value.trim();
+
+    if(!question){
+
+        alert("请先输入你想占卜的问题。");
+
+        q.focus();
+
         return;
+
     }
 
-    drawBtn.disabled=true;
+    yaoIndex = 0;
 
-    selection.classList.add("hidden");
+    allYao = [];
 
-    currentInstruction.textContent=
-        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变：正在分二……`;
+    begin.disabled = true;
 
-    setTimeout(()=>{
+    ai.disabled = true;
 
-        currentInstruction.textContent=
-            "请选择从哪一边取一策挂一。";
+    answer.textContent = "";
 
-        selection.classList.remove("hidden");
+    rows.innerHTML = "";
 
-    },300);
-};
+    bh.innerHTML = "";
+
+    ch.innerHTML = "";
+
+    bn.textContent = "本卦";
+
+    cn.textContent = "变卦";
+
+    bar.style.width = "0%";
+
+    status.textContent =
+        "正在进行大衍筮法。";
 
 
-/* =========================================================
-   左 / 右
-========================================================= */
+    stageTitle.textContent =
+        "大衍之数";
 
-$("takeLeft").onclick=()=>performChange("left");
-
-$("takeRight").onclick=()=>performChange("right");
+    stageDesc.textContent =
+        "天地之数五十，虚一不用。";
 
 
-function performChange(side){
+    piles.innerHTML = `
 
-    selection.classList.add("hidden");
+        <div class="ritual">
 
-    const total=state.sticks;
+            五十根蓍草
 
-    if(total<5){
+            <div class="ritual-sub">
+                大衍之数五十
+            </div>
 
-        currentInstruction.textContent=
-            "蓍草数量异常，无法继续。";
+        </div>
 
-        drawBtn.disabled=false;
+    `;
 
-        return;
-    }
 
-    let left;
+    await wait(1200);
 
-    let right;
 
-    left=randomInt(1,total-1);
+    piles.innerHTML = `
 
-    right=total-left;
+        <div class="ritual">
 
-    let hanging;
+            虚一不用
 
-    if(side==="left"){
+            <div class="single-stalk"></div>
 
-        hanging=left;
+            <div class="ritual-sub">
+                一蓍挂于旁，其用四十有九
+            </div>
 
-        left--;
+        </div>
 
-    }else{
+    `;
 
-        hanging=right;
 
-        right--;
-    }
+    await wait(1300);
 
-    const leftRemainder=
-        remainderFour(left);
 
-    const rightRemainder=
-        remainderFour(right);
+    startYao();
 
-    const removed=
-        1+
-        leftRemainder+
+}
+
+
+/* =====================================================
+   开始一爻
+===================================================== */
+
+async function startYao(){
+
+    stalks = 49;
+
+    changeIndex = 0;
+
+    resetChange();
+
+    piles.innerHTML = "";
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+    result.style.display = "none";
+
+
+    stageTitle.textContent =
+        `第 ${yaoIndex+1} 爻 · 起筮`;
+
+    stageDesc.textContent =
+        "取四十九蓍，准备进行第一变。";
+
+
+    const pile =
+        document.createElement("div");
+
+    pile.className =
+        "pile";
+
+    pile.innerHTML = `
+        <div class="pile-title">
+            四十九蓍
+        </div>
+    `;
+
+    pile.appendChild(
+        createStalks(49)
+    );
+
+    pile.innerHTML += `
+        <div class="pile-number">
+            49 蓍
+        </div>
+    `;
+
+    piles.appendChild(pile);
+
+
+    await wait(1100);
+
+
+    renderSplit();
+
+}
+
+
+/* =====================================================
+   分二
+===================================================== */
+
+function renderSplit(){
+
+    const total =
+        stalks;
+
+    const left =
+        Math.floor(
+            Math.random() *
+            (total-1)
+        ) + 1;
+
+    const right =
+        total-left;
+
+
+    currentSplit.left =
+        left;
+
+    currentSplit.right =
+        right;
+
+    selectedSide = null;
+
+
+    stageTitle.textContent =
+        `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
+
+    stageDesc.textContent =
+        "分而为二。请从左右两束中选择一束，取一蓍挂之。";
+
+
+    piles.innerHTML = "";
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "pile-row";
+
+
+    const leftPile =
+        document.createElement("div");
+
+    leftPile.className =
+        "pile clickable";
+
+    leftPile.innerHTML = `
+
+        <div class="pile-title">
+            左束
+        </div>
+
+    `;
+
+    leftPile.appendChild(
+        createStalks(left)
+    );
+
+    leftPile.innerHTML += `
+
+        <div class="pile-number">
+            ${left} 蓍
+        </div>
+
+        <div class="pile-hint">
+            点击此束取一蓍
+        </div>
+
+    `;
+
+
+    const rightPile =
+        document.createElement("div");
+
+    rightPile.className =
+        "pile clickable";
+
+    rightPile.innerHTML = `
+
+        <div class="pile-title">
+            右束
+        </div>
+
+    `;
+
+    rightPile.appendChild(
+        createStalks(right)
+    );
+
+    rightPile.innerHTML += `
+
+        <div class="pile-number">
+            ${right} 蓍
+        </div>
+
+        <div class="pile-hint">
+            点击此束取一蓍
+        </div>
+
+    `;
+
+
+    row.appendChild(leftPile);
+
+    row.appendChild(rightPile);
+
+    piles.appendChild(row);
+
+
+    leftPile.onclick =
+        () => {
+
+            if(selectedSide)
+                return;
+
+            selectedSide =
+                "left";
+
+            hangOne(
+                left,
+                right,
+                "left"
+            );
+
+        };
+
+
+    rightPile.onclick =
+        () => {
+
+            if(selectedSide)
+                return;
+
+            selectedSide =
+                "right";
+
+            hangOne(
+                left,
+                right,
+                "right"
+            );
+
+        };
+
+}
+
+
+/* =====================================================
+   挂一
+===================================================== */
+
+async function hangOne(
+    left,
+    right,
+    side
+){
+
+    const sideName =
+        side === "left"
+            ? "左"
+            : "右";
+
+
+    piles.innerHTML = "";
+
+    choice.innerHTML = "";
+
+
+    stageTitle.textContent =
+        `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
+
+    stageDesc.textContent =
+        `从${sideName}束取一蓍，挂于旁。`;
+
+
+    piles.innerHTML = `
+
+        <div class="ritual">
+
+            挂一
+
+            <div class="single-stalk"></div>
+
+            <div class="ritual-sub">
+                从${sideName}束取出一蓍
+            </div>
+
+        </div>
+
+    `;
+
+
+    await wait(1200);
+
+
+    const leftAfter =
+        side === "left"
+            ? left-1
+            : left;
+
+    const rightAfter =
+        side === "right"
+            ? right-1
+            : right;
+
+
+    piles.innerHTML = "";
+
+
+    const box =
+        document.createElement("div");
+
+    box.className =
+        "process-box";
+
+
+    box.innerHTML = `
+
+        <div class="process-title">
+            挂一完成
+        </div>
+
+        <div class="process-line">
+            <span>左束</span>
+            <strong>${leftAfter} 蓍</strong>
+        </div>
+
+        <div class="process-line">
+            <span>右束</span>
+            <strong>${rightAfter} 蓍</strong>
+        </div>
+
+        <div class="process-line">
+            <span>挂起</span>
+            <strong>1 蓍</strong>
+        </div>
+
+    `;
+
+
+    piles.appendChild(box);
+
+
+    choice.innerHTML = `
+
+        <div class="choice-title">
+            挂一已毕，开始揲四
+        </div>
+
+        <button
+            class="choice-btn"
+            id="suanBtn"
+        >
+            揲四 · 归奇
+        </button>
+
+    `;
+
+
+    $("suanBtn").onclick =
+        () => {
+
+            performSuan(
+                leftAfter,
+                rightAfter
+            );
+
+        };
+
+}
+
+
+/* =====================================================
+   揲四归奇
+===================================================== */
+
+async function performSuan(
+    left,
+    right
+){
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+
+    stageTitle.textContent =
+        `第 ${yaoIndex+1} 爻 · 第 ${changeIndex+1} 变`;
+
+    stageDesc.textContent =
+        "左右两束分别揲四，余数归奇。";
+
+
+    piles.innerHTML = `
+
+        <div class="ritual">
+
+            揲四
+
+            <div class="ritual-sub">
+                左右两束分别以四根为一组计数……
+            </div>
+
+        </div>
+
+    `;
+
+
+    await wait(1200);
+
+
+    const leftRemainder =
+        remainder4(left);
+
+    const rightRemainder =
+        remainder4(right);
+
+
+    const returned =
+        1 +
+        leftRemainder +
         rightRemainder;
 
-    const remaining=
-        total-removed;
 
-    state.sticks=remaining;
+    const before =
+        stalks;
 
-    updateSticks();
+    const after =
+        before-returned;
 
-    if(!state.lines[state.currentLine]){
 
-        state.lines[state.currentLine]={
-            changes:[],
-            sides:[],
-            changing:false,
-            value:null,
-            type:"",
-            total:0
-        };
-    }
+    stalks =
+        after;
 
-    const line=
-        state.lines[state.currentLine];
+    changeIndex++;
 
-    line.changes.push(remaining);
 
-    line.sides.push(side);
+    piles.innerHTML = `
 
-    currentInstruction.textContent=
-        `第${state.currentLine+1}爻 · 第${state.currentChange+1}变完成：`
-        +
-        `分二 ${left}/${right}，`
-        +
-        `归奇 ${removed}，`
-        +
-        `余 ${remaining} 策。`;
+        <div class="process-box">
 
-    state.currentChange++;
+            <div class="process-title">
+                揲四 · 归奇
+            </div>
 
-    if(state.currentChange===3){
+            <div class="process-line">
+                <span>本变开始</span>
+                <strong>${before} 蓍</strong>
+            </div>
 
-        finalizeLine();
+            <div class="process-line">
+                <span>左束余数</span>
+                <strong>${leftRemainder}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>右束余数</span>
+                <strong>${rightRemainder}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>挂一</span>
+                <strong>1</strong>
+            </div>
+
+            <div class="process-line">
+                <span>本变归奇</span>
+                <strong>${returned}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>本变之后</span>
+                <strong>${after} 蓍</strong>
+            </div>
+
+        </div>
+
+    `;
+
+
+    counts.innerHTML = `
+
+        <div class="countbox">
+
+            左余
+
+            <strong>
+                ${leftRemainder}
+            </strong>
+
+        </div>
+
+        <div class="countbox">
+
+            右余
+
+            <strong>
+                ${rightRemainder}
+            </strong>
+
+        </div>
+
+    `;
+
+
+    remainders.innerHTML = `
+
+        <div class="r">
+            挂一 <b>1</b>
+        </div>
+
+        <div class="r">
+            左余 <b>${leftRemainder}</b>
+        </div>
+
+        <div class="r">
+            右余 <b>${rightRemainder}</b>
+        </div>
+
+        <div class="r">
+            归奇 <b>${returned}</b>
+        </div>
+
+    `;
+
+
+    await wait(1500);
+
+
+    if(changeIndex < 3){
+
+        choice.innerHTML = `
+
+            <div class="choice-title">
+                第 ${changeIndex} 变完成
+            </div>
+
+            <button
+                class="choice-btn"
+                id="nextChange"
+            >
+                进入第 ${changeIndex+1} 变
+            </button>
+
+        `;
+
+
+        $("nextChange").onclick =
+            () => {
+
+                renderSplit();
+
+            };
+
 
         return;
+
     }
 
-    setTimeout(()=>{
 
-        drawBtn.disabled=false;
+    finishYao();
 
-        drawBtn.textContent=
-            `开始第${state.currentChange+1}变`;
-
-        currentInstruction.textContent=
-            `第${state.currentLine+1}爻 · 第${state.currentChange+1}变：重新分二。`;
-
-    },500);
 }
 
 
-/* =========================================================
-   揲四余数
-========================================================= */
+/* =====================================================
+   三变成爻
+===================================================== */
 
-function remainderFour(number){
+async function finishYao(){
 
-    const r=number%4;
+    stageTitle.textContent =
+        `第 ${yaoIndex+1} 爻 · 三变成爻`;
 
-    return r===0 ? 4 : r;
-}
+    stageDesc.textContent =
+        "三变已毕，以余蓍数除以四，定其爻象。";
 
 
-/* =========================================================
-   完成一爻
-========================================================= */
+    const remaining =
+        stalks;
 
-function finalizeLine(){
+    const value =
+        remaining / 4;
 
-    const line=
-        state.lines[state.currentLine];
 
-    const sum=
-        line.changes[
-            line.changes.length-1
-        ];
+    if(
+        ![6,7,8,9].includes(value)
+    ){
 
-    let value;
+        alert(
+            "本次演算出现异常余蓍数：" +
+            remaining +
+            "，请重新起卦。"
+        );
 
-    if(sum===24){
-
-        value=6;
-
-    }else if(sum===28){
-
-        value=7;
-
-    }else if(sum===32){
-
-        value=8;
-
-    }else if(sum===36){
-
-        value=9;
-
-    }else{
-
-        const candidates=[
-            24,
-            28,
-            32,
-            36
-        ];
-
-        let closest=
-            candidates[0];
-
-        for(const c of candidates){
-
-            if(
-                Math.abs(c-sum)<
-                Math.abs(closest-sum)
-            ){
-
-                closest=c;
-            }
-        }
-
-        value=
-            closest===24?6:
-            closest===28?7:
-            closest===32?8:
-            9;
-    }
-
-    line.value=value;
-
-    line.changing=
-        value===6 ||
-        value===9;
-
-    line.type=
-        value===6 ? "老阴" :
-        value===7 ? "少阳" :
-        value===8 ? "少阴" :
-        "老阳";
-
-    renderLines();
-
-    state.sticks=49;
-
-    updateSticks();
-
-    if(state.currentLine===5){
-
-        state.finished=true;
-
-        drawBtn.disabled=true;
-
-        currentInstruction.textContent=
-            "六爻完成，正在生成本卦、变卦……";
-
-        setTimeout(buildHexagram,500);
+        reset();
 
         return;
+
     }
 
-    state.currentLine++;
 
-    state.currentChange=0;
+    allYao.push(value);
 
-    drawBtn.disabled=false;
 
-    drawBtn.textContent="开始第一变";
+    result.style.display =
+        "block";
 
-    currentInstruction.textContent=
-        `第${state.currentLine+1}爻 · 第一变：重新开始。`;
+
+    result.innerHTML = `
+
+        <div class="ritual">
+            三变成爻
+        </div>
+
+        <div class="num">
+            ${value}
+        </div>
+
+        <div class="name">
+            ${yaoState(value)}
+        </div>
+
+        <div class="process-box">
+
+            <div class="process-line">
+                <span>三变后余蓍</span>
+                <strong>${remaining}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>除以四</span>
+                <strong>${remaining} ÷ 4 = ${value}</strong>
+            </div>
+
+        </div>
+
+    `;
+
+
+    updateRows();
+
+
+    yaoIndex++;
+
+
+    bar.style.width =
+        `${yaoIndex/6*100}%`;
+
+
+    if(yaoIndex < 6){
+
+        await wait(1500);
+
+        piles.innerHTML = "";
+
+        choice.innerHTML = "";
+
+        counts.innerHTML = "";
+
+        remainders.innerHTML = "";
+
+        result.style.display =
+            "none";
+
+
+        stageTitle.textContent =
+            `第 ${yaoIndex+1} 爻 · 准备`;
+
+        stageDesc.textContent =
+            "上一爻已成，准备下一爻。";
+
+
+        await wait(700);
+
+
+        startYao();
+
+        return;
+
+    }
+
+
+    finishHexagram();
+
 }
 
 
-/* =========================================================
-   成卦
-========================================================= */
+/* =====================================================
+   六爻成卦
+===================================================== */
 
-function buildHexagram(){
+function finishHexagram(){
 
-    const originalBits=
-        state.lines
-        .map(line=>
-            line.value===7 ||
-            line.value===9
-            ? "1":"0"
-        )
-        .join("");
+    const original =
+        allYao.slice();
 
-    const changedBits=
-        state.lines
-        .map(line=>{
 
-            if(line.value===6) return "1";
+    const changed =
+        allYao.map(v=>{
 
-            if(line.value===9) return "0";
+            if(v === 6)
+                return 7;
 
-            return line.value===7
-                ? "1"
-                : "0";
+            if(v === 9)
+                return 8;
 
-        })
-        .join("");
+            return v;
 
-    const original=
-        exactHexagrams[originalBits];
+        });
 
-    const changed=
-        exactHexagrams[changedBits];
 
-    const moving=
-        state.lines
-        .map((line,index)=>
-            line.changing
-            ? index+1
-            : null
+    const ben =
+        hexName(original);
+
+    const chg =
+        hexName(changed);
+
+
+    const moving =
+        allYao
+        .map((v,i)=>
+            (
+                v === 6 ||
+                v === 9
+            )
+                ? `第${i+1}爻`
+                : null
         )
         .filter(Boolean);
 
-    originalName.textContent=
-        original
-        ? original[1]
-        : "未知卦";
 
-    changedName.textContent=
+    bn.textContent =
+        `本卦 · ${ben}`;
+
+    cn.textContent =
+        `变卦 · ${chg}`;
+
+
+    renderHex(
+        bh,
+        original
+    );
+
+    renderHex(
+        ch,
         changed
-        ? changed[1]
-        : "未知卦";
-
-    changingLines.textContent=
-        moving.length
-        ? moving.map(n=>`第${n}爻`).join("、")
-        : "无动爻";
-
-    divinationTime.textContent=
-        formatDate(
-            new Date(state.startTime)
-        );
-
-    bigHexagramName.textContent=
-        original
-        ? original[1]
-        : "未知卦";
-
-    hexagramInfo.textContent=
-        `本卦：${original?original[1]:"未知"}`
-        +
-        ` ｜ 变卦：${changed?changed[1]:"未知"}`;
-
-    renderHexagram(originalBits);
-
-    resultCard.classList.remove("hidden");
-
-    saveHistory();
-
-    showMainStatus(
-        "六爻完成，本卦、变卦和动爻已经生成。",
-        "success"
     );
 
-    resultCard.scrollIntoView({
-        behavior:"smooth"
+
+    stageTitle.textContent =
+        "六爻成象";
+
+    stageDesc.textContent =
+        "六爻全部完成，本卦、动爻与变卦已经形成。";
+
+
+    bar.style.width =
+        "100%";
+
+
+    piles.innerHTML = `
+
+        <div class="ritual">
+
+            ✦ 六爻成象 ✦
+
+            <div class="ritual-sub">
+                本卦：${ben}
+            </div>
+
+            <div class="ritual-sub">
+                变卦：${chg}
+            </div>
+
+            <div class="ritual-sub">
+
+                ${
+                    moving.length
+                        ? "动爻：" +
+                          moving.join("、")
+                        : "六爻皆静"
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+
+    result.style.display =
+        "block";
+
+
+    result.innerHTML = `
+
+        <div class="num">
+            ${ben}
+        </div>
+
+        <div class="name">
+            六爻已成
+        </div>
+
+        <div class="process-box">
+
+            <div class="process-line">
+                <span>本卦</span>
+                <strong>${ben}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>变卦</span>
+                <strong>${chg}</strong>
+            </div>
+
+            <div class="process-line">
+                <span>动爻</span>
+                <strong>
+                    ${
+                        moving.length
+                            ? moving.join("、")
+                            : "无"
+                    }
+                </strong>
+            </div>
+
+        </div>
+
+    `;
+
+
+    begin.disabled = false;
+
+    ai.disabled = false;
+
+
+    status.textContent =
+        "六爻完成，可以进行 GLM-5.2 AI 解读。";
+
+
+    saveHistory({
+
+        question,
+
+        time:
+            new Date()
+            .toLocaleString("zh-CN"),
+
+        yao:
+            original,
+
+        ben,
+
+        chg,
+
+        moving
+
     });
+
 }
 
 
-/* =========================================================
-   卦画
-========================================================= */
+/* =====================================================
+   重置
+===================================================== */
 
-function renderHexagram(bits){
+function reset(){
 
-    hexagramLines.innerHTML="";
+    q.value = "";
 
-    for(let i=5;i>=0;i--){
+    question = "";
 
-        const value=
-            state.lines[i].value;
+    yaoIndex = 0;
 
-        const row=
-            document.createElement("div");
+    changeIndex = 0;
 
-        row.className="hex-line";
+    stalks = 49;
 
-        if(value===6 || value===8){
+    allYao = [];
 
-            row.classList.add("yin");
-        }
+    selectedSide = null;
 
-        if(value===6 || value===9){
+    begin.disabled = false;
 
-            row.classList.add("changing");
-        }
+    ai.disabled = true;
 
-        const a=
-            document.createElement("span");
 
-        const b=
-            document.createElement("span");
+    stageTitle.textContent =
+        "准备大衍之数";
 
-        row.appendChild(a);
+    stageDesc.textContent =
+        "天地之数五十，虚一不用。";
 
-        row.appendChild(b);
 
-        hexagramLines.appendChild(row);
-    }
+    bar.style.width =
+        "0%";
+
+
+    piles.innerHTML = "";
+
+    choice.innerHTML = "";
+
+    counts.innerHTML = "";
+
+    remainders.innerHTML = "";
+
+    result.style.display =
+        "none";
+
+
+    rows.innerHTML = "";
+
+    bh.innerHTML = "";
+
+    ch.innerHTML = "";
+
+    bn.textContent = "本卦";
+
+    cn.textContent = "变卦";
+
+    answer.textContent = "";
+
+    status.textContent =
+        "完成六爻后才能进行 AI 解读。";
+
 }
 
 
-/* =========================================================
-   API Key
-========================================================= */
+/* =====================================================
+   历史记录
+===================================================== */
 
-const savedKey=
-    localStorage.getItem(STORAGE_KEY);
+function saveHistory(item){
 
-if(savedKey){
-
-    apiKey.value=savedKey;
-}
-
-
-const savedModel=
-    localStorage.getItem(MODEL_KEY);
-
-if(savedModel){
-
-    model.value=savedModel;
-}
-
-
-$("saveKeyBtn").onclick=()=>{
-
-    const key=
-        apiKey.value.trim();
-
-    if(!key){
-
-        showKeyStatus(
-            "请输入 API Key。",
-            "error"
-        );
-
-        return;
-    }
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        key
-    );
-
-    localStorage.setItem(
-        MODEL_KEY,
-        model.value
-    );
-
-    showKeyStatus(
-        "API Key 已保存。",
-        "success"
-    );
-};
-
-
-$("clearKeyBtn").onclick=()=>{
-
-    localStorage.removeItem(
-        STORAGE_KEY
-    );
-
-    apiKey.value="";
-
-    showKeyStatus(
-        "API Key 已清除。",
-        "success"
-    );
-};
-
-
-model.onchange=()=>{
-
-    localStorage.setItem(
-        MODEL_KEY,
-        model.value
-    );
-};
-
-
-function showKeyStatus(text,type){
-
-    const el=$("keyStatus");
-
-    el.textContent=text;
-
-    el.className="status "+type;
-
-    el.classList.remove("hidden");
-}
-
-
-/* =========================================================
-   AI解读
-========================================================= */
-
-aiBtn.onclick=async()=>{
-
-    if(aiRequestRunning){
-
-        return;
-    }
-
-    if(!state.finished){
-
-        alert("请先完成六爻起卦。");
-
-        return;
-    }
-
-    const key=
-        apiKey.value.trim();
-
-    if(!key){
-
-        aiCard.classList.remove("hidden");
-
-        aiStatus.className=
-            "status error";
-
-        aiStatus.textContent=
-            "请先填写 API Key。";
-
-        aiCard.scrollIntoView({
-            behavior:"smooth"
-        });
-
-        return;
-    }
-
-    aiRequestRunning=true;
-
-    aiCard.classList.remove("hidden");
-
-    aiOutput.textContent="";
-
-    aiProgress.classList.remove("hidden");
-
-    aiBtn.disabled=true;
+    let history = [];
 
     try{
 
-        const result=
-            await requestAIWithRetry(key);
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    "wangxing_history"
+                ) || "[]"
+            );
 
-        aiOutput.textContent=result;
+    }catch(e){
 
-        aiStatus.className=
-            "status success";
+        history = [];
 
-        aiStatus.textContent=
-            "解读完成。";
-
-    }catch(error){
-
-        aiStatus.className=
-            "status error";
-
-        aiStatus.textContent=
-            readableError(error);
-
-    }finally{
-
-        aiProgress.classList.add("hidden");
-
-        aiBtn.disabled=false;
-
-        aiRequestRunning=false;
     }
 
-    aiCard.scrollIntoView({
-        behavior:"smooth"
-    });
-};
+
+    history.unshift(item);
+
+    history =
+        history.slice(0,30);
 
 
-/* =========================================================
-   判断是否应该重试
-========================================================= */
-
-function shouldRetry(error){
-
-    if(!error){
-
-        return true;
-    }
-
-    /*
-       这些错误重试没有意义：
-       400 参数错误
-       401 Key 无效
-       403 权限问题
-       404 地址/模型不存在
-       422 参数无法处理
-    */
-
-    if(
-        error.status===400 ||
-        error.status===401 ||
-        error.status===403 ||
-        error.status===404 ||
-        error.status===422
-    ){
-
-        return false;
-    }
-
-    /*
-       429、5xx、网络错误、超时
-       可以自动重试。
-    */
-
-    if(error.status===429){
-
-        return true;
-    }
-
-    if(
-        error.status>=500 &&
-        error.status<=599
-    ){
-
-        return true;
-    }
-
-    if(error.name==="AbortError"){
-
-        return true;
-    }
-
-    if(error.isNetworkError){
-
-        return true;
-    }
-
-    return false;
-}
-
-
-/* =========================================================
-   读取 Retry-After
-========================================================= */
-
-function getRetryDelay(error,attempt){
-
-    if(
-        error &&
-        Number.isFinite(error.retryAfter)
-    ){
-
-        return Math.min(
-            error.retryAfter,
-            15000
-        );
-    }
-
-    /*
-       指数退避：
-       第一次 2 秒
-       第二次 4 秒
-       第三次 8 秒
-    */
-
-    return Math.min(
-        2000*Math.pow(2,attempt-1),
-        8000
+    localStorage.setItem(
+        "wangxing_history",
+        JSON.stringify(history)
     );
+
 }
 
 
-/* =========================================================
-   AI 自动重试
-========================================================= */
+function escapeHtml(s){
 
-async function requestAIWithRetry(key){
+    return String(s)
+        .replace(
+            /[&<>'"]/g,
+            c => ({
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                "'":"&#39;",
+                '"':"&quot;"
+            }[c])
+        );
 
-    let lastError=null;
+}
 
-    for(
-        let attempt=1;
-        attempt<=API_MAX_RETRIES;
-        attempt++
-    ){
 
-        try{
+function openHistory(){
 
-            aiStatus.className=
-                "status loading";
+    let history = [];
 
-            if(attempt===1){
+    try{
 
-                aiStatus.textContent=
-                    "正在连接 AI，正在分析卦象……";
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    "wangxing_history"
+                ) || "[]"
+            );
 
-            }else{
+    }catch(e){
 
-                aiStatus.textContent=
-                    `AI 响应较慢，正在自动重试（${attempt}/${API_MAX_RETRIES}）……`;
-            }
+        history = [];
 
-            return await requestAI(key);
-
-        }catch(error){
-
-            lastError=error;
-
-            /*
-               Key、权限、参数错误
-               不浪费时间重复请求。
-            */
-
-            if(!shouldRetry(error)){
-
-                throw error;
-            }
-
-            if(
-                attempt<API_MAX_RETRIES
-            ){
-
-                const delay=
-                    getRetryDelay(
-                        error,
-                        attempt
-                    );
-
-                await sleep(delay);
-            }
-        }
     }
 
-    throw lastError ||
-        new Error("AI 请求失败。");
+
+    if(!history.length){
+
+        historyList.innerHTML =
+            '<div class="empty">暂无历史起卦记录</div>';
+
+    }else{
+
+        historyList.innerHTML =
+            history
+            .map((x,i)=>`
+
+                <div
+                    class="history-item"
+                    data-i="${i}"
+                >
+
+                    <div class="history-question">
+                        ${escapeHtml(x.question)}
+                    </div>
+
+                    <div class="history-meta">
+
+                        ${x.time}
+
+                        <br>
+
+                        本卦：
+                        ${x.ben}
+
+                        　
+
+                        变卦：
+                        ${x.chg}
+
+                        <br>
+
+                        六爻：
+                        ${x.yao.join("、")}
+
+                        <br>
+
+                        ${
+                            x.moving.length
+                                ? "动爻：" +
+                                  x.moving.join("、")
+                                : "六爻皆静"
+                        }
+
+                    </div>
+
+                </div>
+
+            `)
+            .join("");
+
+
+        document
+        .querySelectorAll(
+            ".history-item"
+        )
+        .forEach(el=>{
+
+            el.onclick = ()=>{
+
+                loadHistory(
+                    history[
+                        +el.dataset.i
+                    ]
+                );
+
+            };
+
+        });
+
+    }
+
+
+    historyModal.classList.add("show");
+
 }
 
 
-/* =========================================================
-   单次 API 请求
-========================================================= */
+function loadHistory(x){
 
-async function requestAI(key){
+    question =
+        x.question;
 
-    const controller=
+    q.value =
+        x.question;
+
+    allYao =
+        x.yao.slice();
+
+    yaoIndex = 6;
+
+
+    updateRows();
+
+
+    bn.textContent =
+        `本卦 · ${x.ben}`;
+
+    cn.textContent =
+        `变卦 · ${x.chg}`;
+
+
+    renderHex(
+        bh,
+        allYao
+    );
+
+
+    renderHex(
+        ch,
+        allYao.map(v=>{
+
+            if(v === 6)
+                return 7;
+
+            if(v === 9)
+                return 8;
+
+            return v;
+
+        })
+    );
+
+
+    stageTitle.textContent =
+        "历史卦象";
+
+    stageDesc.textContent =
+        "已载入历史记录，可以直接进行 GLM-5.2 AI 解读。";
+
+
+    bar.style.width =
+        "100%";
+
+
+    ai.disabled =
+        false;
+
+
+    status.textContent =
+        "历史卦象已载入。";
+
+
+    historyModal.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   页面按钮
+===================================================== */
+
+begin.onclick =
+    start;
+
+restart.onclick =
+    reset;
+
+$("historyBtn").onclick =
+    openHistory;
+
+$("closeHistory").onclick =
+    ()=>{
+        historyModal.classList.remove(
+            "show"
+        );
+    };
+
+historyModal.onclick =
+    e=>{
+
+        if(e.target === historyModal){
+
+            historyModal.classList.remove(
+                "show"
+            );
+
+        }
+
+    };
+
+
+/* =====================================================
+   GLM-5.2 API 设置
+===================================================== */
+
+$("settingsBtn").onclick =
+    ()=>{
+
+        keyBox.style.display =
+            keyBox.style.display === "block"
+                ? "none"
+                : "block";
+
+    };
+
+
+$("keyButton").onclick =
+    ()=>{
+
+        keyBox.style.display =
+            keyBox.style.display === "block"
+                ? "none"
+                : "block";
+
+    };
+
+
+$("saveKey").onclick =
+    ()=>{
+
+        const value =
+            key.value.trim();
+
+
+        if(!value){
+
+            alert(
+                "请输入智谱 GLM-5.2 API Key"
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "wangxing_glm_key",
+            value
+        );
+
+
+        key.value = "";
+
+        keyStatus.textContent =
+            "已设置";
+
+
+        keyBox.style.display =
+            "none";
+
+    };
+
+
+$("clearKey").onclick =
+    ()=>{
+
+        localStorage.removeItem(
+            "wangxing_glm_key"
+        );
+
+        keyStatus.textContent =
+            "未设置";
+
+    };
+
+
+keyStatus.textContent =
+    localStorage.getItem(
+        "wangxing_glm_key"
+    )
+        ? "已设置"
+        : "未设置";
+
+
+/* =====================================================
+   GLM-5.2
+===================================================== */
+
+async function requestAI(){
+
+    const apiKey =
+        localStorage.getItem(
+            "wangxing_glm_key"
+        );
+
+
+    if(!apiKey){
+
+        keyBox.style.display =
+            "block";
+
+        answer.textContent =
+            "请先设置智谱 GLM-5.2 API Key。";
+
+        return;
+
+    }
+
+
+    if(allYao.length !== 6){
+
+        answer.textContent =
+            "请先完成六爻起卦。";
+
+        return;
+
+    }
+
+
+    const changed =
+        allYao.map(v=>{
+
+            if(v === 6)
+                return 7;
+
+            if(v === 9)
+                return 8;
+
+            return v;
+
+        });
+
+
+    const ben =
+        hexName(allYao);
+
+    const chg =
+        hexName(changed);
+
+
+    const moving =
+        allYao
+        .map((v,i)=>
+            (
+                v === 6 ||
+                v === 9
+            )
+                ? `第${i+1}爻`
+                : null
+        )
+        .filter(Boolean);
+
+
+    const prompt = `
+
+用户问题：
+
+${question}
+
+
+本卦：
+
+${ben}
+
+
+变卦：
+
+${chg}
+
+
+六爻：
+
+${allYao.join("、")}
+
+
+动爻：
+
+${
+    moving.length
+        ? moving.join("、")
+        : "无"
+}
+
+
+请严格围绕用户提出的问题进行六爻/大衍筮法解读。
+
+要求：
+
+1. 第一段直接回答用户的问题。
+
+2. 明确说明结果偏向：
+   有利 / 不利 / 有条件成立 / 难以成立。
+
+3. 结合本卦解释问题当前状态。
+
+4. 有动爻时重点分析动爻。
+
+5. 结合变卦判断最终趋势。
+
+6. 如果可以从卦象判断时间趋势，可以说明大致范围。
+
+7. 只围绕用户实际提出的问题。
+
+8. 不要泛泛给人生建议。
+
+9. 不要主动扩展用户没有询问的问题。
+
+10. 不要把占卜结果描述成百分之百确定的现实事实。
+
+11. 如果用户询问的是“是否会发生”“能不能”“什么时候”“有没有”“是否存在”等问题，必须直接针对该问题给出判断。
+
+12. 不要用“建议你”“你可以考虑”“建议保持”等方式代替预测结论。
+
+13. 解读重点必须放在卦象对用户问题的指向，而不是一般性人生建议。
+
+14. 如果卦象无法支持精确判断，应明确说明“不足以判断”，但仍然给出最主要的趋势。
+
+`;
+
+
+    ai.disabled =
+        true;
+
+    ai.textContent =
+        "正在解读……";
+
+    answer.textContent =
+        "正在连接 GLM-5.2……";
+
+
+    const controller =
         new AbortController();
 
-    const timer=
+
+    const timer =
         setTimeout(
             ()=>{
                 controller.abort();
             },
-            API_TIMEOUT
+            30000
         );
+
 
     try{
 
-        let response;
+        /*
+         * 智谱 GLM-5.2
+         *
+         * OpenAI 兼容接口
+         */
+
+        const response =
+            await fetch(
+                "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+                {
+
+                    method:"POST",
+
+                    headers:{
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " + apiKey
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            model:
+                                "glm-5.2",
+
+                            messages:[
+
+                                {
+
+                                    role:"system",
+
+                                    content:
+                                        "你是专业的传统大衍筮法与六爻解卦助手。严格围绕用户问题回答，优先给出明确结论，不主动给泛泛人生建议。"
+
+                                },
+
+                                {
+
+                                    role:"user",
+
+                                    content:
+                                        prompt
+
+                                }
+
+                            ],
+
+                            temperature:.3,
+
+                            max_tokens:3000,
+
+                            stream:false
+
+                        }),
+
+                    signal:
+                        controller.signal
+
+                }
+
+            );
+
+
+        const raw =
+            await response.text();
+
+
+        let data;
+
 
         try{
 
-            response=
-                await fetch(
-                    API_URL,
-                    {
-                        method:"POST",
+            data =
+                JSON.parse(raw);
 
-                        headers:{
-                            "Content-Type":
-                                "application/json",
+        }catch(e){
 
-                            "Authorization":
-                                `Bearer ${key}`
-                        },
+            throw new Error(
+                "GLM-5.2 返回的数据格式异常。"
+            );
 
-                        body:JSON.stringify({
-
-                            model:model.value,
-
-                            input:buildPrompt(),
-
-                            max_output_tokens:4000
-                        }),
-
-                        signal:
-                            controller.signal
-                    }
-                );
-
-        }catch(fetchError){
-
-            /*
-               AbortController 触发的就是超时。
-            */
-
-            if(
-                fetchError &&
-                fetchError.name==="AbortError"
-            ){
-
-                const error=
-                    new Error(
-                        "API 请求超时。"
-                    );
-
-                error.name=
-                    "AbortError";
-
-                throw error;
-            }
-
-            /*
-               浏览器的 Failed to fetch
-               一般属于网络层/CORS/连接问题。
-            */
-
-            const error=
-                new Error(
-                    "Failed to fetch"
-                );
-
-            error.isNetworkError=true;
-
-            error.originalError=
-                fetchError;
-
-            throw error;
         }
 
 
         if(!response.ok){
 
-            let message="";
+            const msg =
+                data?.error?.message ||
+                data?.message ||
+                data?.error?.msg ||
+                `HTTP ${response.status}`;
 
-            let data=null;
 
-            try{
+            const errorText =
+                String(msg);
 
-                data=
-                    await response.json();
-
-                message=
-                    data?.error?.message ||
-                    "";
-
-            }catch(e){
-
-                try{
-
-                    message=
-                        await response.text();
-
-                }catch(ignore){}
-            }
-
-            const error=
-                new Error(
-                    message ||
-                    `API 请求失败：HTTP ${response.status}`
-                );
-
-            error.status=
-                response.status;
 
             /*
-               OpenAI 返回 Retry-After 时，
-               按服务器建议等待。
-            */
+             * 余额不足
+             */
 
-            const retryAfterHeader=
-                response.headers.get(
-                    "Retry-After"
-                );
-
-            if(retryAfterHeader){
-
-                const seconds=
-                    Number(
-                        retryAfterHeader
-                    );
-
-                if(
-                    Number.isFinite(seconds)
-                ){
-
-                    error.retryAfter=
-                        seconds*1000;
-                }
-            }
-
-            throw error;
-        }
-
-
-        const data=
-            await response.json();
-
-
-        /*
-           Responses API 标准输出。
-        */
-
-        if(
-            typeof data.output_text==="string" &&
-            data.output_text.trim()
-        ){
-
-            return data.output_text.trim();
-        }
-
-
-        /*
-           兼容完整 output。
-        */
-
-        let text="";
-
-        if(Array.isArray(data.output)){
-
-            for(
-                const item of data.output
+            if(
+                /insufficient/i.test(errorText) ||
+                /balance/i.test(errorText) ||
+                /余额/i.test(errorText) ||
+                /quota/i.test(errorText) ||
+                /quota exceeded/i.test(errorText)
             ){
 
-                if(
-                    !Array.isArray(
-                        item.content
-                    )
-                ){
+                throw new Error(
+                    "智谱 API 余额或调用额度不足，请前往智谱开放平台充值或检查账户额度。"
+                );
 
-                    continue;
-                }
-
-                for(
-                    const content of item.content
-                ){
-
-                    if(
-                        content.type==="output_text" &&
-                        typeof content.text==="string"
-                    ){
-
-                        text+=content.text;
-                    }
-                }
             }
-        }
 
 
-        if(!text.trim()){
+            /*
+             * Key 错误
+             */
+
+            if(
+                /invalid.*api.?key/i.test(errorText) ||
+                /api.?key.*invalid/i.test(errorText) ||
+                /unauthorized/i.test(errorText) ||
+                /authentication/i.test(errorText) ||
+                /401/.test(errorText)
+            ){
+
+                throw new Error(
+                    "智谱 API Key 无效或认证失败，请重新检查 API Key。"
+                );
+
+            }
+
+
+            /*
+             * 权限
+             */
+
+            if(
+                /permission/i.test(errorText) ||
+                /forbidden/i.test(errorText) ||
+                /403/.test(errorText)
+            ){
+
+                throw new Error(
+                    "智谱 API Key 没有调用该模型的权限，请检查账户权限及模型权限。"
+                );
+
+            }
+
+
+            /*
+             * 模型错误
+             */
+
+            if(
+                /model/i.test(errorText) &&
+                (
+                    /not found/i.test(errorText) ||
+                    /不存在/.test(errorText)
+                )
+            ){
+
+                throw new Error(
+                    "GLM-5.2 模型不可用，请检查智谱账户是否支持该模型。"
+                );
+
+            }
+
 
             throw new Error(
-                "AI 返回为空，请稍后重试。"
+                "智谱 API 请求失败：" +
+                errorText
             );
+
         }
 
 
-        return text.trim();
+        const text =
+            data?.choices?.[0]
+                ?.message
+                ?.content;
+
+
+        if(!text){
+
+            throw new Error(
+                "GLM-5.2 没有返回解读内容。"
+            );
+
+        }
+
+
+        answer.textContent =
+            text;
+
+        status.textContent =
+            "GLM-5.2 AI 解读完成。";
+
+
+    }catch(e){
+
+        if(
+            e.name === "AbortError"
+        ){
+
+            answer.textContent =
+                "解读失败：请求超过30秒，请检查网络后重试。";
+
+        }else{
+
+            answer.textContent =
+                "解读失败：" +
+                e.message;
+
+        }
+
+
+        status.textContent =
+            "GLM-5.2 AI 解读失败。";
+
 
     }finally{
 
         clearTimeout(timer);
+
+        ai.disabled =
+            false;
+
+        ai.textContent =
+            "✦ 解读";
+
     }
+
 }
 
 
-/* =========================================================
-   AI Prompt
-========================================================= */
+ai.onclick =
+    requestAI;
 
-function buildPrompt(){
 
-    const original=
-        originalName.textContent;
+/* =====================================================
+   星空背景
+===================================================== */
 
-    const changed=
-        changedName.textContent;
+const stars =
+    $("stars");
 
-    const moving=
-        changingLines.textContent;
+const ctx =
+    stars.getContext("2d");
 
-    const lines=
-        state.lines
-        .map((line,index)=>
-            `${index+1}爻：${line.type}（${line.value}）
-三变：${line.changes.join(" → ")}
-动静：${line.changing?"动爻":"静爻"}`
-        )
-        .join("\n");
+let ss = [];
 
 
-    return `
-你是一名严格按照传统易学卦理进行卦象分析的解读者。
+function resize(){
 
-你的任务不是给用户泛泛的人生建议，而是直接回答用户提出的问题。
+    stars.width =
+        innerWidth *
+        devicePixelRatio;
 
-【用户问题】
-${state.question}
+    stars.height =
+        innerHeight *
+        devicePixelRatio;
 
-【本卦】
-${original}
 
-【变卦】
-${changed}
-
-【动爻】
-${moving}
-
-【六爻】
-${lines}
-
-请严格围绕用户最初的问题进行判断。
-
-回答结构：
-
-一、直接结论
-第一段直接回答用户的问题。
-如果问题是“能不能”“会不会”“是否可以”“什么时候”，必须优先回答这个问题。
-
-二、卦象依据
-解释本卦为什么支持或不支持这个判断。
-
-三、动爻分析
-逐个分析动爻，并说明它们与用户问题之间的直接关系。
-
-四、发展趋势
-按照当前、发展、后续说明事情走势。
-如果涉及时间，只给出卦象能够支持的大致时间范围，不要虚构精确日期。
-
-五、最终判断
-用一段话再次明确回答最初的问题。
-
-重要规则：
-
-1. 不要改变用户的问题。
-2. 不要主动扩展到用户没有问的事情。
-3. 不要突然分析恋爱、健康、财运等无关领域。
-4. 不要把预测问题变成心理咨询。
-5. 不要大量使用“建议你”“你应该”。
-6. 结论偏不利时直接说不利。
-7. 结论偏有利时直接说有利。
-8. 存在明显变数时说明变数来源。
-9. 必须以本卦、变卦、动爻为核心证据。
-10. 不要为了让答案好听而刻意美化卦象。
-`;
-}
-
-
-/* =========================================================
-   API错误
-========================================================= */
-
-function readableError(error){
-
-    if(!error){
-
-        return "AI 解读失败。";
-    }
-
-
-    if(error.name==="AbortError"){
-
-        return "AI 请求超过 45 秒没有返回。系统会自动重试，请稍后再试。";
-    }
-
-
-    if(error.status===400){
-
-        return "API 请求参数有误，请检查当前模型设置。";
-    }
-
-
-    if(error.status===401){
-
-        return "API Key 无效或已经失效，请检查 API Key。";
-    }
-
-
-    if(error.status===403){
-
-        return "API Key 没有权限调用当前模型。";
-    }
-
-
-    if(error.status===404){
-
-        return "当前模型不存在或 API 地址无法使用，请检查模型设置。";
-    }
-
-
-    if(error.status===429){
-
-        return "API 请求过于频繁，或者当前 API 额度不足。请稍后再试。";
-    }
-
-
-    if(
-        error.status>=500 &&
-        error.status<=599
-    ){
-
-        return "AI 服务暂时异常。系统已经自动重试，请稍后再试。";
-    }
-
-
-    if(
-        error.isNetworkError ||
-        (
-            error.message &&
-            (
-                error.message.includes(
-                    "Failed to fetch"
-                ) ||
-                error.message.includes(
-                    "NetworkError"
-                ) ||
-                error.message.includes(
-                    "network"
-                )
-            )
-        )
-    ){
-
-        return "网络连接 AI 失败。系统已经自动重试，请检查当前网络、浏览器网络权限或 API 服务连接。";
-    }
-
-
-    if(
-        error.message &&
-        error.message.includes("超时")
-    ){
-
-        return "AI 请求超时。系统已经自动重试，请稍后再试。";
-    }
-
-
-    return error.message ||
-        "AI 解读失败，请稍后再试。";
-}
-
-
-/* =========================================================
-   历史记录
-========================================================= */
-
-function saveHistory(){
-
-    const history=
-        JSON.parse(
-            localStorage.getItem(
-                HISTORY_KEY
-            )||"[]"
-        );
-
-    const original=
-        originalName.textContent;
-
-    const changed=
-        changedName.textContent;
-
-    const record={
-
-        id:Date.now(),
-
-        question:
-            state.question,
-
-        original,
-
-        changed,
-
-        moving:
-            changingLines.textContent,
-
-        time:
-            state.startTime,
-
-        lines:
-            state.lines.map(line=>({
-
-                value:
-                    line.value,
-
-                type:
-                    line.type,
-
-                changing:
-                    line.changing,
-
-                changes:
-                    line.changes,
-
-                sides:
-                    line.sides
-            }))
-    };
-
-    history.unshift(record);
-
-    localStorage.setItem(
-        HISTORY_KEY,
-        JSON.stringify(
-            history.slice(0,50)
-        )
+    ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
     );
 
-    renderHistory();
+
+    ss =
+        Array.from(
+            {
+                length:
+                    Math.floor(
+                        innerWidth *
+                        innerHeight /
+                        9000
+                    )
+            },
+            ()=>({
+
+                x:
+                    Math.random() *
+                    innerWidth,
+
+                y:
+                    Math.random() *
+                    innerHeight,
+
+                r:
+                    .2 +
+                    Math.random() *
+                    1.2,
+
+                a:
+                    .2 +
+                    Math.random() *
+                    .8
+
+            })
+        );
+
 }
 
 
-function renderHistory(){
+function draw(){
 
-    const history=
-        JSON.parse(
-            localStorage.getItem(
-                HISTORY_KEY
-            )||"[]"
+    ctx.clearRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
+
+
+    ss.forEach(s=>{
+
+        ctx.beginPath();
+
+        ctx.arc(
+            s.x,
+            s.y,
+            s.r,
+            0,
+            Math.PI*2
         );
 
-    const el=$("history");
 
-    el.innerHTML="";
+        ctx.fillStyle =
+            `rgba(
+                180,
+                255,
+                255,
+                ${s.a}
+            )`;
 
-    if(!history.length){
 
-        el.innerHTML=
-            `<div class="small">暂无历史记录。</div>`;
+        ctx.fill();
 
-        return;
-    }
-
-    history.forEach(item=>{
-
-        const box=
-            document.createElement("div");
-
-        box.className=
-            "history-item";
-
-        const title=
-            document.createElement("div");
-
-        title.className=
-            "history-title";
-
-        title.textContent=
-            item.question;
-
-        const meta=
-            document.createElement("div");
-
-        meta.className=
-            "history-meta";
-
-        meta.textContent=
-            `${item.original} → ${item.changed}`
-            +
-            ` ｜ ${item.moving}`
-            +
-            ` ｜ ${formatDate(
-                new Date(item.time)
-            )}`;
-
-        box.appendChild(title);
-
-        box.appendChild(meta);
-
-        box.onclick=()=>{
-            loadHistory(item);
-        };
-
-        el.appendChild(box);
     });
+
+
+    requestAnimationFrame(
+        draw
+    );
+
 }
 
 
-/* =========================================================
-   打开历史
-========================================================= */
+addEventListener(
+    "resize",
+    resize
+);
 
-function loadHistory(item){
+resize();
 
-    state={
-
-        question:
-            item.question,
-
-        lines:
-            item.lines.map(line=>({
-
-                value:
-                    line.value,
-
-                type:
-                    line.type,
-
-                changing:
-                    line.changing,
-
-                changes:
-                    line.changes,
-
-                sides:
-                    line.sides||[]
-            })),
-
-        currentLine:6,
-
-        currentChange:3,
-
-        sticks:49,
-
-        startTime:
-            item.time,
-
-        finished:true
-    };
-
-    question.value=
-        item.question;
-
-    renderLines();
-
-    originalName.textContent=
-        item.original;
-
-    changedName.textContent=
-        item.changed;
-
-    changingLines.textContent=
-        item.moving;
-
-    divinationTime.textContent=
-        formatDate(
-            new Date(item.time)
-        );
-
-    bigHexagramName.textContent=
-        item.original;
-
-    hexagramInfo.textContent=
-        `本卦：${item.original} ｜ 变卦：${item.changed}`;
-
-    const bits=
-        state.lines
-        .map(line=>
-            line.value===7 ||
-            line.value===9
-            ? "1":"0"
-        )
-        .join("");
-
-    renderHexagram(bits);
-
-    divinationCard.classList.remove(
-        "hidden"
-    );
-
-    resultCard.classList.remove(
-        "hidden"
-    );
-
-    aiCard.classList.add(
-        "hidden"
-    );
-
-    showMainStatus(
-        "已经打开历史记录。",
-        "success"
-    );
-
-    resultCard.scrollIntoView({
-        behavior:"smooth"
-    });
-}
-
-
-/* =========================================================
-   清空历史
-========================================================= */
-
-$("clearHistoryBtn").onclick=()=>{
-
-    if(
-        !confirm(
-            "确定要清空全部历史记录吗？"
-        )
-    ){
-
-        return;
-    }
-
-    localStorage.removeItem(
-        HISTORY_KEY
-    );
-
-    renderHistory();
-};
-
-
-/* =========================================================
-   初始化历史
-========================================================= */
-
-renderHistory();
+draw();
 
 </script>
 
